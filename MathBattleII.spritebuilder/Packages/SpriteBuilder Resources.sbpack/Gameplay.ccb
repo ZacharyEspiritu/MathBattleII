@@ -4292,9 +4292,9 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>233</real>
+									<real>87.000007629394531</real>
 									<real>106</real>
-									<integer>0</integer>
+									<integer>3</integer>
 									<integer>3</integer>
 								</array>
 							</dict>
@@ -5755,9 +5755,9 @@
 								<string>Size</string>
 								<key>value</key>
 								<array>
-									<real>233</real>
+									<real>87</real>
 									<real>106</real>
-									<integer>0</integer>
+									<integer>3</integer>
 									<integer>3</integer>
 								</array>
 							</dict>
