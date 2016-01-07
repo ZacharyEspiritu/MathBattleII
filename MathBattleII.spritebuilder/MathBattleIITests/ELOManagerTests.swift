@@ -48,6 +48,14 @@ class ELOManagerTests: XCTestCase {
         XCTAssertEqual(updatedRatings.0, expected.0, "newWinnerRating should be equal to \(expected.0) but came out \(updatedRatings.0).")
         XCTAssertEqual(updatedRatings.1, expected.1, "newLoserRating should be equal to \(expected.1) but came out \(updatedRatings.0).")
     }
+    
+    func testCalculateDifference() {
+        let rating1: Int = 809
+        let rating2: Int = 820
+        let expected: Int = 11
+        let difference: Int = manager.calculateRatingDifference(rating1: rating1, rating2: rating2)
+        XCTAssertEqual(difference, expected, "difference should be equal to \(expected) but came out \(difference)")
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

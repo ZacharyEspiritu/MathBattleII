@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		550A06171C3C926B00FC4FCD /* MathBattleIITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A06161C3C926B00FC4FCD /* MathBattleIITests.swift */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
+		55585FB41C3E812200688265 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
+		55585FB51C3E812500688265 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
+		55585FB61C3E812A00688265 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* Gameplay.swift */; };
+		55585FB71C3E812F00688265 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
 		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		55EE14E41C3D725B000B94D6 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* Gameplay.swift */; };
@@ -164,7 +167,6 @@
 
 /* Begin PBXFileReference section */
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		550A06161C3C926B00FC4FCD /* MathBattleIITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathBattleIITests.swift; sourceTree = "<group>"; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
@@ -305,7 +307,6 @@
 		550A06151C3C926B00FC4FCD /* MathBattleIITests */ = {
 			isa = PBXGroup;
 			children = (
-				550A06161C3C926B00FC4FCD /* MathBattleIITests.swift */,
 				550A061E1C3C929900FC4FCD /* MainSceneTests.swift */,
 				55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */,
 				550A06181C3C926B00FC4FCD /* Info.plist */,
@@ -888,8 +889,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				550A06171C3C926B00FC4FCD /* MathBattleIITests.swift in Sources */,
+				55585FB41C3E812200688265 /* Player.swift in Sources */,
+				55585FB61C3E812A00688265 /* Gameplay.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
+				55585FB71C3E812F00688265 /* MainScene.swift in Sources */,
+				55585FB51C3E812500688265 /* Rating.swift in Sources */,
 				55F23E651C3DA35E007EE53F /* ELOManager.swift in Sources */,
 				55F23E641C3DA1FF007EE53F /* ELOManagerTests.swift in Sources */,
 			);

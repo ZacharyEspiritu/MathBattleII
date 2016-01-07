@@ -12,14 +12,17 @@ class Rating {
     
     private var rating: Int
     private var numberOfGames: Int
+    private var minimumFloor: Int
     
     init() {
         rating = 1000
         numberOfGames = 0
+        minimumFloor = 700
     }
-    init(rating: Int, numberOfGames: Int) {
+    init(rating: Int, numberOfGames: Int, minimumFloor: Int) {
         self.rating = rating
         self.numberOfGames = numberOfGames
+        self.minimumFloor = minimumFloor
     }
     
     func getRating() -> Int {

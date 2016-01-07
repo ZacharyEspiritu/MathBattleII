@@ -3,7 +3,7 @@
 //  MathBattleII
 //
 //  Created by Zachary Espiritu on 1/5/16.
-//  Copyright © 2016 Apportable. All rights reserved.
+//  Copyright © 2016 Zachary Espiritu. All rights reserved.
 //
 
 import XCTest
