@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
+		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
+		55283D841C3EC894000BD64A /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D831C3EC894000BD64A /* Tile.swift */; };
 		55585FB41C3E812200688265 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55585FB51C3E812500688265 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
-		55585FB61C3E812A00688265 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* Gameplay.swift */; };
+		55585FB61C3E812A00688265 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
 		55585FB71C3E812F00688265 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainScene.swift */; };
 		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
-		55EE14E41C3D725B000B94D6 /* Gameplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* Gameplay.swift */; };
+		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
 		55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */; };
 		55F23E641C3DA1FF007EE53F /* ELOManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */; };
 		55F23E651C3DA35E007EE53F /* ELOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */; };
@@ -169,9 +171,11 @@
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
+		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
+		55283D831C3EC894000BD64A /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
-		55EE14E31C3D725B000B94D6 /* Gameplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gameplay.swift; path = Source/Gameplay.swift; sourceTree = "<group>"; };
+		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; };
 		55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELOManager.swift; path = Source/ELOManager.swift; sourceTree = "<group>"; };
 		55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELOManagerTests.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -479,7 +483,9 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
-				55EE14E31C3D725B000B94D6 /* Gameplay.swift */,
+				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
+				55283D7D1C3EC879000BD64A /* Grid.swift */,
+				55283D831C3EC894000BD64A /* Tile.swift */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
 				55D9BBF51C3E11D100884486 /* Player.swift */,
 				55D9BBF91C3E121E00884486 /* Rating.swift */,
@@ -890,7 +896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55585FB41C3E812200688265 /* Player.swift in Sources */,
-				55585FB61C3E812A00688265 /* Gameplay.swift in Sources */,
+				55585FB61C3E812A00688265 /* GameplayScene.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
 				55585FB71C3E812F00688265 /* MainScene.swift in Sources */,
 				55585FB51C3E812500688265 /* Rating.swift in Sources */,
@@ -923,9 +929,11 @@
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
 				55D9BBF61C3E11D100884486 /* Player.swift in Sources */,
-				55EE14E41C3D725B000B94D6 /* Gameplay.swift in Sources */,
+				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
+				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
+				55283D841C3EC894000BD64A /* Tile.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */,
 			);

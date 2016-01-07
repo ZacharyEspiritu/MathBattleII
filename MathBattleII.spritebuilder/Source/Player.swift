@@ -11,13 +11,16 @@ import Foundation
 class Player {
     
     private var username: String
-    private var rating: Rating
-    private var numberOfGamesPlayed: Int
+    private var rating: Int
     
-    init() {
-        username = ""
-        rating = Rating()
+    private var numberOfGamesPlayed: Int
+    private var ratingFloor: Int
+    
+    init(name: String) {
+        username = name
+        rating = 1000
         numberOfGamesPlayed = 0
+        ratingFloor = 700
     }
     
 }

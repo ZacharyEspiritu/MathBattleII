@@ -41,4 +41,8 @@ class Rating {
     func getNumberOfGamesPlayed() -> Int {
         return numberOfGames
     }
+    
+    func getMinimumFloor() -> Int {
+        return minimumFloor
+    }
 }

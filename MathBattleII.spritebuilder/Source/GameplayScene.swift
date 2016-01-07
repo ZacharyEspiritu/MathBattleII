@@ -1,5 +1,5 @@
 //
-//  Gameplay.swift
+//  GameplayScene.swift
 //  MathBattleII
 //
 //  Created by Zachary Espiritu on 1/6/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Gameplay {
+class GameplayScene {
     
     func didLoadFromCCB() {
         
