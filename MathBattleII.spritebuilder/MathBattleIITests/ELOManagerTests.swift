@@ -27,8 +27,8 @@ class ELOManagerTests: XCTestCase {
         let loserRating: Int = 1274
         let expected: (Int, Int) = (1267, 1256)
         let updatedRatings: (Int, Int) = manager.updateRatings(winner: winnerRating, loser: loserRating)
-        XCTAssertEqual(updatedRatings.0, expected.0, "The ratings should be updated properly.")
-        XCTAssertEqual(updatedRatings.1, expected.1, "The ratings should be updated properly.")
+        XCTAssertEqual(updatedRatings.0, expected.0, "newWinnerRating should be equal to \(expected.0) but came out \(updatedRatings.0).")
+        XCTAssertEqual(updatedRatings.1, expected.1, "newLoserRating should be equal to \(expected.1) but came out \(updatedRatings.0).")
     }
     
     func testUpdateRatingsWithHighWinner() {
@@ -36,8 +36,8 @@ class ELOManagerTests: XCTestCase {
         let loserRating: Int = 1250
         let expected: (Int, Int) = (1288, 1235)
         let updatedRatings: (Int, Int) = manager.updateRatings(winner: winnerRating, loser: loserRating)
-        XCTAssertEqual(updatedRatings.0, expected.0, "The ratings should be updated properly.")
-        XCTAssertEqual(updatedRatings.1, expected.1, "The ratings should be updated properly.")
+        XCTAssertEqual(updatedRatings.0, expected.0, "newWinnerRating should be equal to \(expected.0) but came out \(updatedRatings.0).")
+        XCTAssertEqual(updatedRatings.1, expected.1, "newLoserRating should be equal to \(expected.1) but came out \(updatedRatings.0).")
     }
     
     func testUpdateRatingsWithMinimumRating() {
@@ -45,8 +45,8 @@ class ELOManagerTests: XCTestCase {
         let loserRating: Int = 701
         let expected: (Int, Int) = (720, 700)
         let updatedRatings: (Int, Int) = manager.updateRatings(winner: winnerRating, loser: loserRating)
-        XCTAssertEqual(updatedRatings.0, expected.0, "The ratings should be updated properly.")
-        XCTAssertEqual(updatedRatings.1, expected.1, "The ratings should be updated properly.")
+        XCTAssertEqual(updatedRatings.0, expected.0, "newWinnerRating should be equal to \(expected.0) but came out \(updatedRatings.0).")
+        XCTAssertEqual(updatedRatings.1, expected.1, "newLoserRating should be equal to \(expected.1) but came out \(updatedRatings.0).")
     }
 
     func testPerformanceExample() {
