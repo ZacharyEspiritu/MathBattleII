@@ -10,21 +10,19 @@ import Foundation
 
 class ELOManager {
     
+    static let sharedInstance = ELOManager() // Singleton
+    
     func updateRatings(winner oldWinnerRating: Int, loser oldLoserRating: Int) -> (Int, Int) {
         
         // Calculate winner rating
         var winnerKConstant = 10
-        if oldWinnerRating < 30 {
-            winnerKConstant = 40
+        if oldWinnerRating < 2100 {
+            winnerKConstant = 32
         }
-        else {
-            if oldWinnerRating < 2100 {
-                winnerKConstant = 32
-            }
-            else if oldWinnerRating < 2400 {
-                winnerKConstant = 24
-            }
+        else if oldWinnerRating < 2400 {
+            winnerKConstant = 24
         }
+        
         
         let expectedWinnerScore = (1 / (1 + pow(10, ((Double(oldLoserRating) - Double(oldWinnerRating)) / 400))))
         var newWinnerRating = Int(Double(oldWinnerRating) + Double(winnerKConstant) * (1 - expectedWinnerScore))
@@ -58,6 +56,6 @@ class ELOManager {
     }
     
     func calculateRatingDifference(rating1 rating1: Int, rating2: Int) -> Int {
-        return rating1 - rating2
+        return abs(rating1 - rating2)
     }
 }

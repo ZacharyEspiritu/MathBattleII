@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>41</integer>
+	<integer>50</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -268,11 +268,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile3-3</string>
+				<string>tileC3</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileC3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -634,11 +634,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile3-2</string>
+				<string>tileB3</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileB3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1000,11 +1000,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile3-1</string>
+				<string>tileA3</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileA3</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1136,6 +1136,8 @@
 						<real>0.33000001311302185</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1366,11 +1368,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile2-3</string>
+				<string>tileC2</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileC2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -1732,11 +1734,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile2-2</string>
+				<string>tileB2</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileB2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -2098,11 +2100,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile2-1</string>
+				<string>tileA2</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileA2</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -2464,11 +2466,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile1-3</string>
+				<string>tileC1</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileC1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -2830,11 +2832,11 @@
 					</dict>
 				</array>
 				<key>customClass</key>
-				<string></string>
+				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile1-2</string>
+				<string>tileB1</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileB1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3198,9 +3200,9 @@
 				<key>customClass</key>
 				<string>Tile</string>
 				<key>displayName</key>
-				<string>tile1-1</string>
+				<string>tileA1</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>tileA1</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -3335,7 +3337,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>Grid</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>
@@ -3387,7 +3389,7 @@
 				<key>value</key>
 				<array>
 					<real>0.5</real>
-					<real>0.0</real>
+					<real>1</real>
 				</array>
 			</dict>
 			<dict>
