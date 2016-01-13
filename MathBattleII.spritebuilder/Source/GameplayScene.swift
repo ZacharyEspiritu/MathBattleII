@@ -10,8 +10,29 @@ import Foundation
 
 class GameplayScene: CCNode {
     
+    weak var topGrid, bottomGrid: Grid!
+    var manager = GridManager()
+    
     func didLoadFromCCB() {
         
+    }
+    
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        let touchLocationOptional: CGPoint?
+        if touch.locationInWorld().y > CCDirector.sharedDirector().viewSize().width / 2 {
+            touchLocationOptional = touch.locationInNode(topGrid)
+            guard let touchLocation = touchLocationOptional else {
+                return
+            }
+            manager.determineTappedTile(touchLocation)
+        }
+        else {
+            touchLocationOptional = touch.locationInNode(bottomGrid)
+            guard let touchLocation = touchLocationOptional else {
+                return
+            }
+            manager.determineTappedTile(touchLocation)
+        }
     }
     
     func generateNewPuzzle() {

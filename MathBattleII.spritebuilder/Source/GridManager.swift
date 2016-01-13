@@ -74,6 +74,10 @@ class GridManager {
         }
         return false
     }
+    
+    func determineTappedTile(touch: CGPoint) {
+        
+    }
 }
 
 enum TileValue: Int {
