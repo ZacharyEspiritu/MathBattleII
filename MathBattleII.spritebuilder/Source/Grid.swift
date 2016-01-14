@@ -10,7 +10,7 @@ import Foundation
 
 class Grid: CCNode {
     
-    private weak var tileA1, tileB1, tileC1,
+    weak var tileA1, tileB1, tileC1,
                      tileA2, tileB2, tileC2,
                      tileA3, tileB3, tileC3: Tile!
     private var tileArray: [Tile] = []
@@ -18,9 +18,7 @@ class Grid: CCNode {
     private var side: Side!
         
     func didLoadFromCCB() {
-        tileArray = [tileA1, tileB1, tileC1,
-                     tileA2, tileB2, tileC2,
-                     tileA3, tileB3, tileC3]
+        //tileArray = [tileA1, tileB1, tileC1, tileA2, tileB2, tileC2, tileA3, tileB3, tileC3]
     }
     
     func getSide() -> Side {

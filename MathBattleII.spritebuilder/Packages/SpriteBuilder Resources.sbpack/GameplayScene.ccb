@@ -7523,7 +7523,7 @@
 						<key>displayName</key>
 						<string>Grid</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>bottomGrid</string>
 						<key>memberVarAssignmentType</key>
 						<integer>1</integer>
 						<key>properties</key>
@@ -7588,6 +7588,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
