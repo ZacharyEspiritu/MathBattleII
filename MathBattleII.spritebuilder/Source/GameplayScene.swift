@@ -19,6 +19,7 @@ class GameplayScene: CCNode {
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         let touchLocationOptional: CGPoint?
+        print("touch")
         if touch.locationInWorld().y > CCDirector.sharedDirector().viewSize().width / 2 {
             touchLocationOptional = touch.locationInNode(topGrid)
             guard let touchLocation = touchLocationOptional else {

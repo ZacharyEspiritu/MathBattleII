@@ -9,5 +9,17 @@
 import Foundation
 
 class MainScene: CCNode {
-
+    
+    /**
+     Starts a new instance of the game.
+     */
+    func play() {
+        let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
+        
+        let scene = CCScene()
+        scene.addChild(gameplayScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }
