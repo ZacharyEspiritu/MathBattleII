@@ -4452,7 +4452,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileC3</string>
 								<key>memberVarAssignmentName</key>
@@ -4818,7 +4818,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileB3</string>
 								<key>memberVarAssignmentName</key>
@@ -5184,7 +5184,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileA3</string>
 								<key>memberVarAssignmentName</key>
@@ -5550,7 +5550,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileC2</string>
 								<key>memberVarAssignmentName</key>
@@ -5916,7 +5916,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileB2</string>
 								<key>memberVarAssignmentName</key>
@@ -6282,7 +6282,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileA2</string>
 								<key>memberVarAssignmentName</key>
@@ -6648,7 +6648,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileC1</string>
 								<key>memberVarAssignmentName</key>
@@ -7014,7 +7014,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileB1</string>
 								<key>memberVarAssignmentName</key>
@@ -7380,7 +7380,7 @@
 									</dict>
 								</array>
 								<key>customClass</key>
-								<string>Tile</string>
+								<string></string>
 								<key>displayName</key>
 								<string>tileA1</string>
 								<key>memberVarAssignmentName</key>
@@ -7516,6 +7516,8 @@
 										<real>0.33000001311302185</real>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -7588,8 +7590,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -8984,11 +8984,11 @@
 							</dict>
 						</array>
 						<key>customClass</key>
-						<string></string>
+						<string>Grid</string>
 						<key>displayName</key>
 						<string>CCNode</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>topGrid</string>
 						<key>memberVarAssignmentType</key>
 						<integer>1</integer>
 						<key>properties</key>
@@ -9334,7 +9334,7 @@
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
-			<real>0.028126716613769531</real>
+			<real>0.13750839233398438</real>
 			<key>position</key>
 			<real>0.76666665077209473</real>
 			<key>resolution</key>

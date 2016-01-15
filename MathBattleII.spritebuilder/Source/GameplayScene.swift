@@ -11,11 +11,15 @@ import Foundation
 class GameplayScene: CCNode {
     
     weak var topGrid, bottomGrid: Grid!
+    
     var manager = GridManager()
     
     func didLoadFromCCB() {
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = true
+        
+        topGrid.generateNewPuzzle()
+        bottomGrid.generateNewPuzzle()
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
@@ -72,9 +76,5 @@ class GameplayScene: CCNode {
             }
             manager.determineTappedTile(touchLocationInGrid)
         }
-    }
-    
-    func generateNewPuzzle() {
-        
     }
 }
