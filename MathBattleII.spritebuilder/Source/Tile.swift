@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Tile: CCSprite9Slice {
+class Tile: CCSprite {
     
-    private weak var label: CCLabelTTF!
+    weak var label: CCLabelTTF!
     private var value: TileValue? {
         didSet {
             label.string = "\(value!.rawValue)"
