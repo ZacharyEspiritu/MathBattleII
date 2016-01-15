@@ -11,6 +11,8 @@ import Foundation
 class GameplayScene: CCNode {
     
     weak var topGrid, bottomGrid: Grid!
+    weak var topHUDBar, bottomHUDBar: CCSprite!
+    weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
     
     var manager = GridManager()
     
