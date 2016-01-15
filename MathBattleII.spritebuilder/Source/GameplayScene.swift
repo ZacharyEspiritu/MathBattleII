@@ -13,6 +13,7 @@ class GameplayScene: CCNode {
     weak var topGrid, bottomGrid: Grid!
     weak var topHUDBar, bottomHUDBar: CCSprite!
     weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
+    weak var scoreCounterBar: ScoreCounter!
     
     var manager = GridManager()
     

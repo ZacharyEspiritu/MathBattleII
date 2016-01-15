@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>158</integer>
+	<integer>159</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -4871,9 +4871,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCBFile</string>
+				<string>scoreCounterBar</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>scoreCounterBar</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -4922,6 +4922,8 @@
 						<string>ScoreCounter.ccb</string>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -4933,7 +4935,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>PlayerDisplay</string>
+				<string>topPlayerDisplay</string>
 				<key>memberVarAssignmentName</key>
 				<string>topPlayerDisplay</string>
 				<key>memberVarAssignmentType</key>
@@ -5003,7 +5005,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>PlayerDisplay</string>
+				<string>bottomPlayerDisplay</string>
 				<key>memberVarAssignmentName</key>
 				<string>bottomPlayerDisplay</string>
 				<key>memberVarAssignmentType</key>
@@ -5054,8 +5056,6 @@
 						<string>PlayerDisplay.ccb</string>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

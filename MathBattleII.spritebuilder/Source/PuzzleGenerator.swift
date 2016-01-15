@@ -38,7 +38,7 @@ class PuzzleGenerator {
                 assertionFailure()
             }
             
-            sampleEquationSolution = sampleEquationSolution + "\(nextOperator.stringValue) \(nextNumber.stringValue)"
+            sampleEquationSolution = sampleEquationSolution + " \(nextOperator.stringValue) \(nextNumber.stringValue)"
             tileSet.append(nextNumber)
             tileSet.append(nextOperator)
         }
