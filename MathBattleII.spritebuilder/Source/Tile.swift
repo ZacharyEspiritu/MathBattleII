@@ -13,7 +13,7 @@ class Tile: CCSprite {
     weak var label: CCLabelTTF!
     private var value: TileValue? {
         didSet {
-            label.string = "\(value!.rawValue)"
+            label.string = "\(value!.stringValue)"
         }
     }
     private var type: TileType?

@@ -11,17 +11,17 @@ import Foundation
 class PuzzleGenerator {
     
     private let amountOfPossibleNumbers: Int = 10
-    private let amountOfPossibleOperators: Int = 10
+    private let amountOfPossibleOperators: Int = 3
     
-    func generateNewPuzzle() -> (Int, String, Set<TileValue>) {
+    func generateNewPuzzle() -> (Int, String, [TileValue]) {
         var targetNumber: Int = 0
         var sampleEquationSolution: String = ""
-        var tileSet = Set<TileValue>()
+        var tileSet: [TileValue] = []
         
         let firstNumber: TileValue = chooseRandomNumber()
         targetNumber = firstNumber.rawValue
-        sampleEquationSolution = "\(firstNumber.rawValue)"
-        tileSet.insert(firstNumber)
+        sampleEquationSolution = "\(firstNumber.stringValue)"
+        tileSet.append(firstNumber)
         
         for _ in 0..<4 {
             let nextNumber: TileValue = chooseRandomNumber()
@@ -38,9 +38,9 @@ class PuzzleGenerator {
                 assertionFailure()
             }
             
-            sampleEquationSolution = sampleEquationSolution + "\(nextOperator.stringValue) \(nextNumber)"
-            tileSet.insert(nextNumber)
-            tileSet.insert(nextOperator)
+            sampleEquationSolution = sampleEquationSolution + "\(nextOperator.stringValue) \(nextNumber.stringValue)"
+            tileSet.append(nextNumber)
+            tileSet.append(nextOperator)
         }
         
         sampleEquationSolution = sampleEquationSolution + " = \(targetNumber)"
