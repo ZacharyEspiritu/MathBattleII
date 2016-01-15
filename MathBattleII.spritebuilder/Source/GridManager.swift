@@ -10,49 +10,6 @@ import Foundation
 
 class GridManager {
     
-    private var difficulty: Int = 10
-    
-    func generateNewPuzzle() -> ([String], String) {
-        
-        var targetNumber: Int = 0
-        var sampleEquationSolution: String = ""
-        var tileStorageArray: [String] = []
-        
-        let firstNumber = Int(arc4random_uniform(UInt32(difficulty)))
-        targetNumber = firstNumber
-        sampleEquationSolution = "\(firstNumber)"
-        tileStorageArray.append("\(firstNumber)")
-        
-        for _ in 0..<4 {
-            let nextNumber = Int(arc4random_uniform(UInt32(difficulty)))
-            
-            let rand = Double(arc4random())
-            var nextOperation: TileValue!
-            
-            if rand < 0.30 {
-                nextOperation = TileValue.multiply
-                targetNumber = targetNumber * nextNumber
-            }
-            else if rand < 0.65 {
-                nextOperation = TileValue.add
-                targetNumber = targetNumber + nextNumber
-            }
-            else {
-                nextOperation = TileValue.subtract
-                targetNumber = targetNumber - nextNumber
-            }
-            
-            tileStorageArray.append(nextOperation.stringValue)
-            tileStorageArray.append("\(nextNumber)")
-            sampleEquationSolution = sampleEquationSolution + " \(nextOperation.stringValue) \(nextNumber)"
-        }
-        
-        sampleEquationSolution = sampleEquationSolution + " = \(targetNumber)"
-        print(sampleEquationSolution)
-        
-        return (tileStorageArray, sampleEquationSolution)
-    }
-    
     func checkIfRightAnswer(array: [TileValue]) -> Bool {
         if array.count == 9 {
             if array[0].checkIfNumberOrOperation() == TileType.Number &&

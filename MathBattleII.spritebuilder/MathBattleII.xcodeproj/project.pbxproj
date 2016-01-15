@@ -21,6 +21,8 @@
 		55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */; };
 		55D676901C49515F001AE5F7 /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */; };
+		55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */; };
+		55D676931C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */; };
 		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
@@ -185,6 +187,7 @@
 		55283DAB1C3F1CB3000BD64A /* TileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileManager.swift; path = Source/TileManager.swift; sourceTree = "<group>"; };
 		55D676891C4931EE001AE5F7 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array2D.swift; path = Source/Array2D.swift; sourceTree = "<group>"; };
 		55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerDisplay.swift; path = Source/PlayerDisplay.swift; sourceTree = "<group>"; };
+		55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PuzzleGenerator.swift; path = Source/PuzzleGenerator.swift; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; };
@@ -336,7 +339,6 @@
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
-				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 		55A0C0731C3F71ED00C6443B /* Gameplay Objects */ = {
 			isa = PBXGroup;
 			children = (
+				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
 				55283D7D1C3EC879000BD64A /* Grid.swift */,
 				55283D831C3EC894000BD64A /* Tile.swift */,
 			);
@@ -356,6 +359,7 @@
 				55283DAB1C3F1CB3000BD64A /* TileManager.swift */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
 				55089F441C401E7A009ADD02 /* GridManager.swift */,
+				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
 				55D676891C4931EE001AE5F7 /* Array2D.swift */,
 			);
 			name = Managers;
@@ -940,6 +944,7 @@
 				55585FB41C3E812200688265 /* Player.swift in Sources */,
 				55089F461C401E7A009ADD02 /* GridManager.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
+				55D676931C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				55089F411C401DE0009ADD02 /* GridManagerTests.swift in Sources */,
 				55585FB51C3E812500688265 /* Rating.swift in Sources */,
 				55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */,
@@ -983,6 +988,7 @@
 				55283D841C3EC894000BD64A /* Tile.swift in Sources */,
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
