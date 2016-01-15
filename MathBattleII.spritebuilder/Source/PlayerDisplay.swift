@@ -10,8 +10,8 @@ import Foundation
 
 class PlayerDisplay: CCSprite {
     
-    private weak var targetNumberLabel: CCLabelTTF!
-    private weak var equationLabel: CCLabelTTF!
+    weak var targetNumberLabel: CCLabelTTF!
+    weak var equationLabel: CCLabelTTF!
     
     func setTargetNumberLabel(targetNumber targetNumber: Int) {
         targetNumberLabel.string = "\(targetNumber)"

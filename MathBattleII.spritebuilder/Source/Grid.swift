@@ -47,4 +47,12 @@ class Grid: CCNode {
             }
         }
     }
+    
+    func getTileAtPosition(row row: Int, column: Int) -> Tile {
+        guard let tile = tiles[row, column] else {
+            assertionFailure("No Tile exists at (\(row), \(column))")
+            return Tile()
+        }
+        return tile
+    }
 }
