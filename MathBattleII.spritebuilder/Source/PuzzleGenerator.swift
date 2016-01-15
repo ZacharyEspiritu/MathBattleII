@@ -10,6 +10,8 @@ import Foundation
 
 class PuzzleGenerator {
     
+    static let sharedInstance = PuzzleGenerator()
+    
     private let amountOfPossibleNumbers: Int = 10
     private let amountOfPossibleOperators: Int = 3
     

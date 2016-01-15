@@ -51,7 +51,7 @@
 				<key>displayName</key>
 				<string>targetNumberLabel</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>targetNumberLabel</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>

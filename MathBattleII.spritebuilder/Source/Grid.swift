@@ -18,16 +18,11 @@ class Grid: CCNode {
         
     }
     
-    func generateNewPuzzle() {
-        let newPuzzle: (Int, String, [TileValue]) = PuzzleGenerator().generateNewPuzzle()
-        let targetNumber: Int = newPuzzle.0
-        let sampleEquationSolution: String = newPuzzle.1
-        let tileArray: [TileValue] = newPuzzle.2
-        loadTiles(tileArray)
-    }
-    
     func loadTiles(var tileArray: [TileValue]) {
-        
+        guard tileArray.count == 9 else {
+            assertionFailure("loadTiles(tileArray): tileArray did not have exactly 9 TileValue instances")
+            return
+        }
         for rowIndex in 0..<3 { // Generate each row first
             let rowPosition = Double(rowIndex) * 0.5
             for columnIndex in 0..<3 { // Then generate columns
@@ -52,16 +47,4 @@ class Grid: CCNode {
             }
         }
     }
-    
-    func getSide() -> Side {
-        return side
-    }
-    
-    func setSide(side: Side) {
-        self.side = side
-    }
-}
-
-enum Side {
-    case Top, Bottom
 }

@@ -21,8 +21,25 @@ class GameplayScene: CCNode {
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = true
         
-        topGrid.generateNewPuzzle()
-        bottomGrid.generateNewPuzzle()
+        loadNewPuzzle(forSide: .Top)
+        loadNewPuzzle(forSide: .Bottom)
+    }
+    
+    func loadNewPuzzle(forSide side: Side) {
+        // Generate new puzzle
+        let newPuzzle: (Int, String, [TileValue]) = PuzzleGenerator.sharedInstance.generateNewPuzzle()
+        let targetNumber: Int = newPuzzle.0
+        let sampleEquationSolution: String = newPuzzle.1
+        let tileArray: [TileValue] = newPuzzle.2
+        
+        if side == .Top {
+            topGrid.loadTiles(tileArray)
+            topPlayerDisplay.setTargetNumberLabel(targetNumber: targetNumber)
+        }
+        else {
+            bottomGrid.loadTiles(tileArray)
+            bottomPlayerDisplay.setTargetNumberLabel(targetNumber: targetNumber)
+        }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
@@ -80,4 +97,8 @@ class GameplayScene: CCNode {
             manager.determineTappedTile(touchLocationInGrid)
         }
     }
+}
+
+enum Side {
+    case Top, Bottom
 }
