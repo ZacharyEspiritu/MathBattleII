@@ -16,4 +16,16 @@ class MainDisplay: CCSprite {
         topPlayerNameLabel.string = "testset"
         bottomPlayerNameLabel.string = "Testasfsdf"
     }
+    
+    func setTopPlayerLabel(string string: String) {
+        topPlayerNameLabel.string = string
+    }
+    
+    func setBottomPlayerLabel(string string: String) {
+        bottomPlayerNameLabel.string = string
+    }
+    
+    func setTimerLabel(string string: String) {
+        timerLabel.string = string
+    }
 }
