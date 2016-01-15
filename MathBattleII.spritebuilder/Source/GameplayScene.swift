@@ -10,6 +10,7 @@ import Foundation
 
 class GameplayScene: CCNode {
     
+    weak var topSide, bottomSide: CCNode!
     weak var topGrid, bottomGrid: Grid!
     weak var topHUDBar, bottomHUDBar: CCSprite!
     weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
@@ -48,26 +49,28 @@ class GameplayScene: CCNode {
         let touchLocationInGridOptional: CGPoint?
         
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Bottom
-            touchLocationInGridOptional = touch.locationInNode(bottomGrid)
-            guard let touchLocationInGrid = touchLocationInGridOptional else {
-                return
+            if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
+                touchLocationInGridOptional = touch.locationInNode(bottomGrid)
+                guard let touchLocationInGrid = touchLocationInGridOptional else {
+                    return
+                }
+                print(touchLocationInGrid)
+                
+                let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
+                bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
             }
-            print(touchLocationInGrid)
-            
-            let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
-            
-            bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
         }
         else { // Top
-            touchLocationInGridOptional = touch.locationInNode(topGrid)
-            guard let touchLocationInGrid = touchLocationInGridOptional else {
-                return
+            if CGRectContainsPoint(topGrid.boundingBox(), touch.locationInNode(topSide)) {
+                touchLocationInGridOptional = touch.locationInNode(topGrid)
+                guard let touchLocationInGrid = touchLocationInGridOptional else {
+                    return
+                }
+                print(touchLocationInGrid)
+                
+                let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
+                topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
             }
-            print(touchLocationInGrid)
-            
-            let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
-            
-            topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
         }
         
     }

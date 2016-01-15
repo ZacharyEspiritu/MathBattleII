@@ -22,6 +22,7 @@
 		55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */; };
 		55D6769E1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6769D1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift */; };
 		55D6769F1C49865B001AE5F7 /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
+		55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676A01C499E7D001AE5F7 /* MainDisplay.swift */; };
 		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
@@ -187,6 +188,7 @@
 		55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PuzzleGenerator.swift; path = Source/PuzzleGenerator.swift; sourceTree = "<group>"; };
 		55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreCounter.swift; path = Source/ScoreCounter.swift; sourceTree = "<group>"; };
 		55D6769D1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleGeneratorTests.swift; sourceTree = "<group>"; };
+		55D676A01C499E7D001AE5F7 /* MainDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainDisplay.swift; path = Source/MainDisplay.swift; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 			children = (
 				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
 				55283D7D1C3EC879000BD64A /* Grid.swift */,
+				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
 				55283D831C3EC894000BD64A /* Tile.swift */,
 				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
 			);
@@ -980,6 +983,7 @@
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
 				55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */,
+				55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,

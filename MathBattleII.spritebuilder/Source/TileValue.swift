@@ -36,9 +36,9 @@ extension TileValue {
         case .add:
             return "+"
         case .subtract:
-            return "-"
+            return "−"
         case .multiply:
-            return "x"
+            return "×"
         default:
             return "\(self.rawValue)"
         }
