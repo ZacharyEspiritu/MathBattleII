@@ -27,4 +27,18 @@ struct Array2D<T> {
             array[row*columns + column] = newValue
         }
     }
+    
+    func enumerate() -> AnyGenerator<((Int, Int), T?)> {
+        var index = 0
+        var generator = array.generate()
+        return anyGenerator() {
+            if let item = generator.next() {
+                let column = index % self.columns
+                let row = index / self.columns
+                ++index
+                return ((column, row) , item)
+            }
+            return nil
+        }
+    }
 }

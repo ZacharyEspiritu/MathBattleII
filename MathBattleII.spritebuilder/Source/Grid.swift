@@ -11,9 +11,9 @@ import Foundation
 class Grid: CCNode {
     
     private var tiles = Array2D<Tile>(columns: 3, rows: 3)
+    private var currentlySelectedTiles: [Tile] = []
     
-    private var side: Side!
-        
+    
     func didLoadFromCCB() {
         
     }
@@ -54,5 +54,28 @@ class Grid: CCNode {
             return Tile()
         }
         return tile
+    }
+    
+    func selectTileAtPosition(row row: Int, column: Int) -> Tile {
+        guard let tile = tiles[row, column] else {
+            assertionFailure("No Tile exists at (\(row), \(column))")
+            return Tile()
+        }
+        tile.color = CCColor(white: 0.5, alpha: 1)
+        currentlySelectedTiles.append(tile)
+        return tile
+    }
+    
+    func getCurrentlySelectedTiles() -> [Tile] {
+        return currentlySelectedTiles
+    }
+    
+    func clearSelectedTiles() {
+        for rowIndex in 0..<3 {
+            for columnIndex in 0..<3 {
+                tiles[rowIndex, columnIndex]!.color = CCColor(white: 1, alpha: 1)
+            }
+        }
+        currentlySelectedTiles.removeAll()
     }
 }

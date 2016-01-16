@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55089F451C401E7A009ADD02 /* GridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55089F441C401E7A009ADD02 /* GridManager.swift */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D841C3EC894000BD64A /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D831C3EC894000BD64A /* Tile.swift */; };
@@ -177,7 +176,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		55089F441C401E7A009ADD02 /* GridManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridManager.swift; path = Source/GridManager.swift; sourceTree = "<group>"; };
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
@@ -364,7 +362,6 @@
 			children = (
 				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
 				55D676891C4931EE001AE5F7 /* Array2D.swift */,
-				55089F441C401E7A009ADD02 /* GridManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -980,7 +977,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
-				55089F451C401E7A009ADD02 /* GridManager.swift in Sources */,
 				55D9BBF61C3E11D100884486 /* Player.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,

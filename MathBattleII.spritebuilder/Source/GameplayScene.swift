@@ -10,18 +10,35 @@ import Foundation
 
 class GameplayScene: CCNode {
     
+    // MARK: Variables
+    
     weak var topSide, bottomSide: CCNode!
     weak var topGrid, bottomGrid: Grid!
-    weak var topHUDBar, bottomHUDBar: CCSprite!
     weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
+    weak var topHUDBar, bottomHUDBar: CCSprite!
+    weak var topEqualsButton, bottomEqualsButton: CCSprite!
+    weak var topClearButton, bottomClearButton: CCSprite!
     
     weak var mainDisplay: MainDisplay!
     weak var scoreCounterBar: ScoreCounter!
     weak var dividingLine: CCSprite!
     
-    var gameTimer: GameTimer! = nil
+    private var gameTimer: GameTimer! = nil
     
-    var manager = GridManager()
+    private var topSampleEquationSolution, bottomSampleEquationSolution: String!
+    private var topTargetNumber: Int! {
+        didSet {
+            topPlayerDisplay.setTargetNumberLabel(targetNumber: topTargetNumber)
+        }
+    }
+    private var bottomTargetNumber: Int! {
+        didSet {
+            bottomPlayerDisplay.setTargetNumberLabel(targetNumber: bottomTargetNumber)
+        }
+    }
+    
+    
+    // MARK: Functions
     
     func didLoadFromCCB() {
         self.userInteractionEnabled = true
@@ -42,13 +59,16 @@ class GameplayScene: CCNode {
         let sampleEquationSolution: String = newPuzzle.1
         let tileArray: [TileValue] = newPuzzle.2
         
+        // Determine which side to use, display the necessary tiles, then save all of the information
         if side == .Top {
             topGrid.loadTiles(tileArray)
-            topPlayerDisplay.setTargetNumberLabel(targetNumber: targetNumber)
+            topTargetNumber = targetNumber
+            topSampleEquationSolution = sampleEquationSolution
         }
         else {
             bottomGrid.loadTiles(tileArray)
-            bottomPlayerDisplay.setTargetNumberLabel(targetNumber: targetNumber)
+            bottomTargetNumber = targetNumber
+            bottomSampleEquationSolution = sampleEquationSolution
         }
     }
     
@@ -64,7 +84,13 @@ class GameplayScene: CCNode {
                 print(touchLocationInGrid)
                 
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
-                bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
+                bottomGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
+            }
+            else if CGRectContainsPoint(bottomClearButton.boundingBox(), touch.locationInNode(bottomSide)) {
+                bottomGrid.clearSelectedTiles()
+            }
+            else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), touch.locationInNode(bottomSide)) {
+                checkIfRightAnswer(bottomGrid.getCurrentlySelectedTiles())
             }
         }
         else { // Touch in top half of screen
@@ -117,6 +143,44 @@ class GameplayScene: CCNode {
         }
         
         return (rowIndex, columnIndex)
+    }
+    
+    func checkIfRightAnswer(array: [Tile]) -> Bool {
+        if array.count == 9 {
+            let tileValues = convertTilesToTileValues(array)
+            if checkTileArrayHasCorrectFormat(tileValues) {
+                var possibleTargetValue = tileValues[0].rawValue
+                for index in 0..<4 {
+                    if tileValues[index] == TileValue.add {
+                        possibleTargetValue += tileValues[index + 1].rawValue
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    private func convertTilesToTileValues(tiles: [Tile]) -> [TileValue] {
+        var tileValues: [TileValue] = []
+        for tile in tiles {
+            tileValues.append(tile.getTileValue())
+        }
+        return tileValues
+    }
+    
+    private func checkTileArrayHasCorrectFormat(tileValues: [TileValue]) -> Bool {
+        if tileValues[0].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[1].checkIfNumberOrOperation() == TileType.Operation &&
+            tileValues[2].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[3].checkIfNumberOrOperation() == TileType.Operation &&
+            tileValues[4].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[5].checkIfNumberOrOperation() == TileType.Operation &&
+            tileValues[6].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[7].checkIfNumberOrOperation() == TileType.Operation &&
+            tileValues[8].checkIfNumberOrOperation() == TileType.Number {
+            return true
+        }
+        return false
     }
 }
 
