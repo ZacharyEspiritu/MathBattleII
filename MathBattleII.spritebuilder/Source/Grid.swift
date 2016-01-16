@@ -108,6 +108,10 @@ class Grid: CCNode {
      - returns:   a `[Tile]` of all of the tiles on the `Grid`
      */
     func getAllTilesInGrid() -> [Tile] {
+        guard checkIfTilesExistInGrid() else {
+            assertionFailure()
+            return []
+        }
         var tileArray: [Tile] = []
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
@@ -115,5 +119,39 @@ class Grid: CCNode {
             }
         }
         return tileArray
+    }
+    
+    /**
+     Permanently removes all of the `Tile` objects on the `Grid` and clears the `Array2D<Tile>`.
+     */
+    func removeAllTilesInGrid() {
+        guard checkIfTilesExistInGrid() else {
+            assertionFailure()
+            return
+        }
+        clearSelectedTiles()
+        for rowIndex in 0..<3 {
+            for columnIndex in 0..<3 {
+                tiles[rowIndex, columnIndex]!.removeFromParentAndCleanup(true)
+                tiles[rowIndex, columnIndex] = nil
+            }
+        }
+    }
+    
+    /**
+     Checks to see if the `Grid` currently has 9 `Tile` objects loaded.
+     - returns:   `true` if the `Grid` currently has 9 `Tile` objects loaded
+     */
+    private func checkIfTilesExistInGrid() -> Bool {
+        for rowIndex in 0..<3 {
+            for columnIndex in 0..<3 {
+                if tiles[rowIndex, columnIndex] == nil {
+                    print("false")
+                    return false
+                }
+            }
+        }
+        print("true")
+        return true
     }
 }

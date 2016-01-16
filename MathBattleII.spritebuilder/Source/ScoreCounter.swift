@@ -11,5 +11,7 @@ import Foundation
 class ScoreCounter: CCSprite {
     
     weak var topCounter1, topCounter2, topCounter3, topCounter4, middleCounter, bottomCounter1, bottomCounter2, bottomCounter3, bottomCounter4: CCSprite!
+    private var topScore: Int = 0
+    private var bottomScore: Int = 0
     
 }

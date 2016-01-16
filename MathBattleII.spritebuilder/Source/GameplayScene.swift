@@ -62,11 +62,13 @@ class GameplayScene: CCNode {
         // Determine which side to use, display the necessary tiles, then save all of the information
         if side == .Top {
             topGrid.loadTiles(array: tileArray)
+            topPlayerDisplay.clearEquationLabel()
             topTargetNumber = targetNumber
             topSampleEquationSolution = sampleEquationSolution
         }
         else {
             bottomGrid.loadTiles(array: tileArray)
+            bottomPlayerDisplay.clearEquationLabel()
             bottomTargetNumber = targetNumber
             bottomSampleEquationSolution = sampleEquationSolution
         }
@@ -95,7 +97,7 @@ class GameplayScene: CCNode {
             }
             else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), touch.locationInNode(bottomSide)) {
                 if checkIfRightAnswer(selectedTiles: bottomGrid.getCurrentlySelectedTiles(), side: .Bottom) {
-                    print("YES")
+                    completePuzzleForSide(side: .Bottom)
                 }
             }
         }
@@ -119,13 +121,39 @@ class GameplayScene: CCNode {
             }
             else if CGRectContainsPoint(topEqualsButton.boundingBox(), touch.locationInNode(topSide)) {
                 if checkIfRightAnswer(selectedTiles: topGrid.getCurrentlySelectedTiles(), side: .Top) {
-                    print("YES")
+                    completePuzzleForSide(side: .Top)
                 }
             }
         }
     }
     
-    func setupEquationLabel(tile tile: Tile, side: Side) {
+    private func completePuzzleForSide(side side: Side) {
+        switch side {
+        case .Top:
+            launchTilesAtOpponent(topGrid.getAllTilesInGrid())
+            topGrid.removeAllTilesInGrid()
+            loadNewPuzzle(forSide: .Top)
+        case .Bottom:
+            launchTilesAtOpponent(bottomGrid.getAllTilesInGrid())
+            bottomGrid.removeAllTilesInGrid()
+            loadNewPuzzle(forSide: .Bottom)
+        }
+    }
+    
+    private func launchTilesAtOpponent(array: [Tile]) {
+//        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        for tile in array {
+            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 2.68)
+            
+            tile.runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 1.5, position: targetPoint)))
+            let negativeRand: Float = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1
+            let angle = negativeRand * Float(arc4random_uniform(25) + 255)
+            print(angle)
+            tile.runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: 1.5, angle: angle)))
+        }
+    }
+    
+    private func setupEquationLabel(tile tile: Tile, side: Side) {
         switch side {
         case .Top:
             let count = topGrid.getCurrentlySelectedTiles().count
@@ -156,7 +184,7 @@ class GameplayScene: CCNode {
         }
     }
     
-    func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
+    private func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
         if tiles.count == 9 {
             print("count")
             let tileValues = convertTilesToTileValues(tiles)
@@ -269,6 +297,7 @@ extension GameplayScene: GameTimerDelegate {
     func gameTimerDidPause(gameTimer: GameTimer) {
         print("pause")
     }
+    
     func gameTimerDidStart(gameTimer: GameTimer) {
         print("start")
     }
