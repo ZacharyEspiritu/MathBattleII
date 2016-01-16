@@ -15,12 +15,20 @@ class GameTimer: NSObject {
     
     var delegate: GameTimerDelegate?
     
+    /**
+     Creates a new `GameTimer` object with `gameLengthInSeconds` time.
+     - parameter gameLengthInSeconds:  the amount of time to start the `GameTimer` with
+     */
     init(gameLengthInSeconds: Int) {
         remainingTime = gameLengthInSeconds
         super.init()
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
     }
     
+    /**
+     If the `GameTimer` is not paused, decreases the `remainingTime` by 1.
+     Also, pauses the `GameTimer` if the `remainingTime` is less than or equal to 0.
+     */
     func update() {
         if !isPaused {
             remainingTime--
@@ -33,17 +41,27 @@ class GameTimer: NSObject {
         }
     }
     
+    /**
+     Starts/unpauses the `GameTimer`.
+     */
     func startTimer() {
         isPaused = false
         print("test")
         delegate?.gameTimerDidStart(self)
     }
     
+    /**
+     Pauses the `GameTimer`.
+     */
     func pauseTimer() {
         isPaused = true
         delegate?.gameTimerDidPause(self)
     }
     
+    /**
+     Returns the `remainingTime` on the `GameTimer`.
+     - returns:  the amount of `remainingTime`
+     */
     func getRemainingTime() -> Int {
         return remainingTime
     }
