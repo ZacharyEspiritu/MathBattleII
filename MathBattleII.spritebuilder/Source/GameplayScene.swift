@@ -78,15 +78,9 @@ class GameplayScene: CCNode {
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         
-        let touchLocationInGridOptional: CGPoint?
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
             if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
-                touchLocationInGridOptional = touch.locationInNode(bottomGrid)
-                guard let touchLocationInGrid = touchLocationInGridOptional else {
-                    return
-                }
-                print(touchLocationInGrid)
-                
+                let touchLocationInGrid = touch.locationInNode(topGrid)
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
                 let tappedTile = bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
                 if !tappedTile.isSelected() {
@@ -105,12 +99,7 @@ class GameplayScene: CCNode {
         }
         else { // Touch in top half of screen
             if CGRectContainsPoint(topGrid.boundingBox(), touch.locationInNode(topSide)) {
-                touchLocationInGridOptional = touch.locationInNode(topGrid)
-                guard let touchLocationInGrid = touchLocationInGridOptional else {
-                    return
-                }
-                print(touchLocationInGrid)
-                
+                let touchLocationInGrid = touch.locationInNode(bottomGrid)
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
                 let tappedTile = topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
                 if !tappedTile.isSelected() {
@@ -202,10 +191,8 @@ class GameplayScene: CCNode {
     
     private func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
         if tiles.count == 9 {
-            print("count")
             let tileValues = convertTilesToTileValues(tiles)
             if checkTileArrayHasCorrectFormat(tileValues) {
-                print("correctformat")
                 var possibleTargetValue = tileValues[0].rawValue
                 for index in 1..<5 {
                     if tileValues[(index * 2) - 1] == TileValue.add {

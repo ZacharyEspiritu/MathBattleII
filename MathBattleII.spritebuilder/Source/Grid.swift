@@ -78,7 +78,6 @@ class Grid: CCNode {
 
         currentlySelectedTiles.append(tile)
         tile.selectTile()
-        print(tile)
         return tile
     }
     
@@ -146,12 +145,10 @@ class Grid: CCNode {
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
                 if tiles[rowIndex, columnIndex] == nil {
-                    print("false")
                     return false
                 }
             }
         }
-        print("true")
         return true
     }
 }
