@@ -37,10 +37,12 @@ class Tile: CCNode {
     func isSelected() -> Bool {
         return selected
     }
+    
     func selectTile() {
         selected = true
         sprite.color = CCColor(white: 0.5, alpha: 1)
     }
+    
     func deselectTile() {
         selected = false
         sprite.color = CCColor(white: 1, alpha: 1)

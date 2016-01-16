@@ -9,8 +9,10 @@
 import Foundation
 
 struct Array2D<T> {
+    
     let columns: Int
     let rows: Int
+    
     private var array: Array<T?>
     
     init(columns: Int, rows: Int) {
