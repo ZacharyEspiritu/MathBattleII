@@ -13,12 +13,12 @@ class Grid: CCNode {
     private var tiles = Array2D<Tile>(columns: 3, rows: 3)
     private var currentlySelectedTiles: [Tile] = []
     
-    
-    func didLoadFromCCB() {
-        
-    }
-    
-    func loadTiles(var tileArray: [TileValue]) {
+    /**
+     Loads 9 new `Tile` instances based on the supplied `[TileValue]` array and displays them on the `Grid`.
+     Will crash if the `tileArray` does not contain exactly 9 elements.
+     - parameter array:   a `[TileArray]` corresponding to the `Tile` instances to load
+     */
+    func loadTiles(var array tileArray: [TileValue]) {
         guard tileArray.count == 9 else {
             assertionFailure("loadTiles(tileArray): tileArray did not have exactly 9 TileValue instances")
             return
@@ -48,6 +48,13 @@ class Grid: CCNode {
         }
     }
     
+    /**
+     Returns the `Tile` object at position (`row`, `column`).
+     Will crash if no `Tile` exists at (`row`, `column`).
+     - parameter row:      the row index of the `Tile` object to return
+     - parameter column:   the column index of the `Tile` object to return
+     - returns:            the `Tile` object at position (`row`, `column`)
+     */
     func getTileAtPosition(row row: Int, column: Int) -> Tile {
         guard let tile = tiles[row, column] else {
             assertionFailure("No Tile exists at (\(row), \(column))")
@@ -56,6 +63,13 @@ class Grid: CCNode {
         return tile
     }
     
+    /**
+     Switches the `Tile` object at position (`row`, `column`) to a selected state.
+     Will crash if no `Tile` exists at (`row`, `column`).
+     - parameter row:      the row index of the `Tile` object to select
+     - parameter column:   the column index of the `Tile` object to select
+     - returns:            the `Tile` object at position (`row`, `column`)
+     */
     func selectTileAtPosition(row row: Int, column: Int) -> Tile {
         guard let tile = tiles[row, column] else {
             assertionFailure("No Tile exists at (\(row), \(column))")
@@ -68,14 +82,20 @@ class Grid: CCNode {
         return tile
     }
     
+    /**
+     Returns a `[Tile]` of all the currently selected tiles on the `Grid`.
+     - returns:   a `[Tile]` of all the currently selected tiles on the `Grid`
+     */
     func getCurrentlySelectedTiles() -> [Tile] {
         return currentlySelectedTiles
     }
     
+    /**
+     Switches all of the `Tile` objects in the `Grid` to a deselected state.
+     */
     func clearSelectedTiles() {
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
-                tiles[rowIndex, columnIndex]!.color = CCColor(white: 1, alpha: 1)
                 tiles[rowIndex, columnIndex]!.deselectTile()
             }
         }
