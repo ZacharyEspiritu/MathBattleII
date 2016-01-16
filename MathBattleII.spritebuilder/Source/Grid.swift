@@ -61,7 +61,7 @@ class Grid: CCNode {
             assertionFailure("No Tile exists at (\(row), \(column))")
             return Tile()
         }
-        tile.color = CCColor(white: 0.5, alpha: 1)
+
         currentlySelectedTiles.append(tile)
         tile.selectTile()
         print(tile)

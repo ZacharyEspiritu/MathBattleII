@@ -94,7 +94,6 @@ class GameplayScene: CCNode {
                 bottomPlayerDisplay.clearEquationLabel()
             }
             else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), touch.locationInNode(bottomSide)) {
-                print("equals")
                 if checkIfRightAnswer(selectedTiles: bottomGrid.getCurrentlySelectedTiles(), side: .Bottom) {
                     print("YES")
                 }
@@ -120,7 +119,7 @@ class GameplayScene: CCNode {
             }
             else if CGRectContainsPoint(topEqualsButton.boundingBox(), touch.locationInNode(topSide)) {
                 if checkIfRightAnswer(selectedTiles: topGrid.getCurrentlySelectedTiles(), side: .Top) {
-                    
+                    print("YES")
                 }
             }
         }

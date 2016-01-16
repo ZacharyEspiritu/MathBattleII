@@ -2,14 +2,15 @@
 //  Tile.swift
 //  MathBattleII
 //
-//  Created by Zachary Espiritu on 1/7/16.
+//  Created by Zachary Espiritu on 1/15/16.
 //  Copyright © 2016 Zachary Espiritu. All rights reserved.
 //
 
 import Foundation
 
-class Tile: CCSprite {
+class Tile: CCNode {
     
+    weak var sprite: CCSprite!
     weak var label: CCLabelTTF!
     private var value: TileValue! {
         didSet {
@@ -38,8 +39,11 @@ class Tile: CCSprite {
     }
     func selectTile() {
         selected = true
+        sprite.color = CCColor(white: 0.5, alpha: 1)
     }
     func deselectTile() {
         selected = false
+        sprite.color = CCColor(white: 1, alpha: 1)
     }
+    
 }
