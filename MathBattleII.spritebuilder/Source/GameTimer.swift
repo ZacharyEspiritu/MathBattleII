@@ -50,8 +50,28 @@ class GameTimer: NSObject {
 }
 
 protocol GameTimerDelegate {
+    
+    /**
+     Called whenever `remainingTime` updates.
+     - parameter gameTimer:  the `GameTimer` object
+     */
     func gameTimerDidUpdate(gameTimer: GameTimer)
+    
+    /**
+     Called when `remainingTime` hits zero.
+     - parameter gameTimer:  the `GameTimer` object
+     */
     func gameTimerDidFinish(gameTimer: GameTimer)
+    
+    /**
+     Called when the `GameTimer` begins ticking down.
+     - parameter gameTimer:  the `GameTimer` object
+     */
     func gameTimerDidStart(gameTimer: GameTimer)
+    
+    /**
+     Called when the `GameTimer` is paused.
+     - parameter gameTimer:  the `GameTimer` object
+     */
     func gameTimerDidPause(gameTimer: GameTimer)
 }
