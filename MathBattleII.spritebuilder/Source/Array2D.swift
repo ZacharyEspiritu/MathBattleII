@@ -15,6 +15,11 @@ struct Array2D<T> {
     
     private var array: Array<T?>
     
+    /**
+     Creates a new `Array2D` objects with capacity `columns` x `rows`.
+     - parameter columns:   the number of columns in the Array2D
+     - parameter rows:      the number of columns in the Array2D
+     */
     init(columns: Int, rows: Int) {
         self.columns = columns
         self.rows = rows
@@ -30,6 +35,11 @@ struct Array2D<T> {
         }
     }
     
+    /**
+     Converts the `Array2D` object into a one-dimensional, sequential `Generator`. 
+     Mainly intended for using `Array2D` instances in for-in loops.
+     - returns:   a one-dimensional `Generator` that can return a "next element" in the generated sequence
+     */
     func enumerate() -> AnyGenerator<((Int, Int), T?)> {
         var index = 0
         var generator = array.generate()
