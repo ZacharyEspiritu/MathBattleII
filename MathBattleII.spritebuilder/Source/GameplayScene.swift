@@ -61,12 +61,12 @@ class GameplayScene: CCNode {
         
         // Determine which side to use, display the necessary tiles, then save all of the information
         if side == .Top {
-            topGrid.loadTiles(tileArray)
+            topGrid.loadTiles(array: tileArray)
             topTargetNumber = targetNumber
             topSampleEquationSolution = sampleEquationSolution
         }
         else {
-            bottomGrid.loadTiles(tileArray)
+            bottomGrid.loadTiles(array: tileArray)
             bottomTargetNumber = targetNumber
             bottomSampleEquationSolution = sampleEquationSolution
         }
