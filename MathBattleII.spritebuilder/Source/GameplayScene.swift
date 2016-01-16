@@ -51,7 +51,6 @@ class GameplayScene: CCNode {
         gameTimer.delegate = self
         gameTimer.startTimer()
         
-        scoreCounter.delegate = self
         scoreCounter.establishScoreLimit(forBothSides: 5)
     }
     
@@ -136,7 +135,7 @@ class GameplayScene: CCNode {
             launchTilesAtOpponent(topGrid.getAllTilesInGrid())
             topGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Top) {
-                
+                triggerWin(forSide: .Top)
             }
             else {
                 loadNewPuzzle(forSide: .Top)
@@ -145,12 +144,16 @@ class GameplayScene: CCNode {
             launchTilesAtOpponent(bottomGrid.getAllTilesInGrid())
             bottomGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Bottom) {
-                
+                triggerWin(forSide: .Bottom)
             }
             else {
                 loadNewPuzzle(forSide: .Bottom)
             }
         }
+    }
+    
+    private func triggerWin(forSide side: Side) {
+        print("win")
     }
     
     private func launchTilesAtOpponent(array: [Tile]) {
@@ -310,11 +313,6 @@ extension GameplayScene: GameTimerDelegate {
     }
     func gameTimerDidStart(gameTimer: GameTimer) {
         print("start")
-    }
-}
-extension GameplayScene: ScoreCounterDelegate {
-    func sideReachedScoreLimit(scoreCounter: ScoreCounter, side: Side) {
-        print("yay")
     }
 }
 

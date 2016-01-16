@@ -165,7 +165,3 @@ class ScoreCounter: CCSprite {
         }
     }
 }
-
-protocol ScoreCounterDelegate {
-    func sideReachedScoreLimit(scoreCounter: ScoreCounter, side: Side)
-}
