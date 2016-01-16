@@ -27,10 +27,20 @@ class ScoreCounter: CCSprite {
     private let maximumScoreLimit = 5
     private let minimumScoreLimit = 1
     
+    /**
+     Establishes the score limit for both sides.
+     - parameter forBothSides:   the `scoreLimit` to implement on both sides
+     */
     func establishScoreLimit(forBothSides scoreLimit: Int) {
         establishScoreLimit(forTopSide: scoreLimit, forBottomSide: scoreLimit)
     }
     
+    /**
+     Establishes the score limit for each side indidually.
+     Can be used to create a game with a handicap for one of the players.
+     - parameter forTopSide:      the `scoreLimit` to implement on the `Top` side
+     - parameter forBottomSide:   the `scoreLimit` to implement on the `Bottom` side
+     */
     func establishScoreLimit(forTopSide newTopLimit: Int, forBottomSide newBottomLimit: Int) {
         // Check that the new limits are within the allowed range and reduce/increase them if necessary
         topScoreLimit = newTopLimit <= maximumScoreLimit ? (newTopLimit > minimumScoreLimit ? newTopLimit : 1) : maximumScoreLimit
@@ -75,6 +85,12 @@ class ScoreCounter: CCSprite {
         }
     }
     
+    /**
+     Increases the score for the `Side` parameter. 
+     Also checks if the new score has reached the `scoreLimit`.
+     - parameter forSide:   the `Side` to increase the score
+     - returns:             `true` if the new score has reached the `scoreLimit`
+     */
     func increaseScore(forSide side: Side) -> Bool {
         switch side {
         case .Top:
@@ -91,6 +107,9 @@ class ScoreCounter: CCSprite {
         return false
     }
     
+    /**
+     Visually updates the score counters to reflect the current score.
+     */
     func updateSpriteFrames() {
         let redColor = CCColor(red: 1, green: 0, blue: 0)
         let blueColor = CCColor(red: 0, green: 0, blue: 1)
