@@ -24,8 +24,6 @@ class ScoreCounter: CCSprite {
         }
     }
     
-    var delegate: ScoreCounterDelegate?
-    
     private let maximumScoreLimit = 5
     private let minimumScoreLimit = 1
     
