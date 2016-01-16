@@ -101,4 +101,19 @@ class Grid: CCNode {
         }
         currentlySelectedTiles.removeAll()
     }
+    
+    /**
+     Returns a `[Tile]` of all of the tiles on the `Grid`.
+     Use `getCurrentlySelectedTiles()` if you only want the tiles that have been selected (in the order they were selected).
+     - returns:   a `[Tile]` of all of the tiles on the `Grid`
+     */
+    func getAllTilesInGrid() -> [Tile] {
+        var tileArray: [Tile] = []
+        for rowIndex in 0..<3 {
+            for columnIndex in 0..<3 {
+                tileArray.append(tiles[rowIndex, columnIndex]!)
+            }
+        }
+        return tileArray
+    }
 }
