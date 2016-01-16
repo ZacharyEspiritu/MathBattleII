@@ -15,6 +15,13 @@ class PuzzleGenerator {
     private let amountOfPossibleNumbers: Int = 10
     private let amountOfPossibleOperators: Int = 3
     
+    /**
+     Generates a new puzzle and returns a tuple with all of the necessary information to handle the puzzle.
+     * The `Int` corresponds to the `targetNumber` for the puzzle.
+     * The `String` corresponds to the generated `sampleEquationSolution` for the puzzle.
+     * The `[TileValue]` corresponds to the set of 9 tiles to display to the player in the `Grid`
+     - returns:   a tuple of `(Int, String, [TileValue])`. See above
+     */
     func generateNewPuzzle() -> (Int, String, [TileValue]) {
         var targetNumber: Int = 0
         var sampleEquationSolution: String = ""
@@ -51,6 +58,10 @@ class PuzzleGenerator {
         return (targetNumber, sampleEquationSolution, tileSet)
     }
     
+    /**
+     Randomly selects a `TileValue` of `TileType.Number`.
+     - returns:   a `TileValue` of `TileType.Number`.
+     */
     private func chooseRandomNumber() -> TileValue {
         var tileValue: TileValue?
         switch Int(arc4random_uniform(UInt32(amountOfPossibleNumbers))) {
@@ -80,6 +91,10 @@ class PuzzleGenerator {
         return tileValue!
     }
     
+    /**
+     Randomly selects a `TileValue` of `TileType.Operator`.
+     - returns:   a `TileValue` of `TileType.Operator`.
+     */
     private func chooseRandomOperator() -> TileValue {
         var tileValue: TileValue?
         switch Int(arc4random_uniform(UInt32(amountOfPossibleOperators))) {
