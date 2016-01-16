@@ -63,6 +63,8 @@ class Grid: CCNode {
         }
         tile.color = CCColor(white: 0.5, alpha: 1)
         currentlySelectedTiles.append(tile)
+        tile.selectTile()
+        print(tile)
         return tile
     }
     
@@ -74,6 +76,7 @@ class Grid: CCNode {
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
                 tiles[rowIndex, columnIndex]!.color = CCColor(white: 1, alpha: 1)
+                tiles[rowIndex, columnIndex]!.deselectTile()
             }
         }
         currentlySelectedTiles.removeAll()

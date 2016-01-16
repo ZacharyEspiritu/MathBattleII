@@ -18,6 +18,8 @@ class Tile: CCSprite {
     }
     private var type: TileType!
     
+    private var selected: Bool = false
+    
     func setTileValue(value: TileValue) {
         self.value = value
         type = value.checkIfNumberOrOperation()
@@ -29,5 +31,15 @@ class Tile: CCSprite {
     
     func getTypeType() -> TileType {
         return type
+    }
+    
+    func isSelected() -> Bool {
+        return selected
+    }
+    func selectTile() {
+        selected = true
+    }
+    func deselectTile() {
+        selected = false
     }
 }

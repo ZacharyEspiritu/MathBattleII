@@ -20,4 +20,12 @@ class PlayerDisplay: CCSprite {
     func setEquationLabel(equation equation: String) {
         equationLabel.string = equation
     }
+    
+    func getEquationLabelString() -> String {
+        return equationLabel.string
+    }
+    
+    func clearEquationLabel() {
+        equationLabel.string = ""
+    }
 }

@@ -84,13 +84,20 @@ class GameplayScene: CCNode {
                 print(touchLocationInGrid)
                 
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
-                bottomGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
+                let tappedTile = bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
+                if !tappedTile.isSelected() {
+                    setupEquationLabel(tile: bottomGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: Side.Bottom)
+                }
             }
             else if CGRectContainsPoint(bottomClearButton.boundingBox(), touch.locationInNode(bottomSide)) {
                 bottomGrid.clearSelectedTiles()
+                bottomPlayerDisplay.clearEquationLabel()
             }
             else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), touch.locationInNode(bottomSide)) {
-                checkIfRightAnswer(bottomGrid.getCurrentlySelectedTiles())
+                print("equals")
+                if checkIfRightAnswer(selectedTiles: bottomGrid.getCurrentlySelectedTiles(), side: .Bottom) {
+                    print("YES")
+                }
             }
         }
         else { // Touch in top half of screen
@@ -102,10 +109,89 @@ class GameplayScene: CCNode {
                 print(touchLocationInGrid)
                 
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
-                topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1).color = CCColor(white: 0.5, alpha: 1)
+                let tappedTile = topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
+                if !tappedTile.isSelected() {
+                    setupEquationLabel(tile: topGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: Side.Top)
+                }
+            }
+            else if CGRectContainsPoint(topClearButton.boundingBox(), touch.locationInNode(topSide)) {
+                topGrid.clearSelectedTiles()
+                topPlayerDisplay.clearEquationLabel()
+            }
+            else if CGRectContainsPoint(topEqualsButton.boundingBox(), touch.locationInNode(topSide)) {
+                if checkIfRightAnswer(selectedTiles: topGrid.getCurrentlySelectedTiles(), side: .Top) {
+                    
+                }
             }
         }
-        
+    }
+    
+    func setupEquationLabel(tile tile: Tile, side: Side) {
+        switch side {
+        case .Top:
+            let count = topGrid.getCurrentlySelectedTiles().count
+            let stringValue = tile.getTileValue().stringValue
+            
+            if count == 1 {
+                topPlayerDisplay.setEquationLabel(equation: stringValue)
+            }
+            else if count == 3 || count == 5 || count == 7 {
+                topPlayerDisplay.setEquationLabel(equation: "(\(topPlayerDisplay.getEquationLabelString()) \(stringValue))")
+            }
+            else {
+                topPlayerDisplay.setEquationLabel(equation: "\(topPlayerDisplay.getEquationLabelString()) \(stringValue)")
+            }
+        case .Bottom:
+            let count = bottomGrid.getCurrentlySelectedTiles().count
+            let stringValue = tile.getTileValue().stringValue
+            
+            if count == 1 {
+                bottomPlayerDisplay.setEquationLabel(equation: stringValue)
+            }
+            else if count == 3 || count == 5 || count == 7 {
+                bottomPlayerDisplay.setEquationLabel(equation: "(\(bottomPlayerDisplay.getEquationLabelString()) \(stringValue))")
+            }
+            else {
+                bottomPlayerDisplay.setEquationLabel(equation: "\(bottomPlayerDisplay.getEquationLabelString()) \(stringValue)")
+            }
+        }
+    }
+    
+    func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
+        if tiles.count == 9 {
+            print("count")
+            let tileValues = convertTilesToTileValues(tiles)
+            if checkTileArrayHasCorrectFormat(tileValues) {
+                print("correctformat")
+                var possibleTargetValue = tileValues[0].rawValue
+                for index in 1..<5 {
+                    if tileValues[(index * 2) - 1] == TileValue.add {
+                        possibleTargetValue += tileValues[index * 2].rawValue
+                    }
+                    else if tileValues[(index * 2) - 1] == TileValue.subtract {
+                        possibleTargetValue -= tileValues[index * 2].rawValue
+                    }
+                    else if tileValues[(index * 2) - 1] == TileValue.multiply {
+                        possibleTargetValue *= tileValues[index * 2].rawValue
+                    }
+                    else {
+                        assertionFailure()
+                    }
+                }
+                
+                switch side {
+                case .Top:
+                    if possibleTargetValue == topTargetNumber {
+                        return true
+                    }
+                case .Bottom:
+                    if possibleTargetValue == bottomTargetNumber {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
     
     private func determinePositionOfTappedTile(touch touchLocationInGrid: CGPoint, side: Side) -> (Int, Int) {
@@ -143,21 +229,6 @@ class GameplayScene: CCNode {
         }
         
         return (rowIndex, columnIndex)
-    }
-    
-    func checkIfRightAnswer(array: [Tile]) -> Bool {
-        if array.count == 9 {
-            let tileValues = convertTilesToTileValues(array)
-            if checkTileArrayHasCorrectFormat(tileValues) {
-                var possibleTargetValue = tileValues[0].rawValue
-                for index in 0..<4 {
-                    if tileValues[index] == TileValue.add {
-                        possibleTargetValue += tileValues[index + 1].rawValue
-                    }
-                }
-            }
-        }
-        return false
     }
     
     private func convertTilesToTileValues(tiles: [Tile]) -> [TileValue] {
