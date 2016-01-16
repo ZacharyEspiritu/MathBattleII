@@ -4103,7 +4103,7 @@
 				<key>displayName</key>
 				<string>scoreCounterBar</string>
 				<key>memberVarAssignmentName</key>
-				<string>scoreCounterBar</string>
+				<string>scoreCounter</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -4152,6 +4152,8 @@
 						<string>ScoreCounter.ccb</string>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

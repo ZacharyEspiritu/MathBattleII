@@ -20,7 +20,7 @@ class GameplayScene: CCNode {
     weak var topClearButton, bottomClearButton: CCSprite!
     
     weak var mainDisplay: MainDisplay!
-    weak var scoreCounterBar: ScoreCounter!
+    weak var scoreCounter: ScoreCounter!
     weak var dividingLine: CCSprite!
     
     private var gameTimer: GameTimer! = nil
@@ -50,6 +50,9 @@ class GameplayScene: CCNode {
         gameTimer = GameTimer(gameLengthInSeconds: 300)
         gameTimer.delegate = self
         gameTimer.startTimer()
+        
+        scoreCounter.delegate = self
+        scoreCounter.establishScoreLimit(forBothSides: 5)
     }
     
     func loadNewPuzzle(forSide side: Side) {
@@ -132,11 +135,21 @@ class GameplayScene: CCNode {
         case .Top:
             launchTilesAtOpponent(topGrid.getAllTilesInGrid())
             topGrid.removeAllTilesInGrid()
-            loadNewPuzzle(forSide: .Top)
+            if scoreCounter.increaseScore(forSide: .Top) {
+                
+            }
+            else {
+                loadNewPuzzle(forSide: .Top)
+            }
         case .Bottom:
             launchTilesAtOpponent(bottomGrid.getAllTilesInGrid())
             bottomGrid.removeAllTilesInGrid()
-            loadNewPuzzle(forSide: .Bottom)
+            if scoreCounter.increaseScore(forSide: .Bottom) {
+                
+            }
+            else {
+                loadNewPuzzle(forSide: .Bottom)
+            }
         }
     }
     
@@ -283,26 +296,32 @@ class GameplayScene: CCNode {
 }
 
 extension GameplayScene: GameTimerDelegate {
-    
     func gameTimerDidUpdate(gameTimer: GameTimer) {
         let timeRemaining: Int = gameTimer.getRemainingTime()
         let seconds: Int = timeRemaining % 60
         let minutes: Int = (timeRemaining / 60) % 60
         mainDisplay.setTimerLabel(string: String(format: "%02d:%02d", minutes, seconds))
     }
-    
     func gameTimerDidFinish(gameTimer: GameTimer) {
         print("finish")
     }
     func gameTimerDidPause(gameTimer: GameTimer) {
         print("pause")
     }
-    
     func gameTimerDidStart(gameTimer: GameTimer) {
         print("start")
+    }
+}
+extension GameplayScene: ScoreCounterDelegate {
+    func sideReachedScoreLimit(scoreCounter: ScoreCounter, side: Side) {
+        print("yay")
     }
 }
 
 enum Side {
     case Top, Bottom
+}
+
+enum GameState {
+    case Countdown, Playing, Paused, Endgame
 }
