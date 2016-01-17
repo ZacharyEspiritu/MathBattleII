@@ -41,6 +41,12 @@ class Grid: CCNode {
                 newTile.positionType = CCPositionTypeNormalized
                 newTile.position = CGPoint(x: rowPosition, y: columnPosition)
                 
+                
+                if let oldTile = tiles[rowIndex, columnIndex] {
+                    oldTile.zOrder = 1
+                    newTile.zOrder = -1
+                }
+                
                 // Add the Tile object as a child of the Grid and add it to the tiles Array2D
                 self.addChild(newTile)
                 tiles[rowIndex, columnIndex] = newTile

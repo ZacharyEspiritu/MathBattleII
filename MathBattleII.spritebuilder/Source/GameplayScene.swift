@@ -14,6 +14,7 @@ class GameplayScene: CCNode {
     
     weak var topSide, bottomSide: CCNode!
     weak var topGrid, bottomGrid: Grid!
+    weak var topLaunchedTileHolder, bottomLaunchedTileHolder: CCNode!
     weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
     weak var topHUDBar, bottomHUDBar: CCSprite!
     weak var topEqualsButton, bottomEqualsButton: CCSprite!
@@ -121,8 +122,8 @@ class GameplayScene: CCNode {
     private func completePuzzleForSide(side side: Side) {
         switch side {
         case .Top:
-            launchTilesAtOpponent(topGrid.getAllTilesInGrid())
-            topGrid.removeAllTilesInGrid()
+            launchTilesAtOpponent(forSide: .Top)
+//            topGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Top) {
                 triggerWin(forSide: .Top)
             }
@@ -130,7 +131,7 @@ class GameplayScene: CCNode {
                 loadNewPuzzle(forSide: .Top)
             }
         case .Bottom:
-            launchTilesAtOpponent(bottomGrid.getAllTilesInGrid())
+            launchTilesAtOpponent(forSide: .Bottom)
 //            bottomGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Bottom) {
                 triggerWin(forSide: .Bottom)
@@ -145,18 +146,36 @@ class GameplayScene: CCNode {
         print("win")
     }
     
-    private func launchTilesAtOpponent(array: [Tile]) {
+    private func launchTilesAtOpponent(forSide side: Side) {
+        var copiedTileArray: [Tile] = []
+        switch side {
+        case .Top:
+            for tile in topGrid.getAllTilesInGrid() {
+                let copiedTile = tile
+                tile.removeFromParent()
+                topLaunchedTileHolder.addChild(copiedTile)
+                copiedTileArray.append(copiedTile)
+            }
+        case .Bottom:
+            for tile in bottomGrid.getAllTilesInGrid() {
+                let copiedTile = tile
+                tile.removeFromParent()
+                bottomLaunchedTileHolder.addChild(copiedTile)
+                copiedTileArray.append(copiedTile)
+            }
+        }
         var count = 0
         NSTimer.schedule(repeatInterval: 0.3) { timer in
-            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 2.68)
+            let animationDuration: Double = 1.5
+            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 2.8)
             
-            array[count].runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 1.5, position: targetPoint)))
             let negativeRand: Float = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1
             let angle = negativeRand * Float(arc4random_uniform(25) + 255)
-            array[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: 1.5, angle: angle)))
+            copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
+            copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
             count++
-            if count >= 8 {
+            if count >= 9 {
                 timer.invalidate()
             }
         }
