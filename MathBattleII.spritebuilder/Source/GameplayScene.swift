@@ -181,6 +181,15 @@ class GameplayScene: CCNode {
             copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
             copiedTileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
+            NSTimer.schedule(delay: 1.4) { timer in
+                switch side {
+                case .Top:
+                    self.bottomPlayerDisplay.shakeDisplay()
+                case .Bottom:
+                    self.topPlayerDisplay.shakeDisplay()
+                }
+            }
+            
             count++
             if count >= 9 {
                 timer.invalidate()
@@ -190,10 +199,12 @@ class GameplayScene: CCNode {
                         for child in self.topLaunchedTileHolder.children {
                             child.removeFromParent()
                         }
+                        self.bottomPlayerDisplay.sneakIntoCorrectPosition()
                     case .Bottom:
                         for child in self.bottomLaunchedTileHolder.children {
                             child.removeFromParent()
                         }
+                        self.topPlayerDisplay.sneakIntoCorrectPosition()
                     }
                     timer.invalidate()
                 }
