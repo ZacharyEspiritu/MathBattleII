@@ -99,9 +99,18 @@ class Grid: CCNode {
      Switches all of the `Tile` objects in the `Grid` to a deselected state.
      */
     func clearSelectedTiles() {
-        for rowIndex in 0..<3 {
-            for columnIndex in 0..<3 {
-                tiles[rowIndex, columnIndex]?.deselectTile()
+        clearSelectedTiles(andUpdateSpriteFrames: true)
+    }
+    
+    /**
+     Switches all of the `Tile` objects in the `Grid` to a deselected state.
+     */
+    func clearSelectedTiles(andUpdateSpriteFrames update: Bool) {
+        if update {
+            for rowIndex in 0..<3 {
+                for columnIndex in 0..<3 {
+                    tiles[rowIndex, columnIndex]?.deselectTile()
+                }
             }
         }
         currentlySelectedTiles.removeAll()

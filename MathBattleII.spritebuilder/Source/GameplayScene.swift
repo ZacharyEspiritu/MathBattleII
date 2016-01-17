@@ -45,6 +45,12 @@ class GameplayScene: CCNode {
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = true
         
+        // Clearing stuff just to be safe
+        topPlayerDisplay.clearEquationLabel()
+        topGrid.clearSelectedTiles()
+        bottomPlayerDisplay.clearEquationLabel()
+        bottomGrid.clearSelectedTiles()
+        
         loadNewPuzzle(forSide: .Top)
         loadNewPuzzle(forSide: .Bottom)
         
@@ -65,20 +71,17 @@ class GameplayScene: CCNode {
         // Determine which side to use, display the necessary tiles, then save all of the information
         if side == .Top {
             topGrid.loadTiles(array: tileArray)
-            topPlayerDisplay.clearEquationLabel()
             topTargetNumber = targetNumber
             topSampleEquationSolution = sampleEquationSolution
         }
         else {
             bottomGrid.loadTiles(array: tileArray)
-            bottomPlayerDisplay.clearEquationLabel()
             bottomTargetNumber = targetNumber
             bottomSampleEquationSolution = sampleEquationSolution
         }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
             if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
                 let touchLocationInGrid = touch.locationInNode(bottomGrid)
@@ -123,6 +126,7 @@ class GameplayScene: CCNode {
         switch side {
         case .Top:
             launchTilesAtOpponent(forSide: .Top)
+            topPlayerDisplay.clearEquationLabel()
             if scoreCounter.increaseScore(forSide: .Top) {
                 triggerWin(forSide: .Top)
             }
@@ -131,6 +135,7 @@ class GameplayScene: CCNode {
             }
         case .Bottom:
             launchTilesAtOpponent(forSide: .Bottom)
+            bottomPlayerDisplay.clearEquationLabel()
             if scoreCounter.increaseScore(forSide: .Bottom) {
                 triggerWin(forSide: .Bottom)
             }
@@ -154,6 +159,7 @@ class GameplayScene: CCNode {
                 topLaunchedTileHolder.addChild(copiedTile)
                 copiedTileArray.append(copiedTile)
             }
+            topGrid.clearSelectedTiles(andUpdateSpriteFrames: false)
         case .Bottom:
             for tile in bottomGrid.getCurrentlySelectedTiles() {
                 let copiedTile = tile
@@ -161,6 +167,7 @@ class GameplayScene: CCNode {
                 bottomLaunchedTileHolder.addChild(copiedTile)
                 copiedTileArray.append(copiedTile)
             }
+            bottomGrid.clearSelectedTiles(andUpdateSpriteFrames: false)
         }
         var count = 0
         NSTimer.schedule(repeatInterval: 0.3) { timer in
