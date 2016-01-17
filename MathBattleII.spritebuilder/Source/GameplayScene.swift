@@ -80,7 +80,7 @@ class GameplayScene: CCNode {
         
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
             if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
-                let touchLocationInGrid = touch.locationInNode(topGrid)
+                let touchLocationInGrid = touch.locationInNode(bottomGrid)
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
                 let tappedTile = bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
                 if !tappedTile.isSelected() {
@@ -99,7 +99,7 @@ class GameplayScene: CCNode {
         }
         else { // Touch in top half of screen
             if CGRectContainsPoint(topGrid.boundingBox(), touch.locationInNode(topSide)) {
-                let touchLocationInGrid = touch.locationInNode(bottomGrid)
+                let touchLocationInGrid = touch.locationInNode(topGrid)
                 let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
                 let tappedTile = topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
                 if !tappedTile.isSelected() {
@@ -131,7 +131,7 @@ class GameplayScene: CCNode {
             }
         case .Bottom:
             launchTilesAtOpponent(bottomGrid.getAllTilesInGrid())
-            bottomGrid.removeAllTilesInGrid()
+//            bottomGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Bottom) {
                 triggerWin(forSide: .Bottom)
             }
@@ -146,15 +146,19 @@ class GameplayScene: CCNode {
     }
     
     private func launchTilesAtOpponent(array: [Tile]) {
-//        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
-        for tile in array {
+        var count = 0
+        NSTimer.schedule(repeatInterval: 0.3) { timer in
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 2.68)
             
-            tile.runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 1.5, position: targetPoint)))
+            array[count].runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 1.5, position: targetPoint)))
             let negativeRand: Float = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1
             let angle = negativeRand * Float(arc4random_uniform(25) + 255)
-            print(angle)
-            tile.runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: 1.5, angle: angle)))
+            array[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: 1.5, angle: angle)))
+            
+            count++
+            if count >= 8 {
+                timer.invalidate()
+            }
         }
     }
     
