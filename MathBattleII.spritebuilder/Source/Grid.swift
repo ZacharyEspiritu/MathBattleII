@@ -101,7 +101,7 @@ class Grid: CCNode {
     func clearSelectedTiles() {
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
-                tiles[rowIndex, columnIndex]!.deselectTile()
+                tiles[rowIndex, columnIndex]?.deselectTile()
             }
         }
         currentlySelectedTiles.removeAll()
