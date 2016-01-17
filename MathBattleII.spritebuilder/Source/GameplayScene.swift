@@ -177,10 +177,9 @@ class GameplayScene: CCNode {
             let animationDuration: Double = 1.5
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
             
-            let negativeRand: Float = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1
-            let angle = negativeRand * Float(arc4random_uniform(25) + 255)
+            let angle = (CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1) * Float(arc4random_uniform(25) + 255)
             copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
-            copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
+            copiedTileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
             count++
             if count >= 9 {
