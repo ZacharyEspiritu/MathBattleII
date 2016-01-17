@@ -123,7 +123,6 @@ class GameplayScene: CCNode {
         switch side {
         case .Top:
             launchTilesAtOpponent(forSide: .Top)
-//            topGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Top) {
                 triggerWin(forSide: .Top)
             }
@@ -132,7 +131,6 @@ class GameplayScene: CCNode {
             }
         case .Bottom:
             launchTilesAtOpponent(forSide: .Bottom)
-//            bottomGrid.removeAllTilesInGrid()
             if scoreCounter.increaseScore(forSide: .Bottom) {
                 triggerWin(forSide: .Bottom)
             }
@@ -167,7 +165,7 @@ class GameplayScene: CCNode {
         var count = 0
         NSTimer.schedule(repeatInterval: 0.3) { timer in
             let animationDuration: Double = 1.5
-            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 2.8)
+            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
             
             let negativeRand: Float = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1
             let angle = negativeRand * Float(arc4random_uniform(25) + 255)
@@ -177,6 +175,19 @@ class GameplayScene: CCNode {
             count++
             if count >= 9 {
                 timer.invalidate()
+                NSTimer.schedule(delay: 1.5) { timer in
+                    switch side {
+                    case .Top:
+                        for child in self.topLaunchedTileHolder.children {
+                            child.removeFromParent()
+                        }
+                    case .Bottom:
+                        for child in self.bottomLaunchedTileHolder.children {
+                            child.removeFromParent()
+                        }
+                    }
+                    timer.invalidate()
+                }
             }
         }
     }
