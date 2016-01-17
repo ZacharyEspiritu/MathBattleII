@@ -148,14 +148,14 @@ class GameplayScene: CCNode {
         var copiedTileArray: [Tile] = []
         switch side {
         case .Top:
-            for tile in topGrid.getAllTilesInGrid() {
+            for tile in topGrid.getCurrentlySelectedTiles() {
                 let copiedTile = tile
                 tile.removeFromParent()
                 topLaunchedTileHolder.addChild(copiedTile)
                 copiedTileArray.append(copiedTile)
             }
         case .Bottom:
-            for tile in bottomGrid.getAllTilesInGrid() {
+            for tile in bottomGrid.getCurrentlySelectedTiles() {
                 let copiedTile = tile
                 tile.removeFromParent()
                 bottomLaunchedTileHolder.addChild(copiedTile)
