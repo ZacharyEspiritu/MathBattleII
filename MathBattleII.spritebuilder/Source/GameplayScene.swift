@@ -150,6 +150,7 @@ class GameplayScene: CCNode {
     }
     
     private func launchTilesAtOpponent(forSide side: Side) {
+        // Move all tiles from the Grid to the launchedTileHolder to correct draw order
         var copiedTileArray: [Tile] = []
         switch side {
         case .Top:
@@ -169,8 +170,10 @@ class GameplayScene: CCNode {
             }
             bottomGrid.clearSelectedTiles(andUpdateSpriteFrames: false)
         }
+        
+        // Launch each tile in the order
         var count = 0
-        NSTimer.schedule(repeatInterval: 0.3) { timer in
+        NSTimer.schedule(repeatInterval: 0.15) { timer in
             let animationDuration: Double = 1.5
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
             
