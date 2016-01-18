@@ -54,9 +54,11 @@ class GameplayScene: CCNode {
         loadNewPuzzle(forSide: .Top)
         loadNewPuzzle(forSide: .Bottom)
         
-        gameTimer = GameTimer(gameLengthInSeconds: 300)
+        gameTimer = GameTimer(gameLengthInSeconds: 120)
         gameTimer.delegate = self
         gameTimer.startTimer()
+        
+        mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
         
         scoreCounter.establishScoreLimit(forBothSides: 5)
     }
@@ -174,13 +176,14 @@ class GameplayScene: CCNode {
         // Launch each tile in the order
         var count = 0
         NSTimer.schedule(repeatInterval: 0.15) { timer in
+            // Tile launch animation
             let animationDuration: Double = 1.5
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
-            
             let angle = (CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1) * Float(arc4random_uniform(25) + 255)
             copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
             copiedTileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
+            // Schedule a timer to shake the Player Display just about when each tile hits the display
             NSTimer.schedule(delay: 1.4) { timer in
                 switch side {
                 case .Top:
@@ -190,6 +193,7 @@ class GameplayScene: CCNode {
                 }
             }
             
+            // Check if the last tile has been launched, then schedule a cleanup method to fix everything
             count++
             if count >= 9 {
                 timer.invalidate()
@@ -206,7 +210,6 @@ class GameplayScene: CCNode {
                         }
                         self.topPlayerDisplay.sneakIntoCorrectPosition()
                     }
-                    timer.invalidate()
                 }
             }
         }
@@ -341,10 +344,7 @@ class GameplayScene: CCNode {
 
 extension GameplayScene: GameTimerDelegate {
     func gameTimerDidUpdate(gameTimer: GameTimer) {
-        let timeRemaining: Int = gameTimer.getRemainingTime()
-        let seconds: Int = timeRemaining % 60
-        let minutes: Int = (timeRemaining / 60) % 60
-        mainDisplay.setTimerLabel(string: String(format: "%02d:%02d", minutes, seconds))
+        mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
     func gameTimerDidFinish(gameTimer: GameTimer) {
         print("finish")
