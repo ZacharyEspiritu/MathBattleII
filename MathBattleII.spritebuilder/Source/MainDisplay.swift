@@ -14,8 +14,8 @@ class MainDisplay: CCSprite {
     private var timerLabelIsFlashing: Bool = false
     
     func didLoadFromCCB() {
-        topPlayerNameLabel.string = "testset"
-        bottomPlayerNameLabel.string = "Testasfsdf"
+        topPlayerNameLabel.string = "guest"
+        bottomPlayerNameLabel.string = "zespiritu17"
     }
     
     /**
