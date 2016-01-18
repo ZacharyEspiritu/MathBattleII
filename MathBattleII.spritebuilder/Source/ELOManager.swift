@@ -23,7 +23,6 @@ class ELOManager {
             winnerKConstant = 24
         }
         
-        
         let expectedWinnerScore = (1 / (1 + pow(10, ((Double(oldLoserRating) - Double(oldWinnerRating)) / 400))))
         var newWinnerRating = Int(Double(oldWinnerRating) + Double(winnerKConstant) * (1 - expectedWinnerScore))
         if newWinnerRating < 700 {
