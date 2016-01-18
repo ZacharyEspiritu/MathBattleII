@@ -193,7 +193,7 @@ class GameplayScene: CCNode {
             count++
             if count >= 9 {
                 timer.invalidate()
-                NSTimer.schedule(delay: 1.5) { timer in
+                NSTimer.schedule(delay: 2.0) { timer in
                     switch side {
                     case .Top:
                         for child in self.topLaunchedTileHolder.children {
