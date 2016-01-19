@@ -1,5 +1,5 @@
 //
-//  TileEnums.swift
+//  TileValue.swift
 //  MathBattleII
 //
 //  Created by Zachary Espiritu on 1/7/16.
