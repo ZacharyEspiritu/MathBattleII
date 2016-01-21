@@ -32,7 +32,7 @@ extension TileValue {
         case .multiply:
             return "×"
         default:
-            if self.rawValue > 0 {
+            if self.rawValue >= 0 {
                 return "\(self.rawValue)"
             }
             else {

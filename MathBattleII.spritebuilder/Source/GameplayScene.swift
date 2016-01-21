@@ -20,6 +20,7 @@ class GameplayScene: CCNode {
     weak var topEqualsButton, bottomEqualsButton: CCSprite!
     weak var topClearButton, bottomClearButton: CCSprite!
     
+    weak var countdownDisplay: CountdownDisplay!
     weak var mainDisplay: MainDisplay!
     weak var scoreCounter: ScoreCounter!
     weak var dividingLine: CCSprite!
@@ -37,6 +38,8 @@ class GameplayScene: CCNode {
             bottomPlayerDisplay.setTargetNumberLabel(targetNumber: bottomTargetNumber)
         }
     }
+    
+    private var gameState: GameState = .Countdown
     
     
     // MARK: Functions
@@ -56,11 +59,28 @@ class GameplayScene: CCNode {
         
         gameTimer = GameTimer(gameLengthInSeconds: 120)
         gameTimer.delegate = self
-        gameTimer.startTimer()
         
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
         
         scoreCounter.establishScoreLimit(forBothSides: 5)
+        
+        var countdown: Int = 3
+        NSTimer.schedule(repeatInterval: 1) { timer in
+            if countdown > 0 {
+                self.countdownDisplay.updateCountdownLabel(string: "\(countdown)")
+                countdown--
+            }
+            else {
+                self.countdownDisplay.updateCountdownLabel(string: "GO!")
+                self.countdownDisplay.background.visible = false
+                self.gameTimer.startTimer()
+                NSTimer.schedule(delay: 0.7) { timer in
+                    self.countdownDisplay.removeFromParent()
+                    timer.invalidate()
+                }
+                timer.invalidate()
+            }
+        }
     }
     
     func loadNewPuzzle(forSide side: Side) {

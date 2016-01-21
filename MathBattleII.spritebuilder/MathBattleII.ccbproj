@@ -167,6 +167,11 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>mainMenuAssets</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>versionStr</key>
 	<string>revision : eea568a5c7
