@@ -8,11 +8,25 @@
 
 import Foundation
 
-class Rating {
+func == (lhs: Rating, rhs: Rating) -> Bool {
+    if lhs.getRating() == rhs.getRating() {
+        if lhs.getNumberOfGamesPlayed() == rhs.getNumberOfGamesPlayed() {
+            if lhs.getMinimumFloor() == rhs.getMinimumFloor() {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+class Rating: CustomStringConvertible, Equatable {
     
     private var rating: Int
     private var numberOfGames: Int
     private var minimumFloor: Int
+    var description: String {
+        return "Rating: \(rating)\nNumber of Games Played: \(numberOfGames)\nMinimum Rating Floor: \(minimumFloor)"
+    }
     
     init() {
         rating = 1000
@@ -23,6 +37,10 @@ class Rating {
         self.rating = rating
         self.numberOfGames = numberOfGames
         self.minimumFloor = minimumFloor
+    }
+    
+    static func compareRatings(rating1 rating1: Rating, rating2: Rating) {
+        
     }
     
     func getRating() -> Int {
