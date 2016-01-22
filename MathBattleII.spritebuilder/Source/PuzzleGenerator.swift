@@ -63,32 +63,7 @@ class PuzzleGenerator {
      - returns:   a `TileValue` of `TileType.Number`.
      */
     private func chooseRandomNumber() -> TileValue {
-        var tileValue: TileValue?
-        switch Int(arc4random_uniform(UInt32(amountOfPossibleNumbers))) {
-        case 0:
-            tileValue = TileValue.zero
-        case 1:
-            tileValue = TileValue.one
-        case 2:
-            tileValue = TileValue.two
-        case 3:
-            tileValue = TileValue.three
-        case 4:
-            tileValue = TileValue.four
-        case 5:
-            tileValue = TileValue.five
-        case 6:
-            tileValue = TileValue.six
-        case 7:
-            tileValue = TileValue.seven
-        case 8:
-            tileValue = TileValue.eight
-        case 9:
-            tileValue = TileValue.nine
-        default:
-            assertionFailure()
-        }
-        return tileValue!
+        return TileValue(rawValue: Int(arc4random_uniform(UInt32(amountOfPossibleNumbers))))!
     }
     
     /**
