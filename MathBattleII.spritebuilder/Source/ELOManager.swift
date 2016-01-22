@@ -11,6 +11,7 @@ import Foundation
 class ELOManager {
     
     static let sharedInstance = ELOManager() // Singleton
+    private init() {}
     
     static func updateRatings(winner oldWinnerRating: Int, loser oldLoserRating: Int) -> (Int, Int) {
         
