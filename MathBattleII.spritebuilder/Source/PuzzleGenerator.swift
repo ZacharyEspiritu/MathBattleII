@@ -71,17 +71,6 @@ class PuzzleGenerator {
      - returns:   a `TileValue` of `TileType.Operator`.
      */
     private func chooseRandomOperator() -> TileValue {
-        var tileValue: TileValue?
-        switch Int(arc4random_uniform(UInt32(amountOfPossibleOperators))) {
-        case 0:
-            tileValue = TileValue.add
-        case 1:
-            tileValue = TileValue.subtract
-        case 2:
-            tileValue = TileValue.multiply
-        default:
-            assertionFailure()
-        }
-        return tileValue!
+        return TileValue(rawValue: Int(arc4random_uniform(UInt32(amountOfPossibleNumbers))) - amountOfPossibleNumbers)!
     }
 }
