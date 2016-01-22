@@ -12,7 +12,7 @@ class ELOManager {
     
     static let sharedInstance = ELOManager() // Singleton
     
-    func updateRatings(winner oldWinnerRating: Int, loser oldLoserRating: Int) -> (Int, Int) {
+    static func updateRatings(winner oldWinnerRating: Int, loser oldLoserRating: Int) -> (Int, Int) {
         
         // Calculate winner rating
         var winnerKConstant = 10
@@ -54,7 +54,7 @@ class ELOManager {
         return (newWinnerRating, newLoserRating)
     }
     
-    func calculateRatingDifference(rating1 rating1: Int, rating2: Int) -> Int {
+    static func calculateRatingDifference(rating1 rating1: Int, rating2: Int) -> Int {
         return abs(rating1 - rating2)
     }
 }
