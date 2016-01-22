@@ -105,28 +105,28 @@ class GameplayScene: CCNode {
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
-            if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
-                determineTileTapped(touch: touch, onSide: .Bottom)
+            let locationInNode = touch.locationInNode(bottomSide)
+            if CGRectContainsPoint(bottomGrid.boundingBox(), locationInNode) {
+                determineTileTappedInGrid(locationInGrid: locationInNode, onSide: .Top)
             }
-            else if CGRectContainsPoint(bottomClearButton.boundingBox(), touch.locationInNode(bottomSide)) {
-                bottomGrid.clearSelectedTiles()
-                bottomPlayerDisplay.clearEquationLabel()
+            else if CGRectContainsPoint(bottomClearButton.boundingBox(), locationInNode) {
+                clearCurrentlySelectedTiles(onSide: .Bottom)
             }
-            else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), touch.locationInNode(bottomSide)) {
+            else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), locationInNode) {
                 if checkIfRightAnswer(selectedTiles: bottomGrid.getCurrentlySelectedTiles(), side: .Bottom) {
                     completePuzzleForSide(side: .Bottom)
                 }
             }
         }
         else { // Touch in top half of screen
-            if CGRectContainsPoint(topGrid.boundingBox(), touch.locationInNode(topSide)) {
-                determineTileTapped(touch: touch, onSide: .Top)
+            let locationInNode = touch.locationInNode(topSide)
+            if CGRectContainsPoint(topGrid.boundingBox(), locationInNode) {
+                determineTileTappedInGrid(locationInGrid: locationInNode, onSide: .Top)
             }
-            else if CGRectContainsPoint(topClearButton.boundingBox(), touch.locationInNode(topSide)) {
-                topGrid.clearSelectedTiles()
-                topPlayerDisplay.clearEquationLabel()
+            else if CGRectContainsPoint(topClearButton.boundingBox(), locationInNode) {
+                clearCurrentlySelectedTiles(onSide: .Top)
             }
-            else if CGRectContainsPoint(topEqualsButton.boundingBox(), touch.locationInNode(topSide)) {
+            else if CGRectContainsPoint(topEqualsButton.boundingBox(), locationInNode) {
                 if checkIfRightAnswer(selectedTiles: topGrid.getCurrentlySelectedTiles(), side: .Top) {
                     completePuzzleForSide(side: .Top)
                 }
@@ -134,14 +134,20 @@ class GameplayScene: CCNode {
         }
     }
     
-    private func determineTileTapped(touch touch: CCTouch, onSide side: Side) {
+    private func determineTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
         let grid = side == .Top ? topGrid : bottomGrid
-        let touchLocationInGrid = touch.locationInNode(grid)
-        let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: side)
+        let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: locationInGrid, side: side)
         let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
         if !tappedTile.isSelected() {
             setupEquationLabel(tile: grid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: side)
         }
+    }
+    
+    private func clearCurrentlySelectedTiles(onSide side: Side) {
+        let grid = side == .Top ? topGrid : bottomGrid
+        grid.clearSelectedTiles()
+        let playerDisplay = side == .Top ? topPlayerDisplay : bottomPlayerDisplay
+        playerDisplay.clearEquationLabel()
     }
     
     private func completePuzzleForSide(side side: Side) {
