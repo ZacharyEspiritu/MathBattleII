@@ -106,12 +106,7 @@ class GameplayScene: CCNode {
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
             if CGRectContainsPoint(bottomGrid.boundingBox(), touch.locationInNode(bottomSide)) {
-                let touchLocationInGrid = touch.locationInNode(bottomGrid)
-                let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Bottom)
-                let tappedTile = bottomGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
-                if !tappedTile.isSelected() {
-                    setupEquationLabel(tile: bottomGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: Side.Bottom)
-                }
+                determineTileTapped(touch: touch, onSide: .Bottom)
             }
             else if CGRectContainsPoint(bottomClearButton.boundingBox(), touch.locationInNode(bottomSide)) {
                 bottomGrid.clearSelectedTiles()
@@ -125,12 +120,7 @@ class GameplayScene: CCNode {
         }
         else { // Touch in top half of screen
             if CGRectContainsPoint(topGrid.boundingBox(), touch.locationInNode(topSide)) {
-                let touchLocationInGrid = touch.locationInNode(topGrid)
-                let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: Side.Top)
-                let tappedTile = topGrid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
-                if !tappedTile.isSelected() {
-                    setupEquationLabel(tile: topGrid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: Side.Top)
-                }
+                determineTileTapped(touch: touch, onSide: .Top)
             }
             else if CGRectContainsPoint(topClearButton.boundingBox(), touch.locationInNode(topSide)) {
                 topGrid.clearSelectedTiles()
@@ -141,6 +131,16 @@ class GameplayScene: CCNode {
                     completePuzzleForSide(side: .Top)
                 }
             }
+        }
+    }
+    
+    private func determineTileTapped(touch touch: CCTouch, onSide side: Side) {
+        let grid = side == .Top ? topGrid : bottomGrid
+        let touchLocationInGrid = touch.locationInNode(grid)
+        let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: touchLocationInGrid, side: side)
+        let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
+        if !tappedTile.isSelected() {
+            setupEquationLabel(tile: grid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: side)
         }
     }
     
