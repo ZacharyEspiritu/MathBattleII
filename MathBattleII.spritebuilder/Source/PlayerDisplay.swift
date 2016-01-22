@@ -44,6 +44,9 @@ class PlayerDisplay: CCSprite {
         equationLabel.string = ""
     }
     
+    /**
+     Visually shakes the `targetNumberLabel` and the `equationLabel` on the `PlayerDisplay`.
+     */
     func shakeDisplay() {
         let targetNumberShake = CCActionMoveTo(duration: 0.2, position: CGPoint(x: (((CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1) * (drand48() / 10)) + 0.50), y: (CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1) * Double(arc4random_uniform(3)) + 51.5))
         let targetNumberPositionRestore = CCActionMoveTo(duration: 0.2, position: CGPoint(x: 0.50, y: 51.5))
@@ -60,6 +63,10 @@ class PlayerDisplay: CCSprite {
         equationLabel.runAction(CCActionSequence(array: [equationLabelRotate, equationLabelRotationRestore]))
     }
     
+    /**
+     Restores the position of the `targetNumberLabel` and the `equationLabel` to their defaults.
+     Should be used as a safety for the `CCActionSequence` bug where the final action isn't resolved when multiple actions are firing at once.
+     */
     func sneakIntoCorrectPosition() {
         let targetNumberPositionRestore = CCActionMoveTo(duration: 0.2, position: CGPoint(x: 0.50, y: 51.5))
         let targetNumberRotationRestore = CCActionRotateTo(duration: 0.2, angle: 0)
