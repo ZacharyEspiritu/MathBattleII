@@ -357,6 +357,12 @@ class GameplayScene: CCNode {
         return tileValues
     }
     
+    /**
+     Checks to see if the `TileValues` in the inputted `[TileValue]` array are in a valid format for equation verification.
+     Should be used before using `checkIfRightAnswer` to ensure that no errors occur.
+     - parameter tileValues:   the `[TileValue]` array to check
+     - returns:                `true` if the `[TileValue]` array has a valid order for equation checking
+     */
     private func checkTileArrayHasCorrectFormat(tileValues: [TileValue]) -> Bool {
         if tileValues[0].checkIfNumberOrOperation() == TileType.Number &&
             tileValues[1].checkIfNumberOrOperation() == TileType.Operation &&
