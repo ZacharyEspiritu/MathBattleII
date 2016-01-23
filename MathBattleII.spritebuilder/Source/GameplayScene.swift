@@ -163,6 +163,7 @@ class GameplayScene: CCNode {
     private func clearCurrentlySelectedTiles(onSide side: Side) {
         let grid = (side == .Top) ? topGrid : bottomGrid
         grid.clearSelectedTiles()
+        
         let playerDisplay = (side == .Top) ? topPlayerDisplay : bottomPlayerDisplay
         playerDisplay.clearEquationLabel()
     }
