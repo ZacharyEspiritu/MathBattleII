@@ -167,6 +167,10 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Triggers the win state for a `Side`.
+     - parameter forSide:   the `Side` that just won
+     */
     private func triggerWin(forSide side: Side) {
         print("win")
     }
