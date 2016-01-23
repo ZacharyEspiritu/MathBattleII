@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55021A3E1C53375200AD2EF4 /* Array2DTests.swift */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
@@ -20,7 +21,6 @@
 		55AB267B1C4EEE3800EAF087 /* TileValue+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AB26791C4EEE3800EAF087 /* TileValue+Converter.swift */; };
 		55AB267D1C4EEE5600EAF087 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AB267C1C4EEE5600EAF087 /* TileType.swift */; };
 		55AB267E1C4EEE5600EAF087 /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AB267C1C4EEE5600EAF087 /* TileType.swift */; };
-		55AB267F1C4EEEDC00EAF087 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */; };
 		55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */; };
@@ -183,6 +183,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55021A3E1C53375200AD2EF4 /* Array2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2DTests.swift; sourceTree = "<group>"; };
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 			children = (
 				550A061E1C3C929900FC4FCD /* MainSceneTests.swift */,
 				55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */,
+				55021A3E1C53375200AD2EF4 /* Array2DTests.swift */,
 				55D6769D1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift */,
 				550A06181C3C926B00FC4FCD /* Info.plist */,
 			);
@@ -972,7 +974,7 @@
 				55AB267B1C4EEE3800EAF087 /* TileValue+Converter.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
 				55D676931C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
-				55AB267F1C4EEEDC00EAF087 /* NSTimer+Closure.swift in Sources */,
+				55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */,
 				55D6769E1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift in Sources */,
 				55585FB51C3E812500688265 /* Rating.swift in Sources */,
 				55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */,
