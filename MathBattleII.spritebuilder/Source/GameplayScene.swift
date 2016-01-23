@@ -44,6 +44,9 @@ class GameplayScene: CCNode {
     
     // MARK: Functions
     
+    /**
+     Called when the `GameplayScene` is loaded.
+     */
     func didLoadFromCCB() {
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = true
