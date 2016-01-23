@@ -344,6 +344,11 @@ class GameplayScene: CCNode {
         return (rowIndex, columnIndex)
     }
     
+    /**
+     Converts a `[Tile]` array to a `[TileValue]` array of the `TileValues` of the `Tiles` in the input.
+     - parameter tiles:   the `[Tile]` array to convert
+     - returns:           a `[TileValue]` array of the `TileValues` of the `Tiles` in the input.
+     */
     private func convertTilesToTileValues(tiles: [Tile]) -> [TileValue] {
         var tileValues: [TileValue] = []
         for tile in tiles {
