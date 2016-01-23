@@ -37,11 +37,11 @@ class PuzzleGenerator {
             let nextOperator: TileValue = chooseRandomOperator()
             
             switch nextOperator {
-            case TileValue.add:
+            case TileValue.Add:
                 targetNumber += nextNumber.rawValue
-            case TileValue.subtract:
+            case TileValue.Subtract:
                 targetNumber -= nextNumber.rawValue
-            case TileValue.multiply:
+            case TileValue.Multiply:
                 targetNumber *= nextNumber.rawValue
             default:
                 assertionFailure()

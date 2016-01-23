@@ -281,11 +281,11 @@ class GameplayScene: CCNode {
                 var possibleTargetValue = tileValues[0].rawValue
                 for index in 1..<5 {
                     switch tileValues[(index * 2) - 1] {
-                    case .add:
+                    case .Add:
                         possibleTargetValue += tileValues[index * 2].rawValue
-                    case .subtract:
+                    case .Subtract:
                         possibleTargetValue -= tileValues[index * 2].rawValue
-                    case .multiply:
+                    case .Multiply:
                         possibleTargetValue *= tileValues[index * 2].rawValue
                     default:
                         assertionFailure()
