@@ -200,10 +200,13 @@ class GameplayScene: CCNode {
      - parameter forSide:   the `Side` of the `Grid` to launch the tiles
      */
     private func launchTilesAtOpponent(forSide side: Side) {
-        // Move all tiles from the Grid to the launchedTileHolder to correct draw order
-        var copiedTileArray: [Tile] = []
+        // Setup method variables based on Side input
         let grid: Grid = (side == .Top) ? topGrid : bottomGrid
         let launchedTileHolder: CCNode = (side == .Top) ? topLaunchedTileHolder : bottomLaunchedTileHolder
+        let opponentPlayerDisplay: PlayerDisplay = (side == .Top) ? bottomPlayerDisplay : topPlayerDisplay
+        
+        // Move all tiles from the Grid to the launchedTileHolder to correct draw order
+        var copiedTileArray: [Tile] = []
         for tile in grid.getCurrentlySelectedTiles() {
             tile.removeFromParent()
             launchedTileHolder.addChild(tile)
@@ -211,7 +214,7 @@ class GameplayScene: CCNode {
         }
         grid.clearSelectedTiles(andUpdateSpriteFrames: false)
         
-        // Launch each tile in the order
+        // Launch each Tile in the order it appears in the equation
         var count = 0
         NSTimer.schedule(repeatInterval: 0.15) { timer in
             // Tile launch animation
@@ -223,12 +226,7 @@ class GameplayScene: CCNode {
             
             // Schedule a timer to shake the Player Display just about when each tile hits the display
             NSTimer.schedule(delay: 1.4) { timer in
-                switch side {
-                case .Top:
-                    self.bottomPlayerDisplay.shakeDisplay()
-                case .Bottom:
-                    self.topPlayerDisplay.shakeDisplay()
-                }
+                opponentPlayerDisplay.shakeDisplay()
             }
             
             // Check if the last tile has been launched, then schedule a cleanup method to fix everything
@@ -236,18 +234,10 @@ class GameplayScene: CCNode {
             if count >= 9 {
                 timer.invalidate()
                 NSTimer.schedule(delay: 2.0) { timer in
-                    switch side {
-                    case .Top:
-                        for child in self.topLaunchedTileHolder.children {
-                            child.removeFromParent()
-                        }
-                        self.bottomPlayerDisplay.sneakIntoCorrectPosition()
-                    case .Bottom:
-                        for child in self.bottomLaunchedTileHolder.children {
-                            child.removeFromParent()
-                        }
-                        self.topPlayerDisplay.sneakIntoCorrectPosition()
+                    for child in launchedTileHolder.children {
+                        child.removeFromParent()
                     }
+                    opponentPlayerDisplay.sneakIntoCorrectPosition()
                 }
             }
         }
@@ -260,33 +250,19 @@ class GameplayScene: CCNode {
      - parameter side:   the `Side` where the `Tile` is located
      */
     private func setupEquationLabel(tile tile: Tile, side: Side) {
-        switch side {
-        case .Top:
-            let count = topGrid.getCurrentlySelectedTiles().count
-            let stringValue = tile.getTileValue().stringValue
-            
-            if count == 1 {
-                topPlayerDisplay.setEquationLabel(equation: stringValue)
-            }
-            else if count == 3 || count == 5 || count == 7 {
-                topPlayerDisplay.setEquationLabel(equation: "(\(topPlayerDisplay.getEquationLabelString()) \(stringValue))")
-            }
-            else {
-                topPlayerDisplay.setEquationLabel(equation: "\(topPlayerDisplay.getEquationLabelString()) \(stringValue)")
-            }
-        case .Bottom:
-            let count = bottomGrid.getCurrentlySelectedTiles().count
-            let stringValue = tile.getTileValue().stringValue
-            
-            if count == 1 {
-                bottomPlayerDisplay.setEquationLabel(equation: stringValue)
-            }
-            else if count == 3 || count == 5 || count == 7 {
-                bottomPlayerDisplay.setEquationLabel(equation: "(\(bottomPlayerDisplay.getEquationLabelString()) \(stringValue))")
-            }
-            else {
-                bottomPlayerDisplay.setEquationLabel(equation: "\(bottomPlayerDisplay.getEquationLabelString()) \(stringValue)")
-            }
+        let grid: Grid = (side == .Top) ? topGrid : bottomGrid
+        let playerDisplay: PlayerDisplay = (side == .Top) ? topPlayerDisplay : bottomPlayerDisplay
+        
+        let count = grid.getCurrentlySelectedTiles().count
+        let stringValue = tile.getTileValue().stringValue
+        if count == 1 {
+            playerDisplay.setEquationLabel(equation: stringValue)
+        }
+        else if count == 3 || count == 5 || count == 7 {
+            playerDisplay.setEquationLabel(equation: "(\(playerDisplay.getEquationLabelString()) \(stringValue))")
+        }
+        else {
+            playerDisplay.setEquationLabel(equation: "\(playerDisplay.getEquationLabelString()) \(stringValue)")
         }
     }
     
