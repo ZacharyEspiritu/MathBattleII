@@ -86,6 +86,10 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Generates a new puzzle for the specified `Side` and loads it into the `Grid` on that `Side`.
+     - parameter forSide:   the `Side` to load a new puzzle in
+     */
     func loadNewPuzzle(forSide side: Side) {
         // Generate new puzzle and seperate the tuple
         let newPuzzle: (Int, String, [TileValue]) = PuzzleGenerator.sharedInstance.generateNewPuzzle()
