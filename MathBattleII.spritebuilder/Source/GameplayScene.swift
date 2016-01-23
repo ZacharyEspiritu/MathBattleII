@@ -276,6 +276,12 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Checks if the `[Tile]` array is a valid solution for the current puzzle on the `Side`.
+     - parameter selectedTiles:   the `[Tile]` array to check
+     - parameter side:            the `Side` where the puzzle is stored
+     - returns:                   `true` if the answer is a valid solution; `false` otherwise
+     */
     private func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
         if tiles.count == 9 {
             let tileValues = convertTilesToTileValues(tiles)
