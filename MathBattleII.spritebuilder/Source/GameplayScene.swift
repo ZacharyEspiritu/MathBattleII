@@ -357,13 +357,7 @@ class GameplayScene: CCNode {
      */
     private func determinePositionOfTappedTile(touchLocationInGrid touchLocation: CGPoint, side: Side) -> (Int, Int) {
         // Determine which Grid to use for contentSize. Doesn't matter, but implemented as a safety precaution.
-        let gridContentSize: CGSize!
-        switch side {
-        case .Top:
-            gridContentSize = topGrid.contentSizeInPoints
-        case .Bottom:
-            gridContentSize = bottomGrid.contentSizeInPoints
-        }
+        let gridContentSize: CGSize = (side == .Top) ? topGrid.contentSizeInPoints : bottomGrid.contentSizeInPoints
         
         // Determine rowIndex
         var rowIndex: Int!
