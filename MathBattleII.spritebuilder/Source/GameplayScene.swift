@@ -239,6 +239,12 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Updates the `equationLabel` for the `PlayerDisplay` on the `Side` of the `Tile` input to determine how to update the label.
+     Should be used immediately after a `Tile` has been determined to have been pressed.
+     - parameter tile:   the `Tile` to use to determine how to update the `equationLabel`
+     - parameter side:   the `Side` where the `Tile` is located
+     */
     private func setupEquationLabel(tile tile: Tile, side: Side) {
         switch side {
         case .Top:
