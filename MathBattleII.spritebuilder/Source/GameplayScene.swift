@@ -171,6 +171,10 @@ class GameplayScene: CCNode {
         print("win")
     }
     
+    /**
+     Moves all tiles from the `Grid` on the inputted `side` to their respective `launchedTileHolder` to correct drawing order issues, then triggers an animation that launches the `Tile` sprites towards the opposite side in the order they were inputted into the equation.
+     - parameter forSide:   the `Side` of the `Grid` to launch the tiles
+     */
     private func launchTilesAtOpponent(forSide side: Side) {
         // Move all tiles from the Grid to the launchedTileHolder to correct draw order
         var copiedTileArray: [Tile] = []
