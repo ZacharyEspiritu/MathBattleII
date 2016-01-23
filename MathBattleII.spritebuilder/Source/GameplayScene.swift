@@ -156,6 +156,10 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Clears the currently selected tiles on the specified `Side`.
+     - parameter onSide:   the `Side` to clear
+     */
     private func clearCurrentlySelectedTiles(onSide side: Side) {
         let grid = side == .Top ? topGrid : bottomGrid
         grid.clearSelectedTiles()
