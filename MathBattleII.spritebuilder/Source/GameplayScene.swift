@@ -123,7 +123,7 @@ class GameplayScene: CCNode {
         
         let locationInNode = touch.locationInNode(sideGroupingNode)
         if CGRectContainsPoint(grid.boundingBox(), locationInNode) {
-            determineTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
+            updateTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
         }
         else {
             let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
@@ -147,7 +147,7 @@ class GameplayScene: CCNode {
      - parameter locationInGrid:   the `CGPoint` location of the tap in the `Grid` node
      - parameter onSide:           the `Side` of the `Grid` where the tap occurred
      */
-    private func determineTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
+    private func updateTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
         let grid = (side == .Top) ? topGrid : bottomGrid
         let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touchLocationInGrid: locationInGrid, side: side)
         let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
