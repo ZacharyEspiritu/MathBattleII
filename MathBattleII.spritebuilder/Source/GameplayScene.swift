@@ -110,6 +110,12 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Called whenever the screen is tapped.
+     This implementation determines which action to take based on the position of the touch on the screen.
+     - parameter touch:       the `CCTouch` object of the touch
+     - parameter withEvent:   the `CCTouchEvent` that occured due to the touch
+     */
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         let sideTouched: Side = touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 ? .Bottom : .Top
         let sideGroupingNode: CCNode = sideTouched == .Top ? topSide : bottomSide
