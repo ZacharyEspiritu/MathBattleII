@@ -130,7 +130,7 @@ class GameplayScene: CCNode {
     
     private func determineTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
         let grid = side == .Top ? topGrid : bottomGrid
-        let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touch: locationInGrid, side: side)
+        let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touchLocationInGrid: locationInGrid, side: side)
         let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
         if !tappedTile.isSelected() {
             setupEquationLabel(tile: grid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: side)
@@ -307,7 +307,7 @@ class GameplayScene: CCNode {
      - parameter side:    the `Side` of the `Grid` where the touch took place
      - returns:           an `(Int, Int)` tuple in the format `(rowIndex, columnIndex)`
      */
-    private func determinePositionOfTappedTile(touch touchLocationInGrid: CGPoint, side: Side) -> (Int, Int) {
+    private func determinePositionOfTappedTile(touchLocationInGrid touchLocation: CGPoint, side: Side) -> (Int, Int) {
         // Determine which Grid to use for contentSize. Doesn't matter, but implemented as a safety precaution.
         let gridContentSize: CGSize!
         switch side {
@@ -319,10 +319,10 @@ class GameplayScene: CCNode {
         
         // Determine rowIndex
         var rowIndex: Int!
-        if touchLocationInGrid.x < gridContentSize.width / 3 {
+        if touchLocation.x < gridContentSize.width / 3 {
             rowIndex = 0
         }
-        else if touchLocationInGrid.x < (gridContentSize.width / 3) * 2 {
+        else if touchLocation.x < (gridContentSize.width / 3) * 2 {
             rowIndex = 1
         }
         else {
@@ -331,10 +331,10 @@ class GameplayScene: CCNode {
         
         // Determine columnIndex
         var columnIndex: Int!
-        if touchLocationInGrid.y < gridContentSize.height / 3 {
+        if touchLocation.y < gridContentSize.height / 3 {
             columnIndex = 0
         }
-        else if touchLocationInGrid.y < (gridContentSize.height / 3) * 2 {
+        else if touchLocation.y < (gridContentSize.height / 3) * 2 {
             columnIndex = 1
         }
         else {
