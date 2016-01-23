@@ -174,25 +174,16 @@ class GameplayScene: CCNode {
      - parameter side:   the `Side` where the puzzle was just completed
      */
     private func completePuzzleForSide(side side: Side) {
-        switch side {
-        case .Top:
-            launchTilesAtOpponent(forSide: .Top)
-            topPlayerDisplay.clearEquationLabel()
-            if scoreCounter.increaseScore(forSide: .Top) {
-                triggerWin(forSide: .Top)
-            }
-            else {
-                loadNewPuzzle(forSide: .Top)
-            }
-        case .Bottom:
-            launchTilesAtOpponent(forSide: .Bottom)
-            bottomPlayerDisplay.clearEquationLabel()
-            if scoreCounter.increaseScore(forSide: .Bottom) {
-                triggerWin(forSide: .Bottom)
-            }
-            else {
-                loadNewPuzzle(forSide: .Bottom)
-            }
+        let playerDisplay: PlayerDisplay = (side == .Top) ? topPlayerDisplay : bottomPlayerDisplay
+        playerDisplay.clearEquationLabel()
+        
+        launchTilesAtOpponent(forSide: side)
+        
+        if scoreCounter.increaseScore(forSide: side) {
+            triggerWin(forSide: side)
+        }
+        else {
+            loadNewPuzzle(forSide: side)
         }
     }
     
