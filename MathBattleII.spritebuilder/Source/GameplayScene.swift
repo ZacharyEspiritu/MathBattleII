@@ -301,6 +301,12 @@ class GameplayScene: CCNode {
         return false
     }
     
+    /**
+     Determines the row and column index of the `Tile` in the `Grid` on the `Side` at the location of the specified `touch`.
+     - parameter touch:   the location of the touch in the `Grid`
+     - parameter side:    the `Side` of the `Grid` where the touch took place
+     - returns:           an `(Int, Int)` tuple in the format `(rowIndex, columnIndex)`
+     */
     private func determinePositionOfTappedTile(touch touchLocationInGrid: CGPoint, side: Side) -> (Int, Int) {
         // Determine which Grid to use for contentSize. Doesn't matter, but implemented as a safety precaution.
         let gridContentSize: CGSize!
