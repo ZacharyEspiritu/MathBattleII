@@ -122,17 +122,17 @@ class GameplayScene: CCNode {
         let grid: Grid = (sideTouched == .Top) ? topGrid : bottomGrid
         
         let locationInNode = touch.locationInNode(sideGroupingNode)
-        if CGRectContainsPoint(grid.boundingBox(), locationInNode) {
+        if CGRectContainsPoint(grid.boundingBox(), locationInNode) { // Tile tapped
             updateTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
         }
         else {
             let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
-            if CGRectContainsPoint(clearButton.boundingBox(), locationInNode) {
+            if CGRectContainsPoint(clearButton.boundingBox(), locationInNode) { // Clear button tapped
                 clearCurrentlySelectedTiles(onSide: sideTouched)
             }
             else {
                 let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
-                if CGRectContainsPoint(equalsButton.boundingBox(), locationInNode) {
+                if CGRectContainsPoint(equalsButton.boundingBox(), locationInNode) { // Equals button tapped
                     if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
                         completePuzzleForSide(side: sideTouched)
                     }
@@ -206,11 +206,10 @@ class GameplayScene: CCNode {
         let opponentPlayerDisplay: PlayerDisplay = (side == .Top) ? bottomPlayerDisplay : topPlayerDisplay
         
         // Move all tiles from the Grid to the launchedTileHolder to correct draw order
-        var copiedTileArray: [Tile] = []
-        for tile in grid.getCurrentlySelectedTiles() {
+        var tileArray: [Tile] = grid.getCurrentlySelectedTiles()
+        for tile in tileArray {
             tile.removeFromParent()
             launchedTileHolder.addChild(tile)
-            copiedTileArray.append(tile)
         }
         grid.clearSelectedTiles(andUpdateSpriteFrames: false)
         
@@ -221,8 +220,8 @@ class GameplayScene: CCNode {
             let animationDuration: Double = 1.5
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
             let angle = ((CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5) ? -1 : 1) * Float(arc4random_uniform(25) + 255)
-            copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
-            copiedTileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
+            tileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
+            tileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
             // Schedule a timer to shake the Player Display just about when each tile hits the display
             NSTimer.schedule(delay: 1.4) { timer in
@@ -273,34 +272,28 @@ class GameplayScene: CCNode {
      - returns:                   `true` if the answer is a valid solution; `false` otherwise
      */
     private func checkIfRightAnswer(selectedTiles tiles: [Tile], side: Side) -> Bool {
+        // Check that all of the tiles have been used
         if tiles.count == 9 {
-            let tileValues = convertTilesToTileValues(tiles)
+            // Check that the [TileValue] array is in a valid order of Numbers and Operators
+            let tileValues: [TileValue] = convertTilesToTileValues(tiles)
             if checkTileArrayHasCorrectFormat(tileValues) {
+                // Calculate the given answer and determine if it matches the targetNumber
                 var possibleTargetValue = tileValues[0].rawValue
                 for index in 1..<5 {
-                    if tileValues[(index * 2) - 1] == TileValue.add {
+                    switch tileValues[(index * 2) - 1] {
+                    case .add:
                         possibleTargetValue += tileValues[index * 2].rawValue
-                    }
-                    else if tileValues[(index * 2) - 1] == TileValue.subtract {
+                    case .subtract:
                         possibleTargetValue -= tileValues[index * 2].rawValue
-                    }
-                    else if tileValues[(index * 2) - 1] == TileValue.multiply {
+                    case .multiply:
                         possibleTargetValue *= tileValues[index * 2].rawValue
-                    }
-                    else {
+                    default:
                         assertionFailure()
                     }
                 }
-                
-                switch side {
-                case .Top:
-                    if possibleTargetValue == topTargetNumber {
-                        return true
-                    }
-                case .Bottom:
-                    if possibleTargetValue == bottomTargetNumber {
-                        return true
-                    }
+                let targetNumber = ((side == .Top) ? topTargetNumber : bottomTargetNumber)
+                if possibleTargetValue == targetNumber {
+                    return true
                 }
             }
         }
@@ -314,7 +307,7 @@ class GameplayScene: CCNode {
      - returns:           an `(Int, Int)` tuple in the format `(rowIndex, columnIndex)`
      */
     private func determinePositionOfTappedTile(touchLocationInGrid touchLocation: CGPoint, side: Side) -> (Int, Int) {
-        // Determine which Grid to use for contentSize. Doesn't matter, but implemented as a safety precaution.
+        // Determine which Grid to use for contentSize. Shouldn't matter, but implemented as a safety precaution.
         let gridContentSize: CGSize = (side == .Top) ? topGrid.contentSizeInPoints : bottomGrid.contentSizeInPoints
         
         // Determine rowIndex
