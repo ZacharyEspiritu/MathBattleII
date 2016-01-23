@@ -141,6 +141,12 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Determines which `Tile` was tapped in the `Grid` on the specified `Side` and passes it to the `setupEquationLabel(tile:side:)` function.
+     **Note:** this function is different from `determinePositionOfTappedTile(touchLocationInGrid:side:)` as the aforementioned function returns a tuple of format `(rowIndex, columnIndex)`. This tuple is used in this function to determine the actual `Tile` object tapped.
+     - parameter locationInGrid:   the `CGPoint` location of the tap in the `Grid` node
+     - parameter onSide:           the `Side` of the `Grid` where the tap occurred
+     */
     private func determineTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
         let grid = side == .Top ? topGrid : bottomGrid
         let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touchLocationInGrid: locationInGrid, side: side)
