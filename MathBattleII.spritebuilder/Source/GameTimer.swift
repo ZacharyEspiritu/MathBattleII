@@ -46,7 +46,6 @@ class GameTimer: NSObject {
      */
     func startTimer() {
         isPaused = false
-        print("test")
         delegate?.gameTimerDidStart(self)
     }
     
