@@ -167,6 +167,11 @@ class GameplayScene: CCNode {
         playerDisplay.clearEquationLabel()
     }
     
+    /**
+     Triggers the cleanup sequence when a puzzle is completed.
+     It begins the tile launching animation, increases the score on a `Side`, and loads a new puzzle for that `Side`.
+     - parameter side:   the `Side` where the puzzle was just completed
+     */
     private func completePuzzleForSide(side side: Side) {
         switch side {
         case .Top:
