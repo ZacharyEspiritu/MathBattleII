@@ -311,27 +311,29 @@ class GameplayScene: CCNode {
         let gridContentSize: CGSize = (side == .Top) ? topGrid.contentSizeInPoints : bottomGrid.contentSizeInPoints
         
         // Determine rowIndex
-        var rowIndex: Int!
-        if touchLocation.x < gridContentSize.width / 3 {
-            rowIndex = 0
-        }
-        else if touchLocation.x < (gridContentSize.width / 3) * 2 {
-            rowIndex = 1
-        }
-        else {
-            rowIndex = 2
+        var rowIndex: Int {
+            if touchLocation.x < gridContentSize.width / 3 {
+                return 0
+            }
+            else if touchLocation.x < (gridContentSize.width / 3) * 2 {
+                return 1
+            }
+            else {
+                return 2
+            }
         }
         
         // Determine columnIndex
-        var columnIndex: Int!
-        if touchLocation.y < gridContentSize.height / 3 {
-            columnIndex = 0
-        }
-        else if touchLocation.y < (gridContentSize.height / 3) * 2 {
-            columnIndex = 1
-        }
-        else {
-            columnIndex = 2
+        var columnIndex: Int {
+            if touchLocation.y < gridContentSize.height / 3 {
+                return 0
+            }
+            else if touchLocation.y < (gridContentSize.height / 3) * 2 {
+                return 1
+            }
+            else {
+                return 2
+            }
         }
         
         return (rowIndex, columnIndex)
