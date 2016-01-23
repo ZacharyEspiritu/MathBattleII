@@ -104,31 +104,25 @@ class GameplayScene: CCNode {
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        if touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 { // Touch in bottom half of screen
-            let locationInNode = touch.locationInNode(bottomSide)
-            if CGRectContainsPoint(bottomGrid.boundingBox(), locationInNode) {
-                determineTileTappedInGrid(locationInGrid: locationInNode, onSide: .Top)
-            }
-            else if CGRectContainsPoint(bottomClearButton.boundingBox(), locationInNode) {
-                clearCurrentlySelectedTiles(onSide: .Bottom)
-            }
-            else if CGRectContainsPoint(bottomEqualsButton.boundingBox(), locationInNode) {
-                if checkIfRightAnswer(selectedTiles: bottomGrid.getCurrentlySelectedTiles(), side: .Bottom) {
-                    completePuzzleForSide(side: .Bottom)
-                }
-            }
+        let sideTouched: Side = touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 ? .Bottom : .Top
+        let sideGroupingNode: CCNode = sideTouched == .Top ? topSide : bottomSide
+        let grid: Grid = sideTouched == .Top ? topGrid : bottomGrid
+        
+        let locationInNode = touch.locationInNode(sideGroupingNode)
+        if CGRectContainsPoint(grid.boundingBox(), locationInNode) {
+            determineTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
         }
-        else { // Touch in top half of screen
-            let locationInNode = touch.locationInNode(topSide)
-            if CGRectContainsPoint(topGrid.boundingBox(), locationInNode) {
-                determineTileTappedInGrid(locationInGrid: locationInNode, onSide: .Top)
+        else {
+            let clearButton: CCSprite = sideTouched == .Top ? topClearButton : bottomClearButton
+            if CGRectContainsPoint(clearButton.boundingBox(), locationInNode) {
+                clearCurrentlySelectedTiles(onSide: sideTouched)
             }
-            else if CGRectContainsPoint(topClearButton.boundingBox(), locationInNode) {
-                clearCurrentlySelectedTiles(onSide: .Top)
-            }
-            else if CGRectContainsPoint(topEqualsButton.boundingBox(), locationInNode) {
-                if checkIfRightAnswer(selectedTiles: topGrid.getCurrentlySelectedTiles(), side: .Top) {
-                    completePuzzleForSide(side: .Top)
+            else {
+                let equalsButton: CCSprite = sideTouched == .Top ? topEqualsButton : bottomEqualsButton
+                if CGRectContainsPoint(equalsButton.boundingBox(), locationInNode) {
+                    if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
+                        completePuzzleForSide(side: sideTouched)
+                    }
                 }
             }
         }
