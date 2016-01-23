@@ -117,21 +117,21 @@ class GameplayScene: CCNode {
      - parameter withEvent:   the `CCTouchEvent` that occured due to the touch
      */
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        let sideTouched: Side = touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2 ? .Bottom : .Top
-        let sideGroupingNode: CCNode = sideTouched == .Top ? topSide : bottomSide
-        let grid: Grid = sideTouched == .Top ? topGrid : bottomGrid
+        let sideTouched: Side = (touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2) ? .Bottom : .Top
+        let sideGroupingNode: CCNode = (sideTouched == .Top) ? topSide : bottomSide
+        let grid: Grid = (sideTouched == .Top) ? topGrid : bottomGrid
         
         let locationInNode = touch.locationInNode(sideGroupingNode)
         if CGRectContainsPoint(grid.boundingBox(), locationInNode) {
             determineTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
         }
         else {
-            let clearButton: CCSprite = sideTouched == .Top ? topClearButton : bottomClearButton
+            let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
             if CGRectContainsPoint(clearButton.boundingBox(), locationInNode) {
                 clearCurrentlySelectedTiles(onSide: sideTouched)
             }
             else {
-                let equalsButton: CCSprite = sideTouched == .Top ? topEqualsButton : bottomEqualsButton
+                let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
                 if CGRectContainsPoint(equalsButton.boundingBox(), locationInNode) {
                     if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
                         completePuzzleForSide(side: sideTouched)
@@ -148,7 +148,7 @@ class GameplayScene: CCNode {
      - parameter onSide:           the `Side` of the `Grid` where the tap occurred
      */
     private func determineTileTappedInGrid(locationInGrid locationInGrid: CGPoint, onSide side: Side) {
-        let grid = side == .Top ? topGrid : bottomGrid
+        let grid = (side == .Top) ? topGrid : bottomGrid
         let tileCoordinates: (Int, Int) = determinePositionOfTappedTile(touchLocationInGrid: locationInGrid, side: side)
         let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
         if !tappedTile.isSelected() {
@@ -161,9 +161,9 @@ class GameplayScene: CCNode {
      - parameter onSide:   the `Side` to clear
      */
     private func clearCurrentlySelectedTiles(onSide side: Side) {
-        let grid = side == .Top ? topGrid : bottomGrid
+        let grid = (side == .Top) ? topGrid : bottomGrid
         grid.clearSelectedTiles()
-        let playerDisplay = side == .Top ? topPlayerDisplay : bottomPlayerDisplay
+        let playerDisplay = (side == .Top) ? topPlayerDisplay : bottomPlayerDisplay
         playerDisplay.clearEquationLabel()
     }
     
@@ -235,7 +235,7 @@ class GameplayScene: CCNode {
             // Tile launch animation
             let animationDuration: Double = 1.5
             let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
-            let angle = (CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5 ? -1 : 1) * Float(arc4random_uniform(25) + 255)
+            let angle = ((CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5) ? -1 : 1) * Float(arc4random_uniform(25) + 255)
             copiedTileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
             copiedTileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
             
