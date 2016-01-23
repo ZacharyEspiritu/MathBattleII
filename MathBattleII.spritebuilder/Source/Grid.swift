@@ -136,9 +136,9 @@ class Grid: CCNode {
     }
     
     /**
-     Permanently removes all of the `Tile` objects on the `Grid` and clears the `Array2D<Tile>`.
+     Permanently removes all of the `Tile` objects in the `Array2D<Tile>`.
      */
-    func removeAllTilesInGrid() {
+    func removeAllTilesInGridArray() {
         guard checkIfTilesExistInGrid() else {
             assertionFailure()
             return
@@ -146,7 +146,6 @@ class Grid: CCNode {
         clearSelectedTiles()
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
-                tiles[rowIndex, columnIndex]!.removeFromParentAndCleanup(true)
                 tiles[rowIndex, columnIndex] = nil
             }
         }
