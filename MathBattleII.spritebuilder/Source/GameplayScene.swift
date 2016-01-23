@@ -202,24 +202,14 @@ class GameplayScene: CCNode {
     private func launchTilesAtOpponent(forSide side: Side) {
         // Move all tiles from the Grid to the launchedTileHolder to correct draw order
         var copiedTileArray: [Tile] = []
-        switch side {
-        case .Top:
-            for tile in topGrid.getCurrentlySelectedTiles() {
-                let copiedTile = tile
-                tile.removeFromParent()
-                topLaunchedTileHolder.addChild(copiedTile)
-                copiedTileArray.append(copiedTile)
-            }
-            topGrid.clearSelectedTiles(andUpdateSpriteFrames: false)
-        case .Bottom:
-            for tile in bottomGrid.getCurrentlySelectedTiles() {
-                let copiedTile = tile
-                tile.removeFromParent()
-                bottomLaunchedTileHolder.addChild(copiedTile)
-                copiedTileArray.append(copiedTile)
-            }
-            bottomGrid.clearSelectedTiles(andUpdateSpriteFrames: false)
+        let grid: Grid = (side == .Top) ? topGrid : bottomGrid
+        let launchedTileHolder: CCNode = (side == .Top) ? topLaunchedTileHolder : bottomLaunchedTileHolder
+        for tile in grid.getCurrentlySelectedTiles() {
+            tile.removeFromParent()
+            launchedTileHolder.addChild(tile)
+            copiedTileArray.append(tile)
         }
+        grid.clearSelectedTiles(andUpdateSpriteFrames: false)
         
         // Launch each tile in the order
         var count = 0
