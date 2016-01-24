@@ -344,46 +344,55 @@
 			path = MathBattleIITests;
 			sourceTree = "<group>";
 		};
+		558070231C53D46D001CFCFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */,
+				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
+				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
+				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		558070241C53D53A001CFCFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55D676891C4931EE001AE5F7 /* Array2D.swift */,
+				55283D7D1C3EC879000BD64A /* Grid.swift */,
+				555050D71C49A9990037F3A7 /* GameTimer.swift */,
+				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
+				555050E31C49D79F0037F3A7 /* Tile.swift */,
+				558070211C53C713001CFCFF /* TileType.swift */,
+				55283D9B1C3F1C0F000BD64A /* TileValue.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		55A0C0701C3F71C300C6443B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
-				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
 		};
-		55A0C0731C3F71ED00C6443B /* Gameplay Objects */ = {
+		55A0C0731C3F71ED00C6443B /* Gameplay */ = {
 			isa = PBXGroup;
 			children = (
-				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
-				55283D7D1C3EC879000BD64A /* Grid.swift */,
-				555050E31C49D79F0037F3A7 /* Tile.swift */,
-				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
-				55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */,
-				555050D71C49A9990037F3A7 /* GameTimer.swift */,
-				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
+				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
+				558070231C53D46D001CFCFF /* View */,
+				558070241C53D53A001CFCFF /* Model */,
 			);
-			name = "Gameplay Objects";
+			name = Gameplay;
 			sourceTree = "<group>";
 		};
-		55A0C0741C3F720800C6443B /* Managers */ = {
+		55AB26761C4EEDF100EAF087 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
-				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
 				557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */,
-				55D676891C4931EE001AE5F7 /* Array2D.swift */,
 			);
-			name = Managers;
-			sourceTree = "<group>";
-		};
-		55AB26761C4EEDF100EAF087 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				55283D9B1C3F1C0F000BD64A /* TileValue.swift */,
-				558070211C53C713001CFCFF /* TileType.swift */,
-			);
-			name = Enums;
+			name = CustomObjects;
 			sourceTree = "<group>";
 		};
 		5B12100D197483EE004C1E1D /* res */ = {
@@ -551,11 +560,10 @@
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
 				55A0C0701C3F71C300C6443B /* Scenes */,
-				55A0C0731C3F71ED00C6443B /* Gameplay Objects */,
-				55A0C0741C3F720800C6443B /* Managers */,
-				55AB26761C4EEDF100EAF087 /* Enums */,
-				55D9BBF51C3E11D100884486 /* Player.swift */,
+				55A0C0731C3F71ED00C6443B /* Gameplay */,
+				55AB26761C4EEDF100EAF087 /* CustomObjects */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
+				55D9BBF51C3E11D100884486 /* Player.swift */,
 				55D9BBF91C3E121E00884486 /* Rating.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
