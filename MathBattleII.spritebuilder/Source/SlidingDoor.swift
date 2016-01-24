@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class SlidingDoor: CCNode {
+    
+    func openDoors() {
+        self.animationManager.runAnimationsForSequenceNamed("OpenDoors")
+    }
+    
+    func removeSelfFromParentNode() {
+        self.removeFromParent()
+    }
+}

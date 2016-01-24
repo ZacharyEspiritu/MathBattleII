@@ -20,10 +20,11 @@ class GameplayScene: CCNode {
     weak var topEqualsButton, bottomEqualsButton: CCSprite!
     weak var topClearButton, bottomClearButton: CCSprite!
     
-    weak var countdownDisplay: CountdownDisplay!
     weak var mainDisplay: MainDisplay!
     weak var scoreCounter: ScoreCounter!
     weak var dividingLine: CCSprite!
+    
+    weak var topSlidingDoor, bottomSlidingDoor: SlidingDoor!
     
     private var gameTimer: GameTimer! = nil
     
@@ -70,15 +71,14 @@ class GameplayScene: CCNode {
         var countdown: Int = 3
         NSTimer.schedule(repeatInterval: 1) { timer in
             if countdown > 0 {
-                self.countdownDisplay.updateCountdownLabel(string: "\(countdown)")
                 countdown--
             }
             else {
-                self.countdownDisplay.updateCountdownLabel(string: "GO!")
-                self.countdownDisplay.background.visible = false
                 self.gameTimer.startTimer()
-                NSTimer.schedule(delay: 0.7) { timer in
-                    self.countdownDisplay.removeFromParent()
+                self.topSlidingDoor.openDoors()
+                self.bottomSlidingDoor.openDoors()
+                
+                NSTimer.schedule(delay: 1) { timer in
                     timer.invalidate()
                 }
                 timer.invalidate()
@@ -127,12 +127,13 @@ class GameplayScene: CCNode {
         }
         else {
             let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
-            if CGRectContainsPoint(clearButton.boundingBox(), locationInNode) { // Clear button tapped
+            let locationInWorld = touch.locationInNode(self)
+            if CGRectContainsPoint(clearButton.boundingBox(), locationInWorld) { // Clear button tapped
                 clearCurrentlySelectedTiles(onSide: sideTouched)
             }
             else {
                 let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
-                if CGRectContainsPoint(equalsButton.boundingBox(), locationInNode) { // Equals button tapped
+                if CGRectContainsPoint(equalsButton.boundingBox(), locationInWorld) { // Equals button tapped
                     if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
                         completePuzzleForSide(side: sideTouched)
                     }
