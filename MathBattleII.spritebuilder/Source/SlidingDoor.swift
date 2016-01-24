@@ -10,6 +10,8 @@ import Foundation
 
 class SlidingDoor: CCNode {
     
+    weak var label: CountdownDisplay!
+    
     func openDoors() {
         self.animationManager.runAnimationsForSequenceNamed("OpenDoors")
     }

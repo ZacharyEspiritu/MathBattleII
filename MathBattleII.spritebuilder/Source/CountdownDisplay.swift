@@ -8,14 +8,10 @@
 
 import Foundation
 
-class CountdownDisplay: CCNode {
-    
-    weak var background: CCNodeColor!
-    weak var label: CCLabelTTF!
-    
-    
+class CountdownDisplay: CCLabelTTF {
+        
     func updateCountdownLabel(string string: String) {
-        label.string = string
+        self.string = string
     }
     
     func hideCountdownLabel() {

@@ -69,17 +69,19 @@ class GameplayScene: CCNode {
         scoreCounter.establishScoreLimit(forBothSides: 5)
         
         var countdown: Int = 3
+        let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
         NSTimer.schedule(repeatInterval: 1) { timer in
             if countdown > 0 {
+                for slidingDoor in slidingDoors {
+                    slidingDoor.label.updateCountdownLabel(string: "\(countdown)")
+                }
                 countdown--
             }
             else {
                 self.gameTimer.startTimer()
-                self.topSlidingDoor.openDoors()
-                self.bottomSlidingDoor.openDoors()
-                
-                NSTimer.schedule(delay: 1) { timer in
-                    timer.invalidate()
+                for slidingDoor in slidingDoors {
+                    slidingDoor.openDoors()
+                    slidingDoor.label.hideCountdownLabel()
                 }
                 timer.invalidate()
             }
