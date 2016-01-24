@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55021A3E1C53375200AD2EF4 /* Array2DTests.swift */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
+		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
@@ -184,6 +185,7 @@
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
+		5514A5FC1C555F3E0096661F /* SlidingDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidingDoor.swift; path = Source/SlidingDoor.swift; sourceTree = "<group>"; };
 		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
 		55283D9B1C3F1C0F000BD64A /* TileValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileValue.swift; path = Source/TileValue.swift; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
@@ -351,6 +353,8 @@
 				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
 				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
 				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
+				5514A5FC1C555F3E0096661F /* SlidingDoor.swift */,
+				555050E31C49D79F0037F3A7 /* Tile.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -362,7 +366,6 @@
 				55283D7D1C3EC879000BD64A /* Grid.swift */,
 				555050D71C49A9990037F3A7 /* GameTimer.swift */,
 				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
-				555050E31C49D79F0037F3A7 /* Tile.swift */,
 				558070211C53C713001CFCFF /* TileType.swift */,
 				55283D9B1C3F1C0F000BD64A /* TileValue.swift */,
 			);
@@ -1015,6 +1018,7 @@
 				555050E41C49D79F0037F3A7 /* Tile.swift in Sources */,
 				55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
+				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,
