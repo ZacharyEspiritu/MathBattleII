@@ -88,8 +88,8 @@ class GameplayScene: CCNode {
             else {
                 self.gameTimer.startTimer()
                 for slidingDoor in slidingDoors {
+                    slidingDoor.label.updateCountdownLabel(string: "GO!")
                     slidingDoor.openDoors()
-                    slidingDoor.label.hideCountdownLabel()
                 }
                 self.enableUserInteraction()
                 timer.invalidate()
