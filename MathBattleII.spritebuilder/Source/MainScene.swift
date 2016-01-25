@@ -10,6 +10,10 @@ import Foundation
 
 class MainScene: CCNode {
     
+    func didLoadFromCCB() {
+        CCDirector.sharedDirector().displayStats = true
+    }
+    
     /**
      Starts a new instance of the game.
      */

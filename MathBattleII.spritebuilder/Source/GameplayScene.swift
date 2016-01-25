@@ -49,25 +49,33 @@ class GameplayScene: CCNode {
      Called when the `GameplayScene` is loaded.
      */
     func didLoadFromCCB() {
-        self.userInteractionEnabled = true
-        self.multipleTouchEnabled = true
-        
+        setupGame()
+    }
+    
+    private func setupGame() {
         // Clearing stuff just to be safe
         topPlayerDisplay.clearEquationLabel()
         topGrid.clearSelectedTiles()
         bottomPlayerDisplay.clearEquationLabel()
         bottomGrid.clearSelectedTiles()
         
+        // Load new puzzles into play
         loadNewPuzzle(forSide: .Top)
         loadNewPuzzle(forSide: .Bottom)
         
+        // Setup countdown timer
         gameTimer = GameTimer(gameLengthInSeconds: 120)
         gameTimer.delegate = self
-        
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
         
+        // Establish score limits
         scoreCounter.establishScoreLimit(forBothSides: 5)
         
+        // Begin countdown sequence
+        beginCountdownSequence()
+    }
+    
+    private func beginCountdownSequence() {
         var countdown: Int = 3
         let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
         NSTimer.schedule(repeatInterval: 1) { timer in
@@ -83,16 +91,27 @@ class GameplayScene: CCNode {
                     slidingDoor.openDoors()
                     slidingDoor.label.hideCountdownLabel()
                 }
+                self.enableUserInteraction()
                 timer.invalidate()
             }
         }
+    }
+    
+    private func enableUserInteraction() {
+        self.userInteractionEnabled = true
+        self.multipleTouchEnabled = true
+    }
+    
+    private func disableUserInteraction() {
+        self.userInteractionEnabled = false
+        self.multipleTouchEnabled = false
     }
     
     /**
      Generates a new puzzle for the specified `Side` and loads it into the `Grid` on that `Side`.
      - parameter forSide:   the `Side` to load a new puzzle in
      */
-    func loadNewPuzzle(forSide side: Side) {
+    private func loadNewPuzzle(forSide side: Side) {
         // Generate new puzzle and seperate the tuple
         let newPuzzle: (Int, String, [TileValue]) = PuzzleGenerator.sharedInstance.generateNewPuzzle()
         let targetNumber: Int = newPuzzle.0
