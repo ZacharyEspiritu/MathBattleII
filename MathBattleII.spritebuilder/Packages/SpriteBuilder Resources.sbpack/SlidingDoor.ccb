@@ -66,8 +66,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>0.5</real>
-										<real>1</real>
+										<real>192.5</real>
+										<real>0.0</real>
 									</array>
 								</dict>
 								<dict>
@@ -85,7 +85,7 @@
 									<key>value</key>
 									<array>
 										<real>0.0</real>
-										<real>1</real>
+										<real>0.0</real>
 									</array>
 								</dict>
 							</array>
@@ -121,8 +121,8 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<real>0.5</real>
-							<real>1</real>
+							<real>192</real>
+							<real>0.0</real>
 						</array>
 						<key>name</key>
 						<string>position</string>
@@ -130,10 +130,10 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>1</real>
+							<real>192.5</real>
+							<real>0.0</real>
+							<integer>1</integer>
 							<integer>0</integer>
-							<integer>2</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -235,8 +235,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>0.5</real>
-										<real>1</real>
+										<real>192.5</real>
+										<real>0.0</real>
 									</array>
 								</dict>
 								<dict>
@@ -253,8 +253,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>1</real>
-										<real>1</real>
+										<real>0.0</real>
+										<real>0.0</real>
 									</array>
 								</dict>
 							</array>
@@ -290,8 +290,8 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<real>0.5</real>
-							<real>1</real>
+							<real>192</real>
+							<real>0.0</real>
 						</array>
 						<key>name</key>
 						<string>position</string>
@@ -299,10 +299,10 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>1</real>
-							<integer>0</integer>
+							<real>192.5</real>
+							<real>0.0</real>
 							<integer>2</integer>
+							<integer>0</integer>
 							<integer>2</integer>
 						</array>
 					</dict>
@@ -583,8 +583,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
