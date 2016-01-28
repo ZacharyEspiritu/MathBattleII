@@ -63,16 +63,18 @@ class GameplayScene: CCNode {
         loadNewPuzzle(forSide: .Top)
         loadNewPuzzle(forSide: .Bottom)
         
-        // Setup countdown timer
-        gameTimer = GameTimer(gameLengthInSeconds: 120)
-        gameTimer.delegate = self
-        mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
+        setupGameTimer()
         
         // Establish score limits
         scoreCounter.establishScoreLimit(forBothSides: 5)
         
-        // Begin countdown sequence
         beginCountdownSequence()
+    }
+    
+    private func setupGameTimer() {
+        gameTimer = GameTimer(gameLengthInSeconds: 120)
+        gameTimer.delegate = self
+        mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
     
     private func beginCountdownSequence() {
