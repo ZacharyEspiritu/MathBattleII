@@ -13,6 +13,7 @@ class RegistrationValidator {
     static let sharedInstance = RegistrationValidator()
     private init() {}
     
+    
     func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> Account {
         // Validate that registration fields match required format
         guard let username = usernameString where validateUsername(username) else {

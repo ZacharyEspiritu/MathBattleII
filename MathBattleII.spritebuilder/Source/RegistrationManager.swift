@@ -13,6 +13,7 @@ class RegistrationManager {
     static let sharedInstance = RegistrationManager()
     private init() {}
     
+    
     func registerNewAccount(account account: Account) {
         
     }

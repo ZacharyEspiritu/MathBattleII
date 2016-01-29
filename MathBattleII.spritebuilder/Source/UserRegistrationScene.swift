@@ -18,6 +18,7 @@ class UserRegistrationScene: CCNode {
     weak var passwordTextField:        CCTextField!
     weak var confirmPasswordTextField: CCTextField!
     
+    
     func submitRegistration() {
         let username: String? = usernameTextField.string
         let email: String? = emailTextField.string
