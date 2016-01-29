@@ -10,6 +10,7 @@ import Foundation
 
 class UserRegistrationScene: CCNode {
     
+    let validator = RegistrationValidator.sharedInstance
     let manager = RegistrationManager.sharedInstance
     
     weak var usernameTextField:        CCTextField!
@@ -18,8 +19,14 @@ class UserRegistrationScene: CCNode {
     weak var confirmPasswordTextField: CCTextField!
     
     func submitRegistration() {
+        let username: String? = usernameTextField.string
+        let email: String? = emailTextField.string
+        let password: String? = passwordTextField.string
+        let passwordConfirmation: String? = confirmPasswordTextField.string
+        
         do {
-            try manager.validateRegistration(username: usernameTextField.string, email: emailTextField.string, password: passwordTextField.string, passwordConfirmation: confirmPasswordTextField.string)
+            let newAccount: Account = try validator.validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
+            manager.registerNewAccount(account: newAccount)
         }
         catch RegistrationError.UsernameNotValidFormat {
             print("Username is not in a valid format.")
