@@ -32,6 +32,7 @@
 		55D9221D1C569752003ADFBD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D9221C1C569752003ADFBD /* Images.xcassets */; };
 		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
+		55E173F91C5BB0DF00A7675D /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E173F81C5BB0DE00A7675D /* RegistrationManager.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
 		55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */; };
 		55F23E641C3DA1FF007EE53F /* ELOManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */; };
@@ -205,6 +206,7 @@
 		55D9221C1C569752003ADFBD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
+		55E173F81C5BB0DE00A7675D /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; };
 		55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELOManager.swift; path = Source/ELOManager.swift; sourceTree = "<group>"; };
 		55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELOManagerTests.swift; sourceTree = "<group>"; };
@@ -380,6 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
+				557E71381C5B04D30053073E /* UserRegistrationScene.swift */,
+				55E173F81C5BB0DE00A7675D /* RegistrationManager.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -388,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
-				557E71381C5B04D30053073E /* UserRegistrationScene.swift */,
 				558070231C53D46D001CFCFF /* View */,
 				558070241C53D53A001CFCFF /* Model */,
 			);
@@ -1017,6 +1020,7 @@
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
 				55D9BBF61C3E11D100884486 /* Player.swift in Sources */,
+				55E173F91C5BB0DF00A7675D /* RegistrationManager.swift in Sources */,
 				557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
 				557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */,
