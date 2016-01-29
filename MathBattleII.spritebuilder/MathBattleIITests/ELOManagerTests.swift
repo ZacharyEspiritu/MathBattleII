@@ -10,7 +10,7 @@ import XCTest
 
 class ELOManagerTests: XCTestCase {
     
-    let manager = ELOManager()
+    let manager = ELOManager.sharedInstance
 
     override func setUp() {
         super.setUp()
