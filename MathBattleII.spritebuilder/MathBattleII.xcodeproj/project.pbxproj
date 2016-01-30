@@ -12,6 +12,7 @@
 		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
+		55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
 		55585FB41C3E812200688265 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
@@ -198,6 +199,7 @@
 		5514A5FC1C555F3E0096661F /* SlidingDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidingDoor.swift; path = Source/SlidingDoor.swift; sourceTree = "<group>"; };
 		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
 		55283D9B1C3F1C0F000BD64A /* TileValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileValue.swift; path = Source/TileValue.swift; sourceTree = "<group>"; };
+		55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationHandler.swift; path = Source/AuthenticationHandler.swift; sourceTree = "<group>"; };
 		5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			children = (
 				55E173F81C5BB0DE00A7675D /* RegistrationValidator.swift */,
 				55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */,
+				55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */,
 				55B4E1FC1C5C2D97007BE8C3 /* Account.swift */,
 			);
 			name = Model;
@@ -1108,6 +1111,7 @@
 				55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
 				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
+				55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
