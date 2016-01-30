@@ -33,7 +33,7 @@ class RegistrationValidator {
     }
     
     private func validateUsername(username: String) -> Bool {
-        let usernameRegEx = "[a-zA-Z-0-9]{3, 0}"
+        let usernameRegEx = "^[a-zA-Z-0-9]{3,}$"
         
         guard let usernameValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", usernameRegEx) else {
             return false
@@ -51,20 +51,17 @@ class RegistrationValidator {
     }
     
     private func validatePassword(password: String) -> Bool {
-        // A password must have at least 8 characters and have a number, capital letter, and lowercase letter.
-        let passwordRegEx = "^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*|[a-zA-Z0-9]*)$"
+        // A password must have at least 8 characters and have a number, capital letter, and lowercase letter. Since RegEx doesn't have an AND operator, we check to see if the string matches disallowed cases.
+        let passwordRegEx = "^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*)$"
         
         guard let passwordValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx) else {
             return false
         }
-        return passwordValidator.evaluateWithObject(password)
+        return !passwordValidator.evaluateWithObject(password)
     }
     
     private func validateMatchingPasswords(password1 password1: String, password2: String) -> Bool {
-        if password1 == password2 {
-            return true
-        }
-        return false
+        return password1 == password2
     }
 }
 
