@@ -26,4 +26,14 @@ class MainScene: CCNode {
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
+    
+    func segueToUserLoginScene() {
+        let userRegistrationScene = CCBReader.load("UserRegistrationScene") as! UserRegistrationScene
+        
+        let scene = CCScene()
+        scene.addChild(userRegistrationScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }
