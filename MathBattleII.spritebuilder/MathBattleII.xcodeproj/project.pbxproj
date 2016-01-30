@@ -13,6 +13,7 @@
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
 		55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */; };
+		55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CEA1C5CEAD2002DF72D /* Config.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
 		55585FB41C3E812200688265 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
@@ -200,6 +201,7 @@
 		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
 		55283D9B1C3F1C0F000BD64A /* TileValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileValue.swift; path = Source/TileValue.swift; sourceTree = "<group>"; };
 		55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationHandler.swift; path = Source/AuthenticationHandler.swift; sourceTree = "<group>"; };
+		55408CEA1C5CEAD2002DF72D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
 		5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
@@ -364,6 +366,14 @@
 				550A06181C3C926B00FC4FCD /* Info.plist */,
 			);
 			path = MathBattleIITests;
+			sourceTree = "<group>";
+		};
+		55408CEC1C5CEAD7002DF72D /* Configuration Files */ = {
+			isa = PBXGroup;
+			children = (
+				55408CEA1C5CEAD2002DF72D /* Config.swift */,
+			);
+			name = "Configuration Files";
 			sourceTree = "<group>";
 		};
 		558070231C53D46D001CFCFF /* View */ = {
@@ -611,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				7A40362019DDEF0D007B6E8F /* Platforms */,
+				55408CEC1C5CEAD7002DF72D /* Configuration Files */,
 				55A0C0701C3F71C300C6443B /* Scenes */,
 				55B4E1F41C5C23E7007BE8C3 /* Registration */,
 				55A0C0731C3F71ED00C6443B /* Gameplay */,
@@ -1116,6 +1127,7 @@
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,
+				55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */,
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
