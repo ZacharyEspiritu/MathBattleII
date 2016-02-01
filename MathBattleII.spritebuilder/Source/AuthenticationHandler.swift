@@ -10,9 +10,13 @@ import Foundation
 
 class AuthenticationHandler {
     
+    static let sharedInstance = AuthenticationHandler()
+    private init() {}
+    
+    
     func listenForAuthenticationStateChange() {
         let ref = Firebase(url: Config.firebaseURL)
-        let handle = ref.observeAuthEventWithBlock({ authData in
+        let _ = ref.observeAuthEventWithBlock({ authData in
             if authData != nil {
                 // user authenticated
                 print(authData)
@@ -40,17 +44,31 @@ class AuthenticationHandler {
             withCompletionBlock: { error, authData in
                 if error != nil {
                     // Something went wrong. :(
+                    if let errorCode = FAuthenticationError(rawValue: error.code) {
+                        switch (errorCode) {
+                        case .UserDoesNotExist:
+                            print("Handle invalid user")
+                        case .InvalidEmail:
+                            print("Handle invalid email")
+                        case .InvalidPassword:
+                            print("Handle invalid password")
+                        default:
+                            print("Handle default situation")
+                        }
+                    }
                 }
                 else {
                     // Authentication just completed successfully :)
                     // The logged in user's unique identifier
                     print(authData.uid)
+                    
                     // Create a new user dictionary accessing the user's info
                     // provided by the authData parameter
                     let newUser = [
                         "provider": authData.provider,
                         "displayName": authData.providerData["displayName"] as? NSString as? String
                     ]
+                    
                     // Create a child path with a key set to the uid underneath the "users" node
                     // This creates a URL path like the following:
                     //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
@@ -58,6 +76,22 @@ class AuthenticationHandler {
                         .childByAppendingPath(authData.uid).setValue(newUser)
                 }
         })
+    }
+    
+    func changeDisplayName(newDisplayName newDisplayName: String) {
+        let ref = Firebase(url: Config.firebaseURL)
+        let authData = ref.authData
+        
+        let updatedUserData = [
+            "provider": authData.provider,
+            "displayName": newDisplayName
+        ]
+        
+        // Create a child path with a key set to the uid underneath the "users" node
+        // This creates a URL path like the following:
+        //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
+        ref.childByAppendingPath("users")
+            .childByAppendingPath(authData.uid).setValue(updatedUserData)
     }
     
     func logoutCurrentSession() {
