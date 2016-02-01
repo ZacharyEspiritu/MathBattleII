@@ -16,7 +16,7 @@
 		55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CEA1C5CEAD2002DF72D /* Config.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
-		55585FB41C3E812200688265 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
+		55585FB41C3E812200688265 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
 		55585FB51C3E812500688265 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */; };
 		557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E71381C5B04D30053073E /* UserRegistrationScene.swift */; };
@@ -37,7 +37,7 @@
 		55D6769F1C49865B001AE5F7 /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
 		55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676A01C499E7D001AE5F7 /* MainDisplay.swift */; };
 		55D9221D1C569752003ADFBD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D9221C1C569752003ADFBD /* Images.xcassets */; };
-		55D9BBF61C3E11D100884486 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* Player.swift */; };
+		55D9BBF61C3E11D100884486 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		55E173F91C5BB0DF00A7675D /* RegistrationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E173F81C5BB0DE00A7675D /* RegistrationValidator.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
@@ -218,7 +218,7 @@
 		55D6769D1C4984D1001AE5F7 /* PuzzleGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PuzzleGeneratorTests.swift; sourceTree = "<group>"; };
 		55D676A01C499E7D001AE5F7 /* MainDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainDisplay.swift; path = Source/MainDisplay.swift; sourceTree = "<group>"; };
 		55D9221C1C569752003ADFBD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		55D9BBF51C3E11D100884486 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = Source/Player.swift; sourceTree = "<group>"; };
+		55D9BBF51C3E11D100884486 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Source/User.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
 		55E173F81C5BB0DE00A7675D /* RegistrationValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationValidator.swift; path = Source/RegistrationValidator.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; };
@@ -627,7 +627,7 @@
 				55A0C0731C3F71ED00C6443B /* Gameplay */,
 				55AB26761C4EEDF100EAF087 /* CustomObjects */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
-				55D9BBF51C3E11D100884486 /* Player.swift */,
+				55D9BBF51C3E11D100884486 /* User.swift */,
 				55D9BBF91C3E121E00884486 /* Rating.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
@@ -1074,7 +1074,7 @@
 				55B4E1FB1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55B4E1FE1C5C2D97007BE8C3 /* Account.swift in Sources */,
 				55D6769F1C49865B001AE5F7 /* TileValue.swift in Sources */,
-				55585FB41C3E812200688265 /* Player.swift in Sources */,
+				55585FB41C3E812200688265 /* User.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
 				55D676931C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */,
@@ -1109,7 +1109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B73789871807631A0076A88C /* main.m in Sources */,
-				55D9BBF61C3E11D100884486 /* Player.swift in Sources */,
+				55D9BBF61C3E11D100884486 /* User.swift in Sources */,
 				55E173F91C5BB0DF00A7675D /* RegistrationValidator.swift in Sources */,
 				557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
