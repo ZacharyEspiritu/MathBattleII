@@ -29,6 +29,7 @@ class RegistrationManager {
                 print("Successfully created user account with uid: \(uid)")
                 
                 self.initializeNewAccountData(uid, account: account, completion: { Void in
+                    print("new account data initalized")
                     self.authenticationHandler.authenticateUser(email: account.email, password: account.password)
                 })
             }
@@ -37,8 +38,8 @@ class RegistrationManager {
     
     private func initializeNewAccountData(uid: String!, account: Account, completion: (Void -> Void)) {
         let ref = Firebase(url: Config.firebaseURL)
-        // Create a new user dictionary accessing the user's info
-        // provided by the authData parameter
+        
+        // Create a new user dictionary with default user information
         let newUser = [
             "displayName": account.username,
             "email": account.email,
@@ -51,12 +52,23 @@ class RegistrationManager {
             "friends": []
         ]
         
-        // Create a child path with a key set to the uid underneath the "users" node
-        // This creates a URL path like the following:
-        //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
-        ref.childByAppendingPath("users").childByAppendingPath(uid)
-            .setValue(newUser)
+        // Create a new dictionary for storing the display name in a secondary list
+        let newDisplayName = [ account.username : uid ]
         
-        completion()
+        // Run both setValue operations concurrently and wait to run the completion block until both are complete
+        let dispatchGroup = dispatch_group_create()
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            ref.childByAppendingPath("users").childByAppendingPath(uid)
+                .setValue(newUser)
+            NSLog("users done")
+        }
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            ref.childByAppendingPath("displayNames").setValue(newDisplayName)
+            NSLog("displayNames done")
+        }
+        dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            NSLog("running completion")
+            completion()
+        }
     }
 }
