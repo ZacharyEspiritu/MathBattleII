@@ -30,5 +30,8 @@ class User {
         self.rating = rating
         self.ratingFloor = ratingFloor
         self.numberOfGamesPlayed = numberOfGamesPlayed
+        self.numberOfWins = 0
+        self.numberOfLosses = 0
+        self.friends = []
     }
 }
