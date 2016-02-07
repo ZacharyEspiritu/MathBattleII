@@ -51,13 +51,7 @@ class RegistrationValidator {
     }
     
     private func validatePassword(password: String) -> Bool {
-        // A password must have at least 8 characters and have a number, capital letter, and lowercase letter. Since RegEx doesn't have an AND operator, we check to see if the string matches disallowed cases.
-        let passwordRegEx = "^(.{0,7}|[^0-9]*|[^A-Z]*|[^a-z]*)$"
-        
-        guard let passwordValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegEx) else {
-            return false
-        }
-        return !passwordValidator.evaluateWithObject(password)
+        return password.characters.count >= 6
     }
     
     private func validateMatchingPasswords(password1 password1: String, password2: String) -> Bool {
