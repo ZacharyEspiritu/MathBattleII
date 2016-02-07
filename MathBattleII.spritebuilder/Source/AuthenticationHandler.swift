@@ -16,7 +16,7 @@ class AuthenticationHandler {
     
     func listenForAuthenticationStateChange() {
         let ref = Firebase(url: Config.firebaseURL)
-        let _ = ref.observeAuthEventWithBlock({ authData in
+        let handle = ref.observeAuthEventWithBlock({ authData in
             if authData != nil {
                 // user authenticated
                 print(authData)
@@ -25,7 +25,7 @@ class AuthenticationHandler {
             }
         })
         
-        // ref.removeAuthEventObserverWithHandle(handle)
+        ref.removeAuthEventObserverWithHandle(handle)
     }
     
     func checkImmediatelyIfUserIsAuthenticated() {
@@ -72,8 +72,8 @@ class AuthenticationHandler {
                     // Create a child path with a key set to the uid underneath the "users" node
                     // This creates a URL path like the following:
                     //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
-                    ref.childByAppendingPath("users")
-                        .childByAppendingPath(authData.uid).setValue(newUser)
+//                    ref.childByAppendingPath("users").childByAppendingPath(authData.uid)
+//                        .setValue(newUser)
                 }
         })
     }
