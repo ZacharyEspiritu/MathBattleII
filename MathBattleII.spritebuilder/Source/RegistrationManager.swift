@@ -52,9 +52,6 @@ class RegistrationManager {
             "friends": []
         ]
         
-        // Create a new dictionary for storing the display name in a secondary list
-        let newDisplayName = [ account.username : uid ]
-        
         // Run both setValue operations concurrently and wait to run the completion block until both are complete
         let dispatchGroup = dispatch_group_create()
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -63,7 +60,7 @@ class RegistrationManager {
             NSLog("users done") // Use NSLog for timestamps
         }
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            ref.childByAppendingPath("displayNames").setValue(newDisplayName)
+            ref.childByAppendingPath("displayNames").childByAppendingPath(account.username).setValue(uid)
             NSLog("displayNames done")
         }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -71,6 +68,7 @@ class RegistrationManager {
             completion()
         }
     }
+    
     
     func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> Account {
         // Validate that registration fields match required format
@@ -96,7 +94,19 @@ class RegistrationManager {
         guard let usernameValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", usernameRegEx) else {
             return false
         }
-        return usernameValidator.evaluateWithObject(username)
+        guard usernameValidator.evaluateWithObject(username) else {
+            return false
+        }
+        
+        let ref = Firebase(url: "\(Config.firebaseURL)/displayNames/\(username)")
+        var usernameDoesNotExist: Bool = true
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if !(snapshot.value is NSNull) {
+                usernameDoesNotExist = false
+            }
+        })
+        
+        return usernameDoesNotExist
     }
     
     private func validateEmail(email: String) -> Bool {
@@ -105,6 +115,7 @@ class RegistrationManager {
         guard let emailValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx) else {
             return false
         }
+        
         return emailValidator.evaluateWithObject(email)
     }
     
