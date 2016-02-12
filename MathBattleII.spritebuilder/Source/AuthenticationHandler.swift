@@ -13,7 +13,6 @@ class AuthenticationHandler {
     static let sharedInstance = AuthenticationHandler()
     private init() {}
     
-    
     var currentAuthenticationHandle: UInt!
     
     
@@ -68,34 +67,44 @@ class AuthenticationHandler {
                     let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(authData.uid)")
                     // Attach a closure to read the data at our posts reference
                     self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
-                        let displayName = snapshot.value.objectForKey("displayName") as! String
-                        let email = snapshot.value.objectForKey("email") as! String
-                        let numberOfGamesPlayed = snapshot.value.objectForKey("numberOfGamesPlayed") as! Int
-                        let numberOfWins = snapshot.value.objectForKey("numberOfWins") as! Int
-                        let numberOfLosses = snapshot.value.objectForKey("numberOfLosses") as! Int
-                        let provider = snapshot.value.objectForKey("provider") as! String
-                        let rating = snapshot.value.objectForKey("rating") as! Int
-                        let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
-                        let friends = snapshot.value.objectForKey("friends") as? [String]
-                        
-                        let user = User(uid: authData.uid, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, rating: rating, ratingFloor: ratingFloor, friends: friends)
-                        let userManager = UserManager.sharedInstance
-                        
-                        do {
-                            try userManager.setCurrentUser(user)
-                            print("saving user good")
-                        }
-                        catch {
-                            print("saving user failed")
-                        }
-                        
-                        print(snapshot.value)
+                        self.saveUserDataLocally(snapshot: snapshot)
                         },
                         withCancelBlock: { error in
                             print(error.description)
                     })
                 }
         })
+    }
+    
+    private func saveUserDataLocally(snapshot snapshot: FDataSnapshot!) {
+        let displayName = snapshot.value.objectForKey("displayName") as! String
+        let email = snapshot.value.objectForKey("email") as! String
+        let numberOfGamesPlayed = snapshot.value.objectForKey("numberOfGamesPlayed") as! Int
+        let numberOfWins = snapshot.value.objectForKey("numberOfWins") as! Int
+        let numberOfLosses = snapshot.value.objectForKey("numberOfLosses") as! Int
+        let provider = snapshot.value.objectForKey("provider") as! String
+        let rating = snapshot.value.objectForKey("rating") as! Int
+        let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
+        let friends: [String]
+        if snapshot.value.objectForKey("friends") != nil {
+            friends = snapshot.value.objectForKey("friends") as! [String]
+        }
+        else {
+            friends = []
+        }
+        
+        let user = User(uid: snapshot.value.uid, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, rating: rating, ratingFloor: ratingFloor, friends: friends)
+        let userManager = UserManager.sharedInstance
+        
+        do {
+            try userManager.setCurrentUser(user)
+            print("saving user good")
+        }
+        catch {
+            print("saving user failed")
+        }
+        
+        print(snapshot.value)
     }
     
     func changeDisplayName(newDisplayName newDisplayName: String) {
