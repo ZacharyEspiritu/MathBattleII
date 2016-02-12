@@ -25,8 +25,8 @@ class UserRegistrationScene: CCNode {
         let passwordConfirmation: String? = confirmPasswordTextField.string
         
         do {
-            let newAccount: Account = try manager.validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
-            manager.registerNewAccount(account: newAccount)
+            let newAccountData: AccountData = try manager.validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
+            manager.registerNewAccount(accountData: newAccountData)
         }
         catch RegistrationError.UsernameNotValidFormat {
             print("Username is not in a valid format.")

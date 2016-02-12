@@ -1,5 +1,5 @@
 //
-//  Account.swift
+//  AccountData.swift
 //  MathBattleII
 //
 //  Created by Zachary Espiritu on 1/29/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Account {
+class AccountData {
     
     var username: String
     var email: String

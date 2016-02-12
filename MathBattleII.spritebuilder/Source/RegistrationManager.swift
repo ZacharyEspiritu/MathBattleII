@@ -16,10 +16,10 @@ class RegistrationManager {
     private init() {}
     
     
-    func registerNewAccount(account account: Account) {
+    func registerNewAccount(accountData accountData: AccountData) {
         print("registering new account")
         let ref = Firebase(url: Config.firebaseURL)
-        ref.createUser(account.email, password: account.password, withValueCompletionBlock: { error, result in
+        ref.createUser(accountData.email, password: accountData.password, withValueCompletionBlock: { error, result in
             if error != nil {
                 // There was an error creating the account
                 print("Account was unable to be created.")
@@ -28,21 +28,21 @@ class RegistrationManager {
                 let uid = result["uid"] as? String
                 print("Successfully created user account with uid: \(uid)")
                 
-                self.initializeNewAccountData(uid, account: account, completion: { Void in
+                self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
                     print("new account data initalized")
-                    self.authenticationHandler.authenticateUser(email: account.email, password: account.password)
+                    self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
                 })
             }
         })
     }
     
-    private func initializeNewAccountData(uid: String!, account: Account, completion: (Void -> Void)) {
+    private func initializeNewAccountData(uid: String!, accountData: AccountData, completion: (Void -> Void)) {
         let ref = Firebase(url: Config.firebaseURL)
         
         // Create a new user dictionary with default user information
         let newUser = [
-            "displayName": account.username,
-            "email": account.email,
+            "displayName": accountData.username,
+            "email": accountData.email,
             "numberOfGamesPlayed": 0,
             "numberOfWins": 0,
             "numberOfLosses": 0,
@@ -60,7 +60,7 @@ class RegistrationManager {
             NSLog("users done") // Use NSLog for timestamps
         }
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            ref.childByAppendingPath("displayNames").childByAppendingPath(account.username).setValue(uid)
+            ref.childByAppendingPath("displayNames").childByAppendingPath(accountData.username).setValue(uid)
             NSLog("displayNames done")
         }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -70,7 +70,7 @@ class RegistrationManager {
     }
     
     
-    func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> Account {
+    func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> AccountData {
         // Validate that registration fields match required format
         guard let username = usernameString where validateUsername(username) else {
             throw RegistrationError.UsernameNotValidFormat
@@ -85,7 +85,7 @@ class RegistrationManager {
             throw RegistrationError.PasswordsDoNotMatch
         }
         
-        return Account(username: username, email: email, password: password)
+        return AccountData(username: username, email: email, password: password)
     }
     
     private func validateUsername(username: String) -> Bool {
