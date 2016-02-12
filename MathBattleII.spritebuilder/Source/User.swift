@@ -86,6 +86,6 @@ class User {
 extension User: CustomStringConvertible {
     // MARK: Custom String Printable Format
     var description: String {
-        return "UID: \(uid)\n    displayName = \(displayName)\n    email = \(email)\n    numberOfGamesPlayed = \(numberOfGamesPlayed)\n    numberOfWins = \(numberOfWins)\n    numberOfLosses = \(numberOfLosses)\n    rating = \(rating)\n    ratingFloor = \(ratingFloor)\n    friends = \(friends)"
+        return "UID: \(uid) {\n    displayName: \(displayName)\n    email: \(email)\n    numberOfGamesPlayed: \(numberOfGamesPlayed)\n    numberOfWins: \(numberOfWins)\n    numberOfLosses: \(numberOfLosses)\n    rating: \(rating)\n    ratingFloor: \(ratingFloor)\n    friends: \(friends)\n}"
     }
 }
