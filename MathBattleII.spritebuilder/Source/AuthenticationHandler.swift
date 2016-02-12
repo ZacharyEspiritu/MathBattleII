@@ -14,6 +14,9 @@ class AuthenticationHandler {
     private init() {}
     
     
+    var currentAuthenticationHandle: UInt!
+    
+    
     func listenForAuthenticationStateChange() {
         let ref = Firebase(url: Config.firebaseURL)
         let handle = ref.observeAuthEventWithBlock({ authData in
@@ -62,18 +65,35 @@ class AuthenticationHandler {
                     // The logged in user's unique identifier
                     print(authData.uid)
                     
-                    // Create a new user dictionary accessing the user's info
-                    // provided by the authData parameter
-                    let newUser = [
-                        "provider": authData.provider,
-                        "displayName": authData.providerData["displayName"] as? NSString as? String
-                    ]
-                    
-                    // Create a child path with a key set to the uid underneath the "users" node
-                    // This creates a URL path like the following:
-                    //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
-//                    ref.childByAppendingPath("users").childByAppendingPath(authData.uid)
-//                        .setValue(newUser)
+                    let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(authData.uid)")
+                    // Attach a closure to read the data at our posts reference
+                    self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
+                        let displayName = snapshot.value.objectForKey("displayName") as! String
+                        let email = snapshot.value.objectForKey("email") as! String
+                        let numberOfGamesPlayed = snapshot.value.objectForKey("numberOfGamesPlayed") as! Int
+                        let numberOfWins = snapshot.value.objectForKey("numberOfWins") as! Int
+                        let numberOfLosses = snapshot.value.objectForKey("numberOfLosses") as! Int
+                        let provider = snapshot.value.objectForKey("provider") as! String
+                        let rating = snapshot.value.objectForKey("rating") as! Int
+                        let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
+                        let friends = snapshot.value.objectForKey("friends") as? [String]
+                        
+                        let user = User(uid: authData.uid, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, rating: rating, ratingFloor: ratingFloor, friends: friends)
+                        let userManager = UserManager.sharedInstance
+                        
+                        do {
+                            try userManager.setCurrentUser(user)
+                            print("saving user good")
+                        }
+                        catch {
+                            print("saving user failed")
+                        }
+                        
+                        print(snapshot.value)
+                        },
+                        withCancelBlock: { error in
+                            print(error.description)
+                    })
                 }
         })
     }
@@ -96,6 +116,8 @@ class AuthenticationHandler {
     
     func logoutCurrentSession() {
         let ref = Firebase(url: Config.firebaseURL)
+        let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(ref.authData.uid)")
+        userRef.removeAuthEventObserverWithHandle(currentAuthenticationHandle)
         ref.unauth()
     }
     
