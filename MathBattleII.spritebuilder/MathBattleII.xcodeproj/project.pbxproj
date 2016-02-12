@@ -25,8 +25,8 @@
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
 		55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B42D291C6D489100FB0239 /* UserManager.swift */; };
 		55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */; };
-		55B4E1FD1C5C2D97007BE8C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* Account.swift */; };
-		55B4E1FE1C5C2D97007BE8C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* Account.swift */; };
+		55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
+		55B4E1FE1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
 		55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */; };
@@ -211,7 +211,7 @@
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
 		55B42D291C6D489100FB0239 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Source/UserManager.swift; sourceTree = "<group>"; };
 		55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
-		55B4E1FC1C5C2D97007BE8C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Source/Account.swift; sourceTree = "<group>"; };
+		55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountData.swift; path = Source/AccountData.swift; sourceTree = "<group>"; };
 		55D676891C4931EE001AE5F7 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array2D.swift; path = Source/Array2D.swift; sourceTree = "<group>"; };
 		55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerDisplay.swift; path = Source/PlayerDisplay.swift; sourceTree = "<group>"; };
 		55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PuzzleGenerator.swift; path = Source/PuzzleGenerator.swift; sourceTree = "<group>"; };
@@ -441,11 +441,11 @@
 		55B4E1F71C5C23F8007BE8C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */,
+				55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */,
 				55D9BBF51C3E11D100884486 /* User.swift */,
 				55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */,
-				55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */,
 				55B42D291C6D489100FB0239 /* UserManager.swift */,
-				55B4E1FC1C5C2D97007BE8C3 /* Account.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1072,7 +1072,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55B4E1FE1C5C2D97007BE8C3 /* Account.swift in Sources */,
+				55B4E1FE1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
 				55D6769F1C49865B001AE5F7 /* TileValue.swift in Sources */,
 				55585FB41C3E812200688265 /* User.swift in Sources */,
 				550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */,
@@ -1112,7 +1112,7 @@
 				5524FB821C66C1A800CC1318 /* UserLoginScene.swift in Sources */,
 				557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
-				55B4E1FD1C5C2D97007BE8C3 /* Account.swift in Sources */,
+				55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
 				557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
