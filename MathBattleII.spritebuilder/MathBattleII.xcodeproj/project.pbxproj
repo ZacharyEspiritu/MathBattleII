@@ -392,7 +392,6 @@
 		558070241C53D53A001CFCFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				55D676891C4931EE001AE5F7 /* Array2D.swift */,
 				55283D7D1C3EC879000BD64A /* Grid.swift */,
 				555050D71C49A9990037F3A7 /* GameTimer.swift */,
 				55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */,
@@ -423,6 +422,7 @@
 		55AB26761C4EEDF100EAF087 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
+				55D676891C4931EE001AE5F7 /* Array2D.swift */,
 				557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */,
 			);
 			name = CustomObjects;
