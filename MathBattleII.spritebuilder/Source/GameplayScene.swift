@@ -396,6 +396,13 @@ class GameplayScene: CCNode {
         }
         return false
     }
+    
+    private func endGame(winner: Side) {
+        // Trigger end-game animations
+        // Update stats
+        // Update rankings
+        
+    }
 }
 
 extension GameplayScene: GameTimerDelegate {
