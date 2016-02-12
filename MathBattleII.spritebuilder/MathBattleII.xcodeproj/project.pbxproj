@@ -23,6 +23,7 @@
 		557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E71381C5B04D30053073E /* UserRegistrationScene.swift */; };
 		558070221C53C713001CFCFF /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558070211C53C713001CFCFF /* TileType.swift */; };
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
+		55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B42D291C6D489100FB0239 /* UserManager.swift */; };
 		55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */; };
 		55B4E1FD1C5C2D97007BE8C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* Account.swift */; };
 		55B4E1FE1C5C2D97007BE8C3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* Account.swift */; };
@@ -208,6 +209,7 @@
 		557E71381C5B04D30053073E /* UserRegistrationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserRegistrationScene.swift; path = Source/UserRegistrationScene.swift; sourceTree = "<group>"; };
 		558070211C53C713001CFCFF /* TileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileType.swift; path = Source/TileType.swift; sourceTree = "<group>"; };
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
+		55B42D291C6D489100FB0239 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Source/UserManager.swift; sourceTree = "<group>"; };
 		55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
 		55B4E1FC1C5C2D97007BE8C3 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = Source/Account.swift; sourceTree = "<group>"; };
 		55D676891C4931EE001AE5F7 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array2D.swift; path = Source/Array2D.swift; sourceTree = "<group>"; };
@@ -439,8 +441,10 @@
 		55B4E1F71C5C23F8007BE8C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55D9BBF51C3E11D100884486 /* User.swift */,
 				55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */,
 				55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */,
+				55B42D291C6D489100FB0239 /* UserManager.swift */,
 				55B4E1FC1C5C2D97007BE8C3 /* Account.swift */,
 			);
 			name = Model;
@@ -625,7 +629,6 @@
 				55A0C0731C3F71ED00C6443B /* Gameplay */,
 				55AB26761C4EEDF100EAF087 /* CustomObjects */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
-				55D9BBF51C3E11D100884486 /* User.swift */,
 				55D9BBF91C3E121E00884486 /* Rating.swift */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
@@ -1122,6 +1125,7 @@
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
+				55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */,
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,
 				55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
