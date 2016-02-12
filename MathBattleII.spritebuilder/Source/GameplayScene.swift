@@ -59,6 +59,8 @@ class GameplayScene: CCNode {
         bottomPlayerDisplay.clearEquationLabel()
         bottomGrid.clearSelectedTiles()
         
+        setupMainDisplay()
+        
         // Load new puzzles into play
         loadNewPuzzle(forSide: .Top)
         loadNewPuzzle(forSide: .Bottom)
@@ -69,6 +71,20 @@ class GameplayScene: CCNode {
         scoreCounter.establishScoreLimit(forBothSides: 5)
         
         beginCountdownSequence()
+    }
+    
+    private func setupMainDisplay() {
+        let bottomPlayerDisplayName: String!
+        do {
+            bottomPlayerDisplayName = try UserManager.sharedInstance.getCurrentUser().getDisplayName()
+        }
+        catch {
+            bottomPlayerDisplayName = "Guest"
+        }
+        mainDisplay.setBottomPlayerLabel(string: bottomPlayerDisplayName)
+        
+        let topPlayerDisplayName: String! = "Guest"
+        mainDisplay.setTopPlayerLabel(string: topPlayerDisplayName)
     }
     
     private func setupGameTimer() {
