@@ -10,28 +10,82 @@ import Foundation
 
 class User {
     
-    var provider: String
-    var displayName: String
+    // MARK: User Data
     
-    var rating: Int
-    var ratingFloor: Int
+    private var uid: String
     
-    var numberOfGamesPlayed: Int
+    private var displayName: String
+    private var email: String
+    private var provider: String
     
-    var numberOfWins: Int
-    var numberOfLosses: Int
+    private var numberOfGamesPlayed: Int
+    private var numberOfWins: Int
+    private var numberOfLosses: Int
     
-    var friends: [String] // [String] of UIDs
+    private var rating: Int
+    private var ratingFloor: Int
+    
+    private var friends: [String]?
 
     
-    init(provider: String, displayName: String, rating: Int, ratingFloor: Int, numberOfGamesPlayed: Int) {
-        self.provider = provider
+    // MARK: Utility Functions
+    
+    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, rating: Int, ratingFloor: Int, friends: [String]?) {
+        self.uid = uid
         self.displayName = displayName
+        self.email = email
+        self.provider = provider
+        self.numberOfGamesPlayed = numberOfGamesPlayed
+        self.numberOfWins = numberOfWins
+        self.numberOfLosses = numberOfLosses
         self.rating = rating
         self.ratingFloor = ratingFloor
-        self.numberOfGamesPlayed = numberOfGamesPlayed
-        self.numberOfWins = 0
-        self.numberOfLosses = 0
-        self.friends = []
+        self.friends = friends
+    }
+    
+    
+    // MARK: Getter Functions
+    
+    func getUID() -> String {
+        return uid
+    }
+    
+    func getDisplayName() -> String {
+        return displayName
+    }
+    
+    func getEmail() -> String {
+        return email
+    }
+    
+    func getNumberOfGamesPlayed() -> Int {
+        return numberOfGamesPlayed
+    }
+    
+    func getNumberOfWins() -> Int {
+        return numberOfWins
+    }
+    
+    func getNumberOfLosses() -> Int {
+        return numberOfLosses
+    }
+    
+    func getRating() -> Int {
+        return rating
+    }
+    
+    func getRatingFloor() -> Int {
+        return ratingFloor
+    }
+    
+    func getFriends() -> [String]? {
+        return friends
+    }
+}
+
+extension User: CustomStringConvertible {
+    // MARK: Custom String Printable Format
+    var description: String {
+        return "UID: \(uid)\n    displayName = \(displayName)\n    email = \(email)\n    numberOfGamesPlayed = \(numberOfGamesPlayed)\n    numberOfWins = \(numberOfWins)\n    numberOfLosses = \(numberOfLosses)\n    rating = \(rating)\n    ratingFloor = \(ratingFloor)\n    friends = \(friends)"
     }
 }
