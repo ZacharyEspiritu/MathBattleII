@@ -75,10 +75,10 @@ class GameplayScene: CCNode {
     
     private func setupMainDisplay() {
         let bottomPlayerDisplayName: String!
-        do {
-            bottomPlayerDisplayName = try UserManager.sharedInstance.getCurrentUser().getDisplayName()
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            bottomPlayerDisplayName = user.getDisplayName()
         }
-        catch {
+        else {
             bottomPlayerDisplayName = "Guest"
         }
         mainDisplay.setBottomPlayerLabel(string: bottomPlayerDisplayName)
