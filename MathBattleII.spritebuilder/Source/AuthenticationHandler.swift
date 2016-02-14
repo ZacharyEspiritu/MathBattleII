@@ -111,10 +111,14 @@ class AuthenticationHandler {
     // MARK: Change User Data Functions
     
     func changeDisplayName(newDisplayName newDisplayName: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        let authData = ref.authData
-        ref.childByAppendingPath("users")
-            .childByAppendingPath(authData.uid).childByAppendingPath("displayName").setValue(newDisplayName)
+        let user = UserManager.sharedInstance.getCurrentUser()
+        user?.setDisplayName(newDisplayName: newDisplayName)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let ref = Firebase(url: Config.firebaseURL)
+            let authData = ref.authData
+            ref.childByAppendingPath("users").childByAppendingPath(authData.uid).childByAppendingPath("displayName").setValue(newDisplayName)
+        })
     }
     
     func changeEmail(oldEmail oldEmail: String, newEmail: String, password: String) {
