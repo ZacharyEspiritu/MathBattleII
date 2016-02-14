@@ -74,13 +74,8 @@ class GameplayScene: CCNode {
     }
     
     private func setupMainDisplay() {
-        let bottomPlayerDisplayName: String!
-        if let user = UserManager.sharedInstance.getCurrentUser() {
-            bottomPlayerDisplayName = user.getDisplayName()
-        }
-        else {
-            bottomPlayerDisplayName = "Guest"
-        }
+        let user = UserManager.sharedInstance.getCurrentUser()
+        let bottomPlayerDisplayName: String! = (user != nil) ? user!.getDisplayName() : "Guest"
         mainDisplay.setBottomPlayerLabel(string: bottomPlayerDisplayName)
         
         let topPlayerDisplayName: String! = "Guest"
