@@ -16,6 +16,8 @@ class RegistrationManager {
     private init() {}
     
     
+    // MARK: Firebase-Interacting Functions
+    
     func registerNewAccount(accountData accountData: AccountData) {
         print("registering new account")
         let ref = Firebase(url: Config.firebaseURL)
@@ -69,6 +71,8 @@ class RegistrationManager {
         }
     }
     
+    
+    // MARK: Registration Validator Functions
     
     func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> AccountData {
         // Validate that registration fields match required format

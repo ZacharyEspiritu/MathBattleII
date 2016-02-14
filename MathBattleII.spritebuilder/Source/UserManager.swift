@@ -13,14 +13,13 @@ class UserManager {
     static let sharedInstance = UserManager()
     private init() {}
     
-    private var currentUser: User!
+    private var currentUser: User?
     
     
-    func getCurrentUser() throws -> User {
-        guard let user = currentUser else {
-            throw UserManagerError.CurrentUserDoesNotExist
-        }
-        return user
+    // MARK: Functions
+    
+    func getCurrentUser() -> User? {
+        return currentUser
     }
     
     func setCurrentUser(newUser: User) throws {

@@ -107,6 +107,9 @@ class AuthenticationHandler {
         print(snapshot.value)
     }
     
+    
+    // MARK: Change User Data Functions
+    
     func changeDisplayName(newDisplayName newDisplayName: String) {
         let ref = Firebase(url: Config.firebaseURL)
         let authData = ref.authData
@@ -122,12 +125,6 @@ class AuthenticationHandler {
         ref.childByAppendingPath("users")
             .childByAppendingPath(authData.uid).setValue(updatedUserData)
     }
-    
-    func logoutCurrentSession() {
-        let ref = Firebase(url: Config.firebaseURL)
-        let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(ref.authData.uid)")
-        userRef.removeAuthEventObserverWithHandle(currentAuthenticationHandle)
-        ref.unauth()
     }
     
     func changeEmail(oldEmail oldEmail: String, newEmail: String, password: String) {
@@ -163,6 +160,16 @@ class AuthenticationHandler {
                 // Password reset sent successfully
             }
         })
+    }
+    
+    
+    // MARK: Remove User Functions
+    
+    func logoutCurrentSession() {
+        let ref = Firebase(url: Config.firebaseURL)
+        let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(ref.authData.uid)")
+        userRef.removeAuthEventObserverWithHandle(currentAuthenticationHandle)
+        ref.unauth()
     }
     
     func deleteUser(email email: String, password: String) {
