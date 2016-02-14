@@ -113,18 +113,8 @@ class AuthenticationHandler {
     func changeDisplayName(newDisplayName newDisplayName: String) {
         let ref = Firebase(url: Config.firebaseURL)
         let authData = ref.authData
-        
-        let updatedUserData = [
-            "provider": authData.provider,
-            "displayName": newDisplayName
-        ]
-        
-        // Create a child path with a key set to the uid underneath the "users" node
-        // This creates a URL path like the following:
-        //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
         ref.childByAppendingPath("users")
-            .childByAppendingPath(authData.uid).setValue(updatedUserData)
-    }
+            .childByAppendingPath(authData.uid).childByAppendingPath("displayName").setValue(newDisplayName)
     }
     
     func changeEmail(oldEmail oldEmail: String, newEmail: String, password: String) {
