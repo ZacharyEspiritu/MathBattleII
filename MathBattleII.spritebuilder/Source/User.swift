@@ -86,7 +86,7 @@ class User {
     
     // MARK: Setter Functions
     
-    func setDisplayName(newDisplayName: String) -> String {
+    func setDisplayName(newDisplayName newDisplayName: String) -> String {
         displayName = newDisplayName
         return displayName
     }
@@ -106,12 +106,12 @@ class User {
         return numberOfLosses
     }
     
-    func setRating(newRating: Int) -> Int {
+    func setRating(newRating newRating: Int) -> Int {
         rating = newRating
         return rating
     }
     
-    func setRatingFloor(newRatingFloor: Int) -> Int {
+    func setRatingFloor(newRatingFloor newRatingFloor: Int) -> Int {
         ratingFloor = newRatingFloor
         return ratingFloor
     }
