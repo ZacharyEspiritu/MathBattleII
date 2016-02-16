@@ -30,13 +30,15 @@ class AuthenticationHandler {
         ref.removeAuthEventObserverWithHandle(handle)
     }
     
-    func checkImmediatelyIfUserIsAuthenticated() {
+    func checkImmediatelyIfUserIsAuthenticated() -> Bool {
         let ref = Firebase(url: Config.firebaseURL)
         if ref.authData != nil {
-            // user authenticated
+            // User is authenticated
             print(ref.authData)
+            return true
         } else {
-            // No user is signed in
+            // User is not authenticated
+            return false
         }
     }
     
@@ -74,6 +76,16 @@ class AuthenticationHandler {
                     })
                 }
         })
+    }
+    
+    func pushLocalUserDataToServer(user user: User) {
+        if checkImmediatelyIfUserIsAuthenticated() {
+            let ref = Firebase(url: Config.firebaseURL)
+            let userData = user.convertToDictionaryFormat()
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                ref.childByAppendingPath("users").childByAppendingPath(ref.authData.uid).setValue(userData)
+            })
+        }
     }
     
     private func saveUserDataLocally(snapshot snapshot: FDataSnapshot!) {
