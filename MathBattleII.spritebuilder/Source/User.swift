@@ -45,6 +45,20 @@ class User {
         self.friends = friends
     }
     
+    func convertToDictionaryFormat() -> [String : AnyObject] {
+        return [
+            "displayName": displayName,
+            "email": email,
+            "numberOfGamesPlayed": numberOfGamesPlayed,
+            "numberOfWins": numberOfWins,
+            "numberOfLosses": numberOfLosses,
+            "provider": provider,
+            "rating": rating,
+            "ratingFloor": ratingFloor,
+            "friends": friends
+        ]
+    }
+    
     
     // MARK: Getter Functions
     
