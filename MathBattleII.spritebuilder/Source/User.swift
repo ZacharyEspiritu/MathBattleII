@@ -26,6 +26,7 @@ class User {
     private var ratingFloor:         Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
     private var friends:        [String] { didSet { delegate?.localUserDataDidUpdate(self) }}
+        // [friends] should always be kept sorted alphabetically whenever possible
     
     var delegate: UserDelegate?
 
@@ -130,15 +131,29 @@ class User {
         return ratingFloor
     }
     
-    func addFriend(uid uid: String) -> [String] {
-        friends.append(uid)
+    func addFriend(displayName displayName: String) -> [String] {
+        if !friends.contains(displayName) {
+            friends.append(displayName)
+            friends.sortInPlace()
+        }
         return friends
+    }
+    
+    func removeFriend(displayName displayName: String) -> Bool {
+        if let index = friends.indexOf(displayName) {
+            friends.removeAtIndex(index)
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
 
 extension User: CustomStringConvertible {
     // MARK: Custom String Printable Format
     var description: String {
+        // Swift doesn't support string literals broken up into different lines; sorry about this mess:
         return "UID: \(uid) {\n    displayName: \(displayName)\n    email: \(email)\n    numberOfGamesPlayed: \(numberOfGamesPlayed)\n    numberOfWins: \(numberOfWins)\n    numberOfLosses: \(numberOfLosses)\n    rating: \(rating)\n    ratingFloor: \(ratingFloor)\n    friends: \(friends)\n}"
     }
 }
