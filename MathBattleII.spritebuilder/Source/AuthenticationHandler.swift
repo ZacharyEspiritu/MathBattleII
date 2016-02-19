@@ -97,6 +97,7 @@ class AuthenticationHandler {
         let provider = snapshot.value.objectForKey("provider") as! String
         let rating = snapshot.value.objectForKey("rating") as! Int
         let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
+        
         let friends: [String]
         if snapshot.value.objectForKey("friends") != nil {
             friends = snapshot.value.objectForKey("friends") as! [String]
