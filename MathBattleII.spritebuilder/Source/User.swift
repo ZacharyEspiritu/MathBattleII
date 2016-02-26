@@ -148,6 +148,34 @@ class User {
             return false
         }
     }
+    
+    func retrieveFriendInformationFromFirebase(displayNames displayNames: [String], completion: ([String : FDataSnapshot] -> Void)) {
+        let dispatchGroup = dispatch_group_create()
+        let friendRef = Firebase(url: Config.firebaseURL + "/displayNames/")
+        var friendData = [String : FDataSnapshot]()
+        for friend in friends {
+            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                friendRef.childByAppendingPath(friend).observeSingleEventOfType(.Value, withBlock: { snapshot in
+                    let friendUID = snapshot.value.uid
+                    let friendDataRef = Firebase(url: Config.firebaseURL + "/users/\(friendUID)")
+                    friendDataRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        friendData[friendUID] = snapshot
+                    })
+                })
+            })
+        }
+        dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            completion(friendData)
+        }
+    }
+    
+    func saveFriendInformationToFirebase() {
+        let userFriendsRef = Firebase(url: Config.firebaseURL + "/users/\(uid)/friends")
+        userFriendsRef.removeValue()
+        for friend in friends {
+            userFriendsRef.childByAutoId().setValue(friend)
+        }
+    }
 }
 
 extension User: CustomStringConvertible {
