@@ -22,6 +22,7 @@
 		557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */; };
 		557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E71381C5B04D30053073E /* UserRegistrationScene.swift */; };
 		558070221C53C713001CFCFF /* TileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558070211C53C713001CFCFF /* TileType.swift */; };
+		558D02631C7BD08B009719D6 /* Matchmaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558D02621C7BD08B009719D6 /* Matchmaker.swift */; };
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
 		55A0348B1C714A6200451824 /* UserAccountInfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */; };
 		55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */; };
@@ -210,6 +211,7 @@
 		557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSTimer+Closure.swift"; path = "Source/NSTimer+Closure.swift"; sourceTree = "<group>"; };
 		557E71381C5B04D30053073E /* UserRegistrationScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserRegistrationScene.swift; path = Source/UserRegistrationScene.swift; sourceTree = "<group>"; };
 		558070211C53C713001CFCFF /* TileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileType.swift; path = Source/TileType.swift; sourceTree = "<group>"; };
+		558D02621C7BD08B009719D6 /* Matchmaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matchmaker.swift; path = Source/Matchmaker.swift; sourceTree = "<group>"; };
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
 		55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoScene.swift; path = Source/UserAccountInfoScene.swift; sourceTree = "<group>"; };
 		55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoManager.swift; path = Source/UserAccountInfoManager.swift; sourceTree = "<group>"; };
@@ -403,6 +405,14 @@
 				55283D9B1C3F1C0F000BD64A /* TileValue.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		558D02661C7BD091009719D6 /* Match-Making Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				558D02621C7BD08B009719D6 /* Matchmaker.swift */,
+			);
+			name = "Match-Making Handlers";
 			sourceTree = "<group>";
 		};
 		55A034871C714A3200451824 /* Options */ = {
@@ -648,6 +658,7 @@
 				55A0C0701C3F71C300C6443B /* Scenes */,
 				55B4E1F41C5C23E7007BE8C3 /* Registration */,
 				55A034871C714A3200451824 /* Options */,
+				558D02661C7BD091009719D6 /* Match-Making Handlers */,
 				55A0C0731C3F71ED00C6443B /* Gameplay */,
 				55AB26761C4EEDF100EAF087 /* CustomObjects */,
 				55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */,
@@ -1145,6 +1156,7 @@
 				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
 				55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
+				558D02631C7BD08B009719D6 /* Matchmaker.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */,
