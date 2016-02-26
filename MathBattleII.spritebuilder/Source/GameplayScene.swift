@@ -411,8 +411,15 @@ class GameplayScene: CCNode {
     private func endGame(winner: Side) {
         // Trigger end-game animations
         // Update stats
-        // Update rankings
-        
+        if let currentUser = UserManager.sharedInstance.getCurrentUser() {
+            currentUser.incrementNumberOfGamesPlayed()
+            if winner == .Bottom {
+                currentUser.incrementNumberOfWins()
+            }
+            else {
+                currentUser.incrementNumberOfLosses()
+            }
+        }
     }
 }
 
