@@ -111,12 +111,12 @@ class User {
         return numberOfGamesPlayed
     }
     
-    func increaseNumberOfWins() -> Int {
+    func incrementNumberOfWins() -> Int {
         numberOfWins += 1
         return numberOfWins
     }
     
-    func increaseNumberOfLosses() -> Int {
+    func incrementNumberOfLosses() -> Int {
         numberOfLosses += 1
         return numberOfLosses
     }
