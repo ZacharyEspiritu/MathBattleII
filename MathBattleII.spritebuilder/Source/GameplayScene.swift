@@ -52,6 +52,9 @@ class GameplayScene: CCNode {
         setupGame()
     }
     
+    /**
+     Prepares the `GameplayScene` for a new game.
+     */
     private func setupGame() {
         // Clearing stuff just to be safe
         topPlayerDisplay.clearEquationLabel()
@@ -73,6 +76,9 @@ class GameplayScene: CCNode {
         beginCountdownSequence()
     }
     
+    /**
+     Loads player names from the `UserManager` or displays unknown players as "Guest".
+     */
     private func setupMainDisplay() {
         let user = UserManager.sharedInstance.getCurrentUser()
         let bottomPlayerDisplayName: String! = (user != nil) ? user!.getDisplayName() : "Guest"
@@ -82,12 +88,18 @@ class GameplayScene: CCNode {
         mainDisplay.setTopPlayerLabel(string: topPlayerDisplayName)
     }
     
+    /**
+     Initializes a new `GameTimer` instance and saves it to the `GameplayScene` for future use.
+     */
     private func setupGameTimer() {
         gameTimer = GameTimer(gameLengthInSeconds: 15)
         gameTimer.delegate = self
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
     
+    /**
+     Begins the countdown sequence to be played before the game begins.
+     */
     private func beginCountdownSequence() {
         var countdown: Int = 3
         let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
@@ -110,11 +122,17 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Enables user interaction.
+     */
     private func enableUserInteraction() {
         self.userInteractionEnabled = true
         self.multipleTouchEnabled = true
     }
     
+    /**
+     Disables user interaction.
+     */
     private func disableUserInteraction() {
         self.userInteractionEnabled = false
         self.multipleTouchEnabled = false
