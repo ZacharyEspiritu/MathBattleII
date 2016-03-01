@@ -83,7 +83,7 @@ class GameplayScene: CCNode {
     }
     
     private func setupGameTimer() {
-        gameTimer = GameTimer(gameLengthInSeconds: 120)
+        gameTimer = GameTimer(gameLengthInSeconds: 15)
         gameTimer.delegate = self
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }

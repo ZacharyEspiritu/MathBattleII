@@ -10,7 +10,10 @@ import Foundation
 
 class UserAccountInfoManager {
     
-    let sharedInstance = UserAccountInfoManager()
+    static let sharedInstance = UserAccountInfoManager()
     private init() {}
     
+    func editData(key key: String, newData data: AnyObject) {
+        
+    }
 }

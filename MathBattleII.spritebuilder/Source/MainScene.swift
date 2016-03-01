@@ -11,7 +11,7 @@ import Foundation
 class MainScene: CCNode {
     
     func didLoadFromCCB() {
-        CCDirector.sharedDirector().displayStats = true
+//        CCDirector.sharedDirector().displayStats = true
     }
     
     /**
