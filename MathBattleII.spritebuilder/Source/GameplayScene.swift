@@ -215,19 +215,11 @@ class GameplayScene: CCNode {
         launchTilesAtOpponent(forSide: side)
         
         if scoreCounter.increaseScore(forSide: side) {
-            triggerWin(forSide: side)
+            endGame(forReason: .ScoreLimitReached)
         }
         else {
             loadNewPuzzle(forSide: side)
         }
-    }
-    
-    /**
-     Triggers the win state for a `Side`.
-     - parameter forSide:   the `Side` that just won
-     */
-    private func triggerWin(forSide side: Side) {
-        print("win")
     }
     
     /**
@@ -408,31 +400,28 @@ class GameplayScene: CCNode {
         return false
     }
     
-    private func endGame() {
+    /**
+     Ends the game with the correct sequence as specified by the `GameStopReason`.
+     - parameter forReason:   the `GameStopReason` of why the game should end now
+     */
+    private func endGame(forReason reason: GameStopReason) {
+        // Disable user interaction
+        disableUserInteraction()
+        
         // Trigger end-game animations
         let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
         for slidingDoor in slidingDoors {
-            slidingDoor.label.updateCountdownLabel(string: "TIME!")
+            if reason == .ScoreLimitReached {
+                slidingDoor.label.updateCountdownLabel(string: "END!")
+            }
+            else {
+                slidingDoor.label.updateCountdownLabel(string: "TIME!")
+            }
             slidingDoor.closeDoors()
         }
         
-        // Determine winner
-        var winner: Side? = nil
-        let topScore = scoreCounter.getTopScore()
-        let bottomScore = scoreCounter.getBottomScore()
-        if topScore > bottomScore {
-            winner = .Top
-            print("Top Wins!")
-        }
-        else if topScore < bottomScore {
-            winner = .Bottom
-            print("Bottom wins!")
-        }
-        else {
-            print("Tie game!")
-        }
-        
-        // Update stats
+        // Determine winner and update stats
+        let winner: Side? = scoreCounter.getCurrentLeader()
         if let currentUser = UserManager.sharedInstance.getCurrentUser() {
             currentUser.incrementNumberOfGamesPlayed()
             if winner == .Bottom {
@@ -450,7 +439,7 @@ extension GameplayScene: GameTimerDelegate {
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
     func gameTimerDidFinish(gameTimer: GameTimer) {
-        endGame()
+        endGame(forReason: .TimeRanOut)
     }
     func gameTimerDidPause(gameTimer: GameTimer) {
         print("pause")
@@ -466,4 +455,8 @@ enum Side {
 
 enum GameState {
     case Countdown, Playing, Paused, Endgame
+}
+
+enum GameStopReason {
+    case ScoreLimitReached, TimeRanOut, ConnectionIssue, Paused
 }
