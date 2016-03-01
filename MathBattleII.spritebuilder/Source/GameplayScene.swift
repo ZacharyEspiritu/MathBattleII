@@ -408,8 +408,30 @@ class GameplayScene: CCNode {
         return false
     }
     
-    private func endGame(winner: Side) {
+    private func endGame() {
         // Trigger end-game animations
+        let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
+        for slidingDoor in slidingDoors {
+            slidingDoor.label.updateCountdownLabel(string: "TIME!")
+            slidingDoor.closeDoors()
+        }
+        
+        // Determine winner
+        var winner: Side? = nil
+        let topScore = scoreCounter.getTopScore()
+        let bottomScore = scoreCounter.getBottomScore()
+        if topScore > bottomScore {
+            winner = .Top
+            print("Top Wins!")
+        }
+        else if topScore < bottomScore {
+            winner = .Bottom
+            print("Bottom wins!")
+        }
+        else {
+            print("Tie game!")
+        }
+        
         // Update stats
         if let currentUser = UserManager.sharedInstance.getCurrentUser() {
             currentUser.incrementNumberOfGamesPlayed()
@@ -428,7 +450,7 @@ extension GameplayScene: GameTimerDelegate {
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
     func gameTimerDidFinish(gameTimer: GameTimer) {
-        print("finish")
+        endGame()
     }
     func gameTimerDidPause(gameTimer: GameTimer) {
         print("pause")
