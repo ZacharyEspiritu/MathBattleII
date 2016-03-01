@@ -27,6 +27,15 @@ class ScoreCounter: CCSprite {
     private let maximumScoreLimit = 5
     private let minimumScoreLimit = 1
     
+    
+    func getTopScore() -> Int {
+        return topScore
+    }
+    
+    func getBottomScore() -> Int {
+        return bottomScore
+    }
+    
     /**
      Establishes the score limit for both sides.
      - parameter forBothSides:   the `scoreLimit` to implement on both sides
