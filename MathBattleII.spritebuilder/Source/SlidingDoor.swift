@@ -16,7 +16,7 @@ class SlidingDoor: CCNode {
         self.animationManager.runAnimationsForSequenceNamed("OpenDoors")
     }
     
-    func removeSelfFromParentNode() {
-        self.removeFromParent()
+    func closeDoors() {
+        self.animationManager.runAnimationsForSequenceNamed("CloseDoors")
     }
 }
