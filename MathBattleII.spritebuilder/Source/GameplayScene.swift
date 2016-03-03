@@ -28,7 +28,17 @@ class GameplayScene: CCNode {
     
     private var gameTimer: GameTimer! = nil
     
-    private var topSampleEquationSolution, bottomSampleEquationSolution: String!
+    private var topSampleEquationSolution: String! {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setObject(topSampleEquationSolution, forKey: "topSampleEquationSolution")
+        }
+    }
+    private var bottomSampleEquationSolution: String! {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setObject(bottomSampleEquationSolution, forKey: "bottomSampleEquationSolution")
+        }
+    }
+    
     private var topTargetNumber: Int! {
         didSet {
             topPlayerDisplay.setTargetNumberLabel(targetNumber: topTargetNumber)
@@ -464,6 +474,21 @@ class GameplayScene: CCNode {
             else {
                 currentUser.incrementNumberOfLosses()
             }
+        }
+        
+        // Save temporarily to NSUserDefaults for use in next scene
+        NSUserDefaults.standardUserDefaults().setInteger(scoreCounter.getTopScore(), forKey: "topScore")
+        NSUserDefaults.standardUserDefaults().setInteger(scoreCounter.getBottomScore(), forKey: "bottomScore")
+        
+        // Transition to EndGameScene
+        NSTimer.schedule(delay: 2) { timer in
+            let gameplayScene = CCBReader.load("EndGameScene") as! EndGameScene
+            
+            let scene = CCScene()
+            scene.addChild(gameplayScene)
+            
+            let transition = CCTransition(fadeWithDuration: 0.5)
+            CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
         }
     }
 }
