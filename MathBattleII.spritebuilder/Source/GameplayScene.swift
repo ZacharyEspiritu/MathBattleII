@@ -457,14 +457,21 @@ class GameplayScene: CCNode {
 
 extension GameplayScene: GameTimerDelegate {
     func gameTimerDidUpdate(gameTimer: GameTimer) {
-        mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
+        let timeRemaining = gameTimer.getRemainingTime()
+        mainDisplay.updateTimerLabel(timeRemaining: timeRemaining)
+        if timeRemaining <= 10 && timeRemaining > 0 {
+            OALSimpleAudio.sharedInstance().playEffect("beep.wav", volume: 0.1, pitch: 1, pan: 0, loop: false)
+        }
     }
+    
     func gameTimerDidFinish(gameTimer: GameTimer) {
         endGame(forReason: .TimeRanOut)
     }
+    
     func gameTimerDidPause(gameTimer: GameTimer) {
         print("pause")
     }
+    
     func gameTimerDidStart(gameTimer: GameTimer) {
         print("start")
     }
