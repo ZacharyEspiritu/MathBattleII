@@ -26,6 +26,12 @@
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
 		55A0348B1C714A6200451824 /* UserAccountInfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */; };
 		55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */; };
+		55AD60F71C8616D300F9F9A7 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60F61C8616D300F9F9A7 /* ding.wav */; };
+		55AD60FB1C8616DA00F9F9A7 /* doors.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60FA1C8616DA00F9F9A7 /* doors.wav */; };
+		55AD60FD1C8616DE00F9F9A7 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60FC1C8616DE00F9F9A7 /* beep.wav */; };
+		55AD60FF1C8616E500F9F9A7 /* Cuban Sandwich.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60FE1C8616E500F9F9A7 /* Cuban Sandwich.mp3 */; };
+		55AD61241C861DDA00F9F9A7 /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD61231C861DDA00F9F9A7 /* pop.wav */; };
+		55AD61261C861E7100F9F9A7 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AD61251C861E7100F9F9A7 /* EndGameScene.swift */; };
 		55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B42D291C6D489100FB0239 /* UserManager.swift */; };
 		55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */; };
 		55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
@@ -215,6 +221,12 @@
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
 		55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoScene.swift; path = Source/UserAccountInfoScene.swift; sourceTree = "<group>"; };
 		55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoManager.swift; path = Source/UserAccountInfoManager.swift; sourceTree = "<group>"; };
+		55AD60F61C8616D300F9F9A7 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
+		55AD60FA1C8616DA00F9F9A7 /* doors.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doors.wav; sourceTree = "<group>"; };
+		55AD60FC1C8616DE00F9F9A7 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		55AD60FE1C8616E500F9F9A7 /* Cuban Sandwich.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cuban Sandwich.mp3"; sourceTree = "<group>"; };
+		55AD61231C861DDA00F9F9A7 /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
+		55AD61251C861E7100F9F9A7 /* EndGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameScene.swift; path = Source/EndGameScene.swift; sourceTree = "<group>"; };
 		55B42D291C6D489100FB0239 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Source/UserManager.swift; sourceTree = "<group>"; };
 		55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
 		55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountData.swift; path = Source/AccountData.swift; sourceTree = "<group>"; };
@@ -444,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				55EE14E31C3D725B000B94D6 /* GameplayScene.swift */,
+				55AD61251C861E7100F9F9A7 /* EndGameScene.swift */,
 				558070231C53D46D001CFCFF /* View */,
 				558070241C53D53A001CFCFF /* Model */,
 			);
@@ -746,6 +759,11 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55AD60FE1C8616E500F9F9A7 /* Cuban Sandwich.mp3 */,
+				55AD60F61C8616D300F9F9A7 /* ding.wav */,
+				55AD60FA1C8616DA00F9F9A7 /* doors.wav */,
+				55AD61231C861DDA00F9F9A7 /* pop.wav */,
+				55AD60FC1C8616DE00F9F9A7 /* beep.wav */,
 				55D9221C1C569752003ADFBD /* Images.xcassets */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
@@ -994,6 +1012,7 @@
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
 				55D9221D1C569752003ADFBD /* Images.xcassets in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
+				55AD61241C861DDA00F9F9A7 /* pop.wav in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
@@ -1001,11 +1020,15 @@
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
+				55AD60FD1C8616DE00F9F9A7 /* beep.wav in Resources */,
+				55AD60F71C8616D300F9F9A7 /* ding.wav in Resources */,
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				55AD60FB1C8616DA00F9F9A7 /* doors.wav in Resources */,
+				55AD60FF1C8616E500F9F9A7 /* Cuban Sandwich.mp3 in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1146,6 +1169,7 @@
 				557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
 				55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
+				55AD61261C861E7100F9F9A7 /* EndGameScene.swift in Sources */,
 				557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
