@@ -22,4 +22,14 @@ class UserLoginScene: CCNode {
         
         auth.authenticateUser(email: email, password: password)
     }
+    
+    func menu() {
+        let gameplayScene = CCBReader.load("MainScene") as! MainScene
+        
+        let scene = CCScene()
+        scene.addChild(gameplayScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }
