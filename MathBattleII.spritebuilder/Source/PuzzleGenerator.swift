@@ -32,7 +32,7 @@ class PuzzleGenerator {
         sampleEquationSolution = "\(firstNumber.stringValue)"
         tileSet.append(firstNumber)
         
-        for _ in 0..<4 {
+        for index in 0..<4 {
             let nextNumber: TileValue = chooseRandomNumber()
             let nextOperator: TileValue = chooseRandomOperator()
             
@@ -47,7 +47,12 @@ class PuzzleGenerator {
                 assertionFailure()
             }
             
-            sampleEquationSolution = sampleEquationSolution + " \(nextOperator.stringValue) \(nextNumber.stringValue)"
+            if index < 3 {
+                sampleEquationSolution = "(" + sampleEquationSolution + " \(nextOperator.stringValue) \(nextNumber.stringValue))"
+            }
+            else {
+                sampleEquationSolution = sampleEquationSolution + " \(nextOperator.stringValue) \(nextNumber.stringValue)"
+            }
             tileSet.append(nextNumber)
             tileSet.append(nextOperator)
         }
