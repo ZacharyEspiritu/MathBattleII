@@ -426,6 +426,9 @@ class GameplayScene: CCNode {
         // Disable user interaction
         disableUserInteraction()
         
+        // Disable gameTimer
+        gameTimer = nil
+        
         // Trigger end-game animations
         let slidingDoors: [SlidingDoor] = [topSlidingDoor, bottomSlidingDoor]
         for slidingDoor in slidingDoors {
