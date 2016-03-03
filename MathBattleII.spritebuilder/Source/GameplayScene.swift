@@ -74,6 +74,8 @@ class GameplayScene: CCNode {
         scoreCounter.establishScoreLimit(forBothSides: 5)
         
         beginCountdownSequence()
+        
+        OALSimpleAudio.sharedInstance().playBg("Cuban Sandwich.mp3", volume: 0.2, pan: 0, loop: true)
     }
     
     /**
@@ -117,6 +119,8 @@ class GameplayScene: CCNode {
                     slidingDoor.openDoors()
                 }
                 self.enableUserInteraction()
+                OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+                OALSimpleAudio.sharedInstance().playEffect("doors.wav")
                 timer.invalidate()
             }
         }
@@ -182,12 +186,14 @@ class GameplayScene: CCNode {
             let locationInWorld = touch.locationInNode(self)
             if CGRectContainsPoint(clearButton.boundingBox(), locationInWorld) { // Clear button tapped
                 clearCurrentlySelectedTiles(onSide: sideTouched)
+                OALSimpleAudio.sharedInstance().playEffect("pop.wav")
             }
             else {
                 let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
                 if CGRectContainsPoint(equalsButton.boundingBox(), locationInWorld) { // Equals button tapped
                     if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
                         completePuzzleForSide(side: sideTouched)
+                        OALSimpleAudio.sharedInstance().playEffect("ding.wav")
                     }
                 }
             }
@@ -206,6 +212,7 @@ class GameplayScene: CCNode {
         let tappedTile = grid.getTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1)
         if !tappedTile.isSelected() {
             setupEquationLabel(tile: grid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: side)
+            OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         }
     }
     
@@ -271,6 +278,7 @@ class GameplayScene: CCNode {
             // Schedule a timer to shake the Player Display just about when each tile hits the display
             NSTimer.schedule(delay: 1.4) { timer in
                 opponentPlayerDisplay.shakeDisplay()
+                OALSimpleAudio.sharedInstance().playEffect("pop.wav")
             }
             
             // Check if the last tile has been launched, then schedule a cleanup method to fix everything
@@ -440,6 +448,11 @@ class GameplayScene: CCNode {
             }
             slidingDoor.closeDoors()
         }
+        
+        // Play sound effects
+        OALSimpleAudio.sharedInstance().stopBg()
+        OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+        OALSimpleAudio.sharedInstance().playEffect("doors.wav")
         
         // Determine winner and update stats
         let winner: Side? = scoreCounter.getCurrentLeader()
