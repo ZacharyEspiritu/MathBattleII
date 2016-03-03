@@ -28,6 +28,21 @@ class ScoreCounter: CCSprite {
     private let minimumScoreLimit = 1
     
     
+    /**
+     Determines who is currently winning the game.
+     - returns:   the `Side` of the current leader
+     */
+    func getCurrentLeader() -> Side? {
+        var currentLeader: Side? = nil
+        if topScore > bottomScore {
+            currentLeader = .Top
+        }
+        else if topScore < bottomScore {
+            currentLeader = .Bottom
+        }
+        return currentLeader
+    }
+    
     func getTopScore() -> Int {
         return topScore
     }
