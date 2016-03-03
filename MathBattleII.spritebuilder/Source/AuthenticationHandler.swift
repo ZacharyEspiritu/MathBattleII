@@ -106,7 +106,9 @@ class AuthenticationHandler {
             friends = []
         }
         
-        let user = User(uid: snapshot.value.uid, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, rating: rating, ratingFloor: ratingFloor, friends: friends)
+        let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, rating: rating, ratingFloor: ratingFloor, friends: friends)
+        user.delegate = self
+        
         let userManager = UserManager.sharedInstance
         
         do {
@@ -189,5 +191,11 @@ class AuthenticationHandler {
                     // Password changed successfully
                 }
         })
+    }
+}
+
+extension AuthenticationHandler: UserDelegate {
+    func localUserDataDidUpdate(user: User) {
+        pushLocalUserDataToServer(user: user)
     }
 }
