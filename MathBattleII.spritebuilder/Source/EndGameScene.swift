@@ -10,6 +10,8 @@ import Foundation
 
 class EndGameScene: CCNode {
     
+    // MARK: Variables
+    
     let scrollSpeed: CGFloat = 60
     
     weak var topBackground1, topBackground2: CCSprite!
@@ -23,12 +25,20 @@ class EndGameScene: CCNode {
     weak var topHoldDisplay, bottomHoldDisplay: CCNodeColor!
     
     
+    // MARK: Functions
+    
+    /**
+     Called when the `EndGameScene` is loaded.
+     */
     func didLoadFromCCB() {
         backgrounds = [topBackground1, topBackground2, bottomBackground1, bottomBackground2]
         setupLabels()
         setupHoldDisplays()
     }
     
+    /**
+     Loads data from `NSUserDefaults` from the previous game and displays formatted data to the player.
+     */
     private func setupLabels() {
         // Load scores from NSUserDefaults
         let topScore = NSUserDefaults.standardUserDefaults().integerForKey("topScore")
@@ -59,6 +69,9 @@ class EndGameScene: CCNode {
         bottomSolutionLabel.string = "LAST SOLUTION:\n\(bottomSampleEquationSolution)"
     }
     
+    /**
+     Sets up the display that shows to tell players to hold the screen to return to the menu.
+     */
     private func setupHoldDisplays() {
         let holdDisplays = [topHoldDisplay, bottomHoldDisplay]
         for holdDisplay in holdDisplays {
@@ -69,6 +82,9 @@ class EndGameScene: CCNode {
         self.multipleTouchEnabled = true
     }
     
+    /**
+     Returns back to the `MainScene`.
+     */
     private func returnToMenu() {
         let gameplayScene = CCBReader.load("MainScene") as! MainScene
         
@@ -79,18 +95,28 @@ class EndGameScene: CCNode {
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
     
+    /**
+     Called when the screen is touched.
+     */
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         let sideTouched: Side = (touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2) ? .Bottom : .Top
         let holdDisplay = (sideTouched == .Top) ? topHoldDisplay : bottomHoldDisplay
         holdDisplay.runAction(CCActionFadeTo(duration: 0.6, opacity: 0.8))
     }
     
+    /**
+     Called when a touch ends.
+     */
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         let sideTouched: Side = (touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2) ? .Bottom : .Top
         let holdDisplay = (sideTouched == .Top) ? topHoldDisplay : bottomHoldDisplay
         holdDisplay.runAction(CCActionFadeTo(duration: 0.6, opacity: 0))
     }
     
+    /**
+     Called every frame.
+     - parameter delta:   the amount of time that passed between the previous frame and this frame
+     */
     override func update(delta: CCTime) {
         for background in backgrounds {
             background.position = CGPoint(x: background.position.x - (scrollSpeed * CGFloat(delta)), y: background.position.y)

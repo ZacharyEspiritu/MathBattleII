@@ -117,7 +117,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>c_Kane17</string>
+							<string>CASSAN...ANE</string>
 							<false/>
 						</array>
 					</dict>
@@ -547,7 +547,7 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>e_Kim19</string>
+							<string>ZACHARYES...</string>
 							<false/>
 						</array>
 					</dict>
@@ -683,8 +683,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
