@@ -54,6 +54,13 @@
     
     [self setupCocos2dWithOptions:cocos2dSetup];
     
+    // Preload audio files
+    [[OALSimpleAudio sharedInstance] preloadBg:@"Cuban Sandwich.mp3"];
+    [[OALSimpleAudio sharedInstance] preloadEffect:@"ding.wav"];
+    [[OALSimpleAudio sharedInstance] preloadEffect:@"doors.wav"];
+    [[OALSimpleAudio sharedInstance] preloadEffect:@"beep.wav"];
+    [[OALSimpleAudio sharedInstance] preloadEffect:@"pop.wav"];
+    
     return YES;
 }
 
