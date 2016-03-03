@@ -113,11 +113,11 @@ class GameplayScene: CCNode {
                 countdown--
             }
             else {
-                self.gameTimer.startTimer()
                 for slidingDoor in slidingDoors {
                     slidingDoor.label.updateCountdownLabel(string: "GO!")
                     slidingDoor.openDoors()
                 }
+                self.gameTimer.startTimer()
                 self.enableUserInteraction()
                 OALSimpleAudio.sharedInstance().playEffect("ding.wav")
                 OALSimpleAudio.sharedInstance().playEffect("doors.wav")
