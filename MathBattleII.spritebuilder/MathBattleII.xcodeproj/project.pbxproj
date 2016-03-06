@@ -36,6 +36,7 @@
 		55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */; };
 		55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
 		55B4E1FE1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
+		55CD4E5A1C88A1520052FC7B /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD4E591C88A1520052FC7B /* GameData.swift */; };
 		55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768B1C4931EF001AE5F7 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D676891C4931EE001AE5F7 /* Array2D.swift */; };
 		55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */; };
@@ -230,6 +231,7 @@
 		55B42D291C6D489100FB0239 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Source/UserManager.swift; sourceTree = "<group>"; };
 		55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
 		55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountData.swift; path = Source/AccountData.swift; sourceTree = "<group>"; };
+		55CD4E591C88A1520052FC7B /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = Source/GameData.swift; sourceTree = "<group>"; };
 		55D676891C4931EE001AE5F7 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array2D.swift; path = Source/Array2D.swift; sourceTree = "<group>"; };
 		55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerDisplay.swift; path = Source/PlayerDisplay.swift; sourceTree = "<group>"; };
 		55D676911C4956D0001AE5F7 /* PuzzleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PuzzleGenerator.swift; path = Source/PuzzleGenerator.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				558D02621C7BD08B009719D6 /* Matchmaker.swift */,
+				55CD4E591C88A1520052FC7B /* GameData.swift */,
 			);
 			name = "Match-Making Handlers";
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */,
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				558070221C53C713001CFCFF /* TileType.swift in Sources */,
+				55CD4E5A1C88A1520052FC7B /* GameData.swift in Sources */,
 				555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */,
 				55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */,
 			);
