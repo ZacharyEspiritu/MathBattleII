@@ -70,6 +70,7 @@ class AuthenticationHandler {
                     // Attach a closure to read the data at our posts reference
                     self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
                         self.saveUserDataLocally(snapshot: snapshot)
+                        print("data saved")
                         },
                         withCancelBlock: { error in
                             print(error.description)
@@ -82,8 +83,10 @@ class AuthenticationHandler {
         if checkImmediatelyIfUserIsAuthenticated() {
             let ref = Firebase(url: Config.firebaseURL)
             let userData = user.convertToDictionaryFormat()
+            print("saving data...")
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 ref.childByAppendingPath("users").childByAppendingPath(ref.authData.uid).setValue(userData)
+                print("data saved")
             })
         }
     }
