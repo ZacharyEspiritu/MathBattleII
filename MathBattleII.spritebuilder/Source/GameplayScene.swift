@@ -93,7 +93,10 @@ class GameplayScene: CCNode {
      */
     private func setupMainDisplay() {
         let user = UserManager.sharedInstance.getCurrentUser()
-        let bottomPlayerDisplayName: String! = (user != nil) ? user!.getDisplayName() : "Guest"
+        var bottomPlayerDisplayName: String! = (user != nil) ? user!.getDisplayName() : "Guest"
+        if bottomPlayerDisplayName.characters.count > 11 {
+            bottomPlayerDisplayName = "\(bottomPlayerDisplayName.substringToIndex(bottomPlayerDisplayName.startIndex.advancedBy(9)))..."
+        }
         mainDisplay.setBottomPlayerLabel(string: bottomPlayerDisplayName)
         
         let topPlayerDisplayName: String! = "Guest"
