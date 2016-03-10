@@ -107,7 +107,7 @@ class GameplayScene: CCNode {
      Initializes a new `GameTimer` instance and saves it to the `GameplayScene` for future use.
      */
     private func setupGameTimer() {
-        gameTimer = GameTimer(gameLengthInSeconds: 15)
+        gameTimer = GameTimer(gameLengthInSeconds: 90)
         gameTimer.delegate = self
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
@@ -448,6 +448,7 @@ class GameplayScene: CCNode {
         disableUserInteraction()
         
         // Disable gameTimer
+        gameTimer.pauseTimer()
         gameTimer = nil
         
         // Trigger end-game animations
