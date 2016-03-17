@@ -30,7 +30,7 @@ class Grid: CCNode {
                 
                 // Create new Tile object:
                 let newTile: Tile = CCBReader.load("Tile") as! Tile
-                let tileArrayIndex: Int = Int(arc4random_uniform(UInt32(tileArray.count)))
+                let tileArrayIndex: Int = tileArray.count - 1
                 newTile.setTileValue(tileArray[tileArrayIndex])
                 tileArray.removeAtIndex(tileArrayIndex)
                 

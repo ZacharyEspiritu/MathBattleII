@@ -60,6 +60,8 @@ class PuzzleGenerator {
         sampleEquationSolution = sampleEquationSolution + " = \(targetNumber)"
         print(sampleEquationSolution)
         
+        tileSet.randomizeOrder()
+        
         return (targetNumber, sampleEquationSolution, tileSet)
     }
     
