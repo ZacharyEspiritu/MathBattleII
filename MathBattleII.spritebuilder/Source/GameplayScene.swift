@@ -52,6 +52,8 @@ class GameplayScene: CCNode {
     
     private var gameState: GameState = .Countdown
     
+    var multiplayerMatchData: MatchData?
+    
     
     // MARK: Functions
     
@@ -66,7 +68,9 @@ class GameplayScene: CCNode {
      Prepares the `GameplayScene` for a new game.
      */
     private func setupGame() {
-        retrieveMatchDataFromMatchmaker()?.delegate = self
+        // Setup multiplayer handling
+        multiplayerMatchData = retrieveMatchDataFromMatchmaker()
+        multiplayerMatchData?.opposingPlayer.delegate = self
         
         // Clearing stuff just to be safe
         topPlayerDisplay.clearEquationLabel()
@@ -530,16 +534,32 @@ extension GameplayScene: GameTimerDelegate {
     }
 }
 
-extension GameplayScene: MatchDataDelegate {
-    func matchDataHasUpdated(matchData: MatchData) {
-        let opposingPlayerData = matchData.opposingPlayer
+extension GameplayScene: PlayerDataDelegate {
+    func connectionStatusHasUpdated(playerData: PlayerData) {
         
-        topGrid.loadTiles(array: opposingPlayerData.currentTiles)
-        topTargetNumber = opposingPlayerData.targetNumber
-        if opposingPlayerData.needsToLaunch {
+    }
+    func scoreHasUpdated(playerData: PlayerData) {
+        
+    }
+    func currentTilesHaveUpdated(playerData: PlayerData) {
+        
+    }
+    func targetNumberHasUpdated(playerData: PlayerData) {
+        
+    }
+    func needsToLaunchTiles(playerData: PlayerData) {
+        
+    }
+    
+    func playerDataHasUpdated(playerData: PlayerData) {
+        
+        // THIS WON'T WORK BECAUSE IT WILL KEEP MAKING COPIES OF THE TILES EVERY TIME LOADTILES() IS CALLED:
+        topGrid.loadTiles(array: playerData.currentTiles)
+        topTargetNumber = playerData.targetNumber
+        if playerData.needsToLaunch {
             launchTilesAtOpponent(forSide: .Top)
         }
-        if scoreCounter.setScore(forSide: .Top, newScore: opposingPlayerData.score) {
+        if scoreCounter.setScore(forSide: .Top, newScore: playerData.score) {
             endGame(forReason: .ScoreLimitReached)
         }
     }

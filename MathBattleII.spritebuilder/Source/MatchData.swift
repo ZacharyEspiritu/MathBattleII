@@ -12,17 +12,13 @@ class MatchData {
     
     let hostPlayer: PlayerData
     let opposingPlayer: PlayerData
-    
-    var delegate: MatchDataDelegate?
-    
+        
     private var matchHasStarted: Bool = false
     
     
     init(hostPlayer: PlayerData, opposingPlayer: PlayerData) {
         self.hostPlayer = hostPlayer
         self.opposingPlayer = opposingPlayer
-        self.hostPlayer.delegate = self
-        self.opposingPlayer.delegate = self
     }
     
     func updateData(data data: NSDictionary) {
@@ -41,14 +37,4 @@ class MatchData {
     func setMatchStarted() {
         matchHasStarted = true
     }
-}
-
-extension MatchData: PlayerDataDelegate {
-    func playerDataHasUpdated(playerData: PlayerData) {
-        delegate?.matchDataHasUpdated(self)
-    }
-}
-
-protocol MatchDataDelegate {
-    func matchDataHasUpdated(matchData: MatchData)
 }

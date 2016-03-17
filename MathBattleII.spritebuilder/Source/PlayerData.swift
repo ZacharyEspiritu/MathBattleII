@@ -16,7 +16,7 @@ class PlayerData {
     
     var score: Int = 0
     
-    var currentTiles: [TileValue] = []
+    var currentTiles: [TileValue] = [.Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero]
     var targetNumber: Int = 0
     
     var needsToLaunch: Bool = false
@@ -46,5 +46,9 @@ class PlayerData {
 }
 
 protocol PlayerDataDelegate {
-    func playerDataHasUpdated(playerData: PlayerData)
+    func connectionStatusHasUpdated(playerData: PlayerData)
+    func scoreHasUpdated(playerData: PlayerData)
+    func currentTilesHaveUpdated(playerData: PlayerData)
+    func targetNumberHasUpdated(playerData: PlayerData)
+    func needsToLaunchTiles(playerData: PlayerData)
 }
