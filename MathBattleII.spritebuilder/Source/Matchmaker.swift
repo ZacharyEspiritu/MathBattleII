@@ -15,6 +15,7 @@ class Matchmaker {
     
     var currentMatchData: MatchData?
     
+    
     func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(customName)")
         let hostData: NSDictionary = [
@@ -28,6 +29,7 @@ class Matchmaker {
         ]
         let matchData: NSDictionary = [
             "password": customPassword,
+            "shouldStart": false,
             "hostPlayer": hostData,
             "opposingPlayer": NSNull()
         ]
@@ -56,6 +58,7 @@ class Matchmaker {
                         self.currentMatchData = MatchData(hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
                         
                         self.attachToMatchData(atRef: ref)
+                        ref.childByAppendingPath("shouldStart").setValue(true)
                     }
                     else {
                         print("Incorrect password.")
@@ -77,9 +80,16 @@ class Matchmaker {
                 if let matchData = self.currentMatchData {
                     print("updating data")
                     matchData.updateData(data: snapshot.value as! NSDictionary)
+                    
+                    if !matchData.hasMatchStarted() {
+                        if snapshot.value.objectForKey("shouldStart") as! Bool {
+                            matchData.setMatchStarted()
+                            self.startCurrentMatch()
+                        }
+                    }
                 }
             }, withCancelBlock: { error in
-                
+                print("An error occured when attaching to match data: \(error.description)")
         })
     }
 }
