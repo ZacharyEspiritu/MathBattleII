@@ -131,6 +131,22 @@ class ScoreCounter: CCSprite {
         return false
     }
     
+    func setScore(forSide side: Side, newScore score: Int) -> Bool {
+        switch side {
+        case .Top:
+            topScore = score
+            if topScore >= topScoreLimit {
+                return true
+            }
+        case .Bottom:
+            bottomScore = score
+            if bottomScore >= bottomScoreLimit {
+                return true
+            }
+        }
+        return false
+    }
+    
     /**
      Visually updates the score counters to reflect the current score.
      */
