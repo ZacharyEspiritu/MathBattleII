@@ -66,6 +66,8 @@ class GameplayScene: CCNode {
      Prepares the `GameplayScene` for a new game.
      */
     private func setupGame() {
+        retrieveMatchDataFromMatchmaker()?.delegate = self
+        
         // Clearing stuff just to be safe
         topPlayerDisplay.clearEquationLabel()
         topGrid.clearSelectedTiles()
@@ -86,6 +88,15 @@ class GameplayScene: CCNode {
         beginCountdownSequence()
         
         OALSimpleAudio.sharedInstance().playBg("Cuban Sandwich.mp3", volume: 0.2, pan: 0, loop: true)
+    }
+    
+    private func retrieveMatchDataFromMatchmaker() -> MatchData? {
+        if let currentMatchData = Matchmaker.sharedInstance.currentMatchData {
+            return currentMatchData
+        }
+        else {
+            return nil
+        }
     }
     
     /**
@@ -516,6 +527,21 @@ extension GameplayScene: GameTimerDelegate {
     
     func gameTimerDidStart(gameTimer: GameTimer) {
         print("start")
+    }
+}
+
+extension GameplayScene: MatchDataDelegate {
+    func matchDataHasUpdated(matchData: MatchData) {
+        let opposingPlayerData = matchData.opposingPlayer
+        
+        topGrid.loadTiles(array: opposingPlayerData.currentTiles)
+        topTargetNumber = opposingPlayerData.targetNumber
+        if opposingPlayerData.needsToLaunch {
+            launchTilesAtOpponent(forSide: .Top)
+        }
+        if scoreCounter.setScore(forSide: .Top, newScore: opposingPlayerData.score) {
+            endGame(forReason: .ScoreLimitReached)
+        }
     }
 }
 
