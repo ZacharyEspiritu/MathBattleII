@@ -535,33 +535,33 @@ extension GameplayScene: GameTimerDelegate {
 }
 
 extension GameplayScene: PlayerDataDelegate {
+    
     func connectionStatusHasUpdated(playerData: PlayerData) {
-        
-    }
-    func scoreHasUpdated(playerData: PlayerData) {
-        
-    }
-    func currentTilesHaveUpdated(playerData: PlayerData) {
-        
-    }
-    func targetNumberHasUpdated(playerData: PlayerData) {
-        
-    }
-    func needsToLaunchTiles(playerData: PlayerData) {
-        
+        let connectionStatus: Bool = playerData.getConnectionStatus()
+        if connectionStatus {
+            print("The player has reconnected.")
+        }
+        else {
+            print("The player has disconnected.")
+        }
     }
     
-    func playerDataHasUpdated(playerData: PlayerData) {
-        
-        // THIS WON'T WORK BECAUSE IT WILL KEEP MAKING COPIES OF THE TILES EVERY TIME LOADTILES() IS CALLED:
-        topGrid.loadTiles(array: playerData.currentTiles)
-        topTargetNumber = playerData.targetNumber
-        if playerData.needsToLaunch {
-            launchTilesAtOpponent(forSide: .Top)
-        }
-        if scoreCounter.setScore(forSide: .Top, newScore: playerData.score) {
+    func scoreHasUpdated(playerData: PlayerData) {
+        if scoreCounter.setScore(forSide: .Top, newScore: playerData.getScore()) {
             endGame(forReason: .ScoreLimitReached)
         }
+    }
+    
+    func currentTilesHaveUpdated(playerData: PlayerData) {
+        topGrid.loadTiles(array: playerData.currentTiles)
+    }
+    
+    func targetNumberHasUpdated(playerData: PlayerData) {
+        topTargetNumber = playerData.targetNumber
+    }
+    
+    func needsToLaunchTiles(playerData: PlayerData) {
+        launchTilesAtOpponent(forSide: .Top)
     }
 }
 
