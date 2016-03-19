@@ -67,7 +67,6 @@ class GameTimer: NSObject {
 }
 
 protocol GameTimerDelegate {
-    
     /**
      Called whenever `remainingTime` updates.
      - parameter gameTimer:  the `GameTimer` object

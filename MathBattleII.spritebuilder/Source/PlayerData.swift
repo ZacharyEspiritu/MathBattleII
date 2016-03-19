@@ -14,7 +14,7 @@ class PlayerData {
     private let displayName: String
     private var isConnected: Bool = true
     
-    var score: Int = 0
+    private var score: Int = 0
     
     var currentTiles: [TileValue] = [.Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero]
     var targetNumber: Int = 0
@@ -34,7 +34,6 @@ class PlayerData {
         score = data.objectForKey("score") as! Int
         targetNumber = data.objectForKey("targetNumber") as! Int
         needsToLaunch = data.objectForKey("needsToLaunch") as! Bool
-        delegate?.playerDataHasUpdated(self)
         
         let rawValuesOfCurrentTiles = data.objectForKey("currentTiles") as! [Int]
         currentTiles.removeAll()
@@ -42,6 +41,14 @@ class PlayerData {
             let tileValue = TileValue(rawValue: rawValue) != nil ? TileValue(rawValue: rawValue)! : TileValue.Zero
             currentTiles.append(tileValue)
         }
+    }
+    
+    func getConnectionStatus() -> Bool {
+        return isConnected
+    }
+    
+    func getScore() -> Int {
+        return score
     }
 }
 
