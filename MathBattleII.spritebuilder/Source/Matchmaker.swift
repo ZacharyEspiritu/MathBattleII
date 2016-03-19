@@ -92,6 +92,31 @@ class Matchmaker {
                 print("An error occured when attaching to match data: \(error.description)")
         })
     }
+    
+    private func startCurrentMatch() {
+        // Play some sort of signal sound that the match has been filled and is now starting
+        // OALSimpleAudio.sharedInstance().playEffect("")
+        
+        // Begin 15 second countdown before match starts
+        var countdown: Int = 15
+        NSTimer.schedule(repeatInterval: 1) { timer in
+            countdown--
+            if countdown <= 0 {
+                timer.invalidate()
+            }
+        }
+        
+        // Load match data into temporary memory so the GameplayScene has access to the data
+        
+        // Load scene
+        let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
+        
+        let scene = CCScene()
+        scene.addChild(gameplayScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }
 
 class MatchCreate: CCNode {
