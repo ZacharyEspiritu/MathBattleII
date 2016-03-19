@@ -12,21 +12,46 @@ class PlayerData {
     
     private let uid: String
     private let displayName: String
-    private var isConnected: Bool = true
+    private var isConnected: Bool = true {
+        didSet {
+            delegate?.connectionStatusHasUpdated(self)
+        }
+    }
+    let isHost: Bool
     
-    private var score: Int = 0
+    private var score: Int = 0 {
+        didSet {
+            delegate?.scoreHasUpdated(self)
+        }
+    }
     
-    var currentTiles: [TileValue] = [.Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero]
-    var targetNumber: Int = 0
+    var currentTiles: [TileValue] = [.Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero, .Zero] {
+        didSet {
+            delegate?.currentTilesHaveUpdated(self)
+        }
+    }
     
-    var needsToLaunch: Bool = false
+    var targetNumber: Int = 0 {
+        didSet {
+            delegate?.targetNumberHasUpdated(self)
+        }
+    }
+    
+    var needsToLaunch: Bool = false {
+        didSet {
+            if needsToLaunch {
+                delegate?.needsToLaunchTiles(self)
+            }
+        }
+    }
     
     var delegate: PlayerDataDelegate?
     
     
-    init(data: NSDictionary) {
+    init(data: NSDictionary, isHost: Bool) {
         uid = data.objectForKey("uid") as! String
         displayName = data.objectForKey("displayName") as! String
+        self.isHost = isHost
     }
     
     func updateData(newData data: NSDictionary) {
