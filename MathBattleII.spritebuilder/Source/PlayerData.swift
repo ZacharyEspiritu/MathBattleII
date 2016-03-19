@@ -53,9 +53,33 @@ class PlayerData {
 }
 
 protocol PlayerDataDelegate {
+    /**
+     Called whenever the Player's connection status changes.
+     - parameter playerData:   the `PlayerData` object
+     */
     func connectionStatusHasUpdated(playerData: PlayerData)
+    
+    /**
+     Called whenever the Player's score changes.
+     - parameter playerData:   the `PlayerData` object
+     */
     func scoreHasUpdated(playerData: PlayerData)
+    
+    /**
+     Called whenever the Player's current tile set changes.
+     - parameter playerData:   the `PlayerData` object
+     */
     func currentTilesHaveUpdated(playerData: PlayerData)
+    
+    /**
+     Called whenever the Player's target number updates.
+     - parameter playerData:   the `PlayerData` object
+     */
     func targetNumberHasUpdated(playerData: PlayerData)
+    
+    /**
+     Called whenever the Player's puzzle has been solved and the tiles in his set need to be visually launched.
+     - parameter playerData:   the `PlayerData` object
+     */
     func needsToLaunchTiles(playerData: PlayerData)
 }
