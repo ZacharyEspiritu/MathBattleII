@@ -535,7 +535,6 @@ extension GameplayScene: GameTimerDelegate {
 }
 
 extension GameplayScene: PlayerDataDelegate {
-    
     func connectionStatusHasUpdated(playerData: PlayerData) {
         let connectionStatus: Bool = playerData.getConnectionStatus()
         if connectionStatus {
