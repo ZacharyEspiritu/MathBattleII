@@ -38,7 +38,7 @@ class MainScene: CCNode {
     func segueToUserRegistrationScene() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
-        let userRegistrationScene = CCBReader.load("UserRegistrationScene") as! UserRegistrationScene
+        let userRegistrationScene = CCBReader.load("MatchCreate") as! MatchCreate
         
         let scene = CCScene()
         scene.addChild(userRegistrationScene)
