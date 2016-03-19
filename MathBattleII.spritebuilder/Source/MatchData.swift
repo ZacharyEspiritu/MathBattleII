@@ -10,13 +10,15 @@ import Foundation
 
 class MatchData {
     
+    let matchID: String
     let hostPlayer: PlayerData
     let opposingPlayer: PlayerData
         
     private var matchHasStarted: Bool = false
     
     
-    init(hostPlayer: PlayerData, opposingPlayer: PlayerData) {
+    init(matchID: String, hostPlayer: PlayerData, opposingPlayer: PlayerData) {
+        self.matchID = matchID
         self.hostPlayer = hostPlayer
         self.opposingPlayer = opposingPlayer
     }
