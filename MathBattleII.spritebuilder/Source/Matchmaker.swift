@@ -53,9 +53,13 @@ class Matchmaker {
                         ]
                         ref.childByAppendingPath("opposingPlayer").setValue(userData as [NSObject : AnyObject])
                         
-                        let hostPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary)
-                        let opposingPlayerData = PlayerData(data: userData)
-                        self.currentMatchData = MatchData(hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
+                        // "hostPlayer" refers to the Player on the current device. 
+                        // "opposingPlayer" refers to the player that isn't on the current device.
+                        let hostPlayerData = PlayerData(data: userData, isHost: true)
+                        let opposingPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary, isHost: false)
+                        
+                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
+                        self.currentMatchData?.hostPlayer.delegate = self
                         
                         self.attachToMatchData(atRef: ref)
                         ref.childByAppendingPath("shouldStart").setValue(true)
@@ -116,6 +120,42 @@ class Matchmaker {
         
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
+}
+
+extension Matchmaker: PlayerDataDelegate {
+    func connectionStatusHasUpdated(playerData: PlayerData) {
+        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
+            .childByAppendingPath("isConnected").setValue(playerData.getConnectionStatus())
+    }
+    
+    func scoreHasUpdated(playerData: PlayerData) {
+        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
+            .childByAppendingPath("score").setValue(playerData.getConnectionStatus())
+    }
+    
+    func currentTilesHaveUpdated(playerData: PlayerData) {
+        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        var rawValues: [Int] = []
+        for tile in playerData.currentTiles {
+            rawValues.append(tile.rawValue)
+        }
+        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
+            .childByAppendingPath("currentTiles").setValue(rawValues)
+    }
+    
+    func targetNumberHasUpdated(playerData: PlayerData) {
+        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
+            .childByAppendingPath("targetNumber").setValue(playerData.targetNumber)
+    }
+    
+    func needsToLaunchTiles(playerData: PlayerData) {
+        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
+            .childByAppendingPath("needsToLaunch").setValue(playerData.needsToLaunch)
     }
 }
 
