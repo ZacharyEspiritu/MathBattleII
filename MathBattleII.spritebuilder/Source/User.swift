@@ -22,6 +22,8 @@ class User {
     private var numberOfWins:        Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var numberOfLosses:      Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
+    //private var numberOfSolves:      Int { didSet { delegate?.localUserDataDidUpdate(self) }}
+    
     private var rating:              Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var ratingFloor:         Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
