@@ -162,13 +162,13 @@ extension Matchmaker: PlayerDataDelegate {
     func connectionStatusHasUpdated(playerData: PlayerData) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
         ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("isConnected").setValue(playerData.getConnectionStatus())
+            .childByAppendingPath("isConnected").setValue(playerData.isConnected)
     }
     
     func scoreHasUpdated(playerData: PlayerData) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
         ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("score").setValue(playerData.getScore())
+            .childByAppendingPath("score").setValue(playerData.score)
     }
     
     func currentTilesHaveUpdated(playerData: PlayerData) {

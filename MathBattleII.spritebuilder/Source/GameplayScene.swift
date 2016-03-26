@@ -204,7 +204,7 @@ class GameplayScene: CCNode {
             
             // Multiplayer match handling
             if let multiplayerMatchData = multiplayerMatchData {
-                multiplayerMatchData.hostPlayer.setCurrentTiles(currentTiles: tileArray)
+                multiplayerMatchData.hostPlayer.currentTiles = tileArray
                 multiplayerMatchData.hostPlayer.targetNumber = targetNumber
             }
         }
@@ -568,7 +568,7 @@ extension GameplayScene: GameTimerDelegate {
 
 extension GameplayScene: PlayerDataDelegate {
     func connectionStatusHasUpdated(playerData: PlayerData) {
-        let connectionStatus: Bool = playerData.getConnectionStatus()
+        let connectionStatus: Bool = playerData.isConnected
         if connectionStatus {
             print("The player has reconnected.")
         }
@@ -578,7 +578,7 @@ extension GameplayScene: PlayerDataDelegate {
     }
     
     func scoreHasUpdated(playerData: PlayerData) {
-        if scoreCounter.setScore(forSide: .Top, newScore: playerData.getScore()) {
+        if scoreCounter.setScore(forSide: .Top, newScore: playerData.score) {
             endGame(forReason: .ScoreLimitReached)
         }
     }

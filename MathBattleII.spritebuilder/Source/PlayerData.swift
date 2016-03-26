@@ -56,9 +56,11 @@ class PlayerData {
         if isConnected != data.objectForKey("isConnected") as! Bool {
             isConnected = data.objectForKey("isConnected") as! Bool
         }
+        
         if score != data.objectForKey("score") as! Int {
             score = data.objectForKey("score") as! Int
         }
+        
         if targetNumber != data.objectForKey("targetNumber") as! Int {
             targetNumber = data.objectForKey("targetNumber") as! Int
         }
@@ -83,18 +85,6 @@ class PlayerData {
             }
         }
     }
-    
-    func setCurrentTiles(currentTiles tiles: [TileValue]) {
-        currentTiles = tiles
-    }
-    
-    func getConnectionStatus() -> Bool {
-        return isConnected
-    }
-    
-    func getScore() -> Int {
-        return score
-    }
 }
 
 protocol PlayerDataDelegate {
@@ -117,10 +107,14 @@ protocol PlayerDataDelegate {
     func currentTilesHaveUpdated(playerData: PlayerData)
     
     /**
-     Called whenever the Player's target number updates.
+     Called whenever the Player's target number changes.
      - parameter playerData:   the `PlayerData` object
      */
     func targetNumberHasUpdated(playerData: PlayerData)
     
+    /**
+     Called whenever the Player's set of currently selected tiles changes.
+     - parameter playerData:   the `PlayerData` object
+     */
     func currentlySelectedTilesHaveUpdated(playerData: PlayerData)
 }
