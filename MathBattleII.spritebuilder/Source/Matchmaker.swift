@@ -194,20 +194,6 @@ extension Matchmaker: PlayerDataDelegate {
     }
 }
 
-class MatchCreate: CCNode {
-    
-    weak var matchName: CCTextField!
-    weak var password: CCTextField!
-    
-    func create() {
-        Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName.string, customPassword: password.string)
-    }
-    
-    func join() {
-        Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string)
-    }
-}
-
 enum MatchmakerError: ErrorType {
     case CustomMatchRoomDoesNotExist
     case CustomMatchIncorrectPassword
