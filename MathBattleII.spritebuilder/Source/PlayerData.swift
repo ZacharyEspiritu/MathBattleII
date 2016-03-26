@@ -11,15 +11,15 @@ import Foundation
 class PlayerData {
     
     private let uid: String
-    private let displayName: String
-    private var isConnected: Bool = true {
+    let displayName: String
+    var isConnected: Bool = true {
         didSet {
             delegate?.connectionStatusHasUpdated(self)
         }
     }
     let isHost: Bool
     
-    private var score: Int = 0 {
+    var score: Int = 0 {
         didSet {
             delegate?.scoreHasUpdated(self)
         }
@@ -31,17 +31,15 @@ class PlayerData {
         }
     }
     
-    var targetNumber: Int = 0 {
+    var currentlySelectedTiles: [Int] = [] {
         didSet {
-            delegate?.targetNumberHasUpdated(self)
+            delegate?.currentlySelectedTilesHaveUpdated(self)
         }
     }
     
-    var needsToLaunch: Bool = false {
+    var targetNumber: Int = 0 {
         didSet {
-            if needsToLaunch {
-                delegate?.needsToLaunchTiles(self)
-            }
+            delegate?.targetNumberHasUpdated(self)
         }
     }
     
@@ -55,17 +53,39 @@ class PlayerData {
     }
     
     func updateData(newData data: NSDictionary) {
-        isConnected = data.objectForKey("isConnected") as! Bool
-        score = data.objectForKey("score") as! Int
-        targetNumber = data.objectForKey("targetNumber") as! Int
-        needsToLaunch = data.objectForKey("needsToLaunch") as! Bool
-        
-        let rawValuesOfCurrentTiles = data.objectForKey("currentTiles") as! [Int]
-        currentTiles.removeAll()
-        for rawValue in rawValuesOfCurrentTiles {
-            let tileValue = TileValue(rawValue: rawValue) != nil ? TileValue(rawValue: rawValue)! : TileValue.Zero
-            currentTiles.append(tileValue)
+        if isConnected != data.objectForKey("isConnected") as! Bool {
+            isConnected = data.objectForKey("isConnected") as! Bool
         }
+        if score != data.objectForKey("score") as! Int {
+            score = data.objectForKey("score") as! Int
+        }
+        if targetNumber != data.objectForKey("targetNumber") as! Int {
+            targetNumber = data.objectForKey("targetNumber") as! Int
+        }
+        
+        if let selectedTiles = data.objectForKey("currentlySelectedTiles") as? [Int] {
+            currentlySelectedTiles = selectedTiles
+        }
+        else {
+            if currentlySelectedTiles != [] {
+                currentlySelectedTiles = []
+            }
+        }
+        
+        if let rawValuesOfCurrentTiles = data.objectForKey("currentTiles") as? [Int] {
+            var newTiles: [TileValue] = []
+            for rawValue in rawValuesOfCurrentTiles {
+                let tileValue = TileValue(rawValue: rawValue) != nil ? TileValue(rawValue: rawValue)! : TileValue.Zero
+                newTiles.append(tileValue)
+            }
+            if currentTiles != newTiles {
+                currentTiles = newTiles
+            }
+        }
+    }
+    
+    func setCurrentTiles(currentTiles tiles: [TileValue]) {
+        currentTiles = tiles
     }
     
     func getConnectionStatus() -> Bool {
@@ -102,9 +122,5 @@ protocol PlayerDataDelegate {
      */
     func targetNumberHasUpdated(playerData: PlayerData)
     
-    /**
-     Called whenever the Player's puzzle has been solved and the tiles in his set need to be visually launched.
-     - parameter playerData:   the `PlayerData` object
-     */
-    func needsToLaunchTiles(playerData: PlayerData)
+    func currentlySelectedTilesHaveUpdated(playerData: PlayerData)
 }

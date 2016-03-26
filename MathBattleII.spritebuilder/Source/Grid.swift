@@ -155,7 +155,7 @@ class Grid: CCNode {
      Checks to see if the `Grid` currently has 9 `Tile` objects loaded.
      - returns:   `true` if the `Grid` currently has 9 `Tile` objects loaded
      */
-    private func checkIfTilesExistInGrid() -> Bool {
+    func checkIfTilesExistInGrid() -> Bool {
         for rowIndex in 0..<3 {
             for columnIndex in 0..<3 {
                 if tiles[rowIndex, columnIndex] == nil {

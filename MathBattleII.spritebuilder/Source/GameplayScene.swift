@@ -81,7 +81,9 @@ class GameplayScene: CCNode {
         setupMainDisplay()
         
         // Load new puzzles into play
-        loadNewPuzzle(forSide: .Top)
+        if multiplayerMatchData == nil {
+            loadNewPuzzle(forSide: .Top)
+        }
         loadNewPuzzle(forSide: .Bottom)
         
         setupGameTimer()
@@ -107,15 +109,23 @@ class GameplayScene: CCNode {
      Loads player names from the `UserManager` or displays unknown players as "Guest".
      */
     private func setupMainDisplay() {
-        let user = UserManager.sharedInstance.getCurrentUser()
-        var bottomPlayerDisplayName: String! = (user != nil) ? user!.getDisplayName() : "Guest"
-        if bottomPlayerDisplayName.characters.count > 11 {
-            bottomPlayerDisplayName = "\(bottomPlayerDisplayName.substringToIndex(bottomPlayerDisplayName.startIndex.advancedBy(9)))..."
+        var topDisplayName: String = "Guest"
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            topDisplayName = user.getDisplayName()
+            if topDisplayName.characters.count > 11 {
+                topDisplayName = "\(topDisplayName.substringToIndex(topDisplayName.startIndex.advancedBy(9)))..."
+            }
         }
-        mainDisplay.setBottomPlayerLabel(string: bottomPlayerDisplayName)
+        mainDisplay.setBottomPlayerLabel(string: topDisplayName)
         
-        let topPlayerDisplayName: String! = "Guest"
-        mainDisplay.setTopPlayerLabel(string: topPlayerDisplayName)
+        var bottomDisplayName: String = "Guest"
+        if let multiplayerMatchData = multiplayerMatchData {
+            bottomDisplayName = multiplayerMatchData.opposingPlayer.displayName
+            if bottomDisplayName.characters.count > 11 {
+                bottomDisplayName = "\(bottomDisplayName.substringToIndex(bottomDisplayName.startIndex.advancedBy(9)))..."
+            }
+        }
+        mainDisplay.setTopPlayerLabel(string: bottomDisplayName)
     }
     
     /**
@@ -191,6 +201,12 @@ class GameplayScene: CCNode {
             bottomGrid.loadTiles(array: tileArray)
             bottomTargetNumber = targetNumber
             bottomSampleEquationSolution = sampleEquationSolution
+            
+            // Multiplayer match handling
+            if let multiplayerMatchData = multiplayerMatchData {
+                multiplayerMatchData.hostPlayer.setCurrentTiles(currentTiles: tileArray)
+                multiplayerMatchData.hostPlayer.targetNumber = targetNumber
+            }
         }
     }
     
@@ -241,6 +257,11 @@ class GameplayScene: CCNode {
         if !tappedTile.isSelected() {
             setupEquationLabel(tile: grid.selectTileAtPosition(row: tileCoordinates.0, column: tileCoordinates.1), side: side)
             OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+            
+            // Multiplayer handling code
+            if let multiplayerMatchData = multiplayerMatchData {
+                multiplayerMatchData.hostPlayer.currentlySelectedTiles.append((tileCoordinates.0 * 3) + tileCoordinates.1)
+            }
         }
     }
     
@@ -254,6 +275,11 @@ class GameplayScene: CCNode {
         
         let playerDisplay = (side == .Top) ? topPlayerDisplay : bottomPlayerDisplay
         playerDisplay.clearEquationLabel()
+        
+        // Multiplayer handling code
+        if let multiplayerMatchData = multiplayerMatchData {
+            multiplayerMatchData.hostPlayer.currentlySelectedTiles = []
+        }
     }
     
     /**
@@ -272,6 +298,12 @@ class GameplayScene: CCNode {
         }
         else {
             loadNewPuzzle(forSide: side)
+        }
+        
+        // Multiplayer score update
+        if let multiplayerMatchData = multiplayerMatchData {
+            multiplayerMatchData.hostPlayer.score = scoreCounter.getBottomScore()
+            multiplayerMatchData.hostPlayer.currentlySelectedTiles = []
         }
     }
     
@@ -463,7 +495,7 @@ class GameplayScene: CCNode {
         disableUserInteraction()
         
         // Disable gameTimer
-        gameTimer.pauseTimer()
+        gameTimer?.pauseTimer()
         gameTimer = nil
         
         // Trigger end-game animations
@@ -552,6 +584,10 @@ extension GameplayScene: PlayerDataDelegate {
     }
     
     func currentTilesHaveUpdated(playerData: PlayerData) {
+        print("test")
+        if topGrid.checkIfTilesExistInGrid() {
+            launchTilesAtOpponent(forSide: .Top)
+        }
         topGrid.loadTiles(array: playerData.currentTiles)
     }
     
@@ -559,8 +595,12 @@ extension GameplayScene: PlayerDataDelegate {
         topTargetNumber = playerData.targetNumber
     }
     
-    func needsToLaunchTiles(playerData: PlayerData) {
-        launchTilesAtOpponent(forSide: .Top)
+    func currentlySelectedTilesHaveUpdated(playerData: PlayerData) {
+        let selectedTiles = playerData.currentlySelectedTiles
+        topGrid.clearSelectedTiles()
+        for selectedTile in selectedTiles {
+            topGrid.selectTileAtPosition(row: Int(floor(Double(selectedTile) / 3)), column: selectedTile % 3)
+        }
     }
 }
 

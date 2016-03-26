@@ -18,37 +18,56 @@ class Matchmaker {
     
     func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(customName)")
-        let hostData: NSDictionary = [
-            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
-            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
-            "isConnected": true,
-            "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            "targetNumber": 0,
-            "needsToLaunch": false,
-            "score": 0
-        ]
         let matchData: NSDictionary = [
             "password": customPassword,
             "shouldStart": false,
-            "hostPlayer": hostData,
+            "hostPlayer": NSNull(),
             "opposingPlayer": NSNull()
         ]
         ref.setValue(matchData)
+        attemptToJoinCustomMatch(matchName: customName, password: customPassword)
     }
     
     func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/" + matchName)
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) { // Check if match exists
-                if snapshot.value.objectForKey("opposingPlayer") is NSNull { // Check if match is full
+                if snapshot.value.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
                     if possiblePassword == snapshot.value.objectForKey("password") as! String { // Check if password is correct
                         let userData: NSDictionary = [
                             "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
                             "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
                             "isConnected": true,
                             "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                            "currentlySelectedTiles": [],
                             "targetNumber": 0,
-                            "needsToLaunch": false,
+                            "score": 0
+                        ]
+                        ref.childByAppendingPath("hostPlayer").setValue(userData as [NSObject : AnyObject])
+                        
+                        // "hostPlayer" refers to the Player on the current device.
+                        // "opposingPlayer" refers to the player that isn't on the current device.
+                        let hostPlayerData = PlayerData(data: userData, isHost: true)
+                        
+                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil)
+                        self.currentMatchData?.hostPlayer.delegate = self
+                        
+                        self.attachToPlayerData(atRef: ref.childByAppendingPath("opposingPlayer"))
+                        self.listenForMatchStart(atRef: ref)
+                    }
+                    else {
+                        print("Incorrect password.")
+                    }
+                }
+                else if snapshot.value.objectForKey("opposingPlayer") == nil { // Check if match is full
+                    if possiblePassword == snapshot.value.objectForKey("password") as! String { // Check if password is correct
+                        let userData: NSDictionary = [
+                            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
+                            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
+                            "isConnected": true,
+                            "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                            "currentlySelectedTiles": [],
+                            "targetNumber": 0,
                             "score": 0
                         ]
                         ref.childByAppendingPath("opposingPlayer").setValue(userData as [NSObject : AnyObject])
@@ -61,7 +80,8 @@ class Matchmaker {
                         self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
                         self.currentMatchData?.hostPlayer.delegate = self
                         
-                        self.attachToMatchData(atRef: ref)
+                        self.attachToPlayerData(atRef: ref.childByAppendingPath("hostPlayer"))
+                        self.listenForMatchStart(atRef: ref)
                         ref.childByAppendingPath("shouldStart").setValue(true)
                     }
                     else {
@@ -78,16 +98,14 @@ class Matchmaker {
         })
     }
     
-    func attachToMatchData(atRef ref: Firebase) {
-        ref.observeEventType(.Value,
+    func listenForMatchStart(atRef ref: Firebase) {
+        ref.childByAppendingPath("shouldStart").observeEventType(.Value,
             withBlock: { snapshot in
-                if let matchData = self.currentMatchData {
-                    print("updating data")
-                    matchData.updateData(data: snapshot.value as! NSDictionary)
-                    
-                    if !matchData.hasMatchStarted() {
-                        if snapshot.value.objectForKey("shouldStart") as! Bool {
-                            matchData.setMatchStarted()
+                if let localMatchData = self.currentMatchData {
+                    if !localMatchData.hasMatchStarted() {
+                        if snapshot.value as! Bool {
+                            print("match should start")
+                            localMatchData.setMatchStarted()
                             self.startCurrentMatch()
                         }
                     }
@@ -97,7 +115,21 @@ class Matchmaker {
         })
     }
     
+    func attachToPlayerData(atRef ref: Firebase) {
+        ref.observeEventType(.Value,
+            withBlock: { snapshot in
+                if let localMatchData = self.currentMatchData {
+                    if let updatedMatchData = snapshot.value as? NSDictionary {
+                        localMatchData.opposingPlayer.updateData(newData: updatedMatchData)
+                    }
+                }
+            }, withCancelBlock: { error in
+                print("An error occured when attaching to match data: \(error.description)")
+        })
+    }
+    
     private func startCurrentMatch() {
+        print("match starting")
         // Play some sort of signal sound that the match has been filled and is now starting
         // OALSimpleAudio.sharedInstance().playEffect("")
         
@@ -152,10 +184,10 @@ extension Matchmaker: PlayerDataDelegate {
             .childByAppendingPath("targetNumber").setValue(playerData.targetNumber)
     }
     
-    func needsToLaunchTiles(playerData: PlayerData) {
+    func currentlySelectedTilesHaveUpdated(playerData: PlayerData) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
         ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("needsToLaunch").setValue(playerData.needsToLaunch)
+            .childByAppendingPath("currentlySelectedTiles").setValue(playerData.currentlySelectedTiles)
     }
 }
 
