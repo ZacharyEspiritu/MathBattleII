@@ -453,7 +453,7 @@
 						<key>value</key>
 						<array>
 							<real>41.320911407470703</real>
-							<real>345.1376953125</real>
+							<real>354.1468505859375</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -660,7 +660,7 @@
 						<key>value</key>
 						<array>
 							<real>41.320911407470703</real>
-							<real>291.19265747070312</real>
+							<real>285.81649780273438</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1201,7 +1201,7 @@
 						<key>value</key>
 						<array>
 							<real>41.320911407470703</real>
-							<real>168.47157287597656</real>
+							<real>164.51551818847656</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1375,6 +1375,8 @@ password</string>
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2027,8 +2029,6 @@ password</string>
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
