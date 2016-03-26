@@ -12,7 +12,7 @@ class MatchData {
     
     let matchID: String
     let hostPlayer: PlayerData
-    let opposingPlayer: PlayerData!
+    var opposingPlayer: PlayerData!
         
     private var matchHasStarted: Bool = false
     

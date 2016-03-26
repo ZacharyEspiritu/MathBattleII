@@ -74,8 +74,8 @@ class Matchmaker {
                         
                         // "hostPlayer" refers to the Player on the current device. 
                         // "opposingPlayer" refers to the player that isn't on the current device.
-                        let hostPlayerData = PlayerData(data: userData, isHost: true)
-                        let opposingPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary, isHost: false)
+                        let hostPlayerData = PlayerData(data: userData, isHost: false)
+                        let opposingPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
                         
                         self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
                         self.currentMatchData?.hostPlayer.delegate = self
@@ -120,6 +120,9 @@ class Matchmaker {
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
                     if let updatedMatchData = snapshot.value as? NSDictionary {
+                        if localMatchData.opposingPlayer == nil { // Only run once if the player on the device was the one to create the match
+                            localMatchData.opposingPlayer = PlayerData(data: updatedMatchData, isHost: false)
+                        }
                         localMatchData.opposingPlayer.updateData(newData: updatedMatchData)
                     }
                 }
