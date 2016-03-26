@@ -198,3 +198,9 @@ enum MatchmakerError: ErrorType {
     case CustomMatchRoomDoesNotExist
     case CustomMatchIncorrectPassword
 }
+
+enum MatchStatus: String {
+    case WaitingForPlayers = "WaitingForPlayers"
+    case Gameplay = "Gameplay"
+    case Ended = "Ended"
+}
