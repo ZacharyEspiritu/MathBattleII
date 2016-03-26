@@ -20,4 +20,14 @@ class MatchCreate: CCNode {
     func join() {
         Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string)
     }
+    
+    func menu() {
+        let gameplayScene = CCBReader.load("MainScene") as! MainScene
+        
+        let scene = CCScene()
+        scene.addChild(gameplayScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }
