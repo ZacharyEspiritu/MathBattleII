@@ -32,8 +32,8 @@ class Matchmaker {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/" + matchName)
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) { // Check if match exists
-                if snapshot.value.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
-                    if possiblePassword == snapshot.value.objectForKey("password") as! String { // Check if password is correct
+                if possiblePassword == snapshot.value.objectForKey("password") as! String {
+                    if snapshot.value.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
                         let userData: NSDictionary = [
                             "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
                             "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
@@ -55,12 +55,7 @@ class Matchmaker {
                         self.attachToPlayerData(atRef: ref.childByAppendingPath("opposingPlayer"))
                         self.listenForMatchStart(atRef: ref)
                     }
-                    else {
-                        print("Incorrect password.")
-                    }
-                }
-                else if snapshot.value.objectForKey("opposingPlayer") == nil { // Check if match is full
-                    if possiblePassword == snapshot.value.objectForKey("password") as! String { // Check if password is correct
+                    else if snapshot.value.objectForKey("opposingPlayer") == nil { // Check if match is full
                         let userData: NSDictionary = [
                             "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
                             "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
@@ -85,11 +80,11 @@ class Matchmaker {
                         ref.childByAppendingPath("shouldStart").setValue(true)
                     }
                     else {
-                        print("Incorrect password.")
+                        print("Match is full.")
                     }
                 }
                 else {
-                    print("Match is full.")
+                    print("Incorrect password.")
                 }
             }
             else {
