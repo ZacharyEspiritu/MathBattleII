@@ -18,14 +18,18 @@ class Matchmaker {
     
     func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(customName)")
-        let matchData: NSDictionary = [
-            "password": customPassword,
-            "shouldStart": false,
-            "hostPlayer": NSNull(),
-            "opposingPlayer": NSNull()
-        ]
-        ref.setValue(matchData)
-        attemptToJoinCustomMatch(matchName: customName, password: customPassword)
+        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if !(snapshot.value is NSNull) { // Check if match doesn't already exist with given name
+                let matchData: NSDictionary = [
+                    "password": customPassword,
+                    "shouldStart": false,
+                    "hostPlayer": NSNull(),
+                    "opposingPlayer": NSNull()
+                ]
+                ref.setValue(matchData)
+                self.attemptToJoinCustomMatch(matchName: customName, password: customPassword)
+            }
+        })
     }
     
     func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String) {
@@ -93,7 +97,7 @@ class Matchmaker {
         })
     }
     
-    func listenForMatchStart(atRef ref: Firebase) {
+    private func listenForMatchStart(atRef ref: Firebase) {
         ref.childByAppendingPath("shouldStart").observeEventType(.Value,
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
@@ -110,7 +114,7 @@ class Matchmaker {
         })
     }
     
-    func attachToPlayerData(atRef ref: Firebase) {
+    private func attachToPlayerData(atRef ref: Firebase) {
         ref.observeEventType(.Value,
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
