@@ -23,6 +23,10 @@ class MatchData {
         self.opposingPlayer = opposingPlayer
     }
     
+    /**
+     Updates the `MatchData` object with the supplied data.
+     - parameter newData:   an `NSDictionary` of the new data
+     */
     func updateData(data data: NSDictionary) {
         if let hostData = data.objectForKey("hostPlayer") as? NSDictionary {
             hostPlayer.updateData(newData: hostData)
