@@ -52,6 +52,11 @@ class PlayerData {
         self.isHost = isHost
     }
     
+    /**
+     Updates the `PlayerData` object with the supplied data.
+     By extension, if the data for a variable has changed, it will call `PlayerDataDelegate` functions for the corresponding variable.
+     - parameter newData:   an `NSDictionary` of the new data
+     */
     func updateData(newData data: NSDictionary) {
         if isConnected != data.objectForKey("isConnected") as! Bool {
             isConnected = data.objectForKey("isConnected") as! Bool
