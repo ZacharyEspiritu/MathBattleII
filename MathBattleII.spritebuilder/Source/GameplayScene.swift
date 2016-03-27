@@ -218,26 +218,28 @@ class GameplayScene: CCNode {
      */
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         let sideTouched: Side = (touch.locationInWorld().y < CCDirector.sharedDirector().viewSize().height / 2) ? .Bottom : .Top
-        let sideGroupingNode: CCNode = (sideTouched == .Top) ? topSide : bottomSide
-        let grid: Grid = (sideTouched == .Top) ? topGrid : bottomGrid
-        
-        let locationInNode = touch.locationInNode(sideGroupingNode)
-        if CGRectContainsPoint(grid.boundingBox(), locationInNode) { // Tile tapped
-            updateTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
-        }
-        else {
-            let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
-            let locationInWorld = touch.locationInNode(self)
-            if CGRectContainsPoint(clearButton.boundingBox(), locationInWorld) { // Clear button tapped
-                clearCurrentlySelectedTiles(onSide: sideTouched)
-                OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        if !(multiplayerMatchData != nil && sideTouched == .Top) { // Only allow .Top side touches if not online multiplayer
+            let sideGroupingNode: CCNode = (sideTouched == .Top) ? topSide : bottomSide
+            let grid: Grid = (sideTouched == .Top) ? topGrid : bottomGrid
+            
+            let locationInNode = touch.locationInNode(sideGroupingNode)
+            if CGRectContainsPoint(grid.boundingBox(), locationInNode) { // Tile tapped
+                updateTileTappedInGrid(locationInGrid: touch.locationInNode(grid), onSide: sideTouched)
             }
             else {
-                let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
-                if CGRectContainsPoint(equalsButton.boundingBox(), locationInWorld) { // Equals button tapped
-                    if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
-                        completePuzzleForSide(side: sideTouched)
-                        OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+                let clearButton: CCSprite = (sideTouched == .Top) ? topClearButton : bottomClearButton
+                let locationInWorld = touch.locationInNode(self)
+                if CGRectContainsPoint(clearButton.boundingBox(), locationInWorld) { // Clear button tapped
+                    clearCurrentlySelectedTiles(onSide: sideTouched)
+                    OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+                }
+                else {
+                    let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
+                    if CGRectContainsPoint(equalsButton.boundingBox(), locationInWorld) { // Equals button tapped
+                        if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
+                            completePuzzleForSide(side: sideTouched)
+                            OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+                        }
                     }
                 }
             }
