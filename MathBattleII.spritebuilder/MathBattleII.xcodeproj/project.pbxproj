@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55021A3E1C53375200AD2EF4 /* Array2DTests.swift */; };
+		550964CA1CA8C0FA00C57D1B /* EqualsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550964C91CA8C0FA00C57D1B /* EqualsButton.swift */; };
+		550964D41CA8C42B00C57D1B /* buzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 550964D31CA8C42B00C57D1B /* buzz.wav */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */; };
 		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
@@ -206,6 +208,8 @@
 /* Begin PBXFileReference section */
 		0043BC0454B4F7DDAE915EFE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55021A3E1C53375200AD2EF4 /* Array2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2DTests.swift; sourceTree = "<group>"; };
+		550964C91CA8C0FA00C57D1B /* EqualsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EqualsButton.swift; path = Source/EqualsButton.swift; sourceTree = "<group>"; };
+		550964D31CA8C42B00C57D1B /* buzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buzz.wav; sourceTree = "<group>"; };
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 				55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */,
 				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
 				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
+				550964C91CA8C0FA00C57D1B /* EqualsButton.swift */,
 				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
 				5514A5FC1C555F3E0096661F /* SlidingDoor.swift */,
 				555050E31C49D79F0037F3A7 /* Tile.swift */,
@@ -772,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				55AD60FE1C8616E500F9F9A7 /* Cuban Sandwich.mp3 */,
+				550964D31CA8C42B00C57D1B /* buzz.wav */,
 				55AD60F61C8616D300F9F9A7 /* ding.wav */,
 				55AD60FA1C8616DA00F9F9A7 /* doors.wav */,
 				55AD61231C861DDA00F9F9A7 /* pop.wav */,
@@ -1028,6 +1034,7 @@
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				550964D41CA8C42B00C57D1B /* buzz.wav in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
@@ -1175,6 +1182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550964CA1CA8C0FA00C57D1B /* EqualsButton.swift in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				55D9BBF61C3E11D100884486 /* User.swift in Sources */,
 				5524FB821C66C1A800CC1318 /* UserLoginScene.swift in Sources */,
