@@ -10,6 +10,7 @@
 		55021A3F1C53375200AD2EF4 /* Array2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55021A3E1C53375200AD2EF4 /* Array2DTests.swift */; };
 		550964CA1CA8C0FA00C57D1B /* EqualsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550964C91CA8C0FA00C57D1B /* EqualsButton.swift */; };
 		550964D41CA8C42B00C57D1B /* buzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 550964D31CA8C42B00C57D1B /* buzz.wav */; };
+		550964DC1CA8CF3F00C57D1B /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550964DB1CA8CF3F00C57D1B /* MatchStatus.swift */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */; };
 		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
@@ -210,6 +211,7 @@
 		55021A3E1C53375200AD2EF4 /* Array2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2DTests.swift; sourceTree = "<group>"; };
 		550964C91CA8C0FA00C57D1B /* EqualsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EqualsButton.swift; path = Source/EqualsButton.swift; sourceTree = "<group>"; };
 		550964D31CA8C42B00C57D1B /* buzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buzz.wav; sourceTree = "<group>"; };
+		550964DB1CA8CF3F00C57D1B /* MatchStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStatus.swift; path = Source/MatchStatus.swift; sourceTree = "<group>"; };
 		550A06141C3C926B00FC4FCD /* MathBattleIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathBattleIITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				558D02621C7BD08B009719D6 /* Matchmaker.swift */,
+				550964DB1CA8CF3F00C57D1B /* MatchStatus.swift */,
 				550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */,
 				557FEDAB1C8D2D11001A5F71 /* MatchData.swift */,
 				557FEDAF1C8D2D1C001A5F71 /* PlayerData.swift */,
@@ -1186,6 +1189,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				55D9BBF61C3E11D100884486 /* User.swift in Sources */,
 				5524FB821C66C1A800CC1318 /* UserLoginScene.swift in Sources */,
+				550964DC1CA8CF3F00C57D1B /* MatchStatus.swift in Sources */,
 				557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */,
 				55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */,
 				55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
