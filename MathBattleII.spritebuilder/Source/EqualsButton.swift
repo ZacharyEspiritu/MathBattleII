@@ -10,6 +10,9 @@ import Foundation
 
 class EqualsButton: CCSprite {
     
+    /**
+     Visually shakes the `EqualsButton` and tints it red temporarily.
+     */
     func shakeButton() {
         let position = CGPoint(x: 0, y: 0)
         
