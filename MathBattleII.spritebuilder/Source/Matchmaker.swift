@@ -138,22 +138,23 @@ class Matchmaker {
         // Begin 15 second countdown before match starts
         var countdown: Int = 15
         NSTimer.schedule(repeatInterval: 1) { timer in
-            countdown--
+            countdown -= 1
+            OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+            print(countdown)
+            
             if countdown <= 0 {
+                // Load scene
+                let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
+                
+                let scene = CCScene()
+                scene.addChild(gameplayScene)
+                
+                let transition = CCTransition(fadeWithDuration: 0.5)
+                CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+                
                 timer.invalidate()
             }
         }
-        
-        // Load match data into temporary memory so the GameplayScene has access to the data
-        
-        // Load scene
-        let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
-        
-        let scene = CCScene()
-        scene.addChild(gameplayScene)
-        
-        let transition = CCTransition(fadeWithDuration: 0.5)
-        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
 }
 
