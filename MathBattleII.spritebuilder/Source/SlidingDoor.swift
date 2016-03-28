@@ -12,10 +12,16 @@ class SlidingDoor: CCNode {
     
     weak var label: CountdownDisplay!
     
+    /**
+     Triggers the `SlidingDoor` open animation.
+     */
     func openDoors() {
         self.animationManager.runAnimationsForSequenceNamed("OpenDoors")
     }
     
+    /**
+     Triggers the `SlidingDoor` close animation.
+     */
     func closeDoors() {
         self.animationManager.runAnimationsForSequenceNamed("CloseDoors")
     }
