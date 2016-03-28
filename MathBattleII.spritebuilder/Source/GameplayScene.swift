@@ -525,14 +525,17 @@ class GameplayScene: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("doors.wav")
         
         // Determine winner and update stats
-        let winner: Side? = scoreCounter.getCurrentLeader()
-        if let currentUser = UserManager.sharedInstance.getCurrentUser() {
-            currentUser.incrementNumberOfGamesPlayed()
-            if winner == .Bottom {
-                currentUser.incrementNumberOfWins()
-            }
-            else {
-                currentUser.incrementNumberOfLosses()
+        if multiplayerMatchData != nil {
+            let winner: Side? = scoreCounter.getCurrentLeader()
+            if let currentUser = UserManager.sharedInstance.getCurrentUser() {
+                currentUser.addToNumberOfSolves(newSolves: scoreCounter.getBottomScore())
+                currentUser.incrementNumberOfGamesPlayed()
+                if winner == .Bottom {
+                    currentUser.incrementNumberOfWins()
+                }
+                else {
+                    currentUser.incrementNumberOfLosses()
+                }
             }
         }
         

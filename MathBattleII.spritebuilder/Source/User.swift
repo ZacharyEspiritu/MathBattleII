@@ -56,6 +56,7 @@ class User {
             "numberOfGamesPlayed": numberOfGamesPlayed,
             "numberOfWins": numberOfWins,
             "numberOfLosses": numberOfLosses,
+            "numberOfSolves": numberOfSolves,
             "provider": provider,
             "rating": rating,
             "ratingFloor": ratingFloor,
@@ -132,6 +133,11 @@ class User {
     func setRatingFloor(newRatingFloor newRatingFloor: Int) -> Int {
         ratingFloor = newRatingFloor
         return ratingFloor
+    }
+    
+    func addToNumberOfSolves(newSolves newSolves: Int) -> Int {
+        numberOfSolves += newSolves
+        return numberOfSolves
     }
     
     func addFriend(displayName displayName: String) -> [String] {
