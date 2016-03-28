@@ -43,10 +43,18 @@ class ScoreCounter: CCSprite {
         return currentLeader
     }
     
+    /**
+     Returns the score of the top player.
+     - returns:   the score of the top player
+     */
     func getTopScore() -> Int {
         return topScore
     }
     
+    /**
+     Returns the score of the bottom player.
+     - returns:   the score of the bottom player
+     */
     func getBottomScore() -> Int {
         return bottomScore
     }
@@ -118,12 +126,12 @@ class ScoreCounter: CCSprite {
     func increaseScore(forSide side: Side) -> Bool {
         switch side {
         case .Top:
-            topScore++
+            topScore += 1
             if topScore == topScoreLimit {
                 return true
             }
         case .Bottom:
-            bottomScore++
+            bottomScore += 1
             if bottomScore == bottomScoreLimit {
                 return true
             }
@@ -131,6 +139,13 @@ class ScoreCounter: CCSprite {
         return false
     }
     
+    /**
+     Sets the score for the `Side` parameter to the specified `newScore`
+     Also checks if the new score has reached the `scoreLimit`.
+     - parameter forSide:    the `Side` to increase the score
+     - parameter newScore:   the new score of the `Side`
+     - returns:              `true` if the new score has reached the `scoreLimit`
+     */
     func setScore(forSide side: Side, newScore score: Int) -> Bool {
         switch side {
         case .Top:
