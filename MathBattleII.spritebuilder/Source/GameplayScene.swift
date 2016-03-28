@@ -252,7 +252,8 @@ class GameplayScene: CCNode {
     
     /**
      Determines which `Tile` was tapped in the `Grid` on the specified `Side` and passes it to the `setupEquationLabel(tile:side:)` function.
-     **Note:** this function is different from `determinePositionOfTappedTile(touchLocationInGrid:side:)` as the aforementioned function returns a tuple of format `(rowIndex, columnIndex)`. This tuple is used in this function to determine the actual `Tile` object tapped.
+     **Note:** this function is different from `determinePositionOfTappedTile(touchLocationInGrid:side:)` as the aforementioned function 
+     returns a tuple of format `(rowIndex, columnIndex)`. This tuple is used in this function to determine the actual `Tile` object tapped.
      - parameter locationInGrid:   the `CGPoint` location of the tap in the `Grid` node
      - parameter onSide:           the `Side` of the `Grid` where the tap occurred
      */
@@ -314,7 +315,9 @@ class GameplayScene: CCNode {
     }
     
     /**
-     Moves all tiles from the `Grid` on the inputted `side` to their respective `launchedTileHolder` to correct drawing order issues, then triggers an animation that launches the `Tile` sprites towards the opposite side in the order they were inputted into the equation.
+     Moves all tiles from the `Grid` on the inputted `side` to their respective `launchedTileHolder` to 
+     correct drawing order issues, then triggers an animation that launches the `Tile` sprites towards the 
+     opposite side in the order they were inputted into the equation.
      - parameter forSide:   the `Side` of the `Grid` to launch the tiles
      */
     private func launchTilesAtOpponent(forSide side: Side) {
