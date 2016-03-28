@@ -17,7 +17,7 @@ class GameplayScene: CCNode {
     weak var topLaunchedTileHolder, bottomLaunchedTileHolder: CCNode!
     weak var topPlayerDisplay, bottomPlayerDisplay: PlayerDisplay!
     weak var topHUDBar, bottomHUDBar: CCSprite!
-    weak var topEqualsButton, bottomEqualsButton: CCSprite!
+    weak var topEqualsButton, bottomEqualsButton: EqualsButton!
     weak var topClearButton, bottomClearButton: CCSprite!
     
     weak var mainDisplay: MainDisplay!
@@ -234,11 +234,15 @@ class GameplayScene: CCNode {
                     OALSimpleAudio.sharedInstance().playEffect("pop.wav")
                 }
                 else {
-                    let equalsButton: CCSprite = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
+                    let equalsButton: EqualsButton = (sideTouched == .Top) ? topEqualsButton : bottomEqualsButton
                     if CGRectContainsPoint(equalsButton.boundingBox(), locationInWorld) { // Equals button tapped
                         if checkIfRightAnswer(selectedTiles: grid.getCurrentlySelectedTiles(), side: sideTouched) {
                             completePuzzleForSide(side: sideTouched)
                             OALSimpleAudio.sharedInstance().playEffect("ding.wav")
+                        }
+                        else {
+                            equalsButton.shakeButton()
+                            OALSimpleAudio.sharedInstance().playEffect("buzz.wav", volume: 0.25, pitch: 1, pan: 1, loop: false)
                         }
                     }
                 }

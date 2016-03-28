@@ -146,8 +146,6 @@
 						<array/>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3657,7 +3655,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string></string>
+				<string>EqualsButton</string>
 				<key>displayName</key>
 				<string>topEqualsButton</string>
 				<key>memberVarAssignmentName</key>
@@ -3764,6 +3762,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3889,7 +3889,7 @@
 				<key>children</key>
 				<array/>
 				<key>customClass</key>
-				<string></string>
+				<string>EqualsButton</string>
 				<key>displayName</key>
 				<string>bottomEqualsButton</string>
 				<key>memberVarAssignmentName</key>
