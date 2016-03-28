@@ -60,6 +60,7 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:@"doors.wav"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"beep.wav"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"pop.wav"];
+    [[OALSimpleAudio sharedInstance] preloadEffect:@"buzz.wav"];
     
     return YES;
 }
