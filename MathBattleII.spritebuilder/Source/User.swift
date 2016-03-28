@@ -22,7 +22,7 @@ class User {
     private var numberOfWins:        Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var numberOfLosses:      Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
-    //private var numberOfSolves:      Int { didSet { delegate?.localUserDataDidUpdate(self) }}
+    private var numberOfSolves:      Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
     private var rating:              Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var ratingFloor:         Int { didSet { delegate?.localUserDataDidUpdate(self) }}
@@ -35,7 +35,7 @@ class User {
     
     // MARK: Utility Functions
     
-    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, rating: Int, ratingFloor: Int, friends: [String]) {
+    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, friends: [String]) {
         self.uid = uid
         self.displayName = displayName
         self.email = email
@@ -43,6 +43,7 @@ class User {
         self.numberOfGamesPlayed = numberOfGamesPlayed
         self.numberOfWins = numberOfWins
         self.numberOfLosses = numberOfLosses
+        self.numberOfSolves = numberOfSolves
         self.rating = rating
         self.ratingFloor = ratingFloor
         self.friends = friends

@@ -48,6 +48,7 @@ class RegistrationManager {
             "numberOfGamesPlayed": 0,
             "numberOfWins": 0,
             "numberOfLosses": 0,
+            "numberOfSolves": 0,
             "provider": "password",
             "rating": 1000,
             "ratingFloor": 700,
