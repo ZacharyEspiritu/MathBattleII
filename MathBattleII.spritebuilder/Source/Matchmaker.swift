@@ -19,7 +19,7 @@ class Matchmaker {
     func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
         let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(customName)")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if !(snapshot.value is NSNull) { // Check if match doesn't already exist with given name
+            if snapshot.value is NSNull { // Check if match doesn't already exist with given name
                 let matchData: NSDictionary = [
                     "password": customPassword,
                     "shouldStart": false,
@@ -28,6 +28,9 @@ class Matchmaker {
                 ]
                 ref.setValue(matchData)
                 self.attemptToJoinCustomMatch(matchName: customName, password: customPassword)
+            }
+            else {
+                print("match already exists with given name")
             }
         })
     }
