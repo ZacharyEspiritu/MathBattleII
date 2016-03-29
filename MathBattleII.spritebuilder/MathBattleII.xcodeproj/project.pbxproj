@@ -57,6 +57,8 @@
 		55D9BBF61C3E11D100884486 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
+		55F2136F1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2136E1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift */; };
+		55F213731CAB3CF10028AD4A /* String+AlphanumericChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F213721CAB3CF10028AD4A /* String+AlphanumericChecker.swift */; };
 		55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */; };
 		55F23E641C3DA1FF007EE53F /* ELOManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */; };
 		55F23E651C3DA35E007EE53F /* ELOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */; };
@@ -256,6 +258,8 @@
 		55D9BBF51C3E11D100884486 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Source/User.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		55F2136E1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchPopoverView.swift; path = Source/CustomMatchPopoverView.swift; sourceTree = "<group>"; };
+		55F213721CAB3CF10028AD4A /* String+AlphanumericChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+AlphanumericChecker.swift"; path = "Source/String+AlphanumericChecker.swift"; sourceTree = "<group>"; };
 		55F23E5F1C3DA1D5007EE53F /* ELOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ELOManager.swift; path = Source/ELOManager.swift; sourceTree = "<group>"; };
 		55F23E631C3DA1FF007EE53F /* ELOManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ELOManagerTests.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
@@ -443,6 +447,8 @@
 				558D02621C7BD08B009719D6 /* Matchmaker.swift */,
 				550964DB1CA8CF3F00C57D1B /* MatchStatus.swift */,
 				550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */,
+				55F213721CAB3CF10028AD4A /* String+AlphanumericChecker.swift */,
+				55F2136E1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift */,
 				550964DF1CA981E600C57D1B /* CustomMatchPopoverView.xib */,
 				557FEDAB1C8D2D11001A5F71 /* MatchData.swift */,
 				557FEDAF1C8D2D1C001A5F71 /* PlayerData.swift */,
@@ -1212,6 +1218,7 @@
 				558E3D6C1C9A4D1B00DCADF9 /* Array+Randomizer.swift in Sources */,
 				558D02631C7BD08B009719D6 /* Matchmaker.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
+				55F2136F1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */,
 				55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */,
@@ -1222,6 +1229,7 @@
 				55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */,
+				55F213731CAB3CF10028AD4A /* String+AlphanumericChecker.swift in Sources */,
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				558070221C53C713001CFCFF /* TileType.swift in Sources */,
 				555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */,
