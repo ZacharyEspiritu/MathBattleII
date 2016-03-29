@@ -28,6 +28,7 @@ class Matchmaker {
                 ]
                 ref.setValue(matchData)
                 self.attemptToJoinCustomMatch(matchName: customName, password: customPassword)
+                print("Match created with name \(customName)")
             }
             else {
                 print("match already exists with given name")
@@ -135,8 +136,6 @@ class Matchmaker {
     
     private func startCurrentMatch() {
         print("match starting")
-        // Play some sort of signal sound that the match has been filled and is now starting
-        // OALSimpleAudio.sharedInstance().playEffect("")
         
         // Begin 15 second countdown before match starts
         var countdown: Int = 15
