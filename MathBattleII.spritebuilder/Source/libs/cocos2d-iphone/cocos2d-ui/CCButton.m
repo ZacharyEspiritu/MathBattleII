@@ -305,8 +305,8 @@
             
             if (_zoomWhenHighlighted)
             {
-                [_label runAction:[CCActionScaleTo actionWithDuration:0.1 scaleX:_originalScaleX*1.2 scaleY:_originalScaleY*1.2]];
-                [_background runAction:[CCActionScaleTo actionWithDuration:0.1 scaleX:_originalScaleX*1.2 scaleY:_originalScaleY*1.2]];
+                [_label runAction:[CCActionScaleTo actionWithDuration:0.05 scaleX:_originalScaleX*0.95 scaleY:_originalScaleY*0.95]];
+                [_background runAction:[CCActionScaleTo actionWithDuration:0.05 scaleX:_originalScaleX*0.95 scaleY:_originalScaleY*0.95]];
             }
         }
         else
