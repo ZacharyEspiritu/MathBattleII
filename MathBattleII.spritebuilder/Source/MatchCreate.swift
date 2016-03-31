@@ -38,15 +38,30 @@ class MatchCreate: CCNode {
         let popover = NSBundle.mainBundle().loadNibNamed("CustomMatchPopoverView", owner: self, options: nil)[0] as! CustomMatchPopoverView
         popover.frame = CGRectMake(0, 0, 275, 188)
         popover.center = CGPointMake(mainView.frame.size.width / 2, mainView.frame.size.height / 2)
-        popover.clipsToBounds = true
-        
         popover.layer.cornerRadius = 10.0
-        popover.layer.shadowColor = UIColor.blackColor().CGColor
-        popover.layer.shadowOffset = CGSizeZero
-        popover.layer.shadowRadius = 5.0
-        popover.layer.shadowOpacity = 0.5
-        popover.layer.masksToBounds = true
+        popover.clipsToBounds = true
+        popover.delegate = self
         
+        popover.center.y += mainView.bounds.height
         mainView.addSubview(popover)
+        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseOut], animations: {
+            popover.center = CGPointMake(mainView.frame.size.width / 2, mainView.frame.size.height / 2)
+        }, completion: nil)
+    }
+    
+    func hidePopup(view view: CustomMatchPopoverView) {
+        let mainView = CCDirector.sharedDirector().view
+        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseIn],
+            animations: {
+                view.center.y += mainView.bounds.height
+            }, completion: { Void in
+                view.removeFromSuperview()
+        })
+    }
+}
+
+extension MatchCreate: CustomMatchPopoverViewDelegate {
+    func viewNeedsToBeRemoved(view: CustomMatchPopoverView) {
+        hidePopup(view: view)
     }
 }

@@ -18,7 +18,9 @@ class CustomMatchPopoverView: UIView {
     @IBOutlet weak var lobbyPasswordTextField: UITextField!
     
     @IBOutlet weak var createMatchButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
+    var delegate: CustomMatchPopoverViewDelegate? = nil
     
     @IBAction func createNewMatch() {
         guard let lobbyName = lobbyNameTextField.text else {
@@ -33,6 +35,10 @@ class CustomMatchPopoverView: UIView {
         }
     }
     
+    @IBAction func cancelMatchCreation() {
+        delegate?.viewNeedsToBeRemoved(self)
+    }
+    
     private func validateCustomMatchString(string string: String) -> Bool {
         if string.characters.count >= 5 {
             if string.containsOnlyAlphanumericCharacters() {
@@ -41,4 +47,8 @@ class CustomMatchPopoverView: UIView {
         }
         return false
     }
+}
+
+protocol CustomMatchPopoverViewDelegate {
+    func viewNeedsToBeRemoved(view: CustomMatchPopoverView)
 }

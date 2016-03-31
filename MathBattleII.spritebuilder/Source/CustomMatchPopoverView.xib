@@ -28,40 +28,93 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvR-ih-FK0">
-                    <rect key="frame" x="12" y="141" width="576" height="37"/>
+                    <rect key="frame" x="12" y="141" width="493" height="37"/>
                     <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="37" id="ZLG-wb-S96"/>
+                        <constraint firstAttribute="height" constant="37" id="mF5-af-gSH"/>
+                        <constraint firstAttribute="height" constant="37" id="qZO-oj-mCi"/>
+                        <constraint firstAttribute="height" constant="37" id="zOM-rz-tqN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="Create Match">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="qZO-oj-mCi"/>
+                            <exclude reference="zOM-rz-tqN"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="qZO-oj-mCi"/>
+                            <exclude reference="zOM-rz-tqN"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="createNewMatch" destination="iN0-l3-epB" eventType="touchUpInside" id="FVK-Js-3gR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwd-n7-6wS">
+                    <rect key="frame" x="513" y="141" width="75" height="37"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="7JR-kj-jQe"/>
+                        <constraint firstAttribute="height" constant="37" id="Kdx-tZ-eUt"/>
+                        <constraint firstAttribute="height" constant="37" id="L5B-it-M6A"/>
+                        <constraint firstAttribute="width" constant="75" id="WMu-JV-zfD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Kdx-tZ-eUt"/>
+                            <exclude reference="L5B-it-M6A"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact-widthClass=compact">
+                        <mask key="constraints">
+                            <exclude reference="Kdx-tZ-eUt"/>
+                            <include reference="L5B-it-M6A"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="cancelMatchCreation" destination="iN0-l3-epB" eventType="touchUpInside" id="mP2-M3-EXW"/>
+                        <action selector="createNewMatch" destination="iN0-l3-epB" eventType="touchUpInside" id="vcr-np-nL3"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Jwd-n7-6wS" firstAttribute="leading" secondItem="ZvR-ih-FK0" secondAttribute="trailing" constant="12" id="3yJ-BJ-PMi"/>
+                <constraint firstItem="ZvR-ih-FK0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="51Y-OV-1U8"/>
                 <constraint firstItem="ZvR-ih-FK0" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="12" id="6KK-lh-5Se"/>
-                <constraint firstItem="ZvR-ih-FK0" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="12" id="6Mu-Sl-hL5"/>
                 <constraint firstItem="Usf-DV-7bk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="8fx-PO-zA5"/>
-                <constraint firstItem="ZvR-ih-FK0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="Gcj-Mn-KKs"/>
                 <constraint firstAttribute="trailing" secondItem="zA4-fh-ne0" secondAttribute="trailing" id="I6i-Io-yHm"/>
                 <constraint firstItem="ibD-3n-GWn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="J9G-uW-RAB"/>
+                <constraint firstItem="ZvR-ih-FK0" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="12" id="KYc-dB-JRC">
+                    <variation key="heightClass=compact-widthClass=compact" constant="8"/>
+                </constraint>
+                <constraint firstItem="Jwd-n7-6wS" firstAttribute="leading" secondItem="ZvR-ih-FK0" secondAttribute="trailing" constant="12" id="Nvw-Ih-wYm"/>
                 <constraint firstItem="ibD-3n-GWn" firstAttribute="top" secondItem="zA4-fh-ne0" secondAttribute="bottom" constant="12" id="PG1-FA-lHb"/>
-                <constraint firstAttribute="trailing" secondItem="ZvR-ih-FK0" secondAttribute="trailing" constant="12" id="TYS-2k-rAz"/>
                 <constraint firstItem="zA4-fh-ne0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WPE-v8-cQB"/>
                 <constraint firstAttribute="trailing" secondItem="zA4-fh-ne0" secondAttribute="trailing" id="cCn-o8-PtY"/>
                 <constraint firstItem="zA4-fh-ne0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eJq-14-evw"/>
-                <constraint firstAttribute="trailing" secondItem="ZvR-ih-FK0" secondAttribute="trailing" constant="12" id="gE3-4P-5rp"/>
+                <constraint firstAttribute="trailing" secondItem="ZvR-ih-FK0" secondAttribute="trailing" constant="12" id="fku-f4-DLy"/>
+                <constraint firstItem="ZvR-ih-FK0" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="8" id="gJz-NG-CcR"/>
+                <constraint firstItem="ZvR-ih-FK0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="gVg-u0-QWd">
+                    <variation key="heightClass=compact-widthClass=compact" constant="92"/>
+                </constraint>
                 <constraint firstItem="zA4-fh-ne0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mwU-eJ-jKi"/>
-                <constraint firstItem="ZvR-ih-FK0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="pRk-hR-c7x"/>
+                <constraint firstItem="Jwd-n7-6wS" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="12" id="nKN-zW-8AB"/>
+                <constraint firstAttribute="trailing" secondItem="Jwd-n7-6wS" secondAttribute="trailing" constant="12" id="qQA-IP-vRs"/>
                 <constraint firstItem="Usf-DV-7bk" firstAttribute="top" secondItem="ibD-3n-GWn" secondAttribute="bottom" constant="12" id="rZ4-DG-agh"/>
                 <constraint firstAttribute="trailing" secondItem="Usf-DV-7bk" secondAttribute="trailing" constant="12" id="tJG-Pe-yqI"/>
                 <constraint firstAttribute="trailing" secondItem="ibD-3n-GWn" secondAttribute="trailing" constant="12" id="vEq-YL-Bso"/>
                 <constraint firstItem="zA4-fh-ne0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yjo-BJ-vEF"/>
+                <constraint firstItem="ZvR-ih-FK0" firstAttribute="top" secondItem="Usf-DV-7bk" secondAttribute="bottom" constant="12" id="zxD-a3-5fn"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
@@ -72,6 +125,11 @@
                     <exclude reference="mwU-eJ-jKi"/>
                     <exclude reference="yjo-BJ-vEF"/>
                     <exclude reference="6KK-lh-5Se"/>
+                    <exclude reference="KYc-dB-JRC"/>
+                    <exclude reference="fku-f4-DLy"/>
+                    <exclude reference="gJz-NG-CcR"/>
+                    <exclude reference="gVg-u0-QWd"/>
+                    <exclude reference="3yJ-BJ-PMi"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -86,9 +144,14 @@
                     <include reference="I6i-Io-yHm"/>
                     <include reference="eJq-14-evw"/>
                     <include reference="yjo-BJ-vEF"/>
+                    <exclude reference="KYc-dB-JRC"/>
+                    <include reference="fku-f4-DLy"/>
+                    <include reference="gJz-NG-CcR"/>
+                    <exclude reference="gVg-u0-QWd"/>
                 </mask>
             </variation>
             <connections>
+                <outlet property="cancelButton" destination="Jwd-n7-6wS" id="6az-Dw-XQM"/>
                 <outlet property="createMatchButton" destination="ZvR-ih-FK0" id="686-Et-ZYA"/>
                 <outlet property="lobbyNameTextField" destination="ibD-3n-GWn" id="bwd-31-ZRY"/>
                 <outlet property="lobbyPasswordTextField" destination="Usf-DV-7bk" id="gAP-xJ-dhj"/>
