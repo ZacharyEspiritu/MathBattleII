@@ -10,6 +10,15 @@ import Foundation
 
 class MainScene: CCNode {
     
+    weak var centerAreaGroupingNode, menuButtonGroupingNode: CCNode!
+    weak var largeMenuButton, leftMenuButton, centerMenuButton, rightMenuButton: CCButton!
+    weak var newsButton, infoButton, leaderboardButton, gameCenterButton: CCButton!
+    
+    func didLoadFromCCB() {
+        userInteractionEnabled = true
+    }
+    
+    
     /**
      Starts a new instance of the game.
      */
