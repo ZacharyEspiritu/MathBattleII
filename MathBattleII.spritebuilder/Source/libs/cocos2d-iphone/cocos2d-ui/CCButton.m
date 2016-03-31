@@ -325,11 +325,14 @@
 			
             if (_zoomWhenHighlighted)
             {
-                _label.scaleX = _originalScaleX;
-                _label.scaleY = _originalScaleY;
                 
-                _background.scaleX = _originalScaleX;
-                _background.scaleY = _originalScaleY;
+                [_label runAction:[CCActionEaseBackOut actionWithAction:[CCActionScaleTo actionWithDuration:0.15 scaleX:_originalScaleX*1.0 scaleY:_originalScaleY*1.0]]];
+                [_background runAction:[CCActionEaseBackOut actionWithAction:[CCActionScaleTo actionWithDuration:0.15 scaleX:_originalScaleX*1.0 scaleY:_originalScaleY*1.0]]];
+                // _label.scaleX = _originalScaleX;
+                // _label.scaleY = _originalScaleY;
+                
+                // _background.scaleX = _originalScaleX;
+                // _background.scaleY = _originalScaleY;
             }
         }
     }
