@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>mainMenuAssets/Background.png</string>
+							<string>backgrounds/endGameBackground.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -218,7 +218,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>mainMenuAssets/Background.png</string>
+							<string>backgrounds/endGameBackground.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -326,7 +326,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>mainMenuAssets/Background.png</string>
+							<string>backgrounds/endGameBackground.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -434,7 +434,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>mainMenuAssets/Background.png</string>
+							<string>backgrounds/endGameBackground.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -470,6 +470,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2506,8 +2508,6 @@ to menu</string>
 						<real>0.69999998807907104</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

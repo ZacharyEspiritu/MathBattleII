@@ -10,16 +10,6 @@ import Foundation
 
 class MainScene: CCNode {
     
-    let scrollSpeed: CGFloat = 60
-    
-    weak var background1, background2: CCSprite!
-    var backgrounds: [CCSprite] = []
-    
-    
-    func didLoadFromCCB() {
-        backgrounds = [background1, background2]
-    }
-    
     /**
      Starts a new instance of the game.
      */
@@ -57,15 +47,5 @@ class MainScene: CCNode {
         
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
-    }
-    
-    override func update(delta: CCTime) {
-        for background in backgrounds {
-            background.position = CGPoint(x: background.position.x - (scrollSpeed * CGFloat(delta)), y: background.position.y)
-            let position = convertToNodeSpace(self.convertToWorldSpace(background.position))
-            if position.x <= 0 {
-                background.position = CGPoint(x: background.position.x + background.contentSize.width * 2, y: background.position.y)
-            }
-        }
     }
 }
