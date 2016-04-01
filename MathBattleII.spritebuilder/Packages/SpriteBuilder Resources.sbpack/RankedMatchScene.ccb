@@ -5558,7 +5558,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>battle</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -5876,6 +5876,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 								<key>seqExpanded</key>
 								<true/>
 							</dict>

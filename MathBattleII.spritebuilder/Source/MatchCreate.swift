@@ -18,8 +18,8 @@ class MatchCreate: CCNode {
     }
     
     func join() {
-        showPopup()
-        //Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string)
+        //showPopup()
+        Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string)
     }
     
     func menu() {

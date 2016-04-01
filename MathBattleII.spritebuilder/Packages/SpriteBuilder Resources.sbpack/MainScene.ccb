@@ -532,7 +532,7 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string></string>
+									<string>segueToUserLoginScene</string>
 									<integer>1</integer>
 								</array>
 							</dict>
@@ -2607,8 +2607,6 @@
 										</array>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>
@@ -3069,7 +3067,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>play</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -3387,6 +3385,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>

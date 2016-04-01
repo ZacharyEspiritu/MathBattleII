@@ -59,4 +59,14 @@ class RankedMatchScene: CCNode {
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
+    
+    func battle() {
+        let gameplayScene = CCBReader.load("MatchCreate") as! MatchCreate
+        
+        let scene = CCScene()
+        scene.addChild(gameplayScene)
+        
+        let transition = CCTransition(fadeWithDuration: 0.5)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
 }

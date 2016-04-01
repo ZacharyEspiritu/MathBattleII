@@ -14,4 +14,15 @@ class RankedPlayerHeader: CCNode {
     weak var usernameLabel: CCLabelTTF!
     weak var rankingLabel: CCLabelTTF!
     
+    func didLoadFromCCB() {
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            usernameLabel.string = user.getDisplayName()
+            rankingLabel.string = "\(user.getRating())"
+        }
+        else {
+            usernameLabel.string = "No User Available"
+            rankingLabel.string = "Log In"
+        }
+    }
+    
 }
