@@ -17,6 +17,7 @@ class RankedMatchScene: CCNode {
     weak var levelDisplay: LevelDisplay!
     weak var coinDisplay: CoinDisplay!
     weak var rankingsButton, activityLogButton, achievementsButton, rankedMatchInfoButton: CCButton!
+    weak var rankedPlayerHeader: RankedPlayerHeader!
     
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {

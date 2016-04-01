@@ -22,6 +22,7 @@
 		55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CEA1C5CEAD2002DF72D /* Config.swift */; };
 		5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFB61CAECCE300F84132 /* LevelDisplay.swift */; };
 		5546EFBB1CAECCF200F84132 /* CoinDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */; };
+		5546EFBD1CAF0C5000F84132 /* RankedPlayerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
 		55585FB41C3E812200688265 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
@@ -232,6 +233,7 @@
 		5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5546EFB61CAECCE300F84132 /* LevelDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDisplay.swift; path = Source/LevelDisplay.swift; sourceTree = "<group>"; };
 		5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinDisplay.swift; path = Source/CoinDisplay.swift; sourceTree = "<group>"; };
+		5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedPlayerHeader.swift; path = Source/RankedPlayerHeader.swift; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
 		557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSTimer+Closure.swift"; path = "Source/NSTimer+Closure.swift"; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				558FBADC1CADC75500189521 /* RankedMatchScene.swift */,
 				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
+				5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */,
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
 			);
 			name = Scenes;
@@ -1245,6 +1248,7 @@
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				558070221C53C713001CFCFF /* TileType.swift in Sources */,
 				555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */,
+				5546EFBD1CAF0C5000F84132 /* RankedPlayerHeader.swift in Sources */,
 				55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

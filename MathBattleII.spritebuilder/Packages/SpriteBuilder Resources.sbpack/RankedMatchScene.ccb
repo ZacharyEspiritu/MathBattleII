@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>171</integer>
+	<integer>175</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -3229,7 +3229,7 @@
 						<array>
 							<dict>
 								<key>UUID</key>
-								<integer>151</integer>
+								<integer>174</integer>
 								<key>animatedProperties</key>
 								<dict>
 									<key>1</key>
@@ -3265,7 +3265,7 @@
 													<key>name</key>
 													<string>scale</string>
 													<key>time</key>
-													<real>0.56666666269302368</real>
+													<real>0.60000002384185791</real>
 													<key>type</key>
 													<integer>4</integer>
 													<key>value</key>
@@ -3283,15 +3283,15 @@
 									</dict>
 								</dict>
 								<key>baseClass</key>
-								<string>CCSprite9Slice</string>
+								<string>CCBFile</string>
 								<key>children</key>
 								<array/>
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>playerHeader</string>
+								<string>rankedPlayerHeader</string>
 								<key>memberVarAssignmentName</key>
-								<string></string>
+								<string>rankedPlayerHeader</string>
 								<key>memberVarAssignmentType</key>
 								<integer>1</integer>
 								<key>properties</key>
@@ -3311,35 +3311,11 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>0.5</real>
-											<real>0.42154413461685181</real>
-											<integer>0</integer>
-											<integer>2</integer>
-											<integer>2</integer>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>contentSize</string>
-										<key>type</key>
-										<string>Size</string>
-										<key>value</key>
-										<array>
-											<real>203</real>
-											<real>78</real>
+											<real>58.5</real>
+											<real>6.3244247436523438</real>
 											<integer>0</integer>
 											<integer>0</integer>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>anchorPoint</string>
-										<key>type</key>
-										<string>Point</string>
-										<key>value</key>
-										<array>
-											<real>0.5</real>
-											<real>0.5</real>
+											<integer>0</integer>
 										</array>
 									</dict>
 									<dict>
@@ -3362,72 +3338,15 @@
 									</dict>
 									<dict>
 										<key>name</key>
-										<string>spriteFrame</string>
+										<string>ccbFile</string>
 										<key>type</key>
-										<string>SpriteFrame</string>
+										<string>CCBFile</string>
 										<key>value</key>
-										<array>
-											<string></string>
-											<string>mainMenuAssets/rankedMatchPlayerHeader.png</string>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>normalMapSpriteFrame</string>
-										<key>type</key>
-										<string>SpriteFrame</string>
-										<key>value</key>
-										<array>
-											<string></string>
-											<string></string>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>color</string>
-										<key>type</key>
-										<string>Color3</string>
-										<key>value</key>
-										<array>
-											<real>1</real>
-											<real>1</real>
-											<real>1</real>
-											<real>1</real>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>marginLeft</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.33000001311302185</real>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>marginRight</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.33000001311302185</real>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>marginTop</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.33000001311302185</real>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>marginBottom</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.33000001311302185</real>
+										<string>RankedPlayerHeader.ccb</string>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 								<key>seqExpanded</key>
 								<true/>
 							</dict>
@@ -5868,8 +5787,6 @@
 										</array>
 									</dict>
 								</array>
-								<key>seqExpanded</key>
-								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
