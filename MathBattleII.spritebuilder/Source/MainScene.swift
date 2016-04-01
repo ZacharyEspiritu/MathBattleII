@@ -57,4 +57,13 @@ class MainScene: CCNode {
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
+    
+    func segueToRankedMatchScene() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        
+        let rankedMatchScene = CCBReader.load("RankedMatchScene") as! RankedMatchScene
+        let scene = CCScene()
+        scene.addChild(rankedMatchScene)
+        CCDirector.sharedDirector().presentScene(scene)
+    }
 }
