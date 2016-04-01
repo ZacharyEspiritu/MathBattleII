@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>175</integer>
+	<integer>176</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -169,7 +169,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -187,7 +187,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -304,6 +304,8 @@
 						<real>0.50999999046325684</real>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -325,7 +327,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -343,7 +345,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -371,7 +373,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -389,7 +391,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -511,6 +513,8 @@
 						<real>0.50999999046325684</real>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -541,7 +545,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.23333333432674408</real>
+											<real>0.20000000298023224</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -559,7 +563,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.40000000596046448</real>
+											<real>0.36666667461395264</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -676,6 +680,8 @@
 								<real>0.50999999046325684</real>
 							</dict>
 						</array>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -769,7 +775,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -787,7 +793,7 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -904,6 +910,8 @@
 						<real>0.50999999046325684</real>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -925,7 +933,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -943,7 +951,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -1069,6 +1077,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1084,8 +1094,10 @@
 								<dict>
 									<key>easing</key>
 									<dict>
+										<key>opt</key>
+										<real>2</real>
 										<key>type</key>
-										<integer>11</integer>
+										<integer>2</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -1108,7 +1120,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.30000001192092896</real>
+									<real>0.26666668057441711</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -1122,6 +1134,72 @@
 							<string>position</string>
 							<key>type</key>
 							<integer>3</integer>
+						</dict>
+						<key>scale</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>opt</key>
+										<real>2</real>
+										<key>type</key>
+										<integer>2</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.26666668057441711</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1.0499999523162842</real>
+										<real>0.89999997615814209</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.30000001192092896</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>scale</string>
+							<key>type</key>
+							<integer>4</integer>
 						</dict>
 					</dict>
 				</dict>
@@ -2753,6 +2831,11 @@
 						</array>
 					</dict>
 					<dict>
+						<key>baseValue</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+						</array>
 						<key>name</key>
 						<string>scale</string>
 						<key>type</key>
@@ -2766,6 +2849,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -2895,7 +2980,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -2913,7 +2998,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -3047,6 +3132,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3068,7 +3155,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -3086,7 +3173,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.60000002384185791</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -3212,6 +3299,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -3247,7 +3336,7 @@
 													<key>name</key>
 													<string>scale</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>4</integer>
 													<key>value</key>
@@ -3265,7 +3354,7 @@
 													<key>name</key>
 													<string>scale</string>
 													<key>time</key>
-													<real>0.60000002384185791</real>
+													<real>0.56666666269302368</real>
 													<key>type</key>
 													<integer>4</integer>
 													<key>value</key>
@@ -3311,11 +3400,11 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>58.5</real>
-											<real>6.3244247436523438</real>
+											<real>0.5</real>
+											<real>0.42200002074241638</real>
 											<integer>0</integer>
-											<integer>0</integer>
-											<integer>0</integer>
+											<integer>2</integer>
+											<integer>2</integer>
 										</array>
 									</dict>
 									<dict>
@@ -3345,8 +3434,6 @@
 										<string>RankedPlayerHeader.ccb</string>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 								<key>seqExpanded</key>
 								<true/>
 							</dict>
@@ -3370,7 +3457,7 @@
 													<key>name</key>
 													<string>scale</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>4</integer>
 													<key>value</key>
@@ -5262,6 +5349,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -5269,7 +5358,7 @@
 						<key>displayName</key>
 						<string>playerHeaderGroupingNode</string>
 						<key>memberVarAssignmentName</key>
-						<string></string>
+						<string>playerHeaderGroupingNode</string>
 						<key>memberVarAssignmentType</key>
 						<integer>1</integer>
 						<key>properties</key>
@@ -5362,7 +5451,7 @@
 													<key>name</key>
 													<string>scale</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>4</integer>
 													<key>value</key>
@@ -5787,6 +5876,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -5866,7 +5957,7 @@
 				<key>displayName</key>
 				<string>rankedMatchButtonGroupingNode</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>rankedMatchButtonGroupingNode</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -5964,7 +6055,7 @@
 											<key>name</key>
 											<string>position</string>
 											<key>time</key>
-											<real>0.23333333432674408</real>
+											<real>0.20000000298023224</real>
 											<key>type</key>
 											<integer>3</integer>
 											<key>value</key>
@@ -5982,7 +6073,7 @@
 											<key>name</key>
 											<string>position</string>
 											<key>time</key>
-											<real>0.63333332538604736</real>
+											<real>0.56666666269302368</real>
 											<key>type</key>
 											<integer>3</integer>
 											<key>value</key>
@@ -6010,7 +6101,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.23333333432674408</real>
+											<real>0.20000000298023224</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6028,7 +6119,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.43333333730697632</real>
+											<real>0.40000000596046448</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6046,7 +6137,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.63333332538604736</real>
+											<real>0.56666666269302368</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6087,7 +6178,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -6105,7 +6196,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.63333332538604736</real>
+													<real>0.56666666269302368</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -6512,6 +6603,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -6594,6 +6687,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -6615,7 +6710,7 @@
 											<key>name</key>
 											<string>position</string>
 											<key>time</key>
-											<real>0.23333333432674408</real>
+											<real>0.20000000298023224</real>
 											<key>type</key>
 											<integer>3</integer>
 											<key>value</key>
@@ -6633,25 +6728,7 @@
 											<key>name</key>
 											<string>position</string>
 											<key>time</key>
-											<real>0.63333332538604736</real>
-											<key>type</key>
-											<integer>3</integer>
-											<key>value</key>
-											<array>
-												<real>0.5</real>
-												<real>0.0</real>
-											</array>
-										</dict>
-										<dict>
-											<key>easing</key>
-											<dict>
-												<key>type</key>
-												<integer>1</integer>
-											</dict>
-											<key>name</key>
-											<string>position</string>
-											<key>time</key>
-											<real>0.66666668653488159</real>
+											<real>0.56666666269302368</real>
 											<key>type</key>
 											<integer>3</integer>
 											<key>value</key>
@@ -6679,7 +6756,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.23333333432674408</real>
+											<real>0.20000000298023224</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6697,7 +6774,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.43333333730697632</real>
+											<real>0.40000000596046448</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6715,7 +6792,7 @@
 											<key>name</key>
 											<string>scale</string>
 											<key>time</key>
-											<real>0.63333332538604736</real>
+											<real>0.56666666269302368</real>
 											<key>type</key>
 											<integer>4</integer>
 											<key>value</key>
@@ -6756,7 +6833,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -6774,7 +6851,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.63333332538604736</real>
+													<real>0.56666666269302368</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -7181,6 +7258,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>
@@ -7202,7 +7281,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -7220,7 +7299,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.63333332538604736</real>
+													<real>0.56666666269302368</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -7627,6 +7706,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>
@@ -7648,7 +7729,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.23333333432674408</real>
+													<real>0.20000000298023224</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -7666,7 +7747,7 @@
 													<key>name</key>
 													<string>position</string>
 													<key>time</key>
-													<real>0.63333332538604736</real>
+													<real>0.56666666269302368</real>
 													<key>type</key>
 													<integer>3</integer>
 													<key>value</key>
@@ -8073,6 +8154,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>seqExpanded</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -8155,6 +8238,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -8243,9 +8328,9 @@
 									<key>easing</key>
 									<dict>
 										<key>opt</key>
-										<real>0.30000001192092896</real>
+										<real>2</real>
 										<key>type</key>
-										<integer>11</integer>
+										<integer>2</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -8268,7 +8353,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.30000001192092896</real>
+									<real>0.26666668057441711</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -8282,6 +8367,72 @@
 							<string>position</string>
 							<key>type</key>
 							<integer>3</integer>
+						</dict>
+						<key>scale</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>opt</key>
+										<real>2</real>
+										<key>type</key>
+										<integer>2</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.26666668057441711</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1.0499999523162842</real>
+										<real>0.85000002384185791</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.30000001192092896</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>scale</string>
+							<key>type</key>
+							<integer>4</integer>
 						</dict>
 					</dict>
 				</dict>
@@ -8338,6 +8489,11 @@
 						</array>
 					</dict>
 					<dict>
+						<key>baseValue</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+						</array>
 						<key>name</key>
 						<string>scale</string>
 						<key>type</key>
@@ -8394,6 +8550,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -8415,7 +8573,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.23333333432674408</real>
+									<real>0.20000000298023224</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -8433,7 +8591,7 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>0.63333332538604736</real>
+									<real>0.56666666269302368</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -8659,6 +8817,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -8794,13 +8954,13 @@
 			<key>chainedSequenceId</key>
 			<integer>-1</integer>
 			<key>length</key>
-			<real>0.66666668653488159</real>
+			<real>0.60000002384185791</real>
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.66666668653488159</real>
+			<real>0.60000002384185791</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

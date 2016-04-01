@@ -17,6 +17,7 @@ class RankedMatchScene: CCNode {
     weak var levelDisplay: LevelDisplay!
     weak var coinDisplay: CoinDisplay!
     weak var rankingsButton, activityLogButton, achievementsButton, rankedMatchInfoButton: CCButton!
+    weak var rankedMatchButtonGroupingNode, playerHeaderGroupingNode: CCNode!
     weak var rankedPlayerHeader: RankedPlayerHeader!
     
     
@@ -29,13 +30,20 @@ class RankedMatchScene: CCNode {
                 coinDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
             }
         }
+        else if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {
+            rankedPlayerHeader.runAction(CCActionScaleTo(duration: 0.05, scale: 0.95))
+        }
     }
     
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         levelDisplay.stopAllActions()
         levelDisplay.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
+        
         coinDisplay.stopAllActions()
         coinDisplay.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
+        
+        rankedPlayerHeader.stopAllActions()
+        rankedPlayerHeader.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
     }
     
     func didLoadFromCCB() {
