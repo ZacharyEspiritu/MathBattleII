@@ -20,6 +20,8 @@
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
 		55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */; };
 		55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55408CEA1C5CEAD2002DF72D /* Config.swift */; };
+		5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFB61CAECCE300F84132 /* LevelDisplay.swift */; };
+		5546EFBB1CAECCF200F84132 /* CoinDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
 		55585FB41C3E812200688265 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
@@ -228,6 +230,8 @@
 		55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationHandler.swift; path = Source/AuthenticationHandler.swift; sourceTree = "<group>"; };
 		55408CEA1C5CEAD2002DF72D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
 		5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5546EFB61CAECCE300F84132 /* LevelDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDisplay.swift; path = Source/LevelDisplay.swift; sourceTree = "<group>"; };
+		5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinDisplay.swift; path = Source/CoinDisplay.swift; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
 		557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSTimer+Closure.swift"; path = "Source/NSTimer+Closure.swift"; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				558FBADC1CADC75500189521 /* RankedMatchScene.swift */,
+				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
+				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1208,6 +1214,7 @@
 				55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
 				55AD61261C861E7100F9F9A7 /* EndGameScene.swift in Sources */,
 				558FBADD1CADC75500189521 /* RankedMatchScene.swift in Sources */,
+				5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */,
 				557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainScene.swift in Sources */,
@@ -1234,6 +1241,7 @@
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */,
 				55F213731CAB3CF10028AD4A /* String+AlphanumericChecker.swift in Sources */,
+				5546EFBB1CAECCF200F84132 /* CoinDisplay.swift in Sources */,
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				558070221C53C713001CFCFF /* TileType.swift in Sources */,
 				555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */,

@@ -10,12 +10,35 @@ import Foundation
 
 class RankedMatchScene: CCNode {
     
-    weak var centerAreaGroupingNode, largeButtonGroupingNode, smallButtonGroupingNode: CCNode!
+    weak var topAreaGroupingNode, centerAreaGroupingNode, largeButtonGroupingNode, smallButtonGroupingNode: CCNode!
     weak var largeMenuButton, leftMenuButton, centerMenuButton, rightMenuButton: CCButton!
     weak var newsButton, infoButton, leaderboardButton, gameCenterButton: CCButton!
     
+    weak var levelDisplay: LevelDisplay!
+    weak var coinDisplay: CoinDisplay!
+    weak var rankingsButton, activityLogButton, achievementsButton, rankedMatchInfoButton: CCButton!
+    
+    
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        if CGRectContainsPoint(topAreaGroupingNode.boundingBox(), touch.locationInWorld()) {
+            if CGRectContainsPoint(levelDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
+                levelDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
+            }
+            else if CGRectContainsPoint(coinDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
+                coinDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
+            }
+        }
+    }
+    
+    override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        levelDisplay.stopAllActions()
+        levelDisplay.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
+        coinDisplay.stopAllActions()
+        coinDisplay.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
+    }
+    
     func didLoadFromCCB() {
-        print("loaded scene")
+        userInteractionEnabled = true
     }
     
     func backToMenu() {
