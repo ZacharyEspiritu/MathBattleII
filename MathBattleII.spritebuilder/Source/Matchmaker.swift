@@ -109,7 +109,7 @@ class Matchmaker {
                         if snapshot.value as! Bool {
                             print("match should start")
                             localMatchData.setMatchStarted()
-                            self.startCurrentMatch()
+                            self.startCurrentMatch(atRef: ref)
                         }
                     }
                 }
@@ -134,7 +134,7 @@ class Matchmaker {
         })
     }
     
-    private func startCurrentMatch() {
+    private func startCurrentMatch(atRef ref: Firebase) {
         print("match starting")
         
         // Begin 15 second countdown before match starts
@@ -145,6 +145,8 @@ class Matchmaker {
             print(countdown)
             
             if countdown <= 0 {
+                self.scheduleAutomaticDataCheck(atRef: ref)
+                
                 // Load scene
                 let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
                 
@@ -157,6 +159,26 @@ class Matchmaker {
                 timer.invalidate()
             }
         }
+    }
+    
+    private func scheduleAutomaticDataCheck(atRef ref: Firebase) {
+        NSTimer.schedule(repeatInterval: 5, handler: { timer in
+            ref.observeSingleEventOfType(.Value,
+                withBlock: { snapshot in
+                    if let localMatchData = self.currentMatchData {
+                        if let updatedMatchData = snapshot.value as? NSDictionary {
+                            if localMatchData.opposingPlayer == nil { // Only run once if the player on the device was the one to create the match
+                                localMatchData.opposingPlayer = PlayerData(data: updatedMatchData, isHost: false)
+                            }
+                            if updatedMatchData.objectForKey("isConnected") is Bool {
+                                localMatchData.opposingPlayer.updateData(newData: updatedMatchData)
+                            }
+                        }
+                    }
+                }, withCancelBlock: { error in
+                    print("An error occured when attaching to match data: \(error.description)")
+            })
+        })
     }
 }
 
