@@ -15,5 +15,19 @@ class CoinDisplay: CCNode {
     weak var addButton: CCButton!
     
     weak var coinLabel: CCLabelTTF!
+    var coins: Int = 0 {
+        didSet {
+            coinLabel.string = "\(coins)"
+        }
+    }
     
+    func didLoadFromCCB() {
+        loadData()
+    }
+    
+    func loadData() {
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            coins = user.getCoins()
+        }
+    }
 }
