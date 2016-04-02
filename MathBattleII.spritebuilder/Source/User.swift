@@ -27,6 +27,9 @@ class User {
     private var rating:              Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var ratingFloor:         Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
+    private var experienceLevel:     Int { didSet { delegate?.localUserDataDidUpdate(self) }}
+    private var coins:               Int { didSet { delegate?.localUserDataDidUpdate(self) }}
+    
     private var friends:        [String] { didSet { delegate?.localUserDataDidUpdate(self) }}
         // [friends] should always be kept sorted alphabetically whenever possible
     
@@ -35,7 +38,7 @@ class User {
     
     // MARK: Utility Functions
     
-    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, friends: [String]) {
+    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, experienceLevel: Int, coins: Int, friends: [String]) {
         self.uid = uid
         self.displayName = displayName
         self.email = email
@@ -46,6 +49,8 @@ class User {
         self.numberOfSolves = numberOfSolves
         self.rating = rating
         self.ratingFloor = ratingFloor
+        self.experienceLevel = experienceLevel
+        self.coins = coins
         self.friends = friends
     }
     
@@ -60,6 +65,8 @@ class User {
             "provider": provider,
             "rating": rating,
             "ratingFloor": ratingFloor,
+            "experienceLevel": experienceLevel,
+            "coins": coins,
             "friends": friends
         ]
     }
@@ -83,6 +90,10 @@ class User {
         return numberOfGamesPlayed
     }
     
+    func getNumberOfSolves() -> Int {
+        return numberOfSolves
+    }
+    
     func getNumberOfWins() -> Int {
         return numberOfWins
     }
@@ -97,6 +108,14 @@ class User {
     
     func getRatingFloor() -> Int {
         return ratingFloor
+    }
+    
+    func getExperienceLevel() -> Int {
+        return experienceLevel
+    }
+    
+    func getCoins() -> Int {
+        return coins
     }
     
     func getFriends() -> [String]? {
@@ -133,6 +152,16 @@ class User {
     func setRatingFloor(newRatingFloor newRatingFloor: Int) -> Int {
         ratingFloor = newRatingFloor
         return ratingFloor
+    }
+    
+    func setExperienceLevel(newExperienceLevel newExperienceLevel: Int) -> Int {
+        experienceLevel = newExperienceLevel
+        return experienceLevel
+    }
+    
+    func setCoins(newCoins newCoins: Int) -> Int {
+        coins = newCoins
+        return coins
     }
     
     func addToNumberOfSolves(newSolves newSolves: Int) -> Int {

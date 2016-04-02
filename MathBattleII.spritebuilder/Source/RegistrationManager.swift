@@ -52,6 +52,8 @@ class RegistrationManager {
             "provider": "password",
             "rating": 1000,
             "ratingFloor": 700,
+            "experienceLevel": 0,
+            "coins": 0,
             "friends": []
         ]
         

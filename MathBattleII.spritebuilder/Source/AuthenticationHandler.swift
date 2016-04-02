@@ -101,6 +101,8 @@ class AuthenticationHandler {
         let provider = snapshot.value.objectForKey("provider") as! String
         let rating = snapshot.value.objectForKey("rating") as! Int
         let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
+        let experienceLevel = snapshot.value.objectForKey("experienceLevel") as! Int
+        let coins = snapshot.value.objectForKey("coins") as! Int
         
         let friends: [String]
         if snapshot.value.objectForKey("friends") != nil {
@@ -110,7 +112,7 @@ class AuthenticationHandler {
             friends = []
         }
         
-        let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, friends: friends)
+        let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, friends: friends)
         user.delegate = self
         
         let userManager = UserManager.sharedInstance
