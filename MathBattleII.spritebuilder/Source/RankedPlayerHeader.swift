@@ -24,5 +24,4 @@ class RankedPlayerHeader: CCNode {
             rankingLabel.string = "Log In"
         }
     }
-    
 }
