@@ -18,6 +18,11 @@ class UserRegistrationScene: CCNode {
     weak var confirmPasswordTextField: CCTextField!
     
     
+    func didLoadFromCCB() {
+        setupUsernameTextField()
+        setupEmailTextField()
+    }
+    
     func submitRegistration() {
         let username: String? = usernameTextField.string
         let email: String? = emailTextField.string
@@ -45,13 +50,96 @@ class UserRegistrationScene: CCNode {
         }
     }
     
-    func menu() {
-        let gameplayScene = CCBReader.load("MainScene") as! MainScene
-        
+    func menu() {        
         let scene = CCScene()
-        scene.addChild(gameplayScene)
+        scene.addChild(CCBReader.load("MainScene") as! MainScene)
         
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+    }
+    
+    private func setupUsernameTextField() {
+        usernameTextField.textField.delegate = self
+        usernameTextField.textField.clipsToBounds = true
+        usernameTextField.textField.adjustsFontSizeToFitWidth = true
+        usernameTextField.textField.minimumFontSize = 8.0
+        usernameTextField.textField.returnKeyType = .Next
+        usernameTextField.textField.autocapitalizationType = .None
+        usernameTextField.textField.autocorrectionType = .No
+        usernameTextField.textField.spellCheckingType = .No
+        usernameTextField.textField.textAlignment = .Center
+        usernameTextField.textField.clearButtonMode = .WhileEditing
+        
+        usernameTextField.textField.placeholder = "Username"
+    }
+    
+    private func setupEmailTextField() {
+        emailTextField.textField.delegate = self
+        emailTextField.textField.clipsToBounds = true
+        emailTextField.textField.adjustsFontSizeToFitWidth = true
+        emailTextField.textField.minimumFontSize = 8.0
+        emailTextField.textField.returnKeyType = .Next
+        emailTextField.textField.autocapitalizationType = .None
+        emailTextField.textField.autocorrectionType = .No
+        emailTextField.textField.spellCheckingType = .No
+        emailTextField.textField.textAlignment = .Center
+        emailTextField.textField.clearButtonMode = .WhileEditing
+        
+        emailTextField.textField.keyboardType = .EmailAddress
+        emailTextField.textField.placeholder = "Email"
+    }
+    
+    private func setupPasswordTextField() {
+        //        passwordTextField.textField.delegate = self
+        passwordTextField.textField.clipsToBounds = true
+        passwordTextField.textField.adjustsFontSizeToFitWidth = true
+        passwordTextField.textField.minimumFontSize = 8.0
+        passwordTextField.textField.returnKeyType = .Next
+        passwordTextField.textField.autocapitalizationType = .None
+        passwordTextField.textField.autocorrectionType = .No
+        passwordTextField.textField.spellCheckingType = .No
+        passwordTextField.textField.textAlignment = .Center
+        passwordTextField.textField.clearButtonMode = .WhileEditing
+        
+        passwordTextField.textField.secureTextEntry = true
+        passwordTextField.textField.placeholder = "Password"
+    }
+    
+    private func setupConfirmPasswordTextField() {
+        //        confirmPasswordTextField.textField.self = self
+        confirmPasswordTextField.textField.clipsToBounds = true
+        confirmPasswordTextField.textField.adjustsFontSizeToFitWidth = true
+        confirmPasswordTextField.textField.minimumFontSize = 8.0
+        confirmPasswordTextField.textField.returnKeyType = .Done
+        confirmPasswordTextField.textField.autocapitalizationType = .None
+        confirmPasswordTextField.textField.autocorrectionType = .No
+        confirmPasswordTextField.textField.spellCheckingType = .No
+        confirmPasswordTextField.textField.textAlignment = .Center
+        confirmPasswordTextField.textField.clearButtonMode = .WhileEditing
+        
+        confirmPasswordTextField.textField.secureTextEntry = true
+        confirmPasswordTextField.textField.placeholder = "Confirm Password"
+    }
+}
+
+extension UserRegistrationScene: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == usernameTextField.textField {
+            textField.resignFirstResponder()
+            emailTextField.textField.becomeFirstResponder()
+        }
+        else if textField == emailTextField.textField { // Move to next textField if first textField.
+            textField.resignFirstResponder()
+            passwordTextField.textField.becomeFirstResponder()
+        }
+        else if textField == passwordTextField.textField {
+            textField.resignFirstResponder()
+            confirmPasswordTextField.textField.becomeFirstResponder()
+        }
+        else if textField == confirmPasswordTextField.textField { // Call submitLogin() function if last textField.
+            textField.resignFirstResponder()
+            submitRegistration()
+        }
+        return false
     }
 }
