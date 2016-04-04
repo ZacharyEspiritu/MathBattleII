@@ -11,7 +11,7 @@ import Foundation
 class LevelDisplay: CCNode {
     
     weak var background: CCSprite!
-    weak var levelMeterCenter, levelMeterRightEnd: CCSprite!
+    weak var levelMeterLeftEnd, levelMeterCenter, levelMeterRightEnd: CCSprite!
     weak var displayIcon: CCSprite!
     
     weak var levelLabel: CCLabelTTF!
@@ -59,6 +59,12 @@ class LevelDisplay: CCNode {
         level = levelCount
         currentProgress = experienceLevel
         neededExperience = levelExperienceCap
+        
+        if currentProgress == 0 {
+            levelMeterLeftEnd.opacity = 0
+            levelMeterCenter.opacity = 0
+            levelMeterRightEnd.opacity = 0
+        }
         
         levelLabel.string = "\(level)"
         experienceLabel.string = "\(currentProgress)/\(neededExperience)"
