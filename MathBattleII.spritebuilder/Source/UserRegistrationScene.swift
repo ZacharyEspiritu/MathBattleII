@@ -67,7 +67,6 @@ class UserRegistrationScene: CCNode {
         usernameTextField.textField.autocapitalizationType = .None
         usernameTextField.textField.autocorrectionType = .No
         usernameTextField.textField.spellCheckingType = .No
-        usernameTextField.textField.textAlignment = .Center
         usernameTextField.textField.clearButtonMode = .WhileEditing
         
         usernameTextField.textField.placeholder = "Username"
@@ -82,7 +81,6 @@ class UserRegistrationScene: CCNode {
         emailTextField.textField.autocapitalizationType = .None
         emailTextField.textField.autocorrectionType = .No
         emailTextField.textField.spellCheckingType = .No
-        emailTextField.textField.textAlignment = .Center
         emailTextField.textField.clearButtonMode = .WhileEditing
         
         emailTextField.textField.keyboardType = .EmailAddress
@@ -98,7 +96,6 @@ class UserRegistrationScene: CCNode {
         passwordTextField.textField.autocapitalizationType = .None
         passwordTextField.textField.autocorrectionType = .No
         passwordTextField.textField.spellCheckingType = .No
-        passwordTextField.textField.textAlignment = .Center
         passwordTextField.textField.clearButtonMode = .WhileEditing
         
         passwordTextField.textField.secureTextEntry = true
@@ -114,7 +111,6 @@ class UserRegistrationScene: CCNode {
         confirmPasswordTextField.textField.autocapitalizationType = .None
         confirmPasswordTextField.textField.autocorrectionType = .No
         confirmPasswordTextField.textField.spellCheckingType = .No
-        confirmPasswordTextField.textField.textAlignment = .Center
         confirmPasswordTextField.textField.clearButtonMode = .WhileEditing
         
         confirmPasswordTextField.textField.secureTextEntry = true

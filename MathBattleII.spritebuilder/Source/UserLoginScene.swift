@@ -43,9 +43,8 @@ class UserLoginScene: CCNode {
         emailTextField.textField.autocapitalizationType = .None
         emailTextField.textField.autocorrectionType = .No
         emailTextField.textField.spellCheckingType = .No
-        emailTextField.textField.textAlignment = .Center
         emailTextField.textField.clearButtonMode = .WhileEditing
-        
+                
         emailTextField.textField.keyboardType = .EmailAddress
         emailTextField.textField.placeholder = "Email"
     }
@@ -59,7 +58,6 @@ class UserLoginScene: CCNode {
         passwordTextField.textField.autocapitalizationType = .None
         passwordTextField.textField.autocorrectionType = .No
         passwordTextField.textField.spellCheckingType = .No
-        passwordTextField.textField.textAlignment = .Center
         passwordTextField.textField.clearButtonMode = .WhileEditing
         
         passwordTextField.textField.secureTextEntry = true
