@@ -21,13 +21,26 @@ class CoinDisplay: CCNode {
         }
     }
     
+    
     func didLoadFromCCB() {
         loadData()
     }
     
-    func loadData() {
+    private func loadData() {
         if let user = UserManager.sharedInstance.getCurrentUser() {
             coins = user.getCoins()
         }
+    }
+    
+    private func animateCoinCount() {
+        var currentCoinCount: Int = 0
+        NSTimer.schedule(repeatInterval: 0.001, handler: { timer in
+            currentCoinCount += 1
+            self.coinLabel.string = "\(currentCoinCount)"
+            if currentCoinCount >= self.coins {
+                self.coinLabel.string = "\(self.coins)"
+                timer.invalidate()
+            }
+        })
     }
 }

@@ -27,7 +27,7 @@ class LevelDisplay: CCNode {
         animateExperienceDisplay()
     }
     
-    func loadData() {
+    private func loadData() {
         var experienceLevel: Int = 0
         if let user = UserManager.sharedInstance.getCurrentUser() {
             experienceLevel = user.getExperienceLevel()
@@ -70,7 +70,7 @@ class LevelDisplay: CCNode {
         experienceLabel.string = "\(currentProgress)/\(neededExperience)"
     }
     
-    func animateExperienceDisplay() {
+    private func animateExperienceDisplay() {
         let meterMaxLength = levelMeterCenter.contentSize.width
         let meterCalculatedLength = round(meterMaxLength * (CGFloat(currentProgress) / CGFloat(neededExperience)))
         
