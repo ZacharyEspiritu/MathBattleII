@@ -25,23 +25,8 @@ class MainScene: CCNode {
     func play() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
-        let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
-        
         let scene = CCScene()
-        scene.addChild(gameplayScene)
-        
-        let transition = CCTransition(fadeWithDuration: 0.5)
-        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
-    }
-    
-    func segueToUserRegistrationScene() {
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        
-        let userRegistrationScene = CCBReader.load("MatchCreate") as! MatchCreate
-        
-        let scene = CCScene()
-        scene.addChild(userRegistrationScene)
-        
+        scene.addChild(CCBReader.load("GameplayScene") as! GameplayScene)
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
@@ -49,11 +34,8 @@ class MainScene: CCNode {
     func segueToUserLoginScene() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
-        let userRegistrationScene = CCBReader.load("UserLoginScene") as! UserLoginScene
-        
         let scene = CCScene()
-        scene.addChild(userRegistrationScene)
-        
+        scene.addChild(CCBReader.load("UserLoginScene") as! UserLoginScene)
         let transition = CCTransition(fadeWithDuration: 0.5)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
@@ -61,9 +43,16 @@ class MainScene: CCNode {
     func segueToRankedMatchScene() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
-        let rankedMatchScene = CCBReader.load("RankedMatchScene") as! RankedMatchScene
         let scene = CCScene()
-        scene.addChild(rankedMatchScene)
+        scene.addChild(CCBReader.load("RankedMatchScene") as! RankedMatchScene)
+        CCDirector.sharedDirector().presentScene(scene)
+    }
+    
+    func segueToUserRegistrationScene() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+
+        let scene = CCScene()
+        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
         CCDirector.sharedDirector().presentScene(scene)
     }
 }
