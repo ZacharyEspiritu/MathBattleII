@@ -15,6 +15,7 @@
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */; };
 		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
+		5521DCEC1CB3D6D6005E0D2B /* CustomMatchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5521DCEB1CB3D6D6005E0D2B /* CustomMatchScene.swift */; };
 		5524FB821C66C1A800CC1318 /* UserLoginScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524FB811C66C1A800CC1318 /* UserLoginScene.swift */; };
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
@@ -225,6 +226,7 @@
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
 		550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchCreate.swift; path = Source/MatchCreate.swift; sourceTree = "<group>"; };
 		5514A5FC1C555F3E0096661F /* SlidingDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidingDoor.swift; path = Source/SlidingDoor.swift; sourceTree = "<group>"; };
+		5521DCEB1CB3D6D6005E0D2B /* CustomMatchScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchScene.swift; path = Source/CustomMatchScene.swift; sourceTree = "<group>"; };
 		5524FB811C66C1A800CC1318 /* UserLoginScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserLoginScene.swift; path = Source/UserLoginScene.swift; sourceTree = "<group>"; };
 		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
 		55283D9B1C3F1C0F000BD64A /* TileValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileValue.swift; path = Source/TileValue.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 			children = (
 				7A046D7519E84C36004C4763 /* MainScene.swift */,
 				550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */,
+				5521DCEB1CB3D6D6005E0D2B /* CustomMatchScene.swift */,
 				55A8BEC51CAF560A004E7099 /* Ranked Match Menu */,
 			);
 			name = Menus;
@@ -1242,6 +1245,7 @@
 				557FEDAC1C8D2D11001A5F71 /* MatchData.swift in Sources */,
 				55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
+				5521DCEC1CB3D6D6005E0D2B /* CustomMatchScene.swift in Sources */,
 				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
 				55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
