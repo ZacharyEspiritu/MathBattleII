@@ -48,6 +48,10 @@ class LevelDisplay: CCNode {
                     if levelCount >= 13 {
                         experienceLevel -= 50 * (levelCount - 12)
                         levelExperienceCap += 50 * (levelCount - 12)
+                        if levelCount >= 33 {
+                            experienceLevel -= 100 * (levelCount - 32)
+                            levelExperienceCap += 50 * (levelCount - 32)
+                        }
                     }
                 }
             }
@@ -76,8 +80,8 @@ class LevelDisplay: CCNode {
         
         levelMeterCenter.scaleX = 0.1
         levelMeterRightEnd.position.x = levelMeterCenter.boundingBox().width
-        levelMeterCenter.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.6, scaleX: Float(meterCalculatedLength / meterMaxLength), scaleY: 1.0)))
-        levelMeterRightEnd.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: meterCalculatedLength - 0.5, y: levelMeterRightEnd.position.y)))) // Subtract 0.5 to account for half-pixel rendering errors
+        levelMeterCenter.runAction(CCActionEaseSineOut(action: CCActionScaleTo(duration: 0.9, scaleX: Float(meterCalculatedLength / meterMaxLength), scaleY: 1.0)))
+        levelMeterRightEnd.runAction(CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.9, position: CGPoint(x: meterCalculatedLength - 0.5, y: levelMeterRightEnd.position.y)))) // Subtract 0.5 to account for half-pixel rendering errors
         
         let experienceLabelWidth = experienceLabel.contentSize.width
         let experienceLabelSpacingConstant: CGFloat = 33
@@ -87,6 +91,6 @@ class LevelDisplay: CCNode {
             labelXPosition = experienceLabelMinimumXPosition
         }
         
-        experienceLabel.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: labelXPosition, y: experienceLabel.position.y))))
+        experienceLabel.runAction(CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.9, position: CGPoint(x: labelXPosition, y: experienceLabel.position.y))))
     }
 }
