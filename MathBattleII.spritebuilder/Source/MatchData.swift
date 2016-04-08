@@ -13,14 +13,17 @@ class MatchData {
     let matchID: String
     let hostPlayer: PlayerData
     var opposingPlayer: PlayerData!
+    
+    let matchType: MatchType
         
     private var matchHasStarted: Bool = false
     
     
-    init(matchID: String, hostPlayer: PlayerData, opposingPlayer: PlayerData?) {
+    init(matchID: String, hostPlayer: PlayerData, opposingPlayer: PlayerData?, matchType: MatchType) {
         self.matchID = matchID
         self.hostPlayer = hostPlayer
         self.opposingPlayer = opposingPlayer
+        self.matchType = matchType
     }
     
     /**

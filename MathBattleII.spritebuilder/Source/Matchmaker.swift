@@ -57,7 +57,7 @@ class Matchmaker {
                         // "opposingPlayer" refers to the player that isn't on the current device.
                         let hostPlayerData = PlayerData(data: userData, isHost: true)
                         
-                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil)
+                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil, matchType: .Custom)
                         self.currentMatchData?.hostPlayer.delegate = self
                         
                         self.attachToPlayerData(atRef: ref.childByAppendingPath("opposingPlayer"))
@@ -80,7 +80,7 @@ class Matchmaker {
                         let hostPlayerData = PlayerData(data: userData, isHost: false)
                         let opposingPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
                         
-                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData)
+                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData, matchType: .Custom)
                         self.currentMatchData?.hostPlayer.delegate = self
                         
                         self.attachToPlayerData(atRef: ref.childByAppendingPath("hostPlayer"))
