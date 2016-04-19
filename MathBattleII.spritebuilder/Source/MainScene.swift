@@ -44,7 +44,7 @@ class MainScene: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
         let scene = CCScene()
-        scene.addChild(CCBReader.load("RankedMatchScene") as! RankedMatchScene)
+        scene.addChild(CCBReader.load("MenuScene") as! MenuScene)
         CCDirector.sharedDirector().presentScene(scene)
     }
     
