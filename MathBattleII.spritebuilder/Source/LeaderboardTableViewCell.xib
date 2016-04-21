@@ -21,39 +21,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-6q-tAr">
-                        <rect key="frame" x="39" y="10" width="501" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oe-6q-tAr">
+                        <rect key="frame" x="39" y="10" width="115" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="7cv-Co-GYE"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ADAM.CGPRO" family="ADAM.CG PRO" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-JY-RXA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfL-JY-RXA">
                         <rect key="frame" x="8" y="10" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="goj-0E-kCT"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ADAM.CGPRO" family="ADAM.CG PRO" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdv-Wx-sqJ">
-                        <rect key="frame" x="548" y="10" width="44" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdv-Wx-sqJ">
+                        <rect key="frame" x="551" y="10" width="41" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="TRw-e4-4GA"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ADAM.CGPRO" family="ADAM.CG PRO" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="5oe-6q-tAr" firstAttribute="leading" secondItem="RfL-JY-RXA" secondAttribute="trailing" constant="10" id="H6i-rA-i1o"/>
+                    <constraint firstItem="RfL-JY-RXA" firstAttribute="top" secondItem="uCf-W7-r5r" secondAttribute="topMargin" constant="2" id="UhD-LY-C4J"/>
                     <constraint firstItem="RfL-JY-RXA" firstAttribute="leading" secondItem="uCf-W7-r5r" secondAttribute="leadingMargin" id="UhU-Yv-RBa"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RfL-JY-RXA" secondAttribute="bottom" constant="-1" id="Yln-Jj-zBW"/>
                     <constraint firstItem="xdv-Wx-sqJ" firstAttribute="trailing" secondItem="uCf-W7-r5r" secondAttribute="trailingMargin" id="ea8-I4-AeY"/>
                     <constraint firstItem="xdv-Wx-sqJ" firstAttribute="trailing" secondItem="uCf-W7-r5r" secondAttribute="trailingMargin" id="gpm-8G-C6d"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xdv-Wx-sqJ" secondAttribute="bottom" constant="-1" id="hc0-o7-NAf"/>
+                    <constraint firstItem="5oe-6q-tAr" firstAttribute="top" secondItem="uCf-W7-r5r" secondAttribute="topMargin" constant="2" id="kOM-cV-Laa"/>
+                    <constraint firstItem="xdv-Wx-sqJ" firstAttribute="top" secondItem="uCf-W7-r5r" secondAttribute="topMargin" constant="2" id="swp-mv-apW"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="5oe-6q-tAr" secondAttribute="bottom" constant="-1" id="ycQ-kz-7ZO"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
