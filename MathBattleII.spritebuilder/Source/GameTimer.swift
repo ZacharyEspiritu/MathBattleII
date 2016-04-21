@@ -22,7 +22,7 @@ class GameTimer: NSObject {
     init(gameLengthInSeconds: Int) {
         remainingTime = gameLengthInSeconds
         super.init()
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(GameTimer.update), userInfo: nil, repeats: true)
     }
     
     /**
@@ -31,7 +31,7 @@ class GameTimer: NSObject {
      */
     func update() {
         if !isPaused {
-            remainingTime--
+            remainingTime -= 1
             delegate?.gameTimerDidUpdate(self)
             
             if remainingTime <= 0 {

@@ -52,7 +52,7 @@ class Rating: CustomStringConvertible, Equatable {
     }
     
     func addGamePlayed() -> Int {
-        numberOfGames++
+        numberOfGames += 1
         return numberOfGames
     }
     

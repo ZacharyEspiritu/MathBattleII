@@ -148,7 +148,7 @@ class GameplayScene: CCNode {
                 for slidingDoor in slidingDoors {
                     slidingDoor.label.updateCountdownLabel(string: "\(countdown)")
                 }
-                countdown--
+                countdown -= 1
             }
             else {
                 for slidingDoor in slidingDoors {
@@ -351,7 +351,7 @@ class GameplayScene: CCNode {
             }
             
             // Check if the last tile has been launched, then schedule a cleanup method to fix everything
-            count++
+            count += 1
             if count >= 9 {
                 timer.invalidate()
                 NSTimer.schedule(delay: 2.0) { timer in
@@ -524,19 +524,8 @@ class GameplayScene: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("ding.wav")
         OALSimpleAudio.sharedInstance().playEffect("doors.wav")
         
-        // Determine winner and update stats
         if multiplayerMatchData != nil {
-            let winner: Side? = scoreCounter.getCurrentLeader()
-            if let currentUser = UserManager.sharedInstance.getCurrentUser() {
-                currentUser.addToNumberOfSolves(newSolves: scoreCounter.getBottomScore())
-                currentUser.incrementNumberOfGamesPlayed()
-                if winner == .Bottom {
-                    currentUser.incrementNumberOfWins()
-                }
-                else {
-                    currentUser.incrementNumberOfLosses()
-                }
-            }
+            updateMultiplayerEndGameStats()
         }
         
         // Save temporarily to NSUserDefaults for use in next scene
@@ -552,6 +541,26 @@ class GameplayScene: CCNode {
             
             let transition = CCTransition(fadeWithDuration: 0.5)
             CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+        }
+    }
+    
+    private func updateMultiplayerEndGameStats() {
+        guard let _ = multiplayerMatchData else {
+            assertionFailure("updateMultiplayerEndGameStats called when multiplayerMatchData was nil")
+            return
+        }
+        
+        let winner: Side? = scoreCounter.getCurrentLeader()
+        if let currentUser = UserManager.sharedInstance.getCurrentUser() {
+            currentUser.addToNumberOfSolves(newSolves: scoreCounter.getBottomScore())
+            currentUser.incrementNumberOfGamesPlayed()
+            currentUser.calculateNewExperienceLevel(withScore: scoreCounter.getBottomScore(), didWin: winner == .Bottom ? true : false)
+            if winner == .Bottom {
+                currentUser.incrementNumberOfWins()
+            }
+            else {
+                currentUser.incrementNumberOfLosses()
+            }
         }
     }
 }
