@@ -43,11 +43,11 @@ struct Array2D<T> {
     func enumerate() -> AnyGenerator<((Int, Int), T?)> {
         var index = 0
         var generator = array.generate()
-        return anyGenerator() {
+        return AnyGenerator() {
             if let item = generator.next() {
                 let column = index % self.columns
                 let row = index / self.columns
-                ++index
+                index += 1
                 return ((column, row) , item)
             }
             return nil
