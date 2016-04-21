@@ -17,9 +17,9 @@ class LevelDisplay: CCNode {
     weak var levelLabel: CCLabelTTF!
     weak var experienceLabel: CCLabelTTF!
     
-    var level: Int = 0
-    var currentProgress: Int = 0
-    var neededExperience: Int = 0
+    private var level: Int = 0
+    private var currentProgress: Int = 0
+    private var neededExperience: Int = 0
     
     
     func didLoadFromCCB() {
