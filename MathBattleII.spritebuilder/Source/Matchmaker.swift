@@ -42,15 +42,7 @@ class Matchmaker {
             if !(snapshot.value is NSNull) { // Check if match exists
                 if possiblePassword == snapshot.value.objectForKey("password") as! String {
                     if snapshot.value.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
-                        let userData: NSDictionary = [
-                            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
-                            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
-                            "isConnected": true,
-                            "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                            "currentlySelectedTiles": [],
-                            "targetNumber": 0,
-                            "score": 0
-                        ]
+                        let userData: NSDictionary = self.generateStandardUserData()
                         ref.childByAppendingPath("hostPlayer").setValue(userData as [NSObject : AnyObject])
                         
                         // "hostPlayer" refers to the Player on the current device.
@@ -64,15 +56,7 @@ class Matchmaker {
                         self.listenForMatchStart(atRef: ref)
                     }
                     else if snapshot.value.objectForKey("opposingPlayer") == nil { // Check if match is full
-                        let userData: NSDictionary = [
-                            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
-                            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
-                            "isConnected": true,
-                            "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                            "currentlySelectedTiles": [],
-                            "targetNumber": 0,
-                            "score": 0
-                        ]
+                        let userData: NSDictionary = self.generateStandardUserData()
                         ref.childByAppendingPath("opposingPlayer").setValue(userData as [NSObject : AnyObject])
                         
                         // "hostPlayer" refers to the Player on the current device. 
@@ -179,6 +163,18 @@ class Matchmaker {
                     print("An error occured when attaching to match data: \(error.description)")
             })
         })
+    }
+    
+    private func generateStandardUserData() -> NSDictionary {
+        return [
+            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
+            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
+            "isConnected": true,
+            "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "currentlySelectedTiles": [],
+            "targetNumber": 0,
+            "score": 0
+        ]
     }
 }
 

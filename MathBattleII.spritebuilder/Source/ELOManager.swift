@@ -13,13 +13,7 @@ class ELOManager {
     static func updateRatings(winner oldWinnerRating: Int, loser oldLoserRating: Int) -> (Int, Int) {
         
         // Calculate winner rating
-        var winnerKConstant = 10
-        if oldWinnerRating < 2100 {
-            winnerKConstant = 32
-        }
-        else if oldWinnerRating < 2400 {
-            winnerKConstant = 24
-        }
+        let winnerKConstant = determineKConstant(rating: oldWinnerRating)
         
         let expectedWinnerScore = (1 / (1 + pow(10, ((Double(oldLoserRating) - Double(oldWinnerRating)) / 400))))
         var newWinnerRating = Int(Double(oldWinnerRating) + Double(winnerKConstant) * (1 - expectedWinnerScore))
@@ -28,13 +22,7 @@ class ELOManager {
         }
         
         // Calculate loser rating
-        var loserKConstant = 10
-        if oldLoserRating < 2100 {
-            loserKConstant = 32
-        }
-        else if oldLoserRating < 2400 {
-            loserKConstant = 24
-        }
+        let loserKConstant = determineKConstant(rating: oldLoserRating)
         
         let expectedLoserScore = (1 / (1 + pow(10, ((Double(oldWinnerRating) - Double(oldLoserRating)) / 400))))
         var newLoserRating = Int(Double(oldLoserRating) + Double(loserKConstant) * (0 - expectedLoserScore))
@@ -54,5 +42,25 @@ class ELOManager {
     
     static func calculateRatingDifference(rating1 rating1: Int, rating2: Int) -> Int {
         return abs(rating1 - rating2)
+    }
+    
+    private static func determineKConstant(rating rating: Int) -> Int {
+        if rating > 2400 {
+            return 10
+        }
+        else if rating > 2100 {
+            return 24
+        }
+        else {
+            return 32
+        }
+    }
+    
+    private static func calculateNewRating(winnerRating oldWinnerRating: Int, loserRating oldLoserRating: Int, kConstant: Int) {
+        let expectedWinnerScore = (1 / (1 + pow(10, ((Double(oldLoserRating) - Double(oldWinnerRating)) / 400))))
+        var newWinnerRating = Int(Double(oldWinnerRating) + Double(kConstant) * (1 - expectedWinnerScore))
+        if newWinnerRating < 700 {
+            newWinnerRating = 700
+        }
     }
 }
