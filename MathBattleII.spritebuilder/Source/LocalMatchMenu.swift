@@ -10,6 +10,6 @@ import Foundation
 
 class LocalMatchMenu: CCNode {
     
-    
+    weak var topMenuButton, bottomMenuButton: CCButton!
     
 }

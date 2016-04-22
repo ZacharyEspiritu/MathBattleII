@@ -300,8 +300,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -817,7 +815,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>LoadingScene</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>
@@ -886,6 +884,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -971,7 +971,7 @@
 						<integer>12</integer>
 						<key>value</key>
 						<array>
-							<string>playDingSound</string>
+							<string>playLoadingSound</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -987,7 +987,7 @@
 						<integer>12</integer>
 						<key>value</key>
 						<array>
-							<string>playDingSound</string>
+							<string>playLoadingSound</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1003,7 +1003,7 @@
 						<integer>12</integer>
 						<key>value</key>
 						<array>
-							<string>playDingSound</string>
+							<string>playLoadingSound</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1019,7 +1019,7 @@
 						<integer>12</integer>
 						<key>value</key>
 						<array>
-							<string>playDingSound</string>
+							<string>playLoadingSound</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1035,7 +1035,7 @@
 						<integer>12</integer>
 						<key>value</key>
 						<array>
-							<string>playDingSound</string>
+							<string>playLoadingSound</string>
 							<integer>1</integer>
 						</array>
 					</dict>
@@ -1046,7 +1046,7 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
-						<real>1.6333333253860474</real>
+						<real>1.6666667461395264</real>
 						<key>type</key>
 						<integer>12</integer>
 						<key>value</key>
@@ -1068,7 +1068,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.6333333253860474</real>
+			<real>1.6000000238418579</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
