@@ -14,4 +14,6 @@ class CustomMatchScene: CCNode {
     weak var largeMenuButton, leftMenuButton, centerMenuButton, rightMenuButton: CCButton!
     weak var newsButton, infoButton, leaderboardButton, gameCenterButton: CCButton!
     
+    weak var lobbyNameTextField, lobbyPasswordTextField: CCTextField!
+    
 }

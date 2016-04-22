@@ -44,6 +44,7 @@
 		558E3D6C1C9A4D1B00DCADF9 /* Array+Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558E3D6B1C9A4D1B00DCADF9 /* Array+Randomizer.swift */; };
 		558FBADD1CADC75500189521 /* RankedMatchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FBADC1CADC75500189521 /* RankedMatchScene.swift */; };
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
+		559B3E5F1CC9864B00E33056 /* CustomMatchTextEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559B3E5E1CC9864B00E33056 /* CustomMatchTextEntry.swift */; };
 		55A0348B1C714A6200451824 /* UserAccountInfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */; };
 		55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */; };
 		55AD60F71C8616D300F9F9A7 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60F61C8616D300F9F9A7 /* ding.wav */; };
@@ -265,6 +266,7 @@
 		558E3D6B1C9A4D1B00DCADF9 /* Array+Randomizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Randomizer.swift"; path = "Source/Array+Randomizer.swift"; sourceTree = "<group>"; };
 		558FBADC1CADC75500189521 /* RankedMatchScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedMatchScene.swift; path = Source/RankedMatchScene.swift; sourceTree = "<group>"; };
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
+		559B3E5E1CC9864B00E33056 /* CustomMatchTextEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchTextEntry.swift; path = Source/CustomMatchTextEntry.swift; sourceTree = "<group>"; };
 		55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoScene.swift; path = Source/UserAccountInfoScene.swift; sourceTree = "<group>"; };
 		55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoManager.swift; path = Source/UserAccountInfoManager.swift; sourceTree = "<group>"; };
 		55AD60F61C8616D300F9F9A7 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
@@ -485,6 +487,15 @@
 			name = "Match-Making Handlers";
 			sourceTree = "<group>";
 		};
+		559B3E5B1CC9863E00E33056 /* Custom Match Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5525C0631CC790B800D90364 /* CustomMatchMenu.swift */,
+				559B3E5E1CC9864B00E33056 /* CustomMatchTextEntry.swift */,
+			);
+			name = "Custom Match Menu";
+			sourceTree = "<group>";
+		};
 		55A034871C714A3200451824 /* Options */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,7 +521,7 @@
 				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
 				55316C771CC6FAC1008CF8E7 /* MenuScene.swift */,
-				5525C0631CC790B800D90364 /* CustomMatchMenu.swift */,
+				559B3E5B1CC9863E00E33056 /* Custom Match Menu */,
 				5525C0671CC790CA00D90364 /* LocalMatchMenu.swift */,
 				5525C0691CC790E900D90364 /* PracticeMatchMenu.swift */,
 				55A8BEC51CAF560A004E7099 /* Ranked Match Menu */,
@@ -1302,6 +1313,7 @@
 				55E5F3B31CC1645600D2F77E /* AI.swift in Sources */,
 				55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */,
 				550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */,
+				559B3E5F1CC9864B00E33056 /* CustomMatchTextEntry.swift in Sources */,
 				55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */,
 				557FEDB01C8D2D1C001A5F71 /* PlayerData.swift in Sources */,
 				55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */,

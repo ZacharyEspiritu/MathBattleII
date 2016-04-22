@@ -10,6 +10,8 @@ import Foundation
 
 class CustomMatchMenu: CCNode {
     
-    
+    weak var playerHeader: CCSprite!
+    weak var customMatchTextEntry: CustomMatchTextEntry!
+    weak var backButton, confirmButton: CCSprite!
     
 }

@@ -22,8 +22,11 @@ class MenuScene: CCNode {
     
     func didLoadFromCCB() {
         print("test")
-        let menu = CCBReader.load("RankedMatchMenu") as! RankedMatchMenu
-        menu.position = CGPoint(x: 0, y: 0)
+        let menu = CCBReader.load("CustomMatchMenu") as! CustomMatchMenu
+        menu.positionType = CCPositionTypeMake(CCPositionUnit.Normalized, CCPositionUnit.Normalized, CCPositionReferenceCorner.TopLeft)
+        menu.position = CGPoint(x: 0.5, y: 0.5)
+        menu.contentSizeType = CCSizeTypeMake(CCSizeUnit.Normalized, CCSizeUnit.Normalized)
+        menu.contentSize = CGSizeMake(1, 1)
         menuGroupingNode.addChild(menu)
         
         userInteractionEnabled = true
