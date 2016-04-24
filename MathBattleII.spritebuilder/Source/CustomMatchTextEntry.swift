@@ -16,7 +16,33 @@ class CustomMatchTextEntry: CCNode {
     func didLoadFromCCB() {
         let textFields = [matchNameTextField.textField, matchPasswordTextField.textField]
         for textField in textFields {
-            
+            // textField.delegate = self
+            textField.clipsToBounds = true
+            textField.adjustsFontSizeToFitWidth = true
+            textField.minimumFontSize = 8.0
+            textField.returnKeyType = .Next
+            textField.autocapitalizationType = .None
+            textField.autocorrectionType = .No
+            textField.spellCheckingType = .No
+            textField.clearButtonMode = .WhileEditing
         }
+    }
+    
+    func getMatchName() -> String {
+        return matchNameTextField.string
+    }
+    
+    func getMatchPassword() -> String {
+        return matchPasswordTextField.string
+    }
+}
+
+extension CustomMatchTextEntry: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == matchNameTextField.textField {
+            matchPasswordTextField.textField.becomeFirstResponder()
+        }
+        return false
     }
 }
