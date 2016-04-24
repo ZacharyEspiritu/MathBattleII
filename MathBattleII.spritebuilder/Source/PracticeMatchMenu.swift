@@ -10,6 +10,7 @@ import Foundation
 
 class PracticeMatchMenu: CCNode {
     
-    
+    weak var scroller: PracticeAIScroller!
+    weak var chooseButton: CCButton!
     
 }
