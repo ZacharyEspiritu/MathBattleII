@@ -13,7 +13,7 @@ class LoadingScene: CCNode {
     func didLoadFromCCB() {
         OALSimpleAudio.sharedInstance().preloadEffect("pop.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("ding.wav")
-        OALSimpleAudio.sharedInstance().preloadEffect("flicker.m4a")
+        OALSimpleAudio.sharedInstance().preloadEffect("flicker.mp3")
     }
     
     func playLoadingSound() {
