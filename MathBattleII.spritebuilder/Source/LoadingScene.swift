@@ -11,19 +11,31 @@ import Foundation
 class LoadingScene: CCNode {
     
     func didLoadFromCCB() {
-        OALSimpleAudio.sharedInstance().preloadEffect(<#T##filePath: String!##String!#>)
+        OALSimpleAudio.sharedInstance().preloadEffect("pop.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("ding.wav")
+        OALSimpleAudio.sharedInstance().preloadEffect("flicker.m4a")
     }
     
     func playLoadingSound() {
-        OALSimpleAudio.sharedInstance().playEffect(<#T##filePath: String!##String!#>)
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+    }
+    
+    func playLogoFlickerSound() {
+        OALSimpleAudio.sharedInstance().playEffect("flicker.mp3", volume: 0.4, pitch: 1, pan: 0, loop: false)
+    }
+    
+    func playBounceSound() {
+        
+    }
+    
+    func playDingSound() {
+        OALSimpleAudio.sharedInstance().playEffect("ding.wav")
     }
     
     func segueToMenuScene() {
-        OALSimpleAudio.sharedInstance().playEffect("ding.wav")
-        
         let scene = CCScene()
         scene.addChild(CCBReader.load("MainScene") as! MainScene)
-        CCDirector.sharedDirector().presentScene(scene)
+        let transition = CCTransition(crossFadeWithDuration: 0.35)
+        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
 }
