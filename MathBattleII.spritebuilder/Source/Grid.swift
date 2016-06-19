@@ -18,7 +18,8 @@ class Grid: CCNode {
      Will crash if the `tileArray` does not contain exactly 9 elements.
      - parameter array:   a `[TileArray]` corresponding to the `Tile` instances to load
      */
-    func loadTiles(var array tileArray: [TileValue]) {
+    func loadTiles(array tileValues: [TileValue]) {
+        var tileArray = tileValues
         guard tileArray.count == 9 else {
             assertionFailure("loadTiles(tileArray): tileArray did not have exactly 9 TileValue instances")
             return
