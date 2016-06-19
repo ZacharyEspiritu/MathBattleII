@@ -16,7 +16,6 @@ class RankedMatchMenu: CCNode {
     
     
     func didLoadFromCCB() {
-        print("done!")
         userInteractionEnabled = true
     }
     
@@ -43,7 +42,6 @@ class RankedMatchMenu: CCNode {
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        print("test")
         if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {
             rankedPlayerHeader.runAction(CCActionScaleTo(duration: 0.05, scale: 0.95))
         }
