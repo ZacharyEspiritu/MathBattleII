@@ -25,13 +25,15 @@ class PracticeAIScroller: CCNode {
         userInteractionEnabled = true
     }
     
-    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-        print("test")
-        let position = touch.locationInNode(self)
-        if position.x < self.contentSize.width / 3 {
+    func getCurrentlyFocusedAI() -> CCSprite {
+        return icons[1]
+    }
+    
+    private func rotateAIs(inDirection direction: Direction) {
+        if direction == .Left {
             icons.append(icons.removeAtIndex(0))
         }
-        else if position.x > (self.contentSize.width / 3) * 2 {
+        else {
             icons.insert(icons.removeAtIndex(2), atIndex: 0)
         }
         for icon in icons {
@@ -50,4 +52,18 @@ class PracticeAIScroller: CCNode {
         icons[2].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
         icons[2].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
     }
+    
+    override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
+        let position = touch.locationInNode(self)
+        if position.x < self.contentSize.width / 3 {
+            rotateAIs(inDirection: .Left)
+        }
+        else if position.x > (self.contentSize.width / 3) * 2 {
+            rotateAIs(inDirection: .Right)
+        }
+    }
+}
+
+enum Direction {
+    case Up, Down, Left, Right
 }
