@@ -28,6 +28,8 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 
+#import <UAAppReviewManager/UAAppReviewManager.h>
+
 @implementation AppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -62,12 +64,15 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:@"pop.wav"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"buzz.wav"];
     
+    // Setup UAAppReviewManager
+    [UAAppReviewManager setAppID:@"12345678"];
+
     return YES;
 }
 
 - (CCScene*) startScene
 {
-    return [CCBReader loadAsScene:@"MainScene"];
+    return [CCBReader loadAsScene:@"LoadingScene"];
 }
 
 @end
