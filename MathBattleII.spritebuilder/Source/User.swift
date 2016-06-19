@@ -154,8 +154,15 @@ class User {
         return ratingFloor
     }
     
-    func setExperienceLevel(newExperienceLevel newExperienceLevel: Int) -> Int {
-        experienceLevel = newExperienceLevel
+    func calculateNewExperienceLevel(withScore score: Int, didWin: Bool) -> Int {
+        var newExperience = 2 + score // 2 EXP for each game, plus 1 EXP per completed puzzle
+        if score == 5 {
+            newExperience += 1 // 1 EXP for completing all five puzzles
+        }
+        if didWin {
+            newExperience += 2 // 2 EXP for winning the match
+        }
+        experienceLevel += newExperience
         return experienceLevel
     }
     
