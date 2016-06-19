@@ -8,10 +8,6 @@
 
 import Foundation
 
-enum MatchType {
-    case Ranked, Unranked, CustomUnranked, PracticeMode, Local
-}
-
 class CustomMatchPopoverView: UIView {
     
     @IBOutlet weak var lobbyNameTextField: UITextField!

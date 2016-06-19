@@ -24,7 +24,7 @@ class CustomMatchTextEntry: CCNode {
             textField.autocapitalizationType = .None
             textField.autocorrectionType = .No
             textField.spellCheckingType = .No
-            textField.clearButtonMode = .WhileEditing
+            textField.clearButtonMode = .Never
         }
     }
     
