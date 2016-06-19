@@ -13,16 +13,25 @@ class DescriptionPopup: CCNode {
     weak var sprite: CCSprite9Slice!
     weak var label: CCLabelTTF!
     
-    func loadDescriptionForMenu(menu menu: String) {
+    func loadDescriptionForMenu(menu menu: MenuType) {
         switch menu {
-        case "RankedMatch":
-            setDescription(description: "Battle other players in a race to solve five puzzles as fast as possible!\n\nYou win BattlePoints by winning matches, but you can also lose them!")
+        case .Ranked:
+            setDescription(description: "Battle other players in a race\nto solve five puzzles as fast\nas possible!\n\nYou win BattlePoints by\nwinning matches, but you can\nalso lose them!")
+        case .Custom:
+            setDescription(description: "Setup an online match with a friend\nby entering the same room name\nand password!")
+        case .Local:
+            setDescription(description: "Play on the same device\nagainst a friend!")
+        case .Practice:
+            setDescription(description: "Practice your match skills\nagainst different AIs of varying\ndifficulties!")
         default:
             assertionFailure()
         }
     }
     
-    private func setDescription(description desciption: String) {
-        label.string = description
+    private func setDescription(description popupString: String) {
+        label.string = popupString
+        
+        self.contentSize = CGSize(width: label.contentSize.width + 28, height: label.contentSize.height + 38)
+        label.position = CGPoint(x: 14.0, y: 23.0)
     }
 }
