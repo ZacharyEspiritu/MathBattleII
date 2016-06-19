@@ -138,7 +138,7 @@
 												<string>Block</string>
 												<key>value</key>
 												<array>
-													<string></string>
+													<string>readyButtonPressed</string>
 													<integer>1</integer>
 												</array>
 											</dict>
@@ -653,7 +653,7 @@
 												<string>Block</string>
 												<key>value</key>
 												<array>
-													<string></string>
+													<string>readyButtonPressed</string>
 													<integer>1</integer>
 												</array>
 											</dict>

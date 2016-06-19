@@ -12,4 +12,13 @@ class LocalMatchMenu: CCNode {
     
     weak var topMenuButton, bottomMenuButton: CCButton!
     
+    func readyButtonPressed() {
+        if topMenuButton.selected && bottomMenuButton.selected {
+            OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+            let scene = CCScene()
+            scene.addChild(CCBReader.load("GameplayScene") as! GameplayScene)
+            let transition = CCTransition(crossFadeWithDuration: 0.5)
+            CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+        }
+    }
 }
