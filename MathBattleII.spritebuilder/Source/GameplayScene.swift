@@ -55,13 +55,29 @@ class GameplayScene: CCNode {
     var multiplayerMatchData: MatchData?
     
     
+    // MARK: Constants
+    
+    var gameLengthInSeconds: Int = 60
+    var scoreLimit: Int = 5
+    
+    
     // MARK: Functions
     
     /**
      Called when the `GameplayScene` is loaded.
      */
     func didLoadFromCCB() {
+        retrieveGameOptions()
         setupGame()
+    }
+    
+    private func retrieveGameOptions() {
+        gameLengthInSeconds = NSUserDefaults.standardUserDefaults().integerForKey("gameLengthOption")
+        scoreLimit = NSUserDefaults.standardUserDefaults().integerForKey("scoreLimitOption")
+        
+        // Reset game options
+        NSUserDefaults.standardUserDefaults().setInteger(90, forKey: "gameLengthOption")
+        NSUserDefaults.standardUserDefaults().setInteger(5, forKey: "scoreLimitOption")
     }
     
     /**
@@ -89,7 +105,7 @@ class GameplayScene: CCNode {
         setupGameTimer()
         
         // Establish score limits
-        scoreCounter.establishScoreLimit(forBothSides: 5)
+        scoreCounter.establishScoreLimit(forBothSides: scoreLimit)
         
         beginCountdownSequence()
         
@@ -132,7 +148,7 @@ class GameplayScene: CCNode {
      Initializes a new `GameTimer` instance and saves it to the `GameplayScene` for future use.
      */
     private func setupGameTimer() {
-        gameTimer = GameTimer(gameLengthInSeconds: 90)
+        gameTimer = GameTimer(gameLengthInSeconds: gameLengthInSeconds)
         gameTimer.delegate = self
         mainDisplay.updateTimerLabel(timeRemaining: gameTimer.getRemainingTime())
     }
@@ -540,6 +556,8 @@ class GameplayScene: CCNode {
             scene.addChild(gameplayScene)
             
             let transition = CCTransition(fadeWithDuration: 0.5)
+            transition.incomingSceneAnimated = true
+            transition.outgoingSceneAnimated = true
             CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
         }
     }
