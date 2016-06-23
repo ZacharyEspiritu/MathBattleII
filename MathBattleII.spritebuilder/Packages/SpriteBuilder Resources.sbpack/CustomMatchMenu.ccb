@@ -10,7 +10,7 @@
 		<false/>
 	</dict>
 	<key>UUID</key>
-	<integer>103</integer>
+	<integer>104</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -100,8 +100,6 @@
 						<string>CustomMatchMenuButtons.ccb</string>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -119,17 +117,17 @@
 						<array>
 							<dict>
 								<key>UUID</key>
-								<integer>61</integer>
+								<integer>103</integer>
 								<key>baseClass</key>
-								<string>CCSprite</string>
+								<string>CCBFile</string>
 								<key>children</key>
 								<array/>
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>playerHeader</string>
+								<string>CustomMatchMessageHeader</string>
 								<key>memberVarAssignmentName</key>
-								<string>playerHeader</string>
+								<string>messageHeader</string>
 								<key>memberVarAssignmentType</key>
 								<integer>1</integer>
 								<key>properties</key>
@@ -158,17 +156,6 @@
 									</dict>
 									<dict>
 										<key>name</key>
-										<string>anchorPoint</string>
-										<key>type</key>
-										<string>Point</string>
-										<key>value</key>
-										<array>
-											<real>0.5</real>
-											<real>0.5</real>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
 										<string>scale</string>
 										<key>type</key>
 										<string>ScaleLock</string>
@@ -182,48 +169,15 @@
 									</dict>
 									<dict>
 										<key>name</key>
-										<string>spriteFrame</string>
+										<string>ccbFile</string>
 										<key>type</key>
-										<string>SpriteFrame</string>
+										<string>CCBFile</string>
 										<key>value</key>
-										<array>
-											<string></string>
-											<string>mainMenuAssets/customMatchPlayerHeader.png</string>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>normalMapSpriteFrame</string>
-										<key>type</key>
-										<string>SpriteFrame</string>
-										<key>value</key>
-										<array>
-											<string></string>
-											<string></string>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>color</string>
-										<key>type</key>
-										<string>Color3</string>
-										<key>value</key>
-										<array>
-											<real>1</real>
-											<real>1</real>
-											<real>1</real>
-											<real>1</real>
-										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>effects</string>
-										<key>type</key>
-										<string>EffectControl</string>
-										<key>value</key>
-										<array/>
+										<string>CustomMatchMessageHeader.ccb</string>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>

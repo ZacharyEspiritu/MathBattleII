@@ -10,7 +10,7 @@ import Foundation
 
 class CustomMatchMenu: CCNode {
     
-    weak var playerHeader: CCSprite!
+    weak var messageHeader: CustomMatchMessageHeader!
     weak var menuButtonNode: CustomMatchMenuButtons!
     weak var centerAreaGroupingNode: CCNode!
     weak var customMatchTextEntry: CustomMatchTextEntry!
@@ -29,6 +29,18 @@ class CustomMatchMenu: CCNode {
         menuButtonNode.delegate = self
     }
     
+    func backButtonPressed() {
+        let centerAreaXPosition: CGFloat = (matchMenuType == .Join) ? 1.5 : -1.5
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        
+        customMatchTextEntry.enabled = true
+        confirmButton.enabled = true
+        messageHeader.setMessage(string: "Custom Match") // TODO: Error Checking
+        
+        // TODO: If cancel match, then delete from Firebase database
+    }
+    
     func confirmMatchInformation() {
         guard let _ = UserManager.sharedInstance.getCurrentUser() else {
             print("User is not logged in!")
@@ -37,19 +49,16 @@ class CustomMatchMenu: CCNode {
         
         let matchName = customMatchTextEntry.getMatchName()
         let password = customMatchTextEntry.getMatchPassword()
-        
         if matchMenuType == .Create {
             Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName, customPassword: password)
         }
         else {
             Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName, password: password)
         }
-    }
-    
-    func backButtonPressed() {
-        let centerAreaXPosition: CGFloat = (matchMenuType == .Join) ? 1.5 : -1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        
+        customMatchTextEntry.enabled = false
+        confirmButton.enabled = false
+        messageHeader.setMessage(string: "Waiting For Opponent") // TODO: Error Checking
     }
 }
 
@@ -63,14 +72,14 @@ extension CustomMatchMenu: CustomMatchMenuButtonsDelegate {
     func joinButtonPressed() {
         matchMenuType = .Join
         centerAreaGroupingNode.position.x = 1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: -1.5, y: centerAreaGroupingNode.position.y))))
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: -1.5, y: centerAreaGroupingNode.position.y))))
     }
     
     func createButtonPressed() {
         matchMenuType = .Create
         centerAreaGroupingNode.position.x = -1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.2, position: CGPoint(x: 1.5, y: centerAreaGroupingNode.position.y))))
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 1.5, y: centerAreaGroupingNode.position.y))))
     }
 }

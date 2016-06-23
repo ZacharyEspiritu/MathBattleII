@@ -13,6 +13,12 @@ class CustomMatchTextEntry: CCNode {
     weak var matchNameTextField: CCTextField!
     weak var matchPasswordTextField: CCTextField!
     
+    var enabled: Bool = true {
+        didSet {
+            enabled(enabled)
+        }
+    }
+    
     func didLoadFromCCB() {
         let textFields = [matchNameTextField.textField, matchPasswordTextField.textField]
         for textField in textFields {
@@ -34,6 +40,13 @@ class CustomMatchTextEntry: CCNode {
     
     func getMatchPassword() -> String {
         return matchPasswordTextField.string
+    }
+    
+    private func enabled(enabled: Bool) {
+        let textFields = [matchNameTextField.textField, matchPasswordTextField.textField]
+        for textField in textFields {
+            textField.enabled = enabled
+        }
     }
 }
 
