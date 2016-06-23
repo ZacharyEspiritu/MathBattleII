@@ -23,6 +23,8 @@ class MainScene: CCNode {
     weak var descriptionButton: CCButton!
     var currentDescriptionPopup: DescriptionPopup?
     
+    weak var focusOut: CCSprite!
+    
     var currentMenuType: MenuType = .None {
         didSet {
             loadMenuForType(type: currentMenuType)
@@ -32,6 +34,7 @@ class MainScene: CCNode {
     
     func didLoadFromCCB() {
         GameCenterInteractor.sharedInstance.authenticationCheck()
+        MatchStartingPopupHandler.sharedInstance.delegate = self
     }
     
     // MARK: Button Functions
@@ -219,6 +222,17 @@ class MainScene: CCNode {
         }
     }
 }
+
+extension MainScene: MatchStartingPopupHandlerDelegate {
+    
+    func shouldDisplayPopup(matchStartingPopup: MatchStartingPopup) {
+        focusOut.runAction(CCActionFadeTo(duration: 0.3, opacity: 1))
+        matchStartingPopup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
+        matchStartingPopup.position = CGPoint(x: 0.5, y: 0.5)
+        focusOut.addChild(matchStartingPopup)
+    }
+}
+
 
 enum MenuType: Int {
     case None = -1
