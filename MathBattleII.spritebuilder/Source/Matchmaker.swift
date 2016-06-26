@@ -17,9 +17,9 @@ class Matchmaker {
     
     
     func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(customName)")
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(customName)")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if snapshot.value is NSNull { // Check if match doesn't already exist with given name
+            if let _ = snapshot.value { // Check if match doesn't already exist with given name
                 let matchData: NSDictionary = [
                     "password": customPassword,
                     "shouldStart": false,
@@ -37,13 +37,13 @@ class Matchmaker {
     }
     
     func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/" + matchName)
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(matchName)")
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if !(snapshot.value is NSNull) { // Check if match exists
-                if possiblePassword == snapshot.value.objectForKey("password") as! String {
-                    if snapshot.value.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
+            if let matchInformation = snapshot.value as? NSDictionary { // Check if match exists
+                if possiblePassword == matchInformation.objectForKey("password") as! String {
+                    if matchInformation.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
                         let userData: NSDictionary = self.generateStandardUserData()
-                        ref.childByAppendingPath("hostPlayer").setValue(userData as [NSObject : AnyObject])
+                        ref.child("hostPlayer").setValue(userData as [NSObject : AnyObject])
                         
                         // "hostPlayer" refers to the Player on the current device.
                         // "opposingPlayer" refers to the player that isn't on the current device.
@@ -52,24 +52,24 @@ class Matchmaker {
                         self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil, matchType: .Custom)
                         self.currentMatchData?.hostPlayer.delegate = self
                         
-                        self.attachToPlayerData(atRef: ref.childByAppendingPath("opposingPlayer"))
+                        self.attachToPlayerData(atRef: ref.child("opposingPlayer"))
                         self.listenForMatchStart(atRef: ref)
                     }
-                    else if snapshot.value.objectForKey("opposingPlayer") == nil { // Check if match is full
+                    else if matchInformation.objectForKey("opposingPlayer") == nil { // Check if match is full
                         let userData: NSDictionary = self.generateStandardUserData()
-                        ref.childByAppendingPath("opposingPlayer").setValue(userData as [NSObject : AnyObject])
+                        ref.child("opposingPlayer").setValue(userData as [NSObject : AnyObject])
                         
                         // "hostPlayer" refers to the Player on the current device. 
                         // "opposingPlayer" refers to the player that isn't on the current device.
                         let hostPlayerData = PlayerData(data: userData, isHost: false)
-                        let opposingPlayerData = PlayerData(data: snapshot.value.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
+                        let opposingPlayerData = PlayerData(data: matchInformation.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
                         
                         self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData, matchType: .Custom)
                         self.currentMatchData?.hostPlayer.delegate = self
                         
-                        self.attachToPlayerData(atRef: ref.childByAppendingPath("hostPlayer"))
+                        self.attachToPlayerData(atRef: ref.child("hostPlayer"))
                         self.listenForMatchStart(atRef: ref)
-                        ref.childByAppendingPath("shouldStart").setValue(true)
+                        ref.child("shouldStart").setValue(true)
                     }
                     else {
                         print("Match is full.")
@@ -85,8 +85,8 @@ class Matchmaker {
         })
     }
     
-    private func listenForMatchStart(atRef ref: Firebase) {
-        ref.childByAppendingPath("shouldStart").observeEventType(.Value,
+    private func listenForMatchStart(atRef ref: FIRDatabaseReference) {
+        ref.child("shouldStart").observeEventType(.Value,
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
                     if !localMatchData.hasMatchStarted() {
@@ -102,7 +102,7 @@ class Matchmaker {
         })
     }
     
-    private func attachToPlayerData(atRef ref: Firebase) {
+    private func attachToPlayerData(atRef ref: FIRDatabaseReference) {
         ref.observeEventType(.Value,
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
@@ -118,7 +118,7 @@ class Matchmaker {
         })
     }
     
-    private func startCurrentMatch(atRef ref: Firebase) {
+    private func startCurrentMatch(atRef ref: FIRDatabaseReference) {
         print("match starting")
         
         // Begin 15 second countdown before match starts
@@ -145,7 +145,7 @@ class Matchmaker {
         }
     }
     
-    private func scheduleAutomaticDataCheck(atRef ref: Firebase) {
+    private func scheduleAutomaticDataCheck(atRef ref: FIRDatabaseReference) {
         NSTimer.schedule(repeatInterval: 5, handler: { timer in
             ref.observeSingleEventOfType(.Value,
                 withBlock: { snapshot in
@@ -180,36 +180,31 @@ class Matchmaker {
 
 extension Matchmaker: PlayerDataDelegate {
     func connectionStatusHasUpdated(playerData: PlayerData) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
-        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("isConnected").setValue(playerData.isConnected)
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(currentMatchData!.matchID)")
+        ref.child(playerData.isHost ? "hostPlayer" : "opposingPlayer").child("isConnected").setValue(playerData.isConnected)
     }
     
     func scoreHasUpdated(playerData: PlayerData) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
-        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("score").setValue(playerData.score)
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(currentMatchData!.matchID)")
+        ref.child(playerData.isHost ? "hostPlayer" : "opposingPlayer").child("score").setValue(playerData.score)
     }
     
     func currentTilesHaveUpdated(playerData: PlayerData) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(currentMatchData!.matchID)")
         var rawValues: [Int] = []
         for tile in playerData.currentTiles {
             rawValues.append(tile.rawValue)
         }
-        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("currentTiles").setValue(rawValues)
+        ref.child(playerData.isHost ? "hostPlayer" : "opposingPlayer").child("currentTiles").setValue(rawValues)
     }
     
     func targetNumberHasUpdated(playerData: PlayerData) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
-        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("targetNumber").setValue(playerData.targetNumber)
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(currentMatchData!.matchID)")
+        ref.child(playerData.isHost ? "hostPlayer" : "opposingPlayer").child("targetNumber").setValue(playerData.targetNumber)
     }
     
     func currentlySelectedTilesHaveUpdated(playerData: PlayerData) {
-        let ref = Firebase(url: Config.firebaseURL + "/matches/custom/\(currentMatchData!.matchID)")
-        ref.childByAppendingPath(playerData.isHost ? "hostPlayer" : "opposingPlayer")
-            .childByAppendingPath("currentlySelectedTiles").setValue(playerData.currentlySelectedTiles)
+        let ref = FIRDatabase.database().reference().child("/matches/custom/\(currentMatchData!.matchID)")
+        ref.child(playerData.isHost ? "hostPlayer" : "opposingPlayer").child("currentlySelectedTiles").setValue(playerData.currentlySelectedTiles)
     }
 }

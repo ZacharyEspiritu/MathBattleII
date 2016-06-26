@@ -85,10 +85,10 @@ class LeaderboardDataView: CCNode {
     
     private func retrieveLeaderboardDataFromFirebase() {
         // Access data from Firebase and sort the players by rating
-        let ref = Firebase(url: Config.firebaseURL + "users")
+        let ref = FIRDatabase.database().reference().child("users")
         print("test")
         ref.queryOrderedByChild("rating").queryLimitedToFirst(30).observeEventType(.Value, withBlock: { snapshot in
-            let playerData = snapshot.value
+            let playerData = snapshot.value as! NSDictionary
             let rating = playerData.objectForKey("rating")
             print(playerData)
         })

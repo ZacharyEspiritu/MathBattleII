@@ -17,24 +17,22 @@ class AuthenticationHandler {
     
     
     func listenForAuthenticationStateChange() {
-        let ref = Firebase(url: Config.firebaseURL)
-        let handle = ref.observeAuthEventWithBlock({ authData in
-            if authData != nil {
-                // user authenticated
-                print(authData)
+        let handle = FIRAuth.auth()!.addAuthStateDidChangeListener() { (auth, user) in
+            if let user = user {
+                print("User is signed in with uid:", user.uid)
             } else {
-                // No user is signed in
+                print("No user is signed in.")
             }
-        })
+        }
         
-        ref.removeAuthEventObserverWithHandle(handle)
+        FIRAuth.auth()!.removeAuthStateDidChangeListener(handle)
     }
     
     func checkImmediatelyIfUserIsAuthenticated() -> Bool {
-        let ref = Firebase(url: Config.firebaseURL)
-        if ref.authData != nil {
+        let ref = FIRAuth.auth()!
+        if ref.currentUser != nil {
             // User is authenticated
-            print(ref.authData)
+            print(ref.currentUser)
             return true
         } else {
             // User is not authenticated
@@ -43,30 +41,14 @@ class AuthenticationHandler {
     }
     
     func authenticateUser(email email: String, password: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.authUser(email, password: password,
-            withCompletionBlock: { error, authData in
-                if error != nil {
-                    // Something went wrong. :(
-                    if let errorCode = FAuthenticationError(rawValue: error.code) {
-                        switch (errorCode) {
-                        case .UserDoesNotExist:
-                            print("Handle invalid user")
-                        case .InvalidEmail:
-                            print("Handle invalid email")
-                        case .InvalidPassword:
-                            print("Handle invalid password")
-                        default:
-                            print("Handle default situation")
-                        }
-                    }
-                }
-                else {
+        FIRAuth.auth()!.signInWithEmail(email, password: password,
+            completion: { user, error in
+                if let user = user {
                     // Authentication just completed successfully :)
                     // The logged in user's unique identifier
-                    print(authData.uid)
+                    print(user.uid)
                     
-                    let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(authData.uid)")
+                    let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
                     // Attach a closure to read the data at our posts reference
                     self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
                         self.saveUserDataLocally(snapshot: snapshot)
@@ -76,56 +58,73 @@ class AuthenticationHandler {
                             print(error.description)
                     })
                 }
+                else {
+                    // Something went wrong. :(
+                    if let errorCode = FIRAuthErrorCode(rawValue: error!.code) { // TODO: Handle all ErrorCode cases
+                        switch (errorCode) {
+                        case .ErrorCodeUserNotFound:
+                            print("Handle invalid user")
+                        case .ErrorCodeInvalidEmail:
+                            print("Handle invalid email")
+                        case .ErrorCodeInvalidCredential:
+                            print("Handle invalid password")
+                        default:
+                            print("Handle default situation")
+                        }
+                    }
+                }
         })
     }
     
     func pushLocalUserDataToServer(user user: User) {
         if checkImmediatelyIfUserIsAuthenticated() {
-            let ref = Firebase(url: Config.firebaseURL)
+            let ref = FIRDatabase.database().reference()
             let userData = user.convertToDictionaryFormat()
             print("saving data...")
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                ref.childByAppendingPath("users").childByAppendingPath(ref.authData.uid).setValue(userData)
+                ref.child("users").child((FIRAuth.auth()?.currentUser!.uid)!).setValue(userData)
                 print("data saved")
             })
         }
     }
     
-    private func saveUserDataLocally(snapshot snapshot: FDataSnapshot!) {
-        let displayName = snapshot.value.objectForKey("displayName") as! String
-        let email = snapshot.value.objectForKey("email") as! String
-        let numberOfGamesPlayed = snapshot.value.objectForKey("numberOfGamesPlayed") as! Int
-        let numberOfWins = snapshot.value.objectForKey("numberOfWins") as! Int
-        let numberOfLosses = snapshot.value.objectForKey("numberOfLosses") as! Int
-        let numberOfSolves = snapshot.value.objectForKey("numberOfSolves") as! Int
-        let provider = snapshot.value.objectForKey("provider") as! String
-        let rating = snapshot.value.objectForKey("rating") as! Int
-        let ratingFloor = snapshot.value.objectForKey("ratingFloor") as! Int
-        let experienceLevel = snapshot.value.objectForKey("experienceLevel") as! Int
-        let coins = snapshot.value.objectForKey("coins") as! Int
-        
-        let friends: [String]
-        if snapshot.value.objectForKey("friends") != nil {
-            friends = snapshot.value.objectForKey("friends") as! [String]
+    private func saveUserDataLocally(snapshot snapshot: FIRDataSnapshot!) {
+        if let userData = snapshot.value as? NSDictionary {
+            let displayName = userData.objectForKey("displayName") as! String
+            let email = userData.objectForKey("email") as! String
+            let numberOfGamesPlayed = userData.objectForKey("numberOfGamesPlayed") as! Int
+            let numberOfWins = userData.objectForKey("numberOfWins") as! Int
+            let numberOfLosses = userData.objectForKey("numberOfLosses") as! Int
+            let numberOfSolves = userData.objectForKey("numberOfSolves") as! Int
+            let provider = userData.objectForKey("provider") as! String
+            let rating = userData.objectForKey("rating") as! Int
+            let ratingFloor = userData.objectForKey("ratingFloor") as! Int
+            let experienceLevel = userData.objectForKey("experienceLevel") as! Int
+            let coins = userData.objectForKey("coins") as! Int
+            
+            let friends: [String]
+            if userData.objectForKey("friends") != nil {
+                friends = userData.objectForKey("friends") as! [String]
+            }
+            else {
+                friends = []
+            }
+            
+            let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, friends: friends)
+            user.delegate = self
+            
+            let userManager = UserManager.sharedInstance
+            
+            do {
+                try userManager.setCurrentUser(user)
+                print("saving user good")
+            }
+            catch {
+                print("saving user failed")
+            }
+            
+            print(snapshot.value)
         }
-        else {
-            friends = []
-        }
-        
-        let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, friends: friends)
-        user.delegate = self
-        
-        let userManager = UserManager.sharedInstance
-        
-        do {
-            try userManager.setCurrentUser(user)
-            print("saving user good")
-        }
-        catch {
-            print("saving user failed")
-        }
-        
-        print(snapshot.value)
     }
     
     
@@ -136,39 +135,33 @@ class AuthenticationHandler {
         user?.setDisplayName(newDisplayName: newDisplayName)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let ref = Firebase(url: Config.firebaseURL)
-            let authData = ref.authData
-            ref.childByAppendingPath("users").childByAppendingPath(authData.uid).childByAppendingPath("displayName").setValue(newDisplayName)
+            let ref = FIRDatabase.database().reference()
+            ref.child("users").child(FIRAuth.auth()!.currentUser!.uid).child("displayName").setValue(newDisplayName)
         })
     }
     
     func changeEmail(oldEmail oldEmail: String, newEmail: String, password: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.changeEmailForUser(oldEmail, password: password, toNewEmail: newEmail,
-            withCompletionBlock: { error in
-                if error != nil {
-                    // There was an error processing the request
-                } else {
-                    // Email changed successfully
-                }
+        FIRAuth.auth()?.currentUser?.updateEmail(newEmail, completion: { error in
+            if error != nil {
+                // There was an error processing the request
+            } else {
+                // Email changed successfully
+            }
         })
     }
     
     func changePassword(email email: String, oldPassword: String, newPassword: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.changePasswordForUser(email, fromOld: oldPassword, toNew: newPassword,
-            withCompletionBlock: { error in
-                if error != nil {
-                    // There was an error processing the request
-                } else {
-                    // Password changed successfully
-                }
+        FIRAuth.auth()?.currentUser?.updatePassword(newPassword, completion: { error in
+            if error != nil {
+                // There was an error processing the request
+            } else {
+                // Password changed successfully
+            }
         })
     }
     
     func sendResetPasswordEmail(forUserEmail email: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.resetPasswordForUser(email, withCompletionBlock: { error in
+        FIRAuth.auth()?.sendPasswordResetWithEmail(email, completion: { error in
             if error != nil {
                 // There was an error processing the request
             } else {
@@ -181,22 +174,20 @@ class AuthenticationHandler {
     // MARK: Remove User Functions
     
     func logoutCurrentSession() {
-        let ref = Firebase(url: Config.firebaseURL)
-        let userRef = Firebase(url: "\(Config.firebaseURL)/users/\(ref.authData.uid)")
-        userRef.removeAuthEventObserverWithHandle(currentAuthenticationHandle)
-        ref.unauth()
+        FIRAuth.auth()?.removeAuthStateDidChangeListener(currentAuthenticationHandle)
+        try! FIRAuth.auth()?.signOut()
     }
     
     func deleteUser(email email: String, password: String) {
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.removeUser(email, password: password,
-            withCompletionBlock: { error in
-                if error != nil {
-                    // There was an error processing the request
-                } else {
-                    // Password changed successfully
-                }
-        })
+//        let ref = FIRDatabase.database().reference()
+//        ref.removeUser(email, password: password,
+//            withCompletionBlock: { error in
+//                if error != nil {
+//                    // There was an error processing the request
+//                } else {
+//                    // Password changed successfully
+//                }
+//        })
     }
 }
 

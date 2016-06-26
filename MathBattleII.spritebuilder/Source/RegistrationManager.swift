@@ -20,26 +20,25 @@ class RegistrationManager {
     
     func registerNewAccount(accountData accountData: AccountData) {
         print("registering new account")
-        let ref = Firebase(url: Config.firebaseURL)
-        ref.createUser(accountData.email, password: accountData.password, withValueCompletionBlock: { error, result in
-            if error != nil {
-                // There was an error creating the account
-                print("Account was unable to be created.")
-            } else {
+        FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
+            if let user = user {
                 // User authentication complete!
-                let uid = result["uid"] as? String
+                let uid = user.uid
                 print("Successfully created user account with uid: \(uid)")
                 
                 self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
                     print("new account data initalized")
                     self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
                 })
+            } else {
+                // There was an error creating the account
+                print("Account was unable to be created.")
             }
         })
     }
     
     private func initializeNewAccountData(uid: String!, accountData: AccountData, completion: (Void -> Void)) {
-        let ref = Firebase(url: Config.firebaseURL)
+        let ref = FIRDatabase.database().reference()
         
         // Create a new user dictionary with default user information
         let newUser = [
@@ -60,12 +59,11 @@ class RegistrationManager {
         // Run both setValue operations concurrently and wait to run the completion block until both are complete
         let dispatchGroup = dispatch_group_create()
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            ref.childByAppendingPath("users").childByAppendingPath(uid)
-                .setValue(newUser)
+            ref.child("users").child(uid).setValue(newUser)
             NSLog("users done") // Use NSLog for timestamps
         }
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            ref.childByAppendingPath("displayNames").childByAppendingPath(accountData.username).setValue(uid)
+            ref.child("displayNames").child(accountData.username).setValue(uid)
             NSLog("displayNames done")
         }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
@@ -105,7 +103,7 @@ class RegistrationManager {
             return false
         }
         
-        let ref = Firebase(url: "\(Config.firebaseURL)/displayNames/\(username)")
+        let ref = FIRDatabase.database().reference().child("displayNames/\(username)")
         var usernameDoesNotExist: Bool = true
         ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if !(snapshot.value is NSNull) {

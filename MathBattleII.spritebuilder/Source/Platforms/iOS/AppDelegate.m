@@ -29,6 +29,7 @@
 #import "CCBuilderReader.h"
 
 #import <UAAppReviewManager/UAAppReviewManager.h>
+#import <Firebase/Firebase.h>
 
 @implementation AppController
 
@@ -57,15 +58,14 @@
     [self setupCocos2dWithOptions:cocos2dSetup];
     
     // Preload audio files
-    [[OALSimpleAudio sharedInstance] preloadBg:@"Cuban Sandwich.mp3"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"ding.wav"];
-    [[OALSimpleAudio sharedInstance] preloadEffect:@"doors.wav"];
-    [[OALSimpleAudio sharedInstance] preloadEffect:@"beep.wav"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"pop.wav"];
-    [[OALSimpleAudio sharedInstance] preloadEffect:@"buzz.wav"];
     
     // Setup UAAppReviewManager
     [UAAppReviewManager setAppID:@"12345678"];
+    
+    // Setup Firebase
+    [FIRApp configure];
 
     return YES;
 }

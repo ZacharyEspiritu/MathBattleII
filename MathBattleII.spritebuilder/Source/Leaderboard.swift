@@ -25,7 +25,7 @@ class LeaderboardScene: CCNode {
     
     private func retrieveLeaderboardDataFromFirebase() {
         // Access data from Firebase and sort the players by rating
-        let ref = Firebase(url: Config.firebaseURL + "playerRatings")
+        let ref = FIRDatabase.database().reference().child("playerRatings")
         ref.queryLimitedToFirst(100).observeSingleEventOfType(.Value, withBlock: { snapshot in
             let queryResults = snapshot.value as! [String : Int]
             self.unsortedPlayersWithRatings = queryResults
