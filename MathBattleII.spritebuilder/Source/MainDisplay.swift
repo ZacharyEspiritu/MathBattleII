@@ -15,7 +15,7 @@ class MainDisplay: CCSprite {
     
     func didLoadFromCCB() {
         topPlayerNameLabel.string = "guest"
-        bottomPlayerNameLabel.string = "zespiritu17"
+        bottomPlayerNameLabel.string = "guest"
     }
     
     /**

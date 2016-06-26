@@ -14,7 +14,14 @@ class LeaderboardScrollViewCell: CCNode {
     
     func setData(ranking ranking: Int, username: String, rating: Int) {
         rankingLabel.string = "\(ranking)"
-        usernameLabel.string = username
+        
+        if username.characters.count > 16 {
+            usernameLabel.string = "\(username.substringToIndex(username.startIndex.advancedBy(9)))..."
+        }
+        else {
+            usernameLabel.string = username
+        }
+        
         ratingLabel.string = "\(rating)"
     }
 }

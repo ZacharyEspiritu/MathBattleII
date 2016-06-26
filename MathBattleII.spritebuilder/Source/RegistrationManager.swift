@@ -66,6 +66,10 @@ class RegistrationManager {
             ref.child("displayNames").child(accountData.username).setValue(uid)
             NSLog("displayNames done")
         }
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            ref.child("rankedRatings").child(accountData.username).setValue(1000)
+            NSLog("rankedRatings done")
+        }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             NSLog("running completion handler")
             completion()

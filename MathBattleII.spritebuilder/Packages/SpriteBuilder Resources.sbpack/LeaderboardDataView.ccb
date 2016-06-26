@@ -1144,8 +1144,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1683,7 +1681,7 @@
 										<key>type</key>
 										<string>CCBFile</string>
 										<key>value</key>
-										<string>LeaderboardScrollViewContent.ccb</string>
+										<string>LeaderboardScrollViewPlaceholder.ccb</string>
 									</dict>
 									<dict>
 										<key>name</key>
