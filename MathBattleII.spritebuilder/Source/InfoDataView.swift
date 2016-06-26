@@ -8,8 +8,9 @@
 
 import Foundation
 
-class InfoMenu: CCNode {
+class InfoDataView: CCNode {
     
+    weak var background: CCSprite9Slice!
     weak var infoScroller: CCScrollView!
     
     func didLoadFromCCB() {
@@ -17,7 +18,7 @@ class InfoMenu: CCNode {
     }
 }
 
-extension InfoMenu: CCScrollViewDelegate {
+extension InfoDataView: CCScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: CCScrollView!) {
         
