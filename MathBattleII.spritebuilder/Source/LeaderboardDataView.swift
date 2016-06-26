@@ -23,9 +23,7 @@ class LeaderboardDataView: CCNode {
     
     
     func didLoadFromCCB() {
-        let placeholderScrollViewContent = CCBReader.load("LeaderboardScrollViewPlaceholder")
-        placeholderScrollViewContent.contentSize = scrollView.contentSizeInPoints
-        scrollView.contentNode = placeholderScrollViewContent
+        loadPlaceholderIntoScrollView()
         toggleLeaderboard(newView: .Ranked)
     }
     
@@ -45,6 +43,12 @@ class LeaderboardDataView: CCNode {
     
     // MARK: Data Functions
     
+    private func loadPlaceholderIntoScrollView() {
+        let placeholderScrollViewContent = CCBReader.load("LeaderboardScrollViewPlaceholder")
+        placeholderScrollViewContent.contentSize = scrollView.contentSizeInPoints
+        scrollView.contentNode = placeholderScrollViewContent
+    }
+    
     private func toggleLeaderboard(newView view: LeaderboardView) {
         if currentLeaderboardView != view {
             currentLeaderboardView = view
@@ -61,12 +65,9 @@ class LeaderboardDataView: CCNode {
                 overallButton.selected = true
             }
             
-            loadLeaderboardContentNode(forView: view)
+            loadPlaceholderIntoScrollView()
+            retrieveLeaderboardDataFromFirebase(forView: view)
         }
-    }
-    
-    private func loadLeaderboardContentNode(forView view: LeaderboardView) {
-        retrieveLeaderboardDataFromFirebase()
     }
     
     private func loadRankedLeaderboardContent(data leaderboardData: ([String], [String : Int])) {
@@ -85,15 +86,14 @@ class LeaderboardDataView: CCNode {
             scrollViewContent.contentSize.height += cell.contentSize.height
             scrollViewContent.addChild(cell)
         }
-        
         scrollView.contentNode = scrollViewContent
     }
     
-    private func retrieveLeaderboardDataFromFirebase() {
+    private func retrieveLeaderboardDataFromFirebase(forView view: LeaderboardView) {
         var orderedPlayers: [String] = []
         var rankingDictionary: [String : Int] = [:]
-        // Access data from Firebase and sort the players by rating
-        let ref = FIRDatabase.database().reference().child("rankedRatings")
+        
+        let ref = FIRDatabase.database().reference().child(view.rawValue)
         ref.queryOrderedByValue().observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let data = snapshot.value as? [String : Int] {
                 print(data)
@@ -123,8 +123,8 @@ extension Dictionary {
     }
 }
 
-enum LeaderboardView {
-    case Ranked
-    case Practice
-    case Overall
+enum LeaderboardView: String {
+    case Ranked = "rankedRatings"
+    case Practice = "practiceRatings"
+    case Overall = "overallRatings"
 }
