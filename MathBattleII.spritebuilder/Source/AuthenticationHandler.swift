@@ -83,7 +83,7 @@ class AuthenticationHandler {
             print("saving data...")
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
                 ref.child("users").child((FIRAuth.auth()?.currentUser!.uid)!).setValue(userData)
-                ref.child("rankedRatings").child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!).setValue(userData["rating"])
+                ref.child(LeaderboardView.Ranked.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!).setValue(userData["rating"])
                 print("data saved")
             })
         }

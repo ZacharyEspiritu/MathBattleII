@@ -16,7 +16,7 @@ class LeaderboardScrollViewCell: CCNode {
         rankingLabel.string = "\(ranking)"
         
         if username.characters.count > 16 {
-            usernameLabel.string = "\(username.substringToIndex(username.startIndex.advancedBy(9)))..."
+            usernameLabel.string = "\(username.substringToIndex(username.startIndex.advancedBy(15)))..."
         }
         else {
             usernameLabel.string = username

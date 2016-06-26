@@ -13,4 +13,17 @@ class PracticeMatchMenu: CCNode {
     weak var scroller: PracticeAIScroller!
     weak var chooseButton: CCButton!
     
+    func chooseButtonPressed() {
+        setupPracticeDataDefaults()
+        setupMatchStartingPopup()
+    }
+    
+    private func setupPracticeDataDefaults() {
+        NSUserDefaults.standardUserDefaults()
+    }
+    
+    private func setupMatchStartingPopup() {
+        let currentUserDisplayName: String = UserManager.sharedInstance.getCurrentUser() != nil ? UserManager.sharedInstance.getCurrentUser()!.getDisplayName() : "Guest"
+        MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Practice Match Is Starting...", info: "\(currentUserDisplayName) vs Math_Bot")
+    }
 }

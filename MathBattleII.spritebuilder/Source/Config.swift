@@ -10,6 +10,4 @@ import Foundation
 
 struct Config {
     
-    static let firebaseURL: String = "https://mathbattle.firebaseio.com"
-    
 }

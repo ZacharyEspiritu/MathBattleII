@@ -14,6 +14,7 @@ class LeaderboardDataView: CCNode {
     weak var background: CCSprite9Slice!
     weak var leaderboardGroupingNode: Clipper!
     weak var scrollView: CCScrollView!
+    weak var dataLabel: CCLabelTTF!
     
     var rankedLeaderboardContent: CCNode!
     var practiceLeaderboardContent: CCNode!
@@ -56,12 +57,16 @@ class LeaderboardDataView: CCNode {
             rankedButton.selected = false
             practiceButton.selected = false
             overallButton.selected = false
+            
             switch view {
             case .Ranked:
+                setDataLabel(withString: "Rating")
                 rankedButton.selected = true
             case .Practice:
+                setDataLabel(withString: "Solves")
                 practiceButton.selected = true
             case .Overall:
+                setDataLabel(withString: "Exp")
                 overallButton.selected = true
             }
             
@@ -86,6 +91,7 @@ class LeaderboardDataView: CCNode {
             scrollViewContent.contentSize.height += cell.contentSize.height
             scrollViewContent.addChild(cell)
         }
+        scrollViewContent.contentSize.height += 5
         scrollView.contentNode = scrollViewContent
     }
     
@@ -104,6 +110,10 @@ class LeaderboardDataView: CCNode {
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    private func setDataLabel(withString string: String) {
+        dataLabel.string = string
     }
 }
 
@@ -124,7 +134,7 @@ extension Dictionary {
 }
 
 enum LeaderboardView: String {
-    case Ranked = "rankedRatings"
-    case Practice = "practiceRatings"
-    case Overall = "overallRatings"
+    case Ranked = "leaderboards/ranked"
+    case Practice = "leaderboards/practice"
+    case Overall = "leaderboards/overall"
 }
