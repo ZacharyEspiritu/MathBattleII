@@ -53,6 +53,7 @@ class RegistrationManager {
             "ratingFloor": 700,
             "experienceLevel": 0,
             "coins": 0,
+            "practiceHighScore": 0,
             "friends": []
         ]
         

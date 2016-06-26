@@ -30,6 +30,8 @@ class User {
     private var experienceLevel:     Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     private var coins:               Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
+    private var practiceHighScore:   Int { didSet { delegate?.localUserDataDidUpdate(self) }}
+    
     private var friends:        [String] { didSet { delegate?.localUserDataDidUpdate(self) }}
         // [friends] should always be kept sorted alphabetically whenever possible
     
@@ -38,7 +40,7 @@ class User {
     
     // MARK: Utility Functions
     
-    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, experienceLevel: Int, coins: Int, friends: [String]) {
+    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, experienceLevel: Int, coins: Int, practiceHighScore: Int, friends: [String]) {
         self.uid = uid
         self.displayName = displayName
         self.email = email
@@ -51,6 +53,7 @@ class User {
         self.ratingFloor = ratingFloor
         self.experienceLevel = experienceLevel
         self.coins = coins
+        self.practiceHighScore = practiceHighScore
         self.friends = friends
     }
     
@@ -67,6 +70,7 @@ class User {
             "ratingFloor": ratingFloor,
             "experienceLevel": experienceLevel,
             "coins": coins,
+            "practiceHighScore": practiceHighScore,
             "friends": friends
         ]
     }
@@ -116,6 +120,10 @@ class User {
     
     func getCoins() -> Int {
         return coins
+    }
+    
+    func getPracticeHighScore() -> Int {
+        return practiceHighScore
     }
     
     func getFriends() -> [String]? {
@@ -169,6 +177,11 @@ class User {
     func setCoins(newCoins newCoins: Int) -> Int {
         coins = newCoins
         return coins
+    }
+    
+    func setPracticeHighScore(newHighScore score: Int) -> Int {
+        practiceHighScore = score
+        return score
     }
     
     func addToNumberOfSolves(newSolves newSolves: Int) -> Int {
