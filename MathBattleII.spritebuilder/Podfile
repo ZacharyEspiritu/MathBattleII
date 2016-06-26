@@ -2,5 +2,6 @@ target 'MathBattleII iOS' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Firebase/Crash'
   pod 'UAAppReviewManager'
 end

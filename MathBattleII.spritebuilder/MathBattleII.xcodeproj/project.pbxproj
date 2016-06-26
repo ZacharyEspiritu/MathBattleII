@@ -14,7 +14,6 @@
 		550964E01CA981E600C57D1B /* CustomMatchPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 550964DF1CA981E600C57D1B /* CustomMatchPopoverView.xib */; };
 		550A061F1C3C929900FC4FCD /* MainSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550A061E1C3C929900FC4FCD /* MainSceneTests.swift */; };
 		550BCBDD1D1FA0B300FE77D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 550BCBDC1D1FA0B300FE77D4 /* GoogleService-Info.plist */; };
-		550BCBDF1D1FAE2300FE77D4 /* LeaderboardDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550BCBDE1D1FAE2300FE77D4 /* LeaderboardDataManager.swift */; };
 		550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */; };
 		5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514A5FC1C555F3E0096661F /* SlidingDoor.swift */; };
 		551B690F1CCC3DA400CA3368 /* PracticeAIScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551B690E1CCC3DA400CA3368 /* PracticeAIScroller.swift */; };
@@ -253,7 +252,6 @@
 		550A06181C3C926B00FC4FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		550A061E1C3C929900FC4FCD /* MainSceneTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTests.swift; sourceTree = "<group>"; };
 		550BCBDC1D1FA0B300FE77D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		550BCBDE1D1FAE2300FE77D4 /* LeaderboardDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardDataManager.swift; path = Source/LeaderboardDataManager.swift; sourceTree = "<group>"; };
 		550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchCreate.swift; path = Source/MatchCreate.swift; sourceTree = "<group>"; };
 		5514A5FC1C555F3E0096661F /* SlidingDoor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidingDoor.swift; path = Source/SlidingDoor.swift; sourceTree = "<group>"; };
 		551B690E1CCC3DA400CA3368 /* PracticeAIScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PracticeAIScroller.swift; path = Source/PracticeAIScroller.swift; sourceTree = "<group>"; };
@@ -694,7 +692,6 @@
 			isa = PBXGroup;
 			children = (
 				55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */,
-				550BCBDE1D1FAE2300FE77D4 /* LeaderboardDataManager.swift */,
 				5596579B1D1F71A80052351A /* LeaderboardScrollViewCell.swift */,
 			);
 			name = "Leaderboard Data View";
@@ -1067,6 +1064,7 @@
 				550A06321C3C93B400FC4FCD /* ShellScript */,
 				B55869F77146F8CF1DFFA47C /* [CP] Embed Pods Frameworks */,
 				E975691D80428F92ACEFE3B7 /* [CP] Copy Pods Resources */,
+				55C0CAE01D202A8E002BF92C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1265,6 +1263,19 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
+		55C0CAE01D202A8E002BF92C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=Path/To/ServiceAccount.json\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:my:app:id\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym\n";
+		};
 		927F619B196C771E000F43EF /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1443,7 +1454,6 @@
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,
 				55C2E4141CB4ADAB00069A84 /* Leaderboard.swift in Sources */,
 				55408CEB1C5CEAD2002DF72D /* Config.swift in Sources */,
-				550BCBDF1D1FAE2300FE77D4 /* LeaderboardDataManager.swift in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				5525C0641CC790B800D90364 /* CustomMatchMenu.swift in Sources */,
 				5525C0681CC790CA00D90364 /* LocalMatchMenu.swift in Sources */,
