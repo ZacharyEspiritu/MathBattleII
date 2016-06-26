@@ -20,6 +20,8 @@ class MainScene: CCNode {
     weak var menuGroupingNode: CCNode!
     weak var menuTintColorNode: CCNodeColor!
     
+    weak var dataViewGroupingNode: CCNode!
+    
     weak var descriptionButton: CCButton!
     var currentDescriptionPopup: DescriptionPopup?
     
@@ -28,6 +30,12 @@ class MainScene: CCNode {
     var currentMenuType: MenuType = .None {
         didSet {
             loadMenuForType(type: currentMenuType)
+        }
+    }
+    
+    var currentDataView: DataViewButtonType = .None {
+        didSet {
+            loadDataViewForType(type: currentDataView)
         }
     }
 
@@ -40,7 +48,12 @@ class MainScene: CCNode {
     // MARK: Button Functions
     
     func mainButtonPressed() {
-        segueToNewMenu(withButtonPressed: .Main)
+        if currentDataView == .None {
+            segueToNewMenu(withButtonPressed: .Main)
+        }
+        else {
+            segueToNewDataView(withButtonPressed: .None)
+        }
     }
     
     func leftButtonPressed() {
@@ -56,25 +69,8 @@ class MainScene: CCNode {
     }
     
     func newsButtonPressed() {
+        segueToNewDataView(withButtonPressed: .News)
         print("news")
-        
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("GameplayScene") as! GameplayScene)
-        CCDirector.sharedDirector().presentScene(scene)
-    }
-    
-    func infoButtonPressed() {
-        print("info")
-        
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("UserLoginScene") as! UserLoginScene)
-        CCDirector.sharedDirector().presentScene(scene)
-    }
-    
-    func leaderboardButtonPressed() {
-        print("leaderboard")
         
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         let scene = CCScene()
@@ -82,7 +78,17 @@ class MainScene: CCNode {
         CCDirector.sharedDirector().presentScene(scene)
     }
     
+    func infoButtonPressed() {
+        segueToNewDataView(withButtonPressed: .Info)
+    }
+    
+    func leaderboardButtonPressed() {
+        segueToNewDataView(withButtonPressed: .Leaderboard)
+        
+    }
+    
     func gameCenterButtonPressed() {
+        segueToNewDataView(withButtonPressed: .GameCenter)
         print("game center")
     }
     
@@ -112,7 +118,63 @@ class MainScene: CCNode {
         menuGroupingNode.removeAllChildren()
     }
     
+    func removeCurrentDataView() {
+        currentDataView = .None
+        dataViewGroupingNode.removeAllChildren()
+    }
+    
     // MARK: Data Functions
+    
+    private func segueToNewDataView(withButtonPressed buttonPressed: DataViewButtonType) {
+        let buttonIndex = buttonPressed.rawValue        // News = 0, Info = 1, Leaderboard = 2, GameCenter = 3
+        let currentDataViewIndex = currentDataView.rawValue // None = -1, Ranked = 0, Custom = 1, Local = 2, Practice = 3
+        
+        if buttonIndex == DataViewButtonType.None.rawValue || currentDataViewIndex == buttonIndex {
+            currentDataView = .None
+            self.animationManager.runAnimationsForSequenceNamed("BackToMainMenuFromDataView")
+        }
+        else if let newDataView = DataViewButtonType(rawValue: buttonIndex) {
+            currentDataView = newDataView
+            self.animationManager.runAnimationsForSequenceNamed("ToDataView")
+        }
+        
+        currentDescriptionPopup?.removeFromParent()
+        currentDescriptionPopup = nil
+        
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+    }
+    
+    private func loadDataViewForType(type dataViewType: DataViewButtonType) {
+        var dataView: CCNode? = nil
+        switch dataViewType {
+        case .News:
+            largeMenuButton.label.string = "News"
+        case .Info:
+            dataView = CCBReader.load("InfoDataView") as! InfoDataView
+            largeMenuButton.label.string = "Info"
+        case .Leaderboard:
+            dataView = CCBReader.load("LeaderboardDataView") as! LeaderboardDataView
+            largeMenuButton.label.string = "Leaderboard"
+        case .GameCenter:
+            print("Game Center")
+        default:
+            largeMenuButton.label.string = "Ranked Match"
+            leftMenuButton.label.string = "Custom"
+            centerMenuButton.label.string = "Local"
+            rightMenuButton.label.string = "Practice"
+        }
+        
+        if let view = dataView {
+            view.positionType = CCPositionTypeMake(CCPositionUnit.Normalized, CCPositionUnit.Normalized, CCPositionReferenceCorner.TopLeft)
+            view.position = CGPoint(x: 0.5, y: 0.5)
+            view.contentSizeType = CCSizeTypeMake(CCSizeUnit.Normalized, CCSizeUnit.Normalized)
+            view.contentSize = CGSizeMake(1, 1)
+            
+            dataViewGroupingNode.removeAllChildren()
+            dataViewGroupingNode.addChild(view)
+            userInteractionEnabled = true
+        }
+    }
     
     private func segueToNewMenu(withButtonPressed buttonPressed: MenuButtonType) {
         let buttonIndex = buttonPressed.rawValue        // Main = 0, Left = 1, Center = 2, Right = 3
@@ -247,4 +309,12 @@ enum MenuButtonType: Int {
     case Left = 1
     case Center = 2
     case Right = 3
+}
+
+enum DataViewButtonType: Int {
+    case None = -1
+    case News = 0
+    case Info = 1
+    case Leaderboard = 2
+    case GameCenter = 3
 }

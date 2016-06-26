@@ -29,7 +29,16 @@ class LocalMatchMenu: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         if topMenuButton.selected && bottomMenuButton.selected {
             saveOptionsToUserDefaults()
-            MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Local Match Is Starting...", info: "Guest vs Guest")
+            
+            var topDisplayName: String = "Guest"
+            if let user = UserManager.sharedInstance.getCurrentUser() {
+                topDisplayName = user.getDisplayName()
+                if topDisplayName.characters.count > 11 {
+                    topDisplayName = "\(topDisplayName.substringToIndex(topDisplayName.startIndex.advancedBy(9)))..."
+                }
+            }
+            MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Local Match Is Starting...", info: "\(topDisplayName) vs Guest")
+            
             self.userInteractionEnabled = false
         }
     }
