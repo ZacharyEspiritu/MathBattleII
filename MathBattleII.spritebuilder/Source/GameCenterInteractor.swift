@@ -4,7 +4,7 @@
 //
 //  Created by Stuart Breckenridge on 19/11/14.
 //  Copyright (c) 2014 Stuart Breckenridge. All rights reserved.
-//  Copyright (c) 2015 Zachary Espiritu. All rights reserved.
+//  Copyright (c) 2015 - 2016 Zachary Espiritu. All rights reserved.
 //
 
 import UIKit
@@ -43,11 +43,11 @@ class GameCenterInteractor: NSObject {
         if (self.localPlayer.authenticated == false)
         {
             //Authenticate the player
-            print("The local player is not authenticated.")
+            print("[Game Center] The local player is not authenticated.")
             self.authenticateLocalPlayer()
         } else
         {
-            print("The local player is authenticated")
+            print("[Game Center] The local player is authenticated")
             // Register the listener
             self.localPlayer.registerListener(self)
             
@@ -84,20 +84,20 @@ class GameCenterInteractor: NSObject {
                 
             else if (self.localPlayer.authenticated == true)
             {
-                print("Player is Authenticated")
+                print("[Game Center] Player is Authenticated")
                 self.localPlayer.registerListener(self)
                 self.delegate?.didSignIn()
             }
                 
             else
             {
-                print("User Still Not Authenticated")
+                print("[Game Center] User Still Not Authenticated")
                 self.delegate?.failedToSignIn()
             }
             
             if (error != nil)
             {
-                print("Failed to sign in with error:\(error!.localizedDescription).")
+                print("[Game Center] Failed to sign in with error:\(error!.localizedDescription).")
                 self.delegate?.failedToSignInWithError(error!)
                 // Delegate can take necessary action. For example: present a UIAlertController with the error details.
             }
