@@ -81,11 +81,30 @@ class AuthenticationHandler {
             let ref = FIRDatabase.database().reference()
             let userData = user.convertToDictionaryFormat()
             print("saving data...")
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            
+            let dispatchGroup = dispatch_group_create()
+            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child("users").child((FIRAuth.auth()?.currentUser!.uid)!).setValue(userData)
-                ref.child(LeaderboardView.Ranked.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!).setValue(userData["rating"])
+                print("user data saved")
+            }
+            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                ref.child(LeaderboardView.Ranked.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
+                    .setValue(userData["rating"])
+                print("rating leaderboard data saved")
+            }
+            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                ref.child(LeaderboardView.Practice.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
+                    .setValue(userData["practiceHighScore"])
+                print("practice leaderboard data saved")
+            }
+            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+                ref.child(LeaderboardView.Overall.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
+                    .setValue(userData["experienceLevel"])
+                print("overall leaderboard data saved")
+            }
+            dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 print("data saved")
-            })
+            }
         }
     }
     
@@ -102,6 +121,7 @@ class AuthenticationHandler {
             let ratingFloor = userData.objectForKey("ratingFloor") as! Int
             let experienceLevel = userData.objectForKey("experienceLevel") as! Int
             let coins = userData.objectForKey("coins") as! Int
+            let practiceHighScore = userData.objectForKey("practiceHighScore") as! Int
             
             let friends: [String]
             if userData.objectForKey("friends") != nil {
@@ -111,7 +131,7 @@ class AuthenticationHandler {
                 friends = []
             }
             
-            let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, friends: friends)
+            let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, practiceHighScore: practiceHighScore, friends: friends)
             user.delegate = self
             
             let userManager = UserManager.sharedInstance
