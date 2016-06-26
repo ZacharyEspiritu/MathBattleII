@@ -1,2 +1,5 @@
-pod 'Firebase', '>= 2.5.0'
-pod 'UAAppReviewManager'
+target 'MathBattleII iOS' do
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'UAAppReviewManager'
+end

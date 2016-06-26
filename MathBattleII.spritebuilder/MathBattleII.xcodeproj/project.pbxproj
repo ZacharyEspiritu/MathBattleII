@@ -53,6 +53,7 @@
 		558E3D6C1C9A4D1B00DCADF9 /* Array+Randomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558E3D6B1C9A4D1B00DCADF9 /* Array+Randomizer.swift */; };
 		558FBADD1CADC75500189521 /* RankedMatchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558FBADC1CADC75500189521 /* RankedMatchScene.swift */; };
 		55952B511C4F3D54001DDC4F /* CountdownDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */; };
+		5596579C1D1F71A80052351A /* LeaderboardScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5596579B1D1F71A80052351A /* LeaderboardScrollViewCell.swift */; };
 		559B0A9C1CCA4D69001FC459 /* DescriptionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */; };
 		559B3E5F1CC9864B00E33056 /* CustomMatchTextEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559B3E5E1CC9864B00E33056 /* CustomMatchTextEntry.swift */; };
 		559F6F241D18EBCF0058630B /* CustomMatchMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F6F231D18EBCF0058630B /* CustomMatchMessageHeader.swift */; };
@@ -150,7 +151,7 @@
 		927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F590E188484E7003F4D28 /* iPhone@2x.png */; };
 		927F61BA196C771E000F43EF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B737896D180762440076A88C /* Default.png */; };
 		927F61BB196C771E000F43EF /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
-		95BF754358BBF8F2EDDEF5BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24915DFFC8E4B299BC0DE75A /* libPods.a */; };
+		B6309B73EA3B3004C587B62E /* libPods-MathBattleII iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D61AEAE1FBEFFDCFCB1637D1 /* libPods-MathBattleII iOS.a */; };
 		B71F5911188484E7003F4D28 /* iPad-old.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5907188484E7003F4D28 /* iPad-old.png */; };
 		B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5908188484E7003F4D28 /* iPad-old@2x.png */; };
 		B71F5913188484E7003F4D28 /* iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B71F5909188484E7003F4D28 /* iPad.png */; };
@@ -244,7 +245,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24915DFFC8E4B299BC0DE75A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		07FC3BEF286DE5AD678CDD0D /* Pods-MathBattleII iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathBattleII iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MathBattleII iOS/Pods-MathBattleII iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		55021A3E1C53375200AD2EF4 /* Array2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2DTests.swift; sourceTree = "<group>"; };
 		550964C91CA8C0FA00C57D1B /* EqualsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EqualsButton.swift; path = Source/EqualsButton.swift; sourceTree = "<group>"; };
 		550964D31CA8C42B00C57D1B /* buzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buzz.wav; sourceTree = "<group>"; };
@@ -272,7 +273,6 @@
 		554088C31CFE858900124DEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55408CE61C5CEA97002DF72D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticationHandler.swift; path = Source/AuthenticationHandler.swift; sourceTree = "<group>"; };
 		55408CEA1C5CEAD2002DF72D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
-		5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5546EFB61CAECCE300F84132 /* LevelDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDisplay.swift; path = Source/LevelDisplay.swift; sourceTree = "<group>"; };
 		5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinDisplay.swift; path = Source/CoinDisplay.swift; sourceTree = "<group>"; };
 		5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedPlayerHeader.swift; path = Source/RankedPlayerHeader.swift; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 		558E3D6B1C9A4D1B00DCADF9 /* Array+Randomizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Randomizer.swift"; path = "Source/Array+Randomizer.swift"; sourceTree = "<group>"; };
 		558FBADC1CADC75500189521 /* RankedMatchScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedMatchScene.swift; path = Source/RankedMatchScene.swift; sourceTree = "<group>"; };
 		55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountdownDisplay.swift; path = Source/CountdownDisplay.swift; sourceTree = "<group>"; };
+		5596579B1D1F71A80052351A /* LeaderboardScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardScrollViewCell.swift; path = Source/LeaderboardScrollViewCell.swift; sourceTree = "<group>"; };
 		559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionPopup.swift; path = Source/DescriptionPopup.swift; sourceTree = "<group>"; };
 		559B3E5E1CC9864B00E33056 /* CustomMatchTextEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchTextEntry.swift; path = Source/CustomMatchTextEntry.swift; sourceTree = "<group>"; };
 		559F6F231D18EBCF0058630B /* CustomMatchMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchMessageHeader.swift; path = Source/CustomMatchMessageHeader.swift; sourceTree = "<group>"; };
@@ -349,8 +350,8 @@
 		7A59498A19E38E4A00F65F90 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Platforms/Mac/MainMenu.xib; sourceTree = "<group>"; };
 		7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocos2d.h; path = "Source/libs/cocos2d-iphone/cocos2d/cocos2d.h"; sourceTree = "<group>"; };
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
-		7B4AD982512738CC63ECCD03 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7BF6AF9F1A425F9800FFF9BA /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../../../../Library/SBAndroid/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
+		8194BAD4AD556C4ED4ADC7B4 /* Pods-MathBattleII iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathBattleII iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-MathBattleII iOS/Pods-MathBattleII iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* MathBattleII Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MathBattleII Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -391,6 +392,7 @@
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
 		D352B48019EC608A00829775 /* MetalShaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = MetalShaders; path = Source/MetalShaders; sourceTree = "<group>"; };
+		D61AEAE1FBEFFDCFCB1637D1 /* libPods-MathBattleII iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MathBattleII iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,7 +455,7 @@
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
-				95BF754358BBF8F2EDDEF5BD /* libPods.a in Frameworks */,
+				B6309B73EA3B3004C587B62E /* libPods-MathBattleII iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +589,6 @@
 				551EA0F71D1AB5D400162A76 /* Info Data View */,
 				55F545571D1F60FB00A03E18 /* News Data View */,
 				55F5455A1D1F63FD00A03E18 /* Leaderboard Data View */,
-				55CC943F1CBC7F0B00D56632 /* Leaderboard */,
 				55A8BEC51CAF560A004E7099 /* Ranked Match Menu */,
 				559B3E5B1CC9863E00E33056 /* Custom Match Menu */,
 				553151231CCA949C00DB74F4 /* Local Match Menu */,
@@ -673,6 +674,7 @@
 		55F545541D1F328100A03E18 /* Unused Files */ = {
 			isa = PBXGroup;
 			children = (
+				55CC943F1CBC7F0B00D56632 /* Leaderboard */,
 				558FBADC1CADC75500189521 /* RankedMatchScene.swift */,
 				7A046D7519E84C36004C4763 /* MainMenu.swift */,
 				550F77FA1CA6BE57004D0F17 /* MatchCreate.swift */,
@@ -693,6 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */,
+				5596579B1D1F71A80052351A /* LeaderboardScrollViewCell.swift */,
 			);
 			name = "Leaderboard Data View";
 			sourceTree = "<group>";
@@ -738,15 +741,6 @@
 				5B121015197483EE004C1E1D /* ic_launcher.png */,
 			);
 			path = "drawable-xxhdpi";
-			sourceTree = "<group>";
-		};
-		5DB1B17F99E4FBEC13A77E15 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7B4AD982512738CC63ECCD03 /* Pods.debug.xcconfig */,
-				5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		7A40362019DDEF0D007B6E8F /* Platforms */ = {
@@ -916,7 +910,7 @@
 				550A06151C3C926B00FC4FCD /* MathBattleIITests */,
 				B77F1B3017B978D7009739AE /* Frameworks */,
 				B77F1B2F17B978D7009739AE /* Products */,
-				5DB1B17F99E4FBEC13A77E15 /* Pods */,
+				C47036A104F8FF65B95B1759 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -956,7 +950,7 @@
 				B77F1B3D17B978D7009739AE /* Foundation.framework */,
 				B77F1B3F17B978D7009739AE /* CoreGraphics.framework */,
 				B77F1B4117B978D7009739AE /* CoreText.framework */,
-				24915DFFC8E4B299BC0DE75A /* libPods.a */,
+				D61AEAE1FBEFFDCFCB1637D1 /* libPods-MathBattleII iOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -991,6 +985,15 @@
 				B73789861807631A0076A88C /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C47036A104F8FF65B95B1759 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07FC3BEF286DE5AD678CDD0D /* Pods-MathBattleII iOS.debug.xcconfig */,
+				8194BAD4AD556C4ED4ADC7B4 /* Pods-MathBattleII iOS.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1055,14 +1058,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B77F1CDE17B978D8009739AE /* Build configuration list for PBXNativeTarget "MathBattleII iOS" */;
 			buildPhases = (
-				6C9514FC56AC78B4EB822808 /* Check Pods Manifest.lock */,
+				AEC8B3BA00E4D34397914F92 /* [CP] Check Pods Manifest.lock */,
 				D2E0167A18D782EC00927430 /* Run Script */,
 				B77F1B2A17B978D7009739AE /* Sources */,
 				B77F1B2B17B978D7009739AE /* Frameworks */,
 				D352B47A19EC5D8A00829775 /* Compile Metal Shaders */,
 				B77F1B2C17B978D7009739AE /* Resources */,
 				550A06321C3C93B400FC4FCD /* ShellScript */,
-				E33234CB7E1716FAECABA7BB /* Copy Pods Resources */,
+				B55869F77146F8CF1DFFA47C /* [CP] Embed Pods Frameworks */,
+				E975691D80428F92ACEFE3B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1264,21 +1268,6 @@
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
-		6C9514FC56AC78B4EB822808 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		927F619B196C771E000F43EF /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1292,6 +1281,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "osascript -e 'tell application \"System Events\"' -e 'set ProcessList to name of every process' -e 'if \"SpriteBuilder\" is in ProcessList then' -e 'tell application \"SpriteBuilder\" to publish' -e 'end if' -e 'end tell'";
+		};
+		AEC8B3BA00E4D34397914F92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B55869F77146F8CF1DFFA47C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MathBattleII iOS/Pods-MathBattleII iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D2E0167A18D782EC00927430 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1321,19 +1340,19 @@
 			shellPath = /usr/bin/ruby;
 			shellScript = "# Special thanks to Filip Iliescu at Apple for the help with this.\n\n# Environment variables.\nSDK = ENV[\"PLATFORM_NAME\"]\nOBJECT_FILE_DIR = ENV[\"OBJECT_FILE_DIR\"]\nSRCROOT = ENV[\"SRCROOT\"]\nBUILT_PRODUCTS_DIR = ENV[\"BUILT_PRODUCTS_DIR\"]\nPRODUCT_NAME = ENV[\"PRODUCT_NAME\"]\n\n# User variables\n# Directory with your custom .metal files in it.\nSHADER_DIR = \"#{SRCROOT}/Source/MetalShaders\"\n# Location of the cocos2d library directory.\nCOCOS2D_DIR = \"#{SRCROOT}/Source/libs/cocos2d-iphone/cocos2d\"\n\nMETAL_ARGS = [\n\t\"-arch air64\",\n\t\"-emit-llvm\",\n\t\"-c\",\n\t\"-gline-tables-only\",\n\t\"-ffast-math\",\n\t\"-std=ios-metal1.0\",\n    %{-I \"#{COCOS2D_DIR}\"},\n]\n\ndef system(cmd)\n\tputs cmd\n    Kernel.system cmd\nend\n\nPRODUCTS = \"#{OBJECT_FILE_DIR}/CCMetalShaders\"\nARCHIVE = \"#{PRODUCTS}/default.metal-ar\"\n\ndef compile_shader(src)\n\tdst = \"#{PRODUCTS}/#{File.basename(src, \".metal\")}.air\"\n\t\n\t# Compile and archive the shader.\n\tsystem %{xcrun -sdk #{SDK} metal #{METAL_ARGS.join(\" \")} \"#{src}\" -o \"#{dst}\"}\n\tsystem %{xcrun -sdk #{SDK} ar r \"#{ARCHIVE}\" \"#{dst}\"}\nend\n\nif SDK == \"iphoneos\"\n\t# Cannot use default.metallib to avoid clashing with Xcode build magic.\n\t# This is part of a workaround due to the iOS simulator not supporting Metal and may go away in the future.\n\tmetal_lib = \"#{BUILT_PRODUCTS_DIR}/#{PRODUCT_NAME}.app/CCShaders.metallib\"\n    \n\t# Delete the old products dir and metal lib.\n\tsystem %{rm -rf \"#{PRODUCTS}\"}\n    system %{rm -f \"#{metal_lib}\"}\n    system %{mkdir -p \"#{PRODUCTS}\"}\n    \n    # Compile the builtin shaders.\n    compile_shader(%{#{COCOS2D_DIR}/Platforms/iOS/CCShaders.metal})\n    \n\t# Compile/archive all the shaders in the shader directory.\n    Dir.glob(\"#{SHADER_DIR}/*.metal\").each{|src| compile_shader(src)}\n    \n\t# Link all shaders into default lib.\n\tsystem %{xcrun -sdk #{SDK} metallib -o \"#{metal_lib}\" \"#{ARCHIVE}\"}\nend\n";
 		};
-		E33234CB7E1716FAECABA7BB /* Copy Pods Resources */ = {
+		E975691D80428F92ACEFE3B7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MathBattleII iOS/Pods-MathBattleII iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1395,6 +1414,7 @@
 				5537B6101CB827C400BC9F2A /* MatchType.swift in Sources */,
 				557E71391C5B04D30053073E /* UserRegistrationScene.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,
+				5596579C1D1F71A80052351A /* LeaderboardScrollViewCell.swift in Sources */,
 				7A046D7919E84ED5004C4763 /* MainMenu.swift in Sources */,
 				55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */,
 				555050E41C49D79F0037F3A7 /* Tile.swift in Sources */,
@@ -1788,7 +1808,7 @@
 		};
 		B77F1CDF17B978D8009739AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B4AD982512738CC63ECCD03 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 07FC3BEF286DE5AD678CDD0D /* Pods-MathBattleII iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1829,7 +1849,7 @@
 		};
 		B77F1CE017B978D8009739AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5541BFEC674A23FC97D88701 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 8194BAD4AD556C4ED4ADC7B4 /* Pods-MathBattleII iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
