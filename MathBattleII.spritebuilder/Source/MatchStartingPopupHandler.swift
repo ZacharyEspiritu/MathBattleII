@@ -18,13 +18,35 @@ class MatchStartingPopupHandler {
     var countdown: Int = 5
     var popup: MatchStartingPopup!
     
-    func displayPopup(withHeader header: String, info: String) {
+    func displayPopup(withHeader header: String, player1: String, player2: String) {
         popup = CCBReader.load("MatchStartingPopup") as! MatchStartingPopup
         popup.setHeaderLabel(string: header)
-        popup.setInfoLabel(string: info)
+        popup.setInfoLabel(string: generateInfoString(withPlayer1: player1, player2: player2))
         popup.setCountdownLabel(string: "5")
         delegate?.shouldDisplayPopup(popup)
         startCountdown()
+    }
+    
+    private func generateInfoString(withPlayer1 player1: String, player2: String) -> String {
+        var infoString: String = "\(player1) vs \(player2)"
+        
+        if player1.characters.count >= 9 {
+            infoString = player1.substringToIndex(player1.startIndex.advancedBy(7)) + "..."
+        }
+        else {
+            infoString = player1
+        }
+        
+        infoString = infoString + " vs "
+        
+        if player2.characters.count >= 9 {
+            infoString = infoString + player2.substringToIndex(player2.startIndex.advancedBy(7)) + "..."
+        }
+        else {
+            infoString = infoString + player2
+        }
+        
+        return infoString
     }
     
     private func startCountdown() {

@@ -37,7 +37,7 @@ class LocalMatchMenu: CCNode {
                     topDisplayName = "\(topDisplayName.substringToIndex(topDisplayName.startIndex.advancedBy(9)))..."
                 }
             }
-            MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Local Match Is Starting...", info: "\(topDisplayName) vs Guest")
+            MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Local Match Is Starting...", player1: topDisplayName, player2: "Guest")
             
             self.userInteractionEnabled = false
         }

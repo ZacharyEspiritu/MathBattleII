@@ -24,6 +24,6 @@ class PracticeMatchMenu: CCNode {
     
     private func setupMatchStartingPopup() {
         let currentUserDisplayName: String = UserManager.sharedInstance.getCurrentUser() != nil ? UserManager.sharedInstance.getCurrentUser()!.getDisplayName() : "Guest"
-        MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Practice Match Is Starting...", info: "\(currentUserDisplayName) vs Math_Bot")
+        MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Practice Match Is Starting...", player1: currentUserDisplayName, player2: "Math_Bot")
     }
 }
