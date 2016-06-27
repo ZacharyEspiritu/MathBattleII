@@ -66,6 +66,7 @@
 		55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */; };
 		55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
 		55B4E1FE1C5C2D97007BE8C3 /* AccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */; };
+		55BB60F41D20A47D00F32B96 /* NewsScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BB60F31D20A47D00F32B96 /* NewsScrollViewCell.swift */; };
 		55BD70CE1CF7C43900420DA0 /* CustomMatchMenuButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BD70CD1CF7C43900420DA0 /* CustomMatchMenuButtons.swift */; };
 		55C2E4141CB4ADAB00069A84 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C2E4131CB4ADAB00069A84 /* Leaderboard.swift */; };
 		55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CC943B1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift */; };
@@ -301,6 +302,7 @@
 		55B42D291C6D489100FB0239 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Source/UserManager.swift; sourceTree = "<group>"; };
 		55B4E1F91C5C2A89007BE8C3 /* RegistrationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegistrationManager.swift; path = Source/RegistrationManager.swift; sourceTree = "<group>"; };
 		55B4E1FC1C5C2D97007BE8C3 /* AccountData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountData.swift; path = Source/AccountData.swift; sourceTree = "<group>"; };
+		55BB60F31D20A47D00F32B96 /* NewsScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsScrollViewCell.swift; path = Source/NewsScrollViewCell.swift; sourceTree = "<group>"; };
 		55BD70CD1CF7C43900420DA0 /* CustomMatchMenuButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchMenuButtons.swift; path = Source/CustomMatchMenuButtons.swift; sourceTree = "<group>"; };
 		55C2E4131CB4ADAB00069A84 /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Leaderboard.swift; path = Source/Leaderboard.swift; sourceTree = "<group>"; };
 		55CC943B1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardTableViewCell.swift; path = Source/LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				55F545581D1F610D00A03E18 /* NewsDataView.swift */,
+				55BB60F31D20A47D00F32B96 /* NewsScrollViewCell.swift */,
 			);
 			name = "News Data View";
 			sourceTree = "<group>";
@@ -1265,7 +1268,7 @@
 		};
 		55C0CAE01D202A8E002BF92C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1274,7 +1277,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=\"/Users/Zachary_Espiritu/Projects/MathBattleII/config/Math Battle-b56e7c60e7ac.json\"\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:384222624685:ios:abc575edf8019b42\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym\n";
+			shellScript = "# Replace this path with the path to the key you just downloaded\n#JSON_FILE=\"/Users/Zachary_Espiritu/Projects/MathBattleII/config/Math Battle-b56e7c60e7ac.json\"\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\n#GOOGLE_APP_ID=1:384222624685:ios:abc575edf8019b42\n\n#defaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\n#JSON=$(cat \"${JSON_FILE}\")\n#/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n#\"${PODS_ROOT}\"/FirebaseCrash/upload-sym\n";
 		};
 		927F619B196C771E000F43EF /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1439,6 +1442,7 @@
 				558D02631C7BD08B009719D6 /* Matchmaker.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55F2136F1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift in Sources */,
+				55BB60F41D20A47D00F32B96 /* NewsScrollViewCell.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55E5F3B31CC1645600D2F77E /* AI.swift in Sources */,
 				55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */,

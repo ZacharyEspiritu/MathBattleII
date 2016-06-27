@@ -72,10 +72,6 @@ class MainScene: CCNode {
         segueToNewDataView(withButtonPressed: .News)
         print("news")
         
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
-        CCDirector.sharedDirector().presentScene(scene)
     }
     
     func infoButtonPressed() {
@@ -90,6 +86,11 @@ class MainScene: CCNode {
     func gameCenterButtonPressed() {
         segueToNewDataView(withButtonPressed: .GameCenter)
         print("game center")
+        
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        let scene = CCScene()
+        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
+        CCDirector.sharedDirector().presentScene(scene)
     }
     
     func showDescription() {
@@ -148,6 +149,7 @@ class MainScene: CCNode {
         var dataView: CCNode? = nil
         switch dataViewType {
         case .News:
+            dataView = CCBReader.load("NewsDataView") as! NewsDataView
             largeMenuButton.label.string = "News"
         case .Info:
             dataView = CCBReader.load("InfoDataView") as! InfoDataView

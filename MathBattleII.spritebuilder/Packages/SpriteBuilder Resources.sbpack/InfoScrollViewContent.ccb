@@ -1005,7 +1005,10 @@ http://creativecommons.org/</string>
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>developed with Cocos2d
+							<string>open-source libraries:
+Cocos2d
+uaappreviewmanager
+firebase
 licensed under the mit license
 </string>
 							<false/>
@@ -1198,7 +1201,7 @@ licensed under the mit license
 				<key>value</key>
 				<array>
 					<real>271</real>
-					<real>475</real>
+					<real>520</real>
 					<integer>0</integer>
 					<integer>0</integer>
 				</array>
@@ -1228,6 +1231,8 @@ licensed under the mit license
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
