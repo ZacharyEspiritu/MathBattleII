@@ -90,16 +90,19 @@ class AuthenticationHandler {
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Ranked.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["rating"])
-                print("rating leaderboard data saved")
+                GameCenterInteractor.sharedInstance.saveLeaderboardScore(forLeaderboardType: .Ranked, score: userData["rating"] as! Int)
+                print("Ranked leaderboard data saved")
             }
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Practice.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["practiceHighScore"])
+                GameCenterInteractor.sharedInstance.saveLeaderboardScore(forLeaderboardType: .Practice, score: userData["practiceHighScore"] as! Int)
                 print("practice leaderboard data saved")
             }
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Overall.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["experienceLevel"])
+                GameCenterInteractor.sharedInstance.saveLeaderboardScore(forLeaderboardType: .Overall, score: userData["experienceLevel"] as! Int)
                 print("overall leaderboard data saved")
             }
             dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GameKit
 
 class MainScene: CCNode {
     
@@ -84,13 +85,13 @@ class MainScene: CCNode {
     }
     
     func gameCenterButtonPressed() {
-        segueToNewDataView(withButtonPressed: .GameCenter)
+        showLeaderboard()
         print("game center")
         
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
-        CCDirector.sharedDirector().presentScene(scene)
+//        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+//        let scene = CCScene()
+//        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
+//        CCDirector.sharedDirector().presentScene(scene)
     }
     
     func showDescription() {
@@ -297,6 +298,19 @@ extension MainScene: MatchStartingPopupHandlerDelegate {
     }
 }
 
+extension MainScene: GKGameCenterControllerDelegate {
+    
+    func showLeaderboard() {
+        let viewController = CCDirector.sharedDirector().parentViewController!
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        viewController.presentViewController(gameCenterViewController, animated: true, completion: nil)
+    }
+    
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
 
 enum MenuType: Int {
     case None = -1

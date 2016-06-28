@@ -52,16 +52,16 @@ class GameCenterInteractor: NSObject {
             self.localPlayer.registerListener(self)
             
             // At this point you can download match data from Game Center.
-            GKAchievement.loadAchievementsWithCompletionHandler({(achievementDescriptions: [GKAchievement]?, error: NSError?) -> Void in
-                if error != nil {
-                    print("Game Center: Loading achievements failed with error: \(error)")
-                }
-            })
-            GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler({(achievementDescriptions: [GKAchievementDescription]?, error: NSError?) -> Void in
-                if error != nil {
-                    print("Game Center: Loading achievement descriptions failed with error: \(error)")
-                }
-            })
+//            GKAchievement.loadAchievementsWithCompletionHandler({(achievementDescriptions: [GKAchievement]?, error: NSError?) -> Void in
+//                if error != nil {
+//                    print("Game Center: Loading achievements failed with error: \(error)")
+//                }
+//            })
+//            GKAchievementDescription.loadAchievementDescriptionsWithCompletionHandler({(achievementDescriptions: [GKAchievementDescription]?, error: NSError?) -> Void in
+//                if error != nil {
+//                    print("Game Center: Loading achievement descriptions failed with error: \(error)")
+//                }
+//            })
         }
     }
     
@@ -111,75 +111,24 @@ class GameCenterInteractor: NSObject {
      - parameter presentingViewController: The view controller that will present the game center view controller.
      - parameter gameCenterController:     The game center controller.
      */
-    func showAuthenticationDialogueWhenReasonable(presentingViewController presentingViewController:UIViewController, gameCenterController:UIViewController)
-    {
+    func showAuthenticationDialogueWhenReasonable(presentingViewController presentingViewController:UIViewController, gameCenterController:UIViewController) {
         presentingViewController.presentViewController(gameCenterController, animated: true, completion: nil)
     }
     
     // MARK: 4 High Score Stuff
-    func saveHighScore(gamemode: String, score: Double) {
-        
+    func saveLeaderboardScore(forLeaderboardType leaderboardType: LeaderboardView, score: Int) {
         if GKLocalPlayer.localPlayer().authenticated {
-            
-            if gamemode == "Timed" {
-                
-                let scoreReporter = GKScore(leaderboardIdentifier: "timedModeLeaderboard")
-                
-                scoreReporter.value = Int64(score * 1000)
-                
-                let scoreArray: [GKScore] = [scoreReporter]
-                
-                GKScore.reportScores(scoreArray, withCompletionHandler: {(error : NSError?) -> Void in
-                    if error != nil {
-                        print("Game Center: Timed Score Submission Error")
-                    }
-                })
-            }
-            else if gamemode == "Infinite" {
-                
-                let scoreReporter = GKScore(leaderboardIdentifier: "infiniteModeLeaderboard")
-                
-                scoreReporter.value = Int64(score)
-                
-                let scoreArray: [GKScore] = [scoreReporter]
-                
-                GKScore.reportScores(scoreArray, withCompletionHandler: {(error : NSError?) -> Void in
-                    if error != nil {
-                        print("Game Center: Infinite Score Submission Error")
-                    }
-                })
-            }
-            else if gamemode == "Evil" {
-                
-                let scoreReporter = GKScore(leaderboardIdentifier: "evilModeLeaderboard")
-                
-                scoreReporter.value = Int64(score * 1000)
-                
-                let scoreArray: [GKScore] = [scoreReporter]
-                
-                GKScore.reportScores(scoreArray, withCompletionHandler: {(error : NSError?) -> Void in
-                    if error != nil {
-                        print("Game Center: Evil Score Submission Error")
-                    }
-                })
-            }
-            else if gamemode == "Lines" {
-                
-                let scoreReporter = GKScore(leaderboardIdentifier: "numberOfLinesClearedLeaderboard")
-                
-                scoreReporter.value = Int64(score)
-                
-                let scoreArray: [GKScore] = [scoreReporter]
-                
-                GKScore.reportScores(scoreArray, withCompletionHandler: {(error : NSError?) -> Void in
-                    if error != nil {
-                        print("Game Center: Evil Score Submission Error")
-                    }
-                })
-            }
-            else {
-                print("Game Center: Invalid Gamemode Leaderboard Argument")
-            }
+            let scoreReporter = GKScore(leaderboardIdentifier: leaderboardType.gameCenterReferenceID)
+            scoreReporter.value = Int64(score)
+            let scoreArray: [GKScore] = [scoreReporter]
+            GKScore.reportScores(scoreArray, withCompletionHandler: {(error : NSError?) -> Void in
+                if error != nil {
+                    print("[Game Center]: Error when submitting leaderboard scores for \(leaderboardType.gameCenterReferenceID)")
+                }
+                else {
+                    print("[Game Center]: Leaderboard scores reported succesfully for \(leaderboardType.gameCenterReferenceID)")
+                }
+            })
         }
     }
     
@@ -199,6 +148,19 @@ class GameCenterInteractor: NSObject {
         })
     }
     
+}
+
+extension LeaderboardView {
+    var gameCenterReferenceID: String {
+        switch self {
+        case .Ranked:
+            return "rankedLeaderboard"
+        case .Practice:
+            return "practiceLeaderboard"
+        case .Overall:
+            return "overallLeaderboard"
+        }
+    }
 }
 
 extension GameCenterInteractor: GKLocalPlayerListener
