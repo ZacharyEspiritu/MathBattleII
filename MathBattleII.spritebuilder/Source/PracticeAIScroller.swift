@@ -16,12 +16,12 @@ class PracticeAIScroller: CCNode {
     let leftSpawnPosition = CGPoint(x: -0.5, y: 0)
     let rightSpawnPosition = CGPoint(x: 1.5, y: 0)
     
-    weak var icon1, icon2, icon3: CCSprite!
+    weak var icon1, icon2, icon3, icon4, icon5: CCSprite!
     var icons: [CCSprite] = []
     
     func didLoadFromCCB() {
         //removeAllChildren()
-        icons = [icon1, icon2, icon3]
+        icons = [icon1, icon2, icon3, icon4, icon5]
         userInteractionEnabled = true
     }
     
@@ -34,23 +34,36 @@ class PracticeAIScroller: CCNode {
             icons.append(icons.removeAtIndex(0))
         }
         else {
-            icons.insert(icons.removeAtIndex(2), atIndex: 0)
+            icons.insert(icons.removeAtIndex(4), atIndex: 0)
         }
         for icon in icons {
             icon.stopAllActions()
         }
         
-        icons[0].runAction(CCActionMoveTo(duration: 0.24, position: leftStandbyPosition))
-        icons[0].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
-        icons[0].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
+        icons[1].runAction(CCActionMoveTo(duration: 0.24, position: leftStandbyPosition))
+        icons[1].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
+        icons[1].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
         
-        icons[1].runAction(CCActionMoveTo(duration: 0.24, position: centerPosition))
-        icons[1].runAction(CCActionScaleTo(duration: 0.24, scale: 1.0))
-        icons[1].runAction(CCActionFadeTo(duration: 0.24, opacity: 1.0))
+        icons[2].runAction(CCActionMoveTo(duration: 0.24, position: centerPosition))
+        icons[2].runAction(CCActionScaleTo(duration: 0.24, scale: 1.0))
+        icons[2].runAction(CCActionFadeTo(duration: 0.24, opacity: 1.0))
         
-        icons[2].runAction(CCActionMoveTo(duration: 0.24, position: rightStandbyPosition))
-        icons[2].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
-        icons[2].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
+        icons[3].runAction(CCActionMoveTo(duration: 0.24, position: rightStandbyPosition))
+        icons[3].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
+        icons[3].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
+        
+        if direction == .Left {
+            icons[0].runAction(CCActionMoveTo(duration: 0.24, position: leftSpawnPosition))
+            icons[0].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
+            icons[0].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
+            icons[4].position = rightSpawnPosition
+        }
+        else {
+            icons[4].runAction(CCActionMoveTo(duration: 0.24, position: rightSpawnPosition))
+            icons[4].runAction(CCActionScaleTo(duration: 0.24, scale: 0.86))
+            icons[4].runAction(CCActionFadeTo(duration: 0.24, opacity: 0.5))
+            icons[0].position = leftSpawnPosition
+        }
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {

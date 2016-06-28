@@ -95,6 +95,7 @@
 		55F5455C1D1F641900A03E18 /* LeaderboardDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */; };
 		55F845C21D1B4ACD009D86B7 /* MatchStartingPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F845C11D1B4ACD009D86B7 /* MatchStartingPopup.swift */; };
 		55F845C61D1B74F3009D86B7 /* MatchStartingPopupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */; };
+		55FEBBDF1D222B8A00AC25FE /* LoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */; };
 		5B121030197484FA004C1E1D /* MathBattleIIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* MathBattleIIActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
 		7A046D7919E84ED5004C4763 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A046D7519E84C36004C4763 /* MainMenu.swift */; };
@@ -327,6 +328,7 @@
 		55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardDataView.swift; path = Source/LeaderboardDataView.swift; sourceTree = "<group>"; };
 		55F845C11D1B4ACD009D86B7 /* MatchStartingPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStartingPopup.swift; path = Source/MatchStartingPopup.swift; sourceTree = "<group>"; };
 		55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStartingPopupHandler.swift; path = Source/MatchStartingPopupHandler.swift; sourceTree = "<group>"; };
+		55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginPopup.swift; path = Source/LoginPopup.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
 		5B121011197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
 				5583E0261CD6964500664E9D /* GameCenterInteractor.swift */,
 				55F845C11D1B4ACD009D86B7 /* MatchStartingPopup.swift */,
+				55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */,
 				55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */,
 				551EA0F71D1AB5D400162A76 /* Info Data View */,
 				55F545571D1F60FB00A03E18 /* News Data View */,
@@ -1470,6 +1473,7 @@
 				55F545561D1F350700A03E18 /* Clipper.swift in Sources */,
 				55D676921C4956D0001AE5F7 /* PuzzleGenerator.swift in Sources */,
 				558070221C53C713001CFCFF /* TileType.swift in Sources */,
+				55FEBBDF1D222B8A00AC25FE /* LoginPopup.swift in Sources */,
 				555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */,
 				55D946EA1CC4487400F0D6BA /* LoadingScene.swift in Sources */,
 				5546EFBD1CAF0C5000F84132 /* RankedPlayerHeader.swift in Sources */,
