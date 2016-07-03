@@ -28,7 +28,6 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 
-#import <UAAppReviewManager/UAAppReviewManager.h>
 #import <Firebase/Firebase.h>
 
 @implementation AppController
@@ -60,10 +59,7 @@
     // Preload audio files
     [[OALSimpleAudio sharedInstance] preloadEffect:@"ding.wav"];
     [[OALSimpleAudio sharedInstance] preloadEffect:@"pop.wav"];
-    
-    // Setup UAAppReviewManager
-    [UAAppReviewManager setAppID:@"12345678"];
-    
+        
     // Setup Firebase
     [FIRApp configure];
 

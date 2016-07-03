@@ -24,10 +24,9 @@ class LevelDisplay: CCNode {
     
     func didLoadFromCCB() {
         loadData()
-        animateExperienceDisplay()
     }
     
-    private func loadData() {
+    func loadData() {
         var experienceLevel: Int = 0
         if let user = UserManager.sharedInstance.getCurrentUser() {
             experienceLevel = user.getExperienceLevel()
@@ -72,6 +71,8 @@ class LevelDisplay: CCNode {
         
         levelLabel.string = "\(level)"
         experienceLabel.string = "\(currentProgress)/\(neededExperience)"
+        
+        animateExperienceDisplay()
     }
     
     private func animateExperienceDisplay() {

@@ -41,38 +41,44 @@ class AuthenticationHandler {
     }
     
     func authenticateUser(email email: String, password: String) {
-        FIRAuth.auth()!.signInWithEmail(email, password: password,
-            completion: { user, error in
-                if let user = user {
-                    // Authentication just completed successfully :)
-                    // The logged in user's unique identifier
-                    print(user.uid)
-                    
-                    let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
-                    // Attach a closure to read the data at our posts reference
-                    self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
-                        self.saveUserDataLocally(snapshot: snapshot)
-                        print("data saved")
-                        },
-                        withCancelBlock: { error in
-                            print(error.description)
-                    })
-                }
-                else {
-                    // Something went wrong. :(
-                    if let errorCode = FIRAuthErrorCode(rawValue: error!.code) { // TODO: Handle all ErrorCode cases
+        authenticateUser(email: email, password: password, errorHandler: { _ in })
+    }
+    
+    func authenticateUser(email email: String, password: String, errorHandler: (String) -> ()) {
+        FIRAuth.auth()!.signInWithEmail(email, password: password, completion: { user, error in
+            if let user = user {
+                // Authentication just completed successfully :)
+                // The logged in user's unique identifier
+                print(user.uid)
+                
+                let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
+                // Attach a closure to read the data at our posts reference
+                self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
+                    self.saveUserDataLocally(snapshot: snapshot)
+                    print("data saved")
+                    },
+                    withCancelBlock: { error in
+                        print(error.description)
+                })
+            }
+            else {
+                if let error = error {
+                    if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                        let errorDescription: String!
                         switch (errorCode) {
                         case .ErrorCodeUserNotFound:
-                            print("Handle invalid user")
+                            errorDescription = "User not found."
                         case .ErrorCodeInvalidEmail:
-                            print("Handle invalid email")
+                            errorDescription = "Invalid email."
                         case .ErrorCodeInvalidCredential:
-                            print("Handle invalid password")
+                            errorDescription = "Incorrect password."
                         default:
-                            print("Handle default situation")
+                            errorDescription = "Error occured when logging in."
                         }
+                        errorHandler(errorDescription)
                     }
                 }
+            }
         })
     }
     

@@ -31,28 +31,11 @@ class MainMenu: CCNode {
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
     
-    func segueToUserLoginScene() {
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("UserLoginScene") as! UserLoginScene)
-        let transition = CCTransition(fadeWithDuration: 0.5)
-        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
-    }
-    
     func segueToRankedMatchScene() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         
         let scene = CCScene()
         scene.addChild(CCBReader.load("MainScene") as! MainScene)
-        CCDirector.sharedDirector().presentScene(scene)
-    }
-    
-    func segueToUserRegistrationScene() {
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-
-        let scene = CCScene()
-        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
         CCDirector.sharedDirector().presentScene(scene)
     }
 }

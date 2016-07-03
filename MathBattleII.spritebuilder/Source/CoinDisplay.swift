@@ -20,24 +20,12 @@ class CoinDisplay: CCNode {
     
     func didLoadFromCCB() {
         loadData()
-        animateCoinCount()
     }
     
-    private func loadData() {
+    func loadData() {
         if let user = UserManager.sharedInstance.getCurrentUser() {
             coins = user.getCoins()
+            self.coinLabel.string = "\(coins)"
         }
-    }
-    
-    private func animateCoinCount() {
-        var currentCoinCount: Int = 0
-        NSTimer.schedule(repeatInterval: 0.001, handler: { timer in
-            currentCoinCount += ((self.coins - currentCoinCount) / 10) < 0 ? 1 : ((self.coins - currentCoinCount) / 10)
-            self.coinLabel.string = "\(currentCoinCount)"
-            if currentCoinCount >= self.coins {
-                self.coinLabel.string = "\(self.coins)"
-                timer.invalidate()
-            }
-        })
     }
 }
