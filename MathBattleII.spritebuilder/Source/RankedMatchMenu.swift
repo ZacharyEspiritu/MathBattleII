@@ -30,15 +30,7 @@ class RankedMatchMenu: CCNode {
     }
     
     func segueToUserLoginScene() {
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-        
-        let userRegistrationScene = CCBReader.load("UserLoginScene") as! UserLoginScene
-        
-        let scene = CCScene()
-        scene.addChild(userRegistrationScene)
-        
-        let transition = CCTransition(fadeWithDuration: 0.5)
-        CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
+        LoginPopupHandler.displayLoginPopupHandler()
     }
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
