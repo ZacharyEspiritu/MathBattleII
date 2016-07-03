@@ -565,7 +565,6 @@ class GameplayScene: CCNode {
             
             let transition = CCTransition(fadeWithDuration: 0.5)
             transition.incomingSceneAnimated = true
-            transition.outgoingSceneAnimated = true
             CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
         }
     }

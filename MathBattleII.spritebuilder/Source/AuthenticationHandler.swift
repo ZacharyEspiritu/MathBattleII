@@ -212,6 +212,7 @@ class AuthenticationHandler {
 }
 
 extension AuthenticationHandler: UserDelegate {
+    
     func localUserDataDidUpdate(user: User) {
         pushLocalUserDataToServer(user: user)
     }
