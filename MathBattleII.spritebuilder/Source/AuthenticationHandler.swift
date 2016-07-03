@@ -53,12 +53,13 @@ class AuthenticationHandler {
                 
                 let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
                 // Attach a closure to read the data at our posts reference
-                self.currentAuthenticationHandle = userRef.observeEventType(.Value, withBlock: { snapshot in
-                    self.saveUserDataLocally(snapshot: snapshot)
-                    print("data saved")
+                self.currentAuthenticationHandle = userRef.observeEventType(.Value,
+                    withBlock: { snapshot in
+                        self.saveUserDataLocally(snapshot: snapshot)
+                        print("data saved")
                     },
                     withCancelBlock: { error in
-                        print(error.description)
+                        errorHandler("Error occured when logging in.")
                 })
             }
             else {
@@ -66,12 +67,32 @@ class AuthenticationHandler {
                     if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
                         let errorDescription: String!
                         switch (errorCode) {
+                        case .ErrorCodeInvalidCredential:
+                            errorDescription = "Invalid credentials. Make sure your email and password is correct."
+                        case .ErrorCodeUserDisabled:
+                            errorDescription = "Your account is currently disabled. Try again later."
+                        case .ErrorCodeEmailAlreadyInUse:
+                            errorDescription = "Email is already in use on a different account."
+                        case .ErrorCodeWrongPassword:
+                            errorDescription = "Incorrect password."
                         case .ErrorCodeUserNotFound:
-                            errorDescription = "User not found."
+                            errorDescription = "User with specified email and password not found."
                         case .ErrorCodeInvalidEmail:
                             errorDescription = "Invalid email."
-                        case .ErrorCodeInvalidCredential:
-                            errorDescription = "Incorrect password."
+                        case .ErrorCodeTooManyRequests:
+                            errorDescription = "Too many attempts made. Try again later."
+                        case .ErrorCodeRequiresRecentLogin:
+                            errorDescription = "This action requires you to log in again."
+                        case .ErrorCodeNetworkError:
+                            errorDescription = "A network error occured. Check your internet connection."
+                        case .ErrorCodeInvalidUserToken:
+                            errorDescription = "Your session has expired. Please log in again."
+                        case .ErrorCodeUserTokenExpired:
+                            errorDescription = "Your session has expired. Please log in again."
+                        case .ErrorCodeWeakPassword:
+                            errorDescription = "Your password is too weak. Please choose another one."
+                        case .ErrorCodeKeychainError:
+                            errorDescription = "Could not access the keychain. Please log in manually."
                         default:
                             errorDescription = "Error occured when logging in."
                         }
