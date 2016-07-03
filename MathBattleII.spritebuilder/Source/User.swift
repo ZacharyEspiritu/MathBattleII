@@ -57,6 +57,24 @@ class User {
         self.friends = friends
     }
     
+    static func generateDefaultUserDictionary(withUsername username: String, email: String) -> [String : AnyObject] {
+        return [
+            "displayName": username,
+            "email": email,
+            "numberOfGamesPlayed": 0,
+            "numberOfWins": 0,
+            "numberOfLosses": 0,
+            "numberOfSolves": 0,
+            "provider": "password",
+            "rating": 1000,
+            "ratingFloor": 700,
+            "experienceLevel": 0,
+            "coins": 0,
+            "practiceHighScore": 0,
+            "friends": []
+        ]
+    }
+    
     func convertToDictionaryFormat() -> [String : AnyObject] {
         return [
             "displayName": displayName,

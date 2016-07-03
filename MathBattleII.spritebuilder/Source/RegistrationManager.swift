@@ -66,21 +66,7 @@ class RegistrationManager {
         let ref = FIRDatabase.database().reference()
         
         // Create a new user dictionary with default user information
-        let newUser = [
-            "displayName": accountData.username,
-            "email": accountData.email,
-            "numberOfGamesPlayed": 0,
-            "numberOfWins": 0,
-            "numberOfLosses": 0,
-            "numberOfSolves": 0,
-            "provider": "password",
-            "rating": 1000,
-            "ratingFloor": 700,
-            "experienceLevel": 0,
-            "coins": 0,
-            "practiceHighScore": 0,
-            "friends": []
-        ]
+        let newUser = User.generateDefaultUserDictionary(withUsername: accountData.username, email: accountData.email)
         
         // Run both setValue operations concurrently and wait to run the completion block until both are complete
         let dispatchGroup = dispatch_group_create()
