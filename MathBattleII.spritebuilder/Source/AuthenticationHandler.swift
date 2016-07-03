@@ -41,28 +41,27 @@ class AuthenticationHandler {
     }
     
     func authenticateUser(email email: String, password: String) {
-        authenticateUser(email: email, password: password, errorHandler: { _ in })
+        authenticateUser(email: email, password: password, completionHandler: { _ in }, errorHandler: { _ in })
     }
     
-    func authenticateUser(email email: String, password: String, errorHandler: (String) -> ()) {
+    func authenticateUser(email email: String, password: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
         FIRAuth.auth()!.signInWithEmail(email, password: password, completion: { user, error in
             if let user = user {
-                // Authentication just completed successfully :)
-                // The logged in user's unique identifier
+                // Authentication completed successfully.
                 print(user.uid)
-                
                 let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
-                // Attach a closure to read the data at our posts reference
                 self.currentAuthenticationHandle = userRef.observeEventType(.Value,
                     withBlock: { snapshot in
                         self.saveUserDataLocally(snapshot: snapshot)
-                        print("data saved")
+                        print("Data saved.")
                     },
                     withCancelBlock: { error in
-                        errorHandler("Error occured when logging in.")
+                        print("Data could not be saved...failing silently.")
                 })
+                completionHandler()
             }
             else {
+                // Error occurred.
                 if let error = error {
                     if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
                         let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)

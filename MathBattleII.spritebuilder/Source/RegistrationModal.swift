@@ -18,7 +18,6 @@ class RegistrationModal: CCNode {
     var delegate: RegistrationModalDelegate?
     
     func didLoadFromCCB() {
-        safetyButton.enabled = false
         setupTextFields()
     }
     
@@ -30,9 +29,12 @@ class RegistrationModal: CCNode {
         let email = emailTextField.string
         let password = passwordTextField.string
         let passwordConfirmation = confirmPasswordTextField.string
-        RegistrationManager.sharedInstance.registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation, errorHandler: { errorDescription in
-            self.loginPopupAlertModal.setAlert(string: errorDescription)
-            self.loginPopupAlertModal.displayAlert()
+        RegistrationManager.sharedInstance.registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation,
+            completionHandler: {
+                self.delegate?.registrationCompletedSuccessfully(self)
+            }, errorHandler: { errorDescription in
+                self.loginPopupAlertModal.setAlert(string: errorDescription)
+                self.loginPopupAlertModal.displayAlert()
         })
     }
     
@@ -54,4 +56,5 @@ class RegistrationModal: CCNode {
 protocol RegistrationModalDelegate {
     
     func registrationDetailButtonPressed(registrationModal: RegistrationModal)
+    func registrationCompletedSuccessfully(registrationModal: RegistrationModal)
 }

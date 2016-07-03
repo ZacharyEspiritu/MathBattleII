@@ -65,6 +65,19 @@ class LoginPopup: CCNode {
             registrationModal.runAction(CCActionEaseSineOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: 0.5))))
         }
     }
+    
+    private func runClosingAnimations() {
+        focusOutButton.enabled = false
+        focusOut.opacity = 1
+        focusOut.runAction(CCActionEaseSineOut(action: CCActionFadeTo(duration: animationDuration, opacity: 0)))
+        let modalFlyOutAnimation = CCActionSequence(array: [CCActionEaseSineOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: 1.5))), CCActionCallBlock(block: { LoginPopupHandler.hideLoginPopupHandler() })])
+        switch currentModal {
+        case .LoginModal:
+            loginModal.runAction(modalFlyOutAnimation)
+        case .RegistrationModal:
+            registrationModal.runAction(modalFlyOutAnimation)
+        }
+    }
 }
 
 extension LoginPopup: LoginModalDelegate {
@@ -72,12 +85,20 @@ extension LoginPopup: LoginModalDelegate {
     func loginDetailButtonPressed(loginModal: LoginModal) {
         toggleModals()
     }
+    
+    func loginAuthenticationCompletedSuccessfully(loginModal: LoginModal) {
+        runClosingAnimations()
+    }
 }
 
 extension LoginPopup: RegistrationModalDelegate {
     
     func registrationDetailButtonPressed(registrationModal: RegistrationModal) {
         toggleModals()
+    }
+    
+    func registrationCompletedSuccessfully(registrationModal: RegistrationModal) {
+        runClosingAnimations()
     }
 }
 

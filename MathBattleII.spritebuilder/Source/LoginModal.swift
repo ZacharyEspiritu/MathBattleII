@@ -18,7 +18,6 @@ class LoginModal: CCNode {
     var delegate: LoginModalDelegate?
     
     func didLoadFromCCB() {
-        safetyButton.enabled = false
         setupTextFields()
     }
     
@@ -28,9 +27,12 @@ class LoginModal: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         let email = emailTextField.string
         let password = passwordTextField.string
-        AuthenticationHandler.sharedInstance.authenticateUser(email: email, password: password, errorHandler: { errorDescription in
-            self.loginPopupAlertModal.setAlert(string: errorDescription)
-            self.loginPopupAlertModal.displayAlert()
+        AuthenticationHandler.sharedInstance.authenticateUser(email: email, password: password,
+            completionHandler: {
+                self.delegate?.loginAuthenticationCompletedSuccessfully(self)
+            }, errorHandler: { errorDescription in
+                self.loginPopupAlertModal.setAlert(string: errorDescription)
+                self.loginPopupAlertModal.displayAlert()
         })
     }
     
@@ -51,4 +53,5 @@ class LoginModal: CCNode {
 protocol LoginModalDelegate {
     
     func loginDetailButtonPressed(loginModal: LoginModal)
+    func loginAuthenticationCompletedSuccessfully(loginModal: LoginModal)
 }

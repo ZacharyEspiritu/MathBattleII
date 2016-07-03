@@ -19,10 +19,10 @@ class RegistrationManager {
     // MARK: Firebase-Interacting Functions
     
     func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String) {
-        registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation, errorHandler: { _ in })
+        registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation, completionHandler: { _ in }, errorHandler: { _ in })
     }
     
-    func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String, errorHandler: (String) -> ()) {
+    func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String, completionHandler: (Void -> Void), errorHandler: (String) -> ()) {
         do {
             let accountData = try validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
             FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
@@ -32,8 +32,7 @@ class RegistrationManager {
                     print("Successfully created user account with uid: \(uid)")
                     
                     self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
-                        print("new account data initalized")
-                        self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
+                        completionHandler()
                     })
                 } else {
                     if let error = error {
@@ -77,10 +76,6 @@ class RegistrationManager {
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             ref.child("displayNames").child(accountData.username).setValue(uid)
             NSLog("displayNames done")
-        }
-        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            ref.child("rankedRatings").child(accountData.username).setValue(1000)
-            NSLog("rankedRatings done")
         }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             NSLog("running completion handler")
