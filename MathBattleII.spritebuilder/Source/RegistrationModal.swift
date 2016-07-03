@@ -25,6 +25,7 @@ class RegistrationModal: CCNode {
     // MARK: Button Functions
     
     func mainButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         let username = usernameTextField.string
         let email = emailTextField.string
         let password = passwordTextField.string
@@ -36,6 +37,7 @@ class RegistrationModal: CCNode {
     }
     
     func detailButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         delegate?.registrationDetailButtonPressed(self)
     }
     

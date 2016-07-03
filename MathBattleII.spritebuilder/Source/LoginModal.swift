@@ -25,6 +25,7 @@ class LoginModal: CCNode {
     // MARK: Button Functions
     
     func mainButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         let email = emailTextField.string
         let password = passwordTextField.string
         AuthenticationHandler.sharedInstance.authenticateUser(email: email, password: password, errorHandler: { errorDescription in
@@ -34,6 +35,7 @@ class LoginModal: CCNode {
     }
     
     func detailButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         delegate?.loginDetailButtonPressed(self)
     }
     
