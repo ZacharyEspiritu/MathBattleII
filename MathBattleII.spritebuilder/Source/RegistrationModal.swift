@@ -11,7 +11,6 @@ import Foundation
 class RegistrationModal: CCNode {
     
     weak var usernameTextField, emailTextField, passwordTextField, confirmPasswordTextField: CCTextField!
-    weak var mainButton, detailButton: CCButton!
     weak var safetyButton: CCButton!
     weak var loginPopupAlertModal: LoginPopupAlertModal!
     
@@ -43,6 +42,11 @@ class RegistrationModal: CCNode {
         delegate?.registrationDetailButtonPressed(self)
     }
     
+    func closeButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        delegate?.registrationCloseButtonPressed(self)
+    }
+    
     // MARK: Data Functions
     
     private func setupTextFields() {
@@ -57,4 +61,5 @@ protocol RegistrationModalDelegate {
     
     func registrationDetailButtonPressed(registrationModal: RegistrationModal)
     func registrationCompletedSuccessfully(registrationModal: RegistrationModal)
+    func registrationCloseButtonPressed(registrationModal: RegistrationModal)
 }

@@ -496,6 +496,7 @@
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
 				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
 				550A309E1D253BFF0041152F /* Match Starting Popup */,
+				555A69C11D233CA500FA021C /* Login/Registration Views */,
 				550A309F1D253C0B0041152F /* Shop */,
 			);
 			name = "Menu Displays";
@@ -641,7 +642,6 @@
 				55316C771CC6FAC1008CF8E7 /* MainScene.swift */,
 				5583E0261CD6964500664E9D /* GameCenterInteractor.swift */,
 				550A309B1D253B920041152F /* Menu Displays */,
-				555A69C11D233CA500FA021C /* Login/Registration Views */,
 				551EA0F71D1AB5D400162A76 /* Info Data View */,
 				55F545571D1F60FB00A03E18 /* News Data View */,
 				55F5455A1D1F63FD00A03E18 /* Leaderboard Data View */,

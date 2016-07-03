@@ -19,15 +19,24 @@ class ShopPopup: CCNode {
     
     var delegate: ShopPopupDelegate?
     
+    
     func didLoadFromCCB() {
         focusOutButton.enabled = false
         runOpeningAnimations()
         loadItemsIntoScrollView()
     }
     
+    // MARK: Button Functions
+    
+    func closeButtonPressed() {
+        delegate?.focusOutAreaTouched(self)
+    }
+    
     func backgroundTouched() {
         delegate?.focusOutAreaTouched(self)
     }
+    
+    // MARK: Animation Functions
     
     private func runOpeningAnimations() {
         focusOut.opacity = 0
@@ -35,6 +44,18 @@ class ShopPopup: CCNode {
         shopModal.position = CGPoint(x: 0.5, y: -0.5)
         shopModal.runAction(CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.5, position: CGPoint(x: 0.5, y: 0.5))))
     }
+    
+    private func generateDivider() -> CCNodeColor {
+        let divider = CCNodeColor(color: CCColor.lightGrayColor())
+        divider.contentSizeType = CCSizeType(widthUnit: .Normalized, heightUnit: .Points)
+        divider.contentSize = CGSize(width: 1, height: 1)
+        divider.anchorPoint = CGPoint(x: 0.5, y: 0)
+        divider.positionType = CCPositionType(xUnit: CCPositionUnit.Normalized, yUnit: CCPositionUnit.Points, corner: CCPositionReferenceCorner.BottomLeft)
+        divider.position = CGPoint(x: 0.5, y: 0)
+        return divider
+    }
+    
+    // MARK: Data Functions
     
     private func loadItemsIntoScrollView() {
         let scrollViewContent = CCNode()
@@ -55,29 +76,22 @@ class ShopPopup: CCNode {
         }
         scrollView.contentNode = scrollViewContent
     }
-    
-    private func generateDivider() -> CCNodeColor {
-        let divider = CCNodeColor(color: CCColor.lightGrayColor())
-        divider.contentSizeType = CCSizeType(widthUnit: .Normalized, heightUnit: .Points)
-        divider.contentSize = CGSize(width: 1, height: 1)
-        divider.anchorPoint = CGPoint(x: 0.5, y: 0)
-        divider.positionType = CCPositionType(xUnit: CCPositionUnit.Normalized, yUnit: CCPositionUnit.Points, corner: CCPositionReferenceCorner.BottomLeft)
-        divider.position = CGPoint(x: 0.5, y: 0)
-        return divider
-    }
 }
 
 extension ShopPopup: ShopScrollViewCellDelegate {
     
     func shopScrollViewCellTouched(cell: ShopScrollViewCell) {
-        let item = cell.getItem()
         if let user = UserManager.sharedInstance.getCurrentUser() {
+            let item = cell.getItem()
             if item.getPrice() <= user.getCoins() {
                 print("user has enough coins!")
             }
             else {
                 print("user does not have enough coins!")
             }
+        }
+        else {
+            print("User not logged in!")
         }
     }
 }

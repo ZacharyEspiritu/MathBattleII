@@ -13,7 +13,7 @@ class MatchStartingPopup: CCNode {
     weak var background: CCSprite9Slice!
     weak var headerLabel, infoLabel, countdownLabel: CCLabelTTF!
     
-    
+
     func setHeaderLabel(string string: String) {
         headerLabel.string = string
     }

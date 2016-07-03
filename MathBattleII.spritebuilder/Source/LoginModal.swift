@@ -12,7 +12,6 @@ class LoginModal: CCNode {
     
     weak var emailTextField, passwordTextField: CCTextField!
     weak var mainButton, detailButton: CCButton!
-    weak var safetyButton: CCButton!
     weak var loginPopupAlertModal: LoginPopupAlertModal!
     
     var delegate: LoginModalDelegate?
@@ -41,6 +40,11 @@ class LoginModal: CCNode {
         delegate?.loginDetailButtonPressed(self)
     }
     
+    func closeButtonPressed() {
+        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        delegate?.loginCloseButtonPressed(self)
+    }
+    
     // MARK: Data Functions
     
     private func setupTextFields() {
@@ -54,4 +58,5 @@ protocol LoginModalDelegate {
     
     func loginDetailButtonPressed(loginModal: LoginModal)
     func loginAuthenticationCompletedSuccessfully(loginModal: LoginModal)
+    func loginCloseButtonPressed(loginModal: LoginModal)
 }

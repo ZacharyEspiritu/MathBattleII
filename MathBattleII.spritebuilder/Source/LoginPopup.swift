@@ -20,17 +20,18 @@ class LoginPopup: CCNode {
     let animationDuration = 0.4
     
     
-    // MARK: Button Functions 
+    // MARK: CCB Functions 
     
     func didLoadFromCCB() {
+        focusOutButton.enabled = false
         setupDelegates()
         runOpeningAnimations()
+        userInteractionEnabled = true
     }
     
-    func focusOutButtonPressed() {
+    func closePopup() {
         LoginPopupHandler.hideLoginPopupHandler()
     }
-    
     
     // MARK: Data Functions
     
@@ -89,6 +90,10 @@ extension LoginPopup: LoginModalDelegate {
     func loginAuthenticationCompletedSuccessfully(loginModal: LoginModal) {
         runClosingAnimations()
     }
+    
+    func loginCloseButtonPressed(loginModal: LoginModal) {
+        closePopup()
+    }
 }
 
 extension LoginPopup: RegistrationModalDelegate {
@@ -99,6 +104,10 @@ extension LoginPopup: RegistrationModalDelegate {
     
     func registrationCompletedSuccessfully(registrationModal: RegistrationModal) {
         runClosingAnimations()
+    }
+    
+    func registrationCloseButtonPressed(registrationModal: RegistrationModal) {
+        closePopup()
     }
 }
 
