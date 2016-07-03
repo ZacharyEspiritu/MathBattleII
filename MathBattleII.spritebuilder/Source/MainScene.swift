@@ -28,6 +28,18 @@ class MainScene: CCNode {
     
     weak var focusOut: CCSprite!
     
+    weak var shopGroupingNode: CCNode!
+    var shopIsDisplaying: Bool = false {
+        didSet {
+            if shopIsDisplaying {
+                displayShop()
+            }
+            else {
+                removeShop()
+            }
+        }
+    }
+    
     var currentMenuType: MenuType = .None {
         didSet {
             loadMenuForType(type: currentMenuType)
@@ -279,12 +291,26 @@ class MainScene: CCNode {
         if coinDisplay.scale < 1 {
             if CGRectContainsPoint(topAreaGroupingNode.boundingBox(), touch.locationInWorld()) {
                 if CGRectContainsPoint(coinDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
-                    print("touchCoinDisplay")
+                    shopIsDisplaying = shopIsDisplaying ? false : true
                 }
             }
             coinDisplay.stopAllActions()
             coinDisplay.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
         }
+    }
+    
+    private func displayShop() {
+        let shop = CCBReader.load("ShopPopup") as! ShopPopup
+        shop.contentSizeType = CCSizeType(widthUnit: .Normalized, heightUnit: .Normalized)
+        shop.contentSize = CGSize(width: 1, height: 1)
+        shop.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .TopLeft)
+        shop.position = CGPoint(x: 0.5, y: 0.5)
+        shop.delegate = self
+        shopGroupingNode.addChild(shop)
+    }
+    
+    private func removeShop() {
+        shopGroupingNode.removeAllChildren()
     }
 }
 
@@ -309,6 +335,13 @@ extension MainScene: GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension MainScene: ShopPopupDelegate {
+    
+    func focusOutAreaTouched(shopPopup: ShopPopup) {
+        shopIsDisplaying = false
     }
 }
 
