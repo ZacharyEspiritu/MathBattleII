@@ -327,9 +327,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.96078431606292725</real>
-							<real>0.65098041296005249</real>
-							<real>0.13725490868091583</real>
+							<real>0.18039216101169586</real>
+							<real>0.80000001192092896</real>
+							<real>0.44313725829124451</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -881,7 +881,7 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>0.0</real>
+									<real>0.56499999761581421</real>
 									<real>1</real>
 									<false/>
 									<integer>0</integer>
@@ -901,9 +901,9 @@
 								<string>Color3</string>
 								<key>value</key>
 								<array>
-									<real>0.96078431606292725</real>
-									<real>0.65098041296005249</real>
-									<real>0.13725490868091583</real>
+									<real>0.18039216101169586</real>
+									<real>0.80000001192092896</real>
+									<real>0.44313725829124451</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -1187,22 +1187,6 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
-						<real>0.76666665077209473</real>
-						<key>type</key>
-						<integer>12</integer>
-						<key>value</key>
-						<array>
-							<string>playBounceSound</string>
-							<integer>1</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>easing</key>
-						<dict>
-							<key>type</key>
-							<integer>0</integer>
-						</dict>
-						<key>time</key>
 						<real>1.1000000238418579</real>
 						<key>type</key>
 						<integer>12</integer>
@@ -1305,7 +1289,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>3</real>
+			<real>1.1000000238418579</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

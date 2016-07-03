@@ -16,4 +16,3 @@
 #import "libs/cocos2d-iphone/external/ObjectAL/ObjectAL/ObjectAL/Session/OALAudioSession.h"
 
 #import <Firebase/Firebase.h>
-#import <UAAppReviewManager/UAAppReviewManager.h>

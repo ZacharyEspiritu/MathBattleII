@@ -11,6 +11,7 @@ import Foundation
 class LoadingScene: CCNode {
     
     func didLoadFromCCB() {
+        CCDirector.sharedDirector().displayStats = true
         OALSimpleAudio.sharedInstance().preloadEffect("pop.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("ding.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("flicker.mp3")
@@ -24,10 +25,6 @@ class LoadingScene: CCNode {
         OALSimpleAudio.sharedInstance().playEffect("flicker.mp3", volume: 0.4, pitch: 1, pan: 0, loop: false)
     }
     
-    func playBounceSound() {
-        
-    }
-    
     func playDingSound() {
         OALSimpleAudio.sharedInstance().playEffect("ding.wav")
     }
@@ -38,5 +35,4 @@ class LoadingScene: CCNode {
         let transition = CCTransition(crossFadeWithDuration: 0.35)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
-    
 }
