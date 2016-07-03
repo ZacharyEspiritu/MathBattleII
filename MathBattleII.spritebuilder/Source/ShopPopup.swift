@@ -14,6 +14,7 @@ class ShopPopup: CCNode {
     weak var shopModal: CCNode!
     weak var focusOut: CCSprite!
     weak var focusOutButton: CCButton!
+    weak var alertOverlay: CCNodeColor!
     
     let items = ShopManager.getItemsWithStatus()
     
@@ -22,6 +23,8 @@ class ShopPopup: CCNode {
     
     func didLoadFromCCB() {
         focusOutButton.enabled = false
+        alertOverlay.cascadeOpacityEnabled = true
+        alertOverlay.opacity = 0
         runOpeningAnimations()
         loadItemsIntoScrollView()
     }
@@ -55,11 +58,16 @@ class ShopPopup: CCNode {
         return divider
     }
     
+    private func displayAlertOverlay() {
+        alertOverlay.stopAllActions()
+        alertOverlay.runAction(CCActionSequence(array: [CCActionFadeTo(duration: 0.15, opacity: 0.7), CCActionDelay(duration: 1), CCActionFadeTo(duration: 0.2, opacity: 0)]))
+    }
+    
     // MARK: Data Functions
     
     private func loadItemsIntoScrollView() {
         let scrollViewContent = CCNode()
-        scrollViewContent.contentSize.width = 273
+        scrollViewContent.contentSize.width = 275
         let divider = generateDivider()
         divider.positionType.corner = CCPositionReferenceCorner.TopLeft
         scrollViewContent.addChild(divider)
@@ -113,7 +121,7 @@ extension ShopPopup: ShopScrollViewCellDelegate {
     
     func shopScrollViewCellTouched(cell: ShopScrollViewCell) {
         guard let user = UserManager.sharedInstance.getCurrentUser() else {
-            print("User not logged in!")
+            displayAlertOverlay()
             return
         }
         
