@@ -49,9 +49,9 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>CCButton</string>
+				<string>cellTouchedButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>cellTouchedButton</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>

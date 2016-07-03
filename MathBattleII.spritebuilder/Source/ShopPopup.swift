@@ -60,38 +60,69 @@ class ShopPopup: CCNode {
     private func loadItemsIntoScrollView() {
         let scrollViewContent = CCNode()
         scrollViewContent.contentSize.width = 273
-        
         let divider = generateDivider()
         divider.positionType.corner = CCPositionReferenceCorner.TopLeft
         scrollViewContent.addChild(divider)
+        
         for index in 0..<items.count {
             let cell = CCBReader.load("ShopScrollViewCell") as! ShopScrollViewCell
             cell.positionType = CCPositionType(xUnit: CCPositionUnit.Normalized, yUnit: CCPositionUnit.Points, corner: CCPositionReferenceCorner.TopLeft)
             cell.position = CGPoint(x: 0.5, y: CGFloat(index) * cell.contentSize.height)
             cell.setData(item: items[index])
             cell.addChild(generateDivider())
-            cell.delegate = self // TODO: Cell Buttons Interfere when scrolled out of clipper node as you are not able to tap the focus out area
+            cell.delegate = self
+            if index > 3 {
+                cell.cellTouchedButton.enabled = false
+            }
+            
             scrollViewContent.contentSize.height += cell.contentSize.height
             scrollViewContent.addChild(cell)
         }
+        
         scrollView.contentNode = scrollViewContent
+        scrollView.delegate = self
+    }
+}
+
+extension ShopPopup: CCScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: CCScrollView!) {
+        determineButtonStatus(inScrollView: scrollView)
+    }
+    
+    private func determineButtonStatus(inScrollView scrollView: CCScrollView!) {
+        for cell in scrollView.contentNode.children {
+            if let scrollViewCell = cell as? ShopScrollViewCell {
+                var convertedCellBoundingBox = scrollViewCell.boundingBox()
+                convertedCellBoundingBox.origin = scrollViewCell.convertToWorldSpace(CGPointZero)
+                var convertedScrollViewBoundingBox = scrollView.boundingBox()
+                convertedScrollViewBoundingBox.origin = scrollView.convertToWorldSpace(CGPointZero)
+                
+                if CGRectIntersectsRect(convertedCellBoundingBox, convertedScrollViewBoundingBox) {
+                    scrollViewCell.cellTouchedButton.enabled = true
+                }
+                else {
+                    scrollViewCell.cellTouchedButton.enabled = false
+                }
+            }
+        }
     }
 }
 
 extension ShopPopup: ShopScrollViewCellDelegate {
     
     func shopScrollViewCellTouched(cell: ShopScrollViewCell) {
-        if let user = UserManager.sharedInstance.getCurrentUser() {
-            let item = cell.getItem()
-            if item.getPrice() <= user.getCoins() {
-                print("user has enough coins!")
-            }
-            else {
-                print("user does not have enough coins!")
-            }
+        guard let user = UserManager.sharedInstance.getCurrentUser() else {
+            print("User not logged in!")
+            return
+        }
+        
+        let item = cell.getItem()
+        if item.getPrice() <= user.getCoins() {
+            print("user has enough coins!")
         }
         else {
-            print("User not logged in!")
+            print("user does not have enough coins!")
         }
     }
 }

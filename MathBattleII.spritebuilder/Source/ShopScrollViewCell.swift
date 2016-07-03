@@ -10,9 +10,10 @@ import Foundation
 
 class ShopScrollViewCell: CCNode {
     
-    private var item: ShopItem!
-    
     weak var itemNameLabel, itemPriceLabel: CCLabelTTF!
+    weak var cellTouchedButton: CCButton!
+    
+    private var item: ShopItem!
     
     var delegate: ShopScrollViewCellDelegate?
     
