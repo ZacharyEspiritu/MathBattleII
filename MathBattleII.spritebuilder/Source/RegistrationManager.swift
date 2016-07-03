@@ -36,9 +36,12 @@ class RegistrationManager {
                         self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
                     })
                 } else {
-                    // There was an error creating the account
-                    let errorDescription = "Account was unable to be created at this time."
-                    errorHandler(errorDescription)
+                    if let error = error {
+                        if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                            let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                            errorHandler(errorDescription)
+                        }
+                    }
                 }
             })
         }
@@ -143,7 +146,7 @@ class RegistrationManager {
     
     private func validateEmail(email: String) -> Bool {
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-        
+
         guard let emailValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx) else {
             return false
         }
