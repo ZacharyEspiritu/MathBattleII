@@ -12,8 +12,13 @@ class LoginModal: CCNode {
     
     weak var emailTextField, passwordTextField: CCTextField!
     weak var mainButton, detailButton: CCButton!
+    weak var safetyButton: CCButton!
+    weak var loginPopupAlertModal: LoginPopupAlertModal!
+    
+    var delegate: LoginModalDelegate?
     
     func didLoadFromCCB() {
+        safetyButton.enabled = false
         setupTextFields()
     }
     
@@ -22,11 +27,14 @@ class LoginModal: CCNode {
     func mainButtonPressed() {
         let email = emailTextField.string
         let password = passwordTextField.string
-        LoginPopupHandler.loginAccount(email: email, password: password)
+        AuthenticationHandler.sharedInstance.authenticateUser(email: email, password: password, errorHandler: { errorDescription in
+            self.loginPopupAlertModal.setAlert(string: errorDescription)
+            self.loginPopupAlertModal.displayAlert()
+        })
     }
     
     func detailButtonPressed() {
-        LoginPopupHandler.switchModals()
+        delegate?.loginDetailButtonPressed(self)
     }
     
     // MARK: Data Functions
@@ -36,4 +44,9 @@ class LoginModal: CCNode {
         emailTextField.textField.keyboardType = .EmailAddress
         passwordTextField.textField.secureTextEntry = true
     }
+}
+
+protocol LoginModalDelegate {
+    
+    func loginDetailButtonPressed(loginModal: LoginModal)
 }

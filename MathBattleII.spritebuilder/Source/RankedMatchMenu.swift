@@ -15,6 +15,8 @@ class RankedMatchMenu: CCNode {
     weak var rankedPlayerHeader: RankedPlayerHeader!
     
     
+    // MARK: Button Functions
+    
     func didLoadFromCCB() {
         userInteractionEnabled = true
     }
@@ -32,6 +34,9 @@ class RankedMatchMenu: CCNode {
     func segueToUserLoginScene() {
         LoginPopupHandler.displayLoginPopupHandler()
     }
+
+    
+    // MARK: User Interaction Function
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {

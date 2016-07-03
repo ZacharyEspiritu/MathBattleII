@@ -12,8 +12,13 @@ class RegistrationModal: CCNode {
     
     weak var usernameTextField, emailTextField, passwordTextField, confirmPasswordTextField: CCTextField!
     weak var mainButton, detailButton: CCButton!
+    weak var safetyButton: CCButton!
+    weak var loginPopupAlertModal: LoginPopupAlertModal!
+    
+    var delegate: RegistrationModalDelegate?
     
     func didLoadFromCCB() {
+        safetyButton.enabled = false
         setupTextFields()
     }
     
@@ -24,11 +29,14 @@ class RegistrationModal: CCNode {
         let email = emailTextField.string
         let password = passwordTextField.string
         let passwordConfirmation = confirmPasswordTextField.string
-        LoginPopupHandler.registerAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
+        RegistrationManager.sharedInstance.registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation, errorHandler: { errorDescription in
+            self.loginPopupAlertModal.setAlert(string: errorDescription)
+            self.loginPopupAlertModal.displayAlert()
+        })
     }
     
     func detailButtonPressed() {
-        LoginPopupHandler.switchModals()
+        delegate?.registrationDetailButtonPressed(self)
     }
     
     // MARK: Data Functions
@@ -38,4 +46,9 @@ class RegistrationModal: CCNode {
         emailTextField.textField.keyboardType = .EmailAddress
         passwordTextField.textField.secureTextEntry = true
     }
+}
+
+protocol RegistrationModalDelegate {
+    
+    func registrationDetailButtonPressed(registrationModal: RegistrationModal)
 }

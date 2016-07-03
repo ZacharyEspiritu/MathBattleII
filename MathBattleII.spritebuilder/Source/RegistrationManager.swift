@@ -18,23 +18,45 @@ class RegistrationManager {
     
     // MARK: Firebase-Interacting Functions
     
-    func registerNewAccount(accountData accountData: AccountData) {
-        print("registering new account")
-        FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
-            if let user = user {
-                // User authentication complete!
-                let uid = user.uid
-                print("Successfully created user account with uid: \(uid)")
-                
-                self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
-                    print("new account data initalized")
-                    self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
-                })
-            } else {
-                // There was an error creating the account
-                print("Account was unable to be created.")
-            }
-        })
+    func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String) {
+        registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation, errorHandler: { _ in })
+    }
+    
+    func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String, errorHandler: (String) -> ()) {
+        do {
+            let accountData = try validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
+            FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
+                if let user = user {
+                    // User authentication complete!
+                    let uid = user.uid
+                    print("Successfully created user account with uid: \(uid)")
+                    
+                    self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
+                        print("new account data initalized")
+                        self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password)
+                    })
+                } else {
+                    // There was an error creating the account
+                    let errorDescription = "Account was unable to be created at this time."
+                    errorHandler(errorDescription)
+                }
+            })
+        }
+        catch RegistrationError.UsernameNotValidFormat {
+            errorHandler("Username is not in a valid format.")
+        }
+        catch RegistrationError.EmailNotValidFormat {
+            errorHandler("Email is not in a valid format.")
+        }
+        catch RegistrationError.PasswordNotValidFormat {
+            errorHandler("Password is not in a valid format.")
+        }
+        catch RegistrationError.PasswordsDoNotMatch {
+            errorHandler("Passwords do not match.")
+        }
+        catch {
+            errorHandler("Account was unable to be created at this time.")
+        }
     }
     
     private func initializeNewAccountData(uid: String!, accountData: AccountData, completion: (Void -> Void)) {
