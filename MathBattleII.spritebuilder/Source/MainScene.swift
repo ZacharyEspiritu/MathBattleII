@@ -83,8 +83,6 @@ class MainScene: CCNode {
     
     func newsButtonPressed() {
         segueToNewDataView(withButtonPressed: .News)
-        print("news")
-        
     }
     
     func infoButtonPressed() {

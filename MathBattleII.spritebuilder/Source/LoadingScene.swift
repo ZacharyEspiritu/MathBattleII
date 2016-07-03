@@ -38,4 +38,5 @@ class LoadingScene: CCNode {
         let transition = CCTransition(crossFadeWithDuration: 0.35)
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
+    
 }

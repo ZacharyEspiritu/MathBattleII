@@ -57,7 +57,7 @@ class GameplayScene: CCNode {
     
     // MARK: Constants
     
-    var gameLengthInSeconds: Int = 60
+    var gameLengthInSeconds: Int = 90
     var scoreLimit: Int = 5
     
     
@@ -72,8 +72,16 @@ class GameplayScene: CCNode {
     }
     
     private func retrieveGameOptions() {
-        gameLengthInSeconds = NSUserDefaults.standardUserDefaults().integerForKey("gameLengthOption")
-        scoreLimit = NSUserDefaults.standardUserDefaults().integerForKey("scoreLimitOption")
+        // Retrieve options, and reset others for safety
+        let gameLengthOption = NSUserDefaults.standardUserDefaults().integerForKey("gameLengthOption")
+        gameLengthInSeconds = gameLengthOption != 0 ? gameLengthOption : 90
+        let scoreLimitOption = NSUserDefaults.standardUserDefaults().integerForKey("scoreLimitOption")
+        scoreLimit = scoreLimitOption != 0 ? scoreLimitOption : 5
+        
+        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "topScore")
+        NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "bottomScore")
+        NSUserDefaults.standardUserDefaults().setObject("", forKey: "topSampleEquationSolution")
+        NSUserDefaults.standardUserDefaults().setObject("", forKey: "bottomSampleEquationSolution")
         
         // Reset game options
         NSUserDefaults.standardUserDefaults().setInteger(90, forKey: "gameLengthOption")

@@ -62,7 +62,10 @@
         
     // Setup Firebase
     [FIRApp configure];
-
+    
+    // Clear all NSUserDefaults on app load
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
     return YES;
 }
 
