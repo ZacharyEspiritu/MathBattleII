@@ -47,6 +47,7 @@ class RegistrationModal: CCNode {
         LoginPopupHandler.setupTextFields(textFields: [usernameTextField.textField, emailTextField.textField, passwordTextField.textField, confirmPasswordTextField.textField])
         emailTextField.textField.keyboardType = .EmailAddress
         passwordTextField.textField.secureTextEntry = true
+        confirmPasswordTextField.textField.secureTextEntry = true
     }
 }
 
