@@ -396,7 +396,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>rankingsButtonPressed</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -785,7 +785,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>activityLogButtonPressed</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -1174,7 +1174,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>achievementsButtonPressed</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -1505,7 +1505,7 @@
 								<key>displayName</key>
 								<string>rankedMatchInfoButton</string>
 								<key>memberVarAssignmentName</key>
-								<string>rankedMatchInfoButton</string>
+								<string>infoButton</string>
 								<key>memberVarAssignmentType</key>
 								<integer>1</integer>
 								<key>properties</key>
@@ -1563,7 +1563,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string></string>
+											<string>infoButtonPressed</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -2291,7 +2291,7 @@
 										<string>Block</string>
 										<key>value</key>
 										<array>
-											<string>battle</string>
+											<string>battleButtonPressed</string>
 											<integer>1</integer>
 										</array>
 									</dict>
@@ -2609,6 +2609,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 							</dict>
 						</array>
 						<key>customClass</key>
@@ -2681,8 +2683,6 @@
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>

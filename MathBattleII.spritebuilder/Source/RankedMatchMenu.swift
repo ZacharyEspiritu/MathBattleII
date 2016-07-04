@@ -10,7 +10,7 @@ import Foundation
 
 class RankedMatchMenu: CCNode {
     
-    weak var rankingsButton, activityLogButton, achievementsButton, rankedMatchInfoButton: CCButton!
+    weak var rankingsButton, activityLogButton, achievementsButton, infoButton: CCButton!
     weak var rankedMatchButtonGroupingNode, playerHeaderGroupingNode: CCNode!
     weak var rankedPlayerHeader: RankedPlayerHeader!
     
@@ -22,7 +22,7 @@ class RankedMatchMenu: CCNode {
         MenuDisplayManager.sharedInstance.attachToRankedPlayerHeader(rankedPlayerHeader)
     }
     
-    func battle() {
+    func battleButtonPressed() {
         let gameplayScene = CCBReader.load("MatchCreate") as! MatchCreate
         let scene = CCScene()
         scene.addChild(gameplayScene)
@@ -30,10 +30,21 @@ class RankedMatchMenu: CCNode {
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
     
-    func segueToUserLoginScene() {
-        LoginPopupHandler.displayLoginPopupHandler()
+    func rankingsButtonPressed() {
+        
     }
-
+    
+    func activityLogButtonPressed() {
+        
+    }
+    
+    func achievementsButtonPressed() {
+        
+    }
+    
+    func infoButtonPressed() {
+        
+    }
     
     // MARK: User Interaction Function
     
@@ -46,7 +57,7 @@ class RankedMatchMenu: CCNode {
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if rankedPlayerHeader.scale < 1 {
             if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {
-                segueToUserLoginScene()
+                LoginPopupHandler.displayLoginPopupHandler()
             }
             rankedPlayerHeader.stopAllActions()
             rankedPlayerHeader.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))

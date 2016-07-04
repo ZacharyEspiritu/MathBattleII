@@ -494,10 +494,7 @@
 		550A309B1D253B920041152F /* Menu Displays */ = {
 			isa = PBXGroup;
 			children = (
-				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
-				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
-				55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */,
-				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
+				55AB9E9F1D2B118300EA92F8 /* Menu Displays */,
 				550A309E1D253BFF0041152F /* Match Starting Popup */,
 				555A69C11D233CA500FA021C /* Login/Registration Views */,
 				550A309F1D253C0B0041152F /* Shop */,
@@ -517,9 +514,9 @@
 		550A309F1D253C0B0041152F /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				550A30A21D253CA50041152F /* ShopManager.swift */,
 				550A30A01D253C3C0041152F /* ShopPopup.swift */,
 				5524F3401D260CFB0053E28B /* ShopScrollViewCell.swift */,
-				550A30A21D253CA50041152F /* ShopManager.swift */,
 				550A30A61D253CFA0041152F /* ShopItem.swift */,
 			);
 			name = Shop;
@@ -564,9 +561,9 @@
 			children = (
 				55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */,
 				555A69BD1D233B3500FA021C /* LoginPopupHandler.swift */,
+				55423A1B1D28B16F00365154 /* LoginPopupAlertModal.swift */,
 				559B0DD31D287F6E0090D681 /* LoginModal.swift */,
 				559B0DD51D288B030090D681 /* RegistrationModal.swift */,
-				55423A1B1D28B16F00365154 /* LoginPopupAlertModal.swift */,
 			);
 			name = "Login/Registration Views";
 			sourceTree = "<group>";
@@ -696,6 +693,17 @@
 				557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */,
 			);
 			name = CustomObjects;
+			sourceTree = "<group>";
+		};
+		55AB9E9F1D2B118300EA92F8 /* Menu Displays */ = {
+			isa = PBXGroup;
+			children = (
+				55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */,
+				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
+				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
+				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
+			);
+			name = "Menu Displays";
 			sourceTree = "<group>";
 		};
 		55B4E1F41C5C23E7007BE8C3 /* Registration */ = {

@@ -30,6 +30,6 @@ class CoinDisplay: CCNode {
     }
     
     func addButtonPressed() {
-        
+        print("add more coins button pressed")
     }
 }
