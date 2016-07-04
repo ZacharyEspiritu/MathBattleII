@@ -10,7 +10,7 @@ import Foundation
 
 class ShopScrollViewCell: CCNode {
     
-    weak var itemNameLabel, itemPriceLabel: CCLabelTTF!
+    weak var itemNameLabel, itemPriceLabel, confirmLabel: CCLabelTTF!
     weak var cellTouchedButton, confirmButton: CCButton!
     weak var slideOutColorNode: CCNodeColor!
     
@@ -56,17 +56,30 @@ class ShopScrollViewCell: CCNode {
     
     // MARK: Animation Functions
     
+    func displayNotEnoughCoinsAnimation() {
+        confirmLabel.string = "Not Enough"
+        confirmLabel.fontSize = 12
+        self.animationManager.runAnimationsForSequenceNamed("DisplayNotEnoughCoins")
+        confirmButton.enabled = false
+    }
+    
     private func enableConfirmedState() {
+        confirmLabel.string = "Confirm?"
+        confirmLabel.fontSize = 15
         self.animationManager.runAnimationsForSequenceNamed("DisplayConfirmButton")
         confirmButton.enabled = true
     }
     
     private func disableConfirmedState() {
+        confirmLabel.string = "Confirm?"
+        confirmLabel.fontSize = 15
         self.animationManager.runAnimationsForSequenceNamed("Default Timeline")
         confirmButton.enabled = false
     }
     
     private func displayBoughtState() {
+        confirmLabel.string = "Confirm?"
+        confirmLabel.fontSize = 15
         self.animationManager.runAnimationsForSequenceNamed("DisplayBought")
         confirmButton.enabled = false
     }

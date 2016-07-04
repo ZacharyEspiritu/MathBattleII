@@ -134,6 +134,7 @@ extension ShopPopup: ShopScrollViewCellDelegate {
         }
         else {
             print("user does not have enough coins!")
+            cell.displayNotEnoughCoinsAnimation()
         }
     }
     

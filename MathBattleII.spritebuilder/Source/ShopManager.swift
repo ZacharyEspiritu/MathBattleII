@@ -13,8 +13,8 @@ class ShopManager {
     static func getItemsWithStatus() -> [ShopItem] {
         var items: [ShopItem] = []
         items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(name: "Blue", price: 10000, imagePath: "test.png"))
+        items.append(ShopItem(name: "Blue", price: 5000, imagePath: "test.png"))
         items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(name: "Blue", price: 1000, imagePath: "test.png"))
@@ -40,8 +40,3 @@ class ShopManager {
         return shopItems // TODO: Fix this code, which returns empty shopItems array before FIRDatabase closure is called because of latency
     }
 }
-
-// Item
-// -- item
-// -- price
-// -- image
