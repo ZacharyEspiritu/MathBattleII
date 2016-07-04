@@ -32,7 +32,7 @@ class RegistrationManager {
                     print("Successfully created user account with uid: \(uid)")
                     
                     self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
-                        completionHandler()
+                        self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password, completionHandler: completionHandler, errorHandler: errorHandler)
                     })
                 } else {
                     if let error = error {

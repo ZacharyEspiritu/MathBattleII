@@ -11,7 +11,7 @@ import Foundation
 class RegistrationModal: CCNode {
     
     weak var usernameTextField, emailTextField, passwordTextField, confirmPasswordTextField: CCTextField!
-    weak var safetyButton: CCButton!
+    weak var mainButton, detailButton: CCButton!
     weak var loginPopupAlertModal: LoginPopupAlertModal!
     
     var delegate: RegistrationModalDelegate?

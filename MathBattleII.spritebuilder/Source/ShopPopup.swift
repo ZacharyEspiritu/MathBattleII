@@ -103,6 +103,10 @@ class ShopPopup: CCNode {
                 else {
                     scrollViewCell.cellTouchedButton.enabled = false
                 }
+                
+                if scrollViewCell.state == .Confirmable {
+                    scrollViewCell.state = .Normal
+                }
             }
         }
     }
@@ -126,11 +130,15 @@ extension ShopPopup: ShopScrollViewCellDelegate {
         let item = cell.getItem()
         if item.getPrice() <= user.getCoins() {
             print("user has enough coins!")
-            cell.animationManager.runAnimationsForSequenceNamed("DisplayConfirmButton")
+            cell.state = .Confirmable
         }
         else {
             print("user does not have enough coins!")
         }
+    }
+    
+    func shopScrollViewCellConfirmed(cell: ShopScrollViewCell) {
+        print("confirmed")
     }
 }
 

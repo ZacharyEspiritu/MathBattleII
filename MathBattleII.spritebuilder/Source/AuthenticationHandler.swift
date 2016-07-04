@@ -50,15 +50,26 @@ class AuthenticationHandler {
                 // Authentication completed successfully.
                 print(user.uid)
                 let userRef = FIRDatabase.database().reference().child("/users/\(user.uid)")
-                self.currentAuthenticationHandle = userRef.observeEventType(.Value,
+                userRef.observeSingleEventOfType(.Value,
                     withBlock: { snapshot in
-                        self.saveUserDataLocally(snapshot: snapshot)
-                        print("Data saved.")
-                    },
-                    withCancelBlock: { error in
-                        print("Data could not be saved...failing silently.")
+                        self.currentAuthenticationHandle = userRef.observeEventType(.Value,
+                            withBlock: { snapshot in
+                                self.saveUserDataLocally(snapshot: snapshot)
+                                print("Data saved.")
+                            },
+                            withCancelBlock: { error in
+                                if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
+                                    let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                                    errorHandler(errorDescription)
+                                }
+                        })
+                        completionHandler()
+                    }, withCancelBlock: { error in
+                        if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
+                            let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                            errorHandler(errorDescription)
+                        }
                 })
-                completionHandler()
             }
             else {
                 // Error occurred.
