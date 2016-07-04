@@ -28,4 +28,8 @@ class CoinDisplay: CCNode {
             self.coinLabel.string = "\(coins)"
         }
     }
+    
+    func addButtonPressed() {
+        
+    }
 }

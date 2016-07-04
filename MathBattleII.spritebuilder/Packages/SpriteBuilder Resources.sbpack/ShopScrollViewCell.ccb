@@ -16,7 +16,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>0</integer>
+	<integer>2</integer>
 	<key>docDimensionsType</key>
 	<integer>1</integer>
 	<key>fileType</key>
@@ -1075,7 +1075,7 @@ field</string>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>3.0550000667572021</real>
 							<real>1</real>
 							<false/>
 							<integer>0</integer>
@@ -1095,10 +1095,10 @@ field</string>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.47230258584022522</real>
-							<real>0.87000000476837158</real>
-							<real>0.46434974670410156</real>
-							<real>1</real>
+							<real>0.99607843160629272</real>
+							<real>0.89803922176361084</real>
+							<real>0.47450980544090271</real>
+							<real>0.80000001192092896</real>
 						</array>
 					</dict>
 					<dict>
@@ -1109,7 +1109,7 @@ field</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>1</real>
+						<real>0.80000001192092896</real>
 					</dict>
 				</array>
 				<key>seqExpanded</key>
@@ -1588,7 +1588,7 @@ field</string>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>1</real>
 							<real>1</real>
 							<false/>
 							<integer>0</integer>
@@ -1640,7 +1640,7 @@ field</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>1</real>
+						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>baseValue</key>
@@ -1659,7 +1659,7 @@ field</string>
 							<real>1</real>
 							<real>1</real>
 							<real>1</real>
-							<real>1</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -2185,8 +2185,8 @@ field</string>
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>16</real>
-							<real>0.5</real>
+							<real>22</real>
+							<real>0.37096774578094482</real>
 							<integer>2</integer>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -2262,7 +2262,7 @@ field</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>1</real>
+						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>baseValue</key>
@@ -2278,10 +2278,10 @@ field</string>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-							<real>0.0</real>
 							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -2578,7 +2578,7 @@ field</string>
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>32</real>
+							<real>28</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2598,7 +2598,7 @@ field</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.0</real>
+						<real>1</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2610,7 +2610,7 @@ field</string>
 							<real>0.0</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
