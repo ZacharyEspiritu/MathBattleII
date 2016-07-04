@@ -56,6 +56,8 @@ class MainScene: CCNode {
     func didLoadFromCCB() {
         GameCenterInteractor.sharedInstance.authenticationCheck()
         MatchStartingPopupHandler.sharedInstance.delegate = self
+        MenuDisplayManager.sharedInstance.attachToCoinDisplay(coinDisplay: coinDisplay)
+        MenuDisplayManager.sharedInstance.attachToLevelDisplay(levelDisplay: levelDisplay)
     }
     
     // MARK: Button Functions

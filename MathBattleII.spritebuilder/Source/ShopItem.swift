@@ -10,15 +10,21 @@ import Foundation
 
 class ShopItem {
     
+    private let id: Int
     private let name: String
     private let price: Int
     private var image: CCSprite?
     
     
-    init(name: String, price: Int, imagePath: String) {
+    init(id: Int, name: String, price: Int, imagePath: String) {
+        self.id = id
         self.name = name
         self.price = price
 //        self.image = CCSprite(imageNamed: imagePath)
+    }
+    
+    func getID() -> Int {
+        return id
     }
     
     func getName() -> String {
@@ -28,8 +34,4 @@ class ShopItem {
     func getPrice() -> Int {
         return price
     }
-    
-//    func getImage() -> CCSprite {
-//        return image
-//    }
 }

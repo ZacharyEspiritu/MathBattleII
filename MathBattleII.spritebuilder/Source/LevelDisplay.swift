@@ -55,19 +55,17 @@ class LevelDisplay: CCNode {
                 }
             }
         }
+        
         if experienceLevel < 0 {
             experienceLevel = levelExperienceCap - abs(experienceLevel)
         }
-        
         level = levelCount
         currentProgress = experienceLevel
         neededExperience = levelExperienceCap
         
-        if currentProgress == 0 {
-            levelMeterLeftEnd.opacity = 0
-            levelMeterCenter.opacity = 0
-            levelMeterRightEnd.opacity = 0
-        }
+        levelMeterLeftEnd.opacity = currentProgress == 0 ? 0 : 1
+        levelMeterCenter.opacity = currentProgress == 0 ? 0 : 1
+        levelMeterRightEnd.opacity = currentProgress == 0 ? 0 : 1
         
         levelLabel.string = "\(level)"
         experienceLabel.string = "\(currentProgress)/\(neededExperience)"

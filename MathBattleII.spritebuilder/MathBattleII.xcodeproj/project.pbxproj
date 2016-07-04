@@ -63,6 +63,7 @@
 		559F6F241D18EBCF0058630B /* CustomMatchMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F6F231D18EBCF0058630B /* CustomMatchMessageHeader.swift */; };
 		55A0348B1C714A6200451824 /* UserAccountInfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */; };
 		55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */; };
+		55AB9E961D2AE83D00EA92F8 /* MenuDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */; };
 		55AD60F71C8616D300F9F9A7 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60F61C8616D300F9F9A7 /* ding.wav */; };
 		55AD60FB1C8616DA00F9F9A7 /* doors.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60FA1C8616DA00F9F9A7 /* doors.wav */; };
 		55AD60FD1C8616DE00F9F9A7 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55AD60FC1C8616DE00F9F9A7 /* beep.wav */; };
@@ -308,6 +309,7 @@
 		559F6F231D18EBCF0058630B /* CustomMatchMessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchMessageHeader.swift; path = Source/CustomMatchMessageHeader.swift; sourceTree = "<group>"; };
 		55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoScene.swift; path = Source/UserAccountInfoScene.swift; sourceTree = "<group>"; };
 		55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoManager.swift; path = Source/UserAccountInfoManager.swift; sourceTree = "<group>"; };
+		55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDisplayManager.swift; path = Source/MenuDisplayManager.swift; sourceTree = "<group>"; };
 		55AD60F61C8616D300F9F9A7 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		55AD60FA1C8616DA00F9F9A7 /* doors.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doors.wav; sourceTree = "<group>"; };
 		55AD60FC1C8616DE00F9F9A7 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			children = (
 				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
+				55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */,
 				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
 				550A309E1D253BFF0041152F /* Match Starting Popup */,
 				555A69C11D233CA500FA021C /* Login/Registration Views */,
@@ -1476,6 +1479,7 @@
 				55B4E1FD1C5C2D97007BE8C3 /* AccountData.swift in Sources */,
 				552067151D28C51C0022F337 /* FirebaseErrorReader.swift in Sources */,
 				55AD61261C861E7100F9F9A7 /* EndGameScene.swift in Sources */,
+				55AB9E961D2AE83D00EA92F8 /* MenuDisplayManager.swift in Sources */,
 				558FBADD1CADC75500189521 /* RankedMatchScene.swift in Sources */,
 				55F545591D1F610D00A03E18 /* NewsDataView.swift in Sources */,
 				5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */,

@@ -19,6 +19,7 @@ class RankedMatchMenu: CCNode {
     
     func didLoadFromCCB() {
         userInteractionEnabled = true
+        MenuDisplayManager.sharedInstance.attachToRankedPlayerHeader(rankedPlayerHeader)
     }
     
     func battle() {

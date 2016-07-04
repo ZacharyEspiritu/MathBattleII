@@ -133,6 +133,14 @@ class AuthenticationHandler {
             let coins = userData.objectForKey("coins") as! Int
             let practiceHighScore = userData.objectForKey("practiceHighScore") as! Int
             
+            let items: [Int]
+            if userData.objectForKey("items") != nil {
+                items = userData.objectForKey("items") as! [Int]
+            }
+            else {
+                items = []
+            }
+            
             let friends: [String]
             if userData.objectForKey("friends") != nil {
                 friends = userData.objectForKey("friends") as! [String]
@@ -141,20 +149,20 @@ class AuthenticationHandler {
                 friends = []
             }
             
-            let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, practiceHighScore: practiceHighScore, friends: friends)
+            let user = User(uid: snapshot.key, displayName: displayName, email: email, provider: provider, numberOfGamesPlayed: numberOfGamesPlayed, numberOfWins: numberOfWins, numberOfLosses: numberOfLosses, numberOfSolves: numberOfSolves, rating: rating, ratingFloor: ratingFloor, experienceLevel: experienceLevel, coins: coins, practiceHighScore: practiceHighScore, items: items, friends: friends)
             user.delegate = self
             
             let userManager = UserManager.sharedInstance
-            
             do {
                 try userManager.setCurrentUser(user)
+                MenuDisplayManager.sharedInstance.updateLevelDisplays(experienceLevel: experienceLevel)
+                MenuDisplayManager.sharedInstance.updateCoinDisplays(coins: coins)
+                MenuDisplayManager.sharedInstance.updateRankedPlayerHeader()
                 print("saving user good")
             }
             catch {
                 print("saving user failed")
             }
-            
-            print(snapshot.value)
         }
     }
     

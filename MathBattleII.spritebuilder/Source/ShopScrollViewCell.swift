@@ -48,9 +48,7 @@ class ShopScrollViewCell: CCNode {
     
     func confirmButtonPressed() {
         if state == .Confirmable {
-            state = .Bought
             delegate?.shopScrollViewCellConfirmed(self)
-            displayBoughtState()
         }
     }
     
@@ -60,6 +58,22 @@ class ShopScrollViewCell: CCNode {
         confirmLabel.string = "Not Enough"
         confirmLabel.fontSize = 12
         self.animationManager.runAnimationsForSequenceNamed("DisplayNotEnoughCoins")
+        confirmButton.enabled = false
+    }
+    
+    func displayErrorAnimation() {
+        state = .Normal
+        stopAllActions()
+        confirmLabel.string = "Error Occurred"
+        confirmLabel.fontSize = 10
+        self.animationManager.runAnimationsForSequenceNamed("DisplayNotEnoughCoins")
+        confirmButton.enabled = false
+    }
+    
+    func displayBoughtState() {
+        confirmLabel.string = "Confirm?"
+        confirmLabel.fontSize = 15
+        self.animationManager.runAnimationsForSequenceNamed("DisplayBought")
         confirmButton.enabled = false
     }
     
@@ -74,13 +88,6 @@ class ShopScrollViewCell: CCNode {
         confirmLabel.string = "Confirm?"
         confirmLabel.fontSize = 15
         self.animationManager.runAnimationsForSequenceNamed("Default Timeline")
-        confirmButton.enabled = false
-    }
-    
-    private func displayBoughtState() {
-        confirmLabel.string = "Confirm?"
-        confirmLabel.fontSize = 15
-        self.animationManager.runAnimationsForSequenceNamed("DisplayBought")
         confirmButton.enabled = false
     }
     

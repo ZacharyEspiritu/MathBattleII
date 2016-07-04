@@ -32,6 +32,8 @@ class User {
     
     private var practiceHighScore:   Int { didSet { delegate?.localUserDataDidUpdate(self) }}
     
+    private var items:             [Int] { didSet { delegate?.localUserDataDidUpdate(self) }}
+    
     private var friends:        [String] { didSet { delegate?.localUserDataDidUpdate(self) }}
         // [friends] should always be kept sorted alphabetically whenever possible
     
@@ -40,7 +42,7 @@ class User {
     
     // MARK: Utility Functions
     
-    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, experienceLevel: Int, coins: Int, practiceHighScore: Int, friends: [String]) {
+    init(uid: String, displayName: String, email: String, provider: String, numberOfGamesPlayed: Int, numberOfWins: Int, numberOfLosses: Int, numberOfSolves: Int, rating: Int, ratingFloor: Int, experienceLevel: Int, coins: Int, practiceHighScore: Int, items: [Int], friends: [String]) {
         self.uid = uid
         self.displayName = displayName
         self.email = email
@@ -54,6 +56,7 @@ class User {
         self.experienceLevel = experienceLevel
         self.coins = coins
         self.practiceHighScore = practiceHighScore
+        self.items = items
         self.friends = friends
     }
     
@@ -71,6 +74,7 @@ class User {
             "experienceLevel": 0,
             "coins": 0,
             "practiceHighScore": 0,
+            "items": [],
             "friends": []
         ]
     }
@@ -89,6 +93,7 @@ class User {
             "experienceLevel": experienceLevel,
             "coins": coins,
             "practiceHighScore": practiceHighScore,
+            "items": items,
             "friends": friends
         ]
     }
@@ -144,6 +149,10 @@ class User {
         return practiceHighScore
     }
     
+    func getItems() -> [Int]? {
+        return items
+    }
+    
     func getFriends() -> [String]? {
         return friends
     }
@@ -189,11 +198,13 @@ class User {
             newExperience += 2 // 2 EXP for winning the match
         }
         experienceLevel += newExperience
+        MenuDisplayManager.sharedInstance.updateLevelDisplays(experienceLevel: experienceLevel)
         return experienceLevel
     }
     
     func setCoins(newCoins newCoins: Int) -> Int {
         coins = newCoins
+        MenuDisplayManager.sharedInstance.updateCoinDisplays(coins: coins)
         return coins
     }
     
@@ -205,6 +216,14 @@ class User {
     func addToNumberOfSolves(newSolves newSolves: Int) -> Int {
         numberOfSolves += newSolves
         return numberOfSolves
+    }
+    
+    func addItem(itemID id: Int) -> [Int] {
+        if !items.contains(id) {
+            items.append(id)
+            items.sortInPlace()
+        }
+        return items
     }
     
     func addFriend(displayName displayName: String) -> [String] {
@@ -224,34 +243,6 @@ class User {
             return false
         }
     }
-    
-//    func retrieveFriendInformationFromFirebase(displayNames displayNames: [String], completion: ([String : FIRDataSnapshot] -> Void)) {
-//        let dispatchGroup = dispatch_group_create()
-//        let friendRef = FIRDatabase.database().reference().child("displayNames")
-//        var friendData = [String : FIRDataSnapshot]()
-//        for friend in friends {
-//            dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-//                friendRef.child(friend).observeSingleEventOfType(.Value, withBlock: { snapshot in
-//                    let friendUID = snapshot.value.uid
-//                    let friendDataRef = FIRDatabase.database().reference().child("/users/\(friendUID)")
-//                    friendDataRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//                        friendData[friendUID] = snapshot
-//                    })
-//                })
-//            })
-//        }
-//        dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//            completion(friendData)
-//        }
-//    }
-//    
-//    func saveFriendInformationToFirebase() {
-//        let userFriendsRef = FIRDatabase.database().reference().child("users/\(uid)/friends")
-//        userFriendsRef.removeValue()
-//        for friend in friends {
-//            userFriendsRef.childByAutoId().setValue(friend)
-//        }
-//    }
 }
 
 extension User: CustomStringConvertible {

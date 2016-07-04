@@ -139,7 +139,18 @@ extension ShopPopup: ShopScrollViewCellDelegate {
     }
     
     func shopScrollViewCellConfirmed(cell: ShopScrollViewCell) {
-        print("confirmed")
+        let itemPrice = cell.getItem().getPrice()
+        guard let user = UserManager.sharedInstance.getCurrentUser() where user.getCoins() > itemPrice else {
+            cell.displayNotEnoughCoinsAnimation()
+            return
+        }
+        ShopManager.attemptToBuyItem(item: cell.getItem(),
+            completionHandler: { _ in
+                cell.state = .Bought
+                cell.displayBoughtState()
+            }, errorHandler: { _ in
+                cell.displayErrorAnimation()
+        })
     }
 }
 
