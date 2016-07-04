@@ -79,9 +79,6 @@ class ShopPopup: CCNode {
             cell.setData(item: items[index])
             cell.addChild(generateDivider())
             cell.delegate = self
-            if index > 3 {
-                cell.cellTouchedButton.enabled = false
-            }
             
             scrollViewContent.contentSize.height += cell.contentSize.height
             scrollViewContent.addChild(cell)
@@ -89,12 +86,6 @@ class ShopPopup: CCNode {
         
         scrollView.contentNode = scrollViewContent
         scrollView.delegate = self
-    }
-}
-
-extension ShopPopup: CCScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: CCScrollView!) {
         determineButtonStatus(inScrollView: scrollView)
     }
     
@@ -117,6 +108,13 @@ extension ShopPopup: CCScrollViewDelegate {
     }
 }
 
+extension ShopPopup: CCScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: CCScrollView!) {
+        determineButtonStatus(inScrollView: scrollView)
+    }
+}
+
 extension ShopPopup: ShopScrollViewCellDelegate {
     
     func shopScrollViewCellTouched(cell: ShopScrollViewCell) {
@@ -128,6 +126,7 @@ extension ShopPopup: ShopScrollViewCellDelegate {
         let item = cell.getItem()
         if item.getPrice() <= user.getCoins() {
             print("user has enough coins!")
+            cell.animationManager.runAnimationsForSequenceNamed("DisplayConfirmButton")
         }
         else {
             print("user does not have enough coins!")

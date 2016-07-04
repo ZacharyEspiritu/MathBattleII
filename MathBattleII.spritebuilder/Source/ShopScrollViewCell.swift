@@ -12,6 +12,7 @@ class ShopScrollViewCell: CCNode {
     
     weak var itemNameLabel, itemPriceLabel: CCLabelTTF!
     weak var cellTouchedButton: CCButton!
+    weak var slideOutColorNode: CCNodeColor!
     
     private var item: ShopItem!
     
