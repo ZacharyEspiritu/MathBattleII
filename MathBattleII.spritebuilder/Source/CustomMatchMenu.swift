@@ -49,16 +49,31 @@ class CustomMatchMenu: CCNode {
         
         let matchName = customMatchTextEntry.getMatchName()
         let password = customMatchTextEntry.getMatchPassword()
+        if validateCustomMatchInput(matchName: matchName, password: password) {
+            registerForCustomMatch(withMatchName: matchName, password: password)
+            customMatchTextEntry.enabled = false
+            confirmButton.enabled = false
+            messageHeader.setMessage(string: "Waiting For Opponent")
+        }
+        else {
+            messageHeader.setMessage(string: "Six Characters Minimum")
+        }
+    }
+    
+    private func registerForCustomMatch(withMatchName matchName: String, password: String) {
         if matchMenuType == .Create {
             Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName, customPassword: password)
         }
         else {
             Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName, password: password)
         }
-        
-        customMatchTextEntry.enabled = false
-        confirmButton.enabled = false
-        messageHeader.setMessage(string: "Waiting For Opponent") // TODO: Error Checking
+    }
+    
+    private func validateCustomMatchInput(matchName matchName: String, password: String) -> Bool {
+        guard matchName.characters.count >= 6 && password.characters.count >= 6 else {
+            return false
+        }
+        return true
     }
 }
 
