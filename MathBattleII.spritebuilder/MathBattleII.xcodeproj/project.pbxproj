@@ -527,7 +527,6 @@
 			isa = PBXGroup;
 			children = (
 				551EA0FA1D1AB60400162A76 /* InfoDataView.swift */,
-				55F545551D1F350700A03E18 /* Clipper.swift */,
 			);
 			name = "Info Data View";
 			sourceTree = "<group>";
@@ -690,6 +689,7 @@
 		55AB26761C4EEDF100EAF087 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
+				55F545551D1F350700A03E18 /* Clipper.swift */,
 				55D676891C4931EE001AE5F7 /* Array2D.swift */,
 				557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */,
 			);

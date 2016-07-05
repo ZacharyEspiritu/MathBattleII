@@ -21,12 +21,14 @@ class MenuDisplayManager {
             coinDisplay?.loadData()
         }
     }
-    
     var experienceLevel: Int {
         didSet {
             levelDisplay?.loadData()
         }
     }
+    
+    
+    // MARK: Listener Functions
     
     private init() {
         coins = UserManager.sharedInstance.getCurrentUser() != nil ? UserManager.sharedInstance.getCurrentUser()!.getCoins() : 0
@@ -44,6 +46,8 @@ class MenuDisplayManager {
     func attachToRankedPlayerHeader(rankedPlayerHeader: RankedPlayerHeader) {
         self.rankedPlayerHeader = rankedPlayerHeader
     }
+    
+    // MARK: Update Functions
     
     func updateCoinDisplays(coins newCoins: Int) {
         coins = newCoins
