@@ -16,72 +16,88 @@ class Matchmaker {
     var currentMatchData: MatchData?
     
     
-    func createNewCustomMatch(withCustomName customName: String!, customPassword: String!) {
+    func createNewCustomMatch(withCustomName customName: String!, customPassword: String!, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
         let ref = FIRDatabase.database().reference().child("/matches/custom/\(customName)")
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let _ = snapshot.value { // Check if match doesn't already exist with given name
-                let matchData: NSDictionary = [
-                    "password": customPassword,
-                    "shouldStart": false,
-                    "hostPlayer": NSNull(),
-                    "opposingPlayer": NSNull()
-                ]
-                ref.setValue(matchData)
-                self.attemptToJoinCustomMatch(matchName: customName, password: customPassword)
-                print("Match created with name \(customName)")
-            }
-            else {
-                print("match already exists with given name")
-            }
+        ref.observeSingleEventOfType(.Value,
+            withBlock: { snapshot in
+                if let _ = snapshot.value { // Check if match doesn't already exist with given name
+                    let matchData: NSDictionary = [
+                        "password": customPassword,
+                        "shouldStart": false,
+                        "hostPlayer": NSNull(),
+                        "opposingPlayer": NSNull()
+                    ]
+                    ref.setValue(matchData)
+                    self.attemptToJoinCustomMatch(matchName: customName, password: customPassword, completionHandler: completionHandler, errorHandler: errorHandler)
+                    print("Match created with name \(customName)")
+                }
+                else {
+                    errorHandler("Match already exists with given name.")
+                }
+            }, withCancelBlock: { error in
+                if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                    let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                    errorHandler(errorDescription)
+                }
         })
     }
     
-    func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String) {
+    func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
         let ref = FIRDatabase.database().reference().child("/matches/custom/\(matchName)")
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let matchInformation = snapshot.value as? NSDictionary { // Check if match exists
-                if possiblePassword == matchInformation.objectForKey("password") as! String {
-                    if matchInformation.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
-                        let userData: NSDictionary = self.generateStandardUserData()
-                        ref.child("hostPlayer").setValue(userData as [NSObject : AnyObject])
-                        
-                        // "hostPlayer" refers to the Player on the current device.
-                        // "opposingPlayer" refers to the player that isn't on the current device.
-                        let hostPlayerData = PlayerData(data: userData, isHost: true)
-                        
-                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil, matchType: .Custom)
-                        self.currentMatchData?.hostPlayer.delegate = self
-                        
-                        self.attachToPlayerData(atRef: ref.child("opposingPlayer"))
-                        self.listenForMatchStart(atRef: ref)
-                    }
-                    else if matchInformation.objectForKey("opposingPlayer") == nil { // Check if match is full
-                        let userData: NSDictionary = self.generateStandardUserData()
-                        ref.child("opposingPlayer").setValue(userData as [NSObject : AnyObject])
-                        
-                        // "hostPlayer" refers to the Player on the current device. 
-                        // "opposingPlayer" refers to the player that isn't on the current device.
-                        let hostPlayerData = PlayerData(data: userData, isHost: false)
-                        let opposingPlayerData = PlayerData(data: matchInformation.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
-                        
-                        self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData, matchType: .Custom)
-                        self.currentMatchData?.hostPlayer.delegate = self
-                        
-                        self.attachToPlayerData(atRef: ref.child("hostPlayer"))
-                        self.listenForMatchStart(atRef: ref)
-                        ref.child("shouldStart").setValue(true)
+        ref.observeSingleEventOfType(.Value,
+            withBlock: { snapshot in
+                if let matchInformation = snapshot.value as? NSDictionary { // Check if match exists
+                    if possiblePassword == matchInformation.objectForKey("password") as! String {
+                        if matchInformation.objectForKey("hostPlayer") == nil { // Check if match has hostPlayer
+                            let userData: NSDictionary = self.generateStandardUserData()
+                            ref.child("hostPlayer").setValue(userData as [NSObject : AnyObject])
+                            
+                            // "hostPlayer" refers to the Player on the current device.
+                            // "opposingPlayer" refers to the player that isn't on the current device.
+                            let hostPlayerData = PlayerData(data: userData, isHost: true)
+                            
+                            self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: nil, matchType: .Custom)
+                            self.currentMatchData?.hostPlayer.delegate = self
+                            
+                            self.attachToPlayerData(atRef: ref.child("opposingPlayer"))
+                            self.listenForMatchStart(atRef: ref)
+                            
+                            completionHandler()
+                        }
+                        else if matchInformation.objectForKey("opposingPlayer") == nil { // Check if match is full
+                            let userData: NSDictionary = self.generateStandardUserData()
+                            ref.child("opposingPlayer").setValue(userData as [NSObject : AnyObject])
+                            
+                            // "hostPlayer" refers to the Player on the current device. 
+                            // "opposingPlayer" refers to the player that isn't on the current device.
+                            let hostPlayerData = PlayerData(data: userData, isHost: false)
+                            let opposingPlayerData = PlayerData(data: matchInformation.objectForKey("hostPlayer") as! NSDictionary, isHost: true)
+                            
+                            self.currentMatchData = MatchData(matchID: matchName, hostPlayer: hostPlayerData, opposingPlayer: opposingPlayerData, matchType: .Custom)
+                            self.currentMatchData?.hostPlayer.delegate = self
+                            
+                            self.attachToPlayerData(atRef: ref.child("hostPlayer"))
+                            self.listenForMatchStart(atRef: ref)
+                            ref.child("shouldStart").setValue(true)
+                            
+                            completionHandler()
+                        }
+                        else {
+                            errorHandler("This match is already full.")
+                        }
                     }
                     else {
-                        print("Match is full.")
+                        errorHandler("Match password incorrect.")
                     }
                 }
                 else {
-                    print("Incorrect password.")
+                    errorHandler("Match with given name not found.")
                 }
-            }
-            else {
-                print("Match not found with name \(matchName).")
-            }
+            }, withCancelBlock: { error in
+                if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                    let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                    errorHandler(errorDescription)
+                }
         })
     }
     

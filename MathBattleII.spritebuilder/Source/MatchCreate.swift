@@ -14,12 +14,12 @@ class MatchCreate: CCNode {
     weak var password: CCTextField!
     
     func create() {
-        Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName.string, customPassword: password.string)
+        Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName.string, customPassword: password.string, completionHandler: { _ in }, errorHandler: { _ in })
     }
     
     func join() {
         //showPopup()
-        Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string)
+        Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName.string, password: password.string, completionHandler: { _ in }, errorHandler: { _ in })
     }
     
     func menu() {
