@@ -120,6 +120,7 @@ class GameplayScene: CCNode {
             topPlayerFocusOutColorNode.removeFromParent()
         }
         else {
+            topPlayerFocusOutColorNode.runAction(CCActionEaseSineIn(action: CCActionFadeTo(duration: 3, opacity: 0.6)))
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPracticeMatch")
         }
         
