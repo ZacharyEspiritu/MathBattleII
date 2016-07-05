@@ -92,7 +92,6 @@ class EndGameScene: CCNode {
         scene.addChild(gameplayScene)
         
         let transition = CCTransition(crossFadeWithDuration: 0.5)
-        transition.outgoingSceneAnimated = true
         CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
     }
     
