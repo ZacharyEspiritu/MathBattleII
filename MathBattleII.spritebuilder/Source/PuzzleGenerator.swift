@@ -13,7 +13,11 @@ class PuzzleGenerator {
     static let sharedInstance = PuzzleGenerator()
     
     private let amountOfPossibleNumbers: Int = 10
-    private let amountOfPossibleOperators: Int = 2
+    private var amountOfPossibleOperators: Int = 2
+    
+    func setAmountOfPossibleOperators(index index: Int) {
+        amountOfPossibleOperators = index
+    }
     
     /**
      Generates a new puzzle and returns a tuple with all of the necessary information to handle the puzzle.

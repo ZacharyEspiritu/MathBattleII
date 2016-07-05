@@ -11,7 +11,7 @@ import Foundation
 class LocalMatchMenu: CCNode {
     
     weak var topMenuButton, bottomMenuButton: CCButton!
-    weak var scoreOptionButton, timeOptionButton: CCButton!
+    weak var scoreOptionButton, timeOptionButton, multiplicationToggleButton: CCButton!
     
     var currentTimeOption: TimeOption = .Ninety {
         didSet {
@@ -22,6 +22,12 @@ class LocalMatchMenu: CCNode {
     var currentScoreOption: ScoreOption = .Normal {
         didSet {
             scoreOptionButton.label.string = "Score: \(currentScoreOption.rawValue)"
+        }
+    }
+    
+    var isMultiplicationToggled: Bool = false {
+        didSet {
+            multiplicationToggleButton.selected = isMultiplicationToggled
         }
     }
     
@@ -67,6 +73,10 @@ class LocalMatchMenu: CCNode {
         }
     }
     
+    func multiplicationToggleButtonPressed() {
+        isMultiplicationToggled = !isMultiplicationToggled
+    }
+    
     private func saveOptionsToUserDefaults() {
         let timeInteger: Int!
         switch currentTimeOption {
@@ -81,6 +91,7 @@ class LocalMatchMenu: CCNode {
         }
         NSUserDefaults.standardUserDefaults().setInteger(timeInteger, forKey: "gameLengthOption")
         NSUserDefaults.standardUserDefaults().setInteger(currentScoreOption.rawValue, forKey: "scoreLimitOption")
+        NSUserDefaults.standardUserDefaults().setBool(isMultiplicationToggled, forKey: "multiplicationEnabled")
     }
 }
 

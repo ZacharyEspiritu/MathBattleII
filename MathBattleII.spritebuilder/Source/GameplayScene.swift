@@ -79,6 +79,10 @@ class GameplayScene: CCNode {
         gameLengthInSeconds = gameLengthOption != 0 ? gameLengthOption : 90
         let scoreLimitOption = NSUserDefaults.standardUserDefaults().integerForKey("scoreLimitOption")
         scoreLimit = scoreLimitOption != 0 ? scoreLimitOption : 5
+        
+        let operatorIndex = NSUserDefaults.standardUserDefaults().boolForKey("multiplicationEnabled") ? 3 : 2
+        PuzzleGenerator.sharedInstance.setAmountOfPossibleOperators(index: operatorIndex)
+        
         resetGameOptionsToDefaults()
     }
     
@@ -89,6 +93,7 @@ class GameplayScene: CCNode {
         NSUserDefaults.standardUserDefaults().setObject("", forKey: "bottomSampleEquationSolution")
         NSUserDefaults.standardUserDefaults().setInteger(90, forKey: "gameLengthOption")
         NSUserDefaults.standardUserDefaults().setInteger(5, forKey: "scoreLimitOption")
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "multiplicationEnabled")
     }
     
     /**
