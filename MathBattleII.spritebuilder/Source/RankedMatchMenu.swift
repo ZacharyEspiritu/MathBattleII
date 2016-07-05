@@ -14,6 +14,7 @@ class RankedMatchMenu: CCNode {
     weak var rankedMatchButtonGroupingNode, playerHeaderGroupingNode: CCNode!
     weak var rankedPlayerHeader: RankedPlayerHeader!
     
+    var delegate: RankedMatchMenuDelegate?
     
     // MARK: Button Functions
     
@@ -31,19 +32,19 @@ class RankedMatchMenu: CCNode {
     }
     
     func rankingsButtonPressed() {
-        
+        delegate?.rankingsButtonPressed(self)
     }
     
     func activityLogButtonPressed() {
-        
+        delegate?.activityLogButtonPressed(self)
     }
     
     func achievementsButtonPressed() {
-        
+        delegate?.achievementsButtonPressed(self)
     }
     
     func infoButtonPressed() {
-        
+        delegate?.infoButtonPressed(self)
     }
     
     // MARK: User Interaction Function
@@ -63,4 +64,12 @@ class RankedMatchMenu: CCNode {
             rankedPlayerHeader.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
         }
     }
+}
+
+protocol RankedMatchMenuDelegate {
+    
+    func rankingsButtonPressed(rankedMatchMenu: RankedMatchMenu)
+    func activityLogButtonPressed(rankedMatchMenu: RankedMatchMenu)
+    func achievementsButtonPressed(rankedMatchMenu: RankedMatchMenu)
+    func infoButtonPressed(rankedMatchMenu: RankedMatchMenu)
 }

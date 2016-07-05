@@ -19,7 +19,7 @@ class PracticeMatchMenu: CCNode {
     }
     
     private func setupPracticeDataDefaults() {
-        NSUserDefaults.standardUserDefaults()
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isPracticeMatch")
     }
     
     private func setupMatchStartingPopup() {

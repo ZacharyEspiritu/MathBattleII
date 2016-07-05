@@ -185,6 +185,7 @@ class MainScene: CCNode {
             view.contentSizeType = CCSizeTypeMake(CCSizeUnit.Normalized, CCSizeUnit.Normalized)
             view.contentSize = CGSizeMake(1, 1)
             
+            menuGroupingNode.removeAllChildren()
             dataViewGroupingNode.removeAllChildren()
             dataViewGroupingNode.addChild(view)
             userInteractionEnabled = true
@@ -216,6 +217,7 @@ class MainScene: CCNode {
         switch menuType {
         case .Ranked:
             gamemodeMenu = CCBReader.load("RankedMatchMenu") as! RankedMatchMenu
+            (gamemodeMenu as! RankedMatchMenu).delegate = self
             menuTintColorNode.color = CCColor(red: 245/255, green: 166/255, blue: 35/255)
             largeMenuButton.label.string = "Ranked Match"
             leftMenuButton.label.string = "Custom"
@@ -255,6 +257,7 @@ class MainScene: CCNode {
             menu.contentSizeType = CCSizeTypeMake(CCSizeUnit.Normalized, CCSizeUnit.Normalized)
             menu.contentSize = CGSizeMake(1, 1)
             
+            dataViewGroupingNode.removeAllChildren()
             menuGroupingNode.removeAllChildren()
             menuGroupingNode.addChild(menu)
             userInteractionEnabled = true
@@ -342,6 +345,28 @@ extension MainScene: ShopPopupDelegate {
     
     func focusOutAreaTouched(shopPopup: ShopPopup) {
         shopIsDisplaying = false
+    }
+}
+
+extension MainScene: RankedMatchMenuDelegate {
+    
+    func rankingsButtonPressed(rankedMatchMenu: RankedMatchMenu) {
+        currentMenuType = .None
+        segueToNewDataView(withButtonPressed: .Leaderboard)
+    }
+    
+    func activityLogButtonPressed(rankedMatchMenu: RankedMatchMenu) {
+        currentMenuType = .None
+        segueToNewDataView(withButtonPressed: .News)
+    }
+    
+    func achievementsButtonPressed(rankedMatchMenu: RankedMatchMenu) {
+        showLeaderboard()
+    }
+    
+    func infoButtonPressed(rankedMatchMenu: RankedMatchMenu) {
+        currentMenuType = .None
+        segueToNewDataView(withButtonPressed: .Info)
     }
 }
 

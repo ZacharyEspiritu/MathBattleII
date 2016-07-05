@@ -26,6 +26,8 @@ class GameplayScene: CCNode {
     
     weak var topSlidingDoor, bottomSlidingDoor: SlidingDoor!
     
+    weak var topPlayerFocusOutColorNode: CCNodeColor!
+    
     private var gameTimer: GameTimer! = nil
     
     private var topSampleEquationSolution: String! {
@@ -77,13 +79,14 @@ class GameplayScene: CCNode {
         gameLengthInSeconds = gameLengthOption != 0 ? gameLengthOption : 90
         let scoreLimitOption = NSUserDefaults.standardUserDefaults().integerForKey("scoreLimitOption")
         scoreLimit = scoreLimitOption != 0 ? scoreLimitOption : 5
-        
+        resetGameOptionsToDefaults()
+    }
+    
+    private func resetGameOptionsToDefaults() {
         NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "topScore")
         NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "bottomScore")
         NSUserDefaults.standardUserDefaults().setObject("", forKey: "topSampleEquationSolution")
         NSUserDefaults.standardUserDefaults().setObject("", forKey: "bottomSampleEquationSolution")
-        
-        // Reset game options
         NSUserDefaults.standardUserDefaults().setInteger(90, forKey: "gameLengthOption")
         NSUserDefaults.standardUserDefaults().setInteger(5, forKey: "scoreLimitOption")
     }
@@ -111,6 +114,14 @@ class GameplayScene: CCNode {
         loadNewPuzzle(forSide: .Bottom)
         
         setupGameTimer()
+        
+        // Remove focus out node if in practice match or online multiplayer
+        if !NSUserDefaults.standardUserDefaults().boolForKey("isPracticeMatch") && multiplayerMatchData == nil {
+            topPlayerFocusOutColorNode.removeFromParent()
+        }
+        else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPracticeMatch")
+        }
         
         // Establish score limits
         scoreCounter.establishScoreLimit(forBothSides: scoreLimit)
