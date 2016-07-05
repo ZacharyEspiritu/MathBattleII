@@ -310,6 +310,7 @@
 		55A0348A1C714A6200451824 /* UserAccountInfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoScene.swift; path = Source/UserAccountInfoScene.swift; sourceTree = "<group>"; };
 		55A0348D1C714A9500451824 /* UserAccountInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountInfoManager.swift; path = Source/UserAccountInfoManager.swift; sourceTree = "<group>"; };
 		55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDisplayManager.swift; path = Source/MenuDisplayManager.swift; sourceTree = "<group>"; };
+		55AB9EA21D2B4D1600EA92F8 /* MathBattleII.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MathBattleII.entitlements; sourceTree = "<group>"; };
 		55AD60F61C8616D300F9F9A7 /* ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ding.wav; sourceTree = "<group>"; };
 		55AD60FA1C8616DA00F9F9A7 /* doors.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doors.wav; sourceTree = "<group>"; };
 		55AD60FC1C8616DE00F9F9A7 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
@@ -969,6 +970,7 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				55AB9EA21D2B4D1600EA92F8 /* MathBattleII.entitlements */,
 				550BCBDC1D1FA0B300FE77D4 /* GoogleService-Info.plist */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
@@ -1168,6 +1170,9 @@
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
 							};
 						};
 					};
