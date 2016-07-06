@@ -43,6 +43,11 @@ class Matchmaker {
     }
     
     func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
+        guard let _ = UserManager.sharedInstance.getCurrentUser() else {
+            errorHandler("User will not logged in!")
+            return
+        }
+        
         let ref = FIRDatabase.database().reference().child("/matches/custom/\(matchName)")
         ref.observeSingleEventOfType(.Value,
             withBlock: { snapshot in
