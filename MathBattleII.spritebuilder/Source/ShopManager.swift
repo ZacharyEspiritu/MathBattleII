@@ -10,8 +10,9 @@ import Foundation
 
 class ShopManager {
     
+    static var items: [ShopItem] = []
+    
     static func getItemsWithStatus() -> [ShopItem] {
-        var items: [ShopItem] = []
         items.append(ShopItem(id: 1, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 2, name: "Blue", price: 10000, imagePath: "test.png"))
         items.append(ShopItem(id: 3, name: "Blue", price: 5000, imagePath: "test.png"))
@@ -24,28 +25,29 @@ class ShopManager {
         return items
     }
     
-    static func retrieveItemsFromFirebase() -> [ShopItem] {
-        var shopItems: [ShopItem] = []
-        FIRDatabase.database().reference().child("").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let data = snapshot.value as? [String : NSDictionary] {
-                for key in data.keys {
-                    let itemData = data[key]
-                    let name = itemData?.objectForKey("name") as! String
-                    let price = itemData?.objectForKey("price") as! Int
-                    let image = itemData?.objectForKey("image") as! String
-                    shopItems.append(ShopItem(id: 1, name: name, price: price, imagePath: image))
+    static func markBoughtItemsFromFirebase() {
+        guard let user = UserManager.sharedInstance.getCurrentUser() else {
+            print("Could not retrieve items from Firebase because user was not logged in!")
+            return
+        }
+        
+        FIRDatabase.database().reference().child("users").child(user.getUID()).child("items").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let boughtItemIDs = snapshot.value as? [Int] {
+                for itemID in boughtItemIDs {
+                    items[itemID].markAsBought()
                 }
             }
         })
-        return shopItems // TODO: Fix this code, which returns empty shopItems array before FIRDatabase closure is called because of latency
     }
     
     static func attemptToBuyItem(item item: ShopItem, completionHandler: (Void -> Void), errorHandler: (Void -> Void)) {
         guard let user = UserManager.sharedInstance.getCurrentUser() where user.getCoins() >= item.getPrice() else {
             return
         }
+        
         user.setCoins(newCoins: user.getCoins() - item.getPrice())
         user.addItem(itemID: item.getID())
+        
         FIRDatabase.database().reference().child("users").child(user.getUID()).setValue(user.convertToDictionaryFormat(), withCompletionBlock: { (error, _) in
             if let _ = error {
                 errorHandler()

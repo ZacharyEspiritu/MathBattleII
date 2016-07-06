@@ -187,9 +187,13 @@ class Matchmaker {
     }
     
     private func generateStandardUserData() -> NSDictionary {
+        guard let user = UserManager.sharedInstance.getCurrentUser() else {
+            print("generateStandardUserData was called but no user exists!")
+            return [:]
+        }
         return [
-            "uid": UserManager.sharedInstance.getCurrentUser()!.getUID(),
-            "displayName": UserManager.sharedInstance.getCurrentUser()!.getDisplayName(),
+            "uid": user.getUID(),
+            "displayName": user.getDisplayName(),
             "isConnected": true,
             "currentTiles": [0, 0, 0, 0, 0, 0, 0, 0, 0],
             "currentlySelectedTiles": [],

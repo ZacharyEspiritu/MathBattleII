@@ -17,7 +17,7 @@ class LoginPopup: CCNode {
     
     var currentModal: AuthenticationModalType = .LoginModal
     
-    let animationDuration = 0.4
+    let animationDuration: CCTime = 0.4
     
     
     // MARK: CCB Functions 

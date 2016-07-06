@@ -13,6 +13,7 @@ class ShopItem {
     private let id: Int
     private let name: String
     private let price: Int
+    private var bought: Bool = false
     private var image: CCSprite?
     
     
@@ -33,5 +34,10 @@ class ShopItem {
     
     func getPrice() -> Int {
         return price
+    }
+    
+    func markAsBought() -> Bool {
+        bought = true
+        return bought
     }
 }
