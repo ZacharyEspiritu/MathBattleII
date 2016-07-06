@@ -167,6 +167,13 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>loadingCircleSpriteFrames</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 		<key>mainMenuAssets</key>
 		<dict>
 			<key>isSmartSpriteSheet</key>

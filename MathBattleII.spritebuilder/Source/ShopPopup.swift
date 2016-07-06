@@ -60,7 +60,7 @@ class ShopPopup: CCNode {
     
     private func displayAlertOverlay() {
         alertOverlay.stopAllActions()
-        alertOverlay.runAction(CCActionSequence(array: [CCActionFadeTo(duration: 0.15, opacity: 0.7), CCActionDelay(duration: 1), CCActionFadeTo(duration: 0.2, opacity: 0)]))
+        alertOverlay.runAction(CCActionSequence(array: [CCActionFadeTo(duration: 0.15, opacity: 0.7), CCActionDelay(duration: 2), CCActionFadeTo(duration: 0.2, opacity: 0)]))
     }
     
     // MARK: Data Functions

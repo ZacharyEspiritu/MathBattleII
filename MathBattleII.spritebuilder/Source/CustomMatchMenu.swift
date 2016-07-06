@@ -15,6 +15,7 @@ class CustomMatchMenu: CCNode {
     weak var centerAreaGroupingNode: CCNode!
     weak var customMatchTextEntry: CustomMatchTextEntry!
     weak var backButton, confirmButton: CCButton!
+    weak var alertOverlay: CCNodeColor!
     
     var matchMenuType: CustomMatchMenuType = .Create {
         didSet {
@@ -22,17 +23,20 @@ class CustomMatchMenu: CCNode {
         }
     }
     
+    let animationDuration = 0.4
     
     func didLoadFromCCB() {
         centerAreaGroupingNode.position.x = 1.50
         menuButtonNode.position.x = 0.5
         menuButtonNode.delegate = self
+        alertOverlay.cascadeOpacityEnabled = true
+        alertOverlay.opacity = 0
     }
     
     func backButtonPressed() {
         let centerAreaXPosition: CGFloat = (matchMenuType == .Join) ? 1.5 : -1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
         
         customMatchTextEntry.enabled = true
         confirmButton.enabled = true
@@ -43,7 +47,7 @@ class CustomMatchMenu: CCNode {
     
     func confirmMatchInformation() {
         guard let _ = UserManager.sharedInstance.getCurrentUser() else {
-            print("User is not logged in!")
+            displayAlertOverlay()
             return
         }
         
@@ -65,6 +69,11 @@ class CustomMatchMenu: CCNode {
         else {
             messageHeader.setMessage(string: "Six Characters Minimum")
         }
+    }
+    
+    private func displayAlertOverlay() {
+        alertOverlay.stopAllActions()
+        alertOverlay.runAction(CCActionSequence(array: [CCActionFadeTo(duration: 0.15, opacity: 0.7), CCActionDelay(duration: 2), CCActionFadeTo(duration: 0.2, opacity: 0)]))
     }
     
     private func registerForCustomMatch(withMatchName matchName: String, password: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
@@ -92,16 +101,26 @@ enum CustomMatchMenuType {
 extension CustomMatchMenu: CustomMatchMenuButtonsDelegate {
     
     func joinButtonPressed() {
+        guard let _ = UserManager.sharedInstance.getCurrentUser() else {
+            displayAlertOverlay()
+            return
+        }
+        
         matchMenuType = .Join
         centerAreaGroupingNode.position.x = 1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: -1.5, y: centerAreaGroupingNode.position.y))))
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: -1.5, y: centerAreaGroupingNode.position.y))))
     }
     
     func createButtonPressed() {
+        guard let _ = UserManager.sharedInstance.getCurrentUser() else {
+            displayAlertOverlay()
+            return
+        }
+        
         matchMenuType = .Create
         centerAreaGroupingNode.position.x = -1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 1.5, y: centerAreaGroupingNode.position.y))))
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 1.5, y: centerAreaGroupingNode.position.y))))
     }
 }
