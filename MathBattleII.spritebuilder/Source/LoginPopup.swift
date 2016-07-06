@@ -40,6 +40,13 @@ class LoginPopup: CCNode {
         registrationModal.delegate = self
     }
     
+    private func logToFirebase() {
+        FIRAnalytics.logEventWithName(kFIREventSelectContent, parameters: [
+            kFIRParameterContentType:"cont",
+            kFIRParameterItemID:"1"
+        ])
+    }
+    
     // MARK: Animation Functions
     
     private func runOpeningAnimations() {

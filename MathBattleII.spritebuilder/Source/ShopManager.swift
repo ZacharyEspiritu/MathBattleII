@@ -52,6 +52,11 @@ class ShopManager {
             }
             else {
                 completionHandler()
+                FIRAnalytics.logEventWithName(kFIREventSpendVirtualCurrency, parameters: [
+                    kFIRParameterItemName: item.getName(),
+                    kFIRParameterVirtualCurrencyName: "coins",
+                    kFIRParameterValue: item.getPrice()
+                ])
             }
         })
     }
