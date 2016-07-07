@@ -29,8 +29,7 @@ class RegistrationManager {
                     if let user = user {
                         // User authentication complete!
                         let uid = user.uid
-                        print("Successfully created user account with uid: \(uid)")
-                        
+                        print("Successfully created user account with uid: \(uid)")                        
                         self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
                             self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password, completionHandler: completionHandler, errorHandler: errorHandler)
                         })
@@ -48,7 +47,7 @@ class RegistrationManager {
                     errorHandler(firstError)
                 }
                 else {
-                    errorHandler("An error occurred while registering your account. Try again later.")
+                    errorHandler("An error occurred while registering\nyour account. Try again later.")
                 }
         })
     }
@@ -129,7 +128,8 @@ class RegistrationManager {
             }
         })
         guard usernameDoesNotExist else {
-            return "An account with name \(username) already exists."
+            return "An account with specified\n" +
+                   "username already exists."
         }
         return nil
     }
@@ -145,7 +145,8 @@ class RegistrationManager {
     
     private func validatePassword(password: String) -> String? {
         guard password.characters.count >= 6 else {
-            return "Password must be at least 6 characters long."
+            return "Password must be at least\n" +
+                   "6 characters long."
         }
         return nil
     }
