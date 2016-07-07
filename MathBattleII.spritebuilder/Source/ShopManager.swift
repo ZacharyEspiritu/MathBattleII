@@ -13,15 +13,16 @@ class ShopManager {
     static var items: [ShopItem] = []
     
     static func getItemsWithStatus() -> [ShopItem] {
+        items.removeAll()
         items.append(ShopItem(id: 1, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 2, name: "Blue", price: 10000, imagePath: "test.png"))
-        items.append(ShopItem(id: 3, name: "Blue", price: 5000, imagePath: "test.png"))
         items.append(ShopItem(id: 4, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 5, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 6, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 7, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 8, name: "Blue", price: 1000, imagePath: "test.png"))
         items.append(ShopItem(id: 9, name: "Blue", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 3, name: "Blue", price: 5000, imagePath: "test.png"))
+        items.append(ShopItem(id: 2, name: "Blue", price: 10000, imagePath: "test.png"))
         return items
     }
     
