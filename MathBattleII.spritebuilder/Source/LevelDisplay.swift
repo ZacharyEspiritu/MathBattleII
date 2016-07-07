@@ -13,6 +13,7 @@ class LevelDisplay: CCNode {
     weak var background: CCSprite!
     weak var levelMeterLeftEnd, levelMeterCenter, levelMeterRightEnd: CCSprite!
     weak var displayIcon: CCSprite!
+    weak var descriptionPopup: CCSprite9Slice!
     
     weak var levelLabel: CCLabelTTF!
     weak var experienceLabel: CCLabelTTF!
@@ -23,7 +24,17 @@ class LevelDisplay: CCNode {
     
     
     func didLoadFromCCB() {
+        descriptionPopup.scale = 0
         loadData()
+    }
+    
+    func displayDescriptionPopup() {
+        descriptionPopup.scale = 0
+        descriptionPopup.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.3, scale: 1)))
+    }
+    
+    func hideDescriptionPopup() {
+        descriptionPopup.scale = 0
     }
     
     func loadData() {

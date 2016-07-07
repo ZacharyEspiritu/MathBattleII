@@ -271,9 +271,15 @@ class MainScene: CCNode {
             if CGRectContainsPoint(levelDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
                 levelDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
             }
-            else if CGRectContainsPoint(coinDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
-                coinDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
+            else {
+                levelDisplay.hideDescriptionPopup()
+                if CGRectContainsPoint(coinDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
+                    coinDisplay.runAction(CCActionScaleTo(duration: 0.05, scale: 0.97))
+                }
             }
+        }
+        else {
+            levelDisplay.hideDescriptionPopup()
         }
         
         currentDescriptionPopup?.removeFromParent()
@@ -284,7 +290,7 @@ class MainScene: CCNode {
         if levelDisplay.scale < 1 {
             if CGRectContainsPoint(topAreaGroupingNode.boundingBox(), touch.locationInWorld()) {
                 if CGRectContainsPoint(levelDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
-                    print("touchLevelDisplay")
+                    levelDisplay.displayDescriptionPopup()
                 }
             }
             levelDisplay.stopAllActions()
