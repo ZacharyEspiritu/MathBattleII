@@ -295,6 +295,7 @@ class MainScene: CCNode {
             if CGRectContainsPoint(topAreaGroupingNode.boundingBox(), touch.locationInWorld()) {
                 if CGRectContainsPoint(levelDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
                     levelDisplay.displayDescriptionPopup()
+                    removeShop()
                 }
             }
             levelDisplay.stopAllActions()
