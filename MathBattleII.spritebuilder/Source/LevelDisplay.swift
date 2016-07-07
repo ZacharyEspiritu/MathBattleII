@@ -29,8 +29,13 @@ class LevelDisplay: CCNode {
     }
     
     func displayDescriptionPopup() {
-        descriptionPopup.scale = 0
-        descriptionPopup.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.3, scale: 1)))
+        if descriptionPopup.scale > 0 {
+            hideDescriptionPopup()
+        }
+        else {
+            descriptionPopup.scale = 0
+            descriptionPopup.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.3, scale: 1)))
+        }
     }
     
     func hideDescriptionPopup() {
