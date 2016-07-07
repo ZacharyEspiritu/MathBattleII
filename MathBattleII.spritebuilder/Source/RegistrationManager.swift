@@ -23,42 +23,34 @@ class RegistrationManager {
     }
     
     func registerNewAccount(username username: String, email: String, password: String, passwordConfirmation: String, completionHandler: (Void -> Void), errorHandler: (String) -> ()) {
-        do {
-            let accountData = try validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation)
-            FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
-                if let user = user {
-                    // User authentication complete!
-                    let uid = user.uid
-                    print("Successfully created user account with uid: \(uid)")
-                    
-                    self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
-                        self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password, completionHandler: completionHandler, errorHandler: errorHandler)
-                    })
-                } else {
-                    if let error = error {
-                        if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
-                            let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
-                            errorHandler(errorDescription)
+        validateRegistration(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation,
+            completionHandler: { accountData in
+                FIRAuth.auth()?.createUserWithEmail(accountData.email, password: accountData.password, completion: { user, error in
+                    if let user = user {
+                        // User authentication complete!
+                        let uid = user.uid
+                        print("Successfully created user account with uid: \(uid)")
+                        
+                        self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
+                            self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password, completionHandler: completionHandler, errorHandler: errorHandler)
+                        })
+                    } else {
+                        if let error = error {
+                            if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                                let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
+                                errorHandler(errorDescription)
+                            }
                         }
                     }
+                })
+            }, errorHandler: { errors in
+                if let firstError = errors.first {
+                    errorHandler(firstError)
                 }
-            })
-        }
-        catch RegistrationError.UsernameNotValidFormat {
-            errorHandler("Username is not in a valid format.")
-        }
-        catch RegistrationError.EmailNotValidFormat {
-            errorHandler("Email is not in a valid format.")
-        }
-        catch RegistrationError.PasswordNotValidFormat {
-            errorHandler("Password is not in a valid format.")
-        }
-        catch RegistrationError.PasswordsDoNotMatch {
-            errorHandler("Passwords do not match.")
-        }
-        catch {
-            errorHandler("Account was unable to be created at this time.")
-        }
+                else {
+                    errorHandler("An error occurred while registering your account. Try again later.")
+                }
+        })
     }
     
     private func initializeNewAccountData(uid: String!, accountData: AccountData, completion: (Void -> Void)) {
@@ -71,14 +63,11 @@ class RegistrationManager {
         let dispatchGroup = dispatch_group_create()
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             ref.child("users").child(uid).setValue(newUser)
-            NSLog("users done") // Use NSLog for timestamps
         }
         dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             ref.child("displayNames").child(accountData.username).setValue(uid)
-            NSLog("displayNames done")
         }
         dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            NSLog("running completion handler")
             completion()
         }
     }
@@ -86,32 +75,50 @@ class RegistrationManager {
     
     // MARK: Registration Validator Functions
     
-    func validateRegistration(username usernameString: String?, email emailString: String?, password passwordString: String?, passwordConfirmation confirmationString: String?) throws -> AccountData {
-        // Validate that registration fields match required format
-        guard let username = usernameString where validateUsername(username) else {
-            throw RegistrationError.UsernameNotValidFormat
+    func validateRegistration(username username: String, email: String, password: String, passwordConfirmation: String, completionHandler: (AccountData -> Void), errorHandler: ([String] -> Void)) {
+        var errors: [String] = []
+        let dispatchGroup = dispatch_group_create()
+        // Validate username
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            if let error = self.validateUsername(username) {
+                errors.append(error)
+            }
         }
-        guard let email = emailString where validateEmail(email) else {
-            throw RegistrationError.EmailNotValidFormat
+        // Validate email
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            if let error = self.validateEmail(email) {
+                errors.append(error)
+            }
         }
-        guard let password = passwordString where validatePassword(password) else {
-            throw RegistrationError.PasswordNotValidFormat
+        // Validate password
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            if let error = self.validatePassword(password) {
+                errors.append(error)
+            }
         }
-        guard let passwordConfirmation = confirmationString where validateMatchingPasswords(password1: password, password2: passwordConfirmation) else {
-            throw RegistrationError.PasswordsDoNotMatch
+        // Confirm passwords match
+        dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            if let error = self.validateMatchingPasswords(password1: password, password2: passwordConfirmation) {
+                errors.append(error)
+            }
         }
-        
-        return AccountData(username: username, email: email, password: password)
+        // Run completion/error handler
+        dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            if errors.count > 0 {
+                errorHandler(errors)
+            }
+            else {
+                completionHandler(AccountData(username: username, email: email, password: password))
+            }
+        }
     }
     
-    private func validateUsername(username: String) -> Bool {
+    private func validateUsername(username: String) -> String? {
         let usernameRegEx = "^[a-zA-Z-0-9]{3,}$"
-        
-        guard let usernameValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", usernameRegEx) else {
-            return false
-        }
+        let usernameValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", usernameRegEx)
         guard usernameValidator.evaluateWithObject(username) else {
-            return false
+            return "Username must be at least 3 characters long\n" +
+                   "and can only contain letters and numbers."
         }
         
         let ref = FIRDatabase.database().reference().child("displayNames/\(username)")
@@ -121,32 +128,39 @@ class RegistrationManager {
                 usernameDoesNotExist = false
             }
         })
-        
-        return usernameDoesNotExist
-    }
-    
-    private func validateEmail(email: String) -> Bool {
-        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-
-        guard let emailValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx) else {
-            return false
+        guard usernameDoesNotExist else {
+            return "An account with name \(username) already exists."
         }
-        
-        return emailValidator.evaluateWithObject(email)
+        return nil
     }
     
-    private func validatePassword(password: String) -> Bool {
-        return password.characters.count >= 6
+    private func validateEmail(email: String) -> String? {
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        let emailValidator: NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        guard emailValidator.evaluateWithObject(email) else {
+            return "Email is not valid."
+        }
+        return nil
     }
     
-    private func validateMatchingPasswords(password1 password1: String, password2: String) -> Bool {
-        return password1 == password2
+    private func validatePassword(password: String) -> String? {
+        guard password.characters.count >= 6 else {
+            return "Password must be at least 6 characters long."
+        }
+        return nil
+    }
+    
+    private func validateMatchingPasswords(password1 password1: String, password2: String) -> String? {
+        guard password1 == password2 else {
+            return "Passwords do not match."
+        }
+        return nil
     }
 }
 
 enum RegistrationError: ErrorType {
-    case UsernameNotValidFormat
-    case EmailNotValidFormat
-    case PasswordNotValidFormat
+    case UsernameNotValidFormat(String)
+    case EmailNotValidFormat(String)
+    case PasswordNotValidFormat(String)
     case PasswordsDoNotMatch
 }
