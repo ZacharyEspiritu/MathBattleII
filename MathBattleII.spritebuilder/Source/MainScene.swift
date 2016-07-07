@@ -155,6 +155,8 @@ class MainScene: CCNode {
         currentDescriptionPopup?.removeFromParent()
         currentDescriptionPopup = nil
         
+        levelDisplay.hideDescriptionPopup()
+        
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
     }
     
@@ -208,6 +210,8 @@ class MainScene: CCNode {
         
         currentDescriptionPopup?.removeFromParent()
         currentDescriptionPopup = nil
+        
+        levelDisplay.hideDescriptionPopup()
         
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
     }
