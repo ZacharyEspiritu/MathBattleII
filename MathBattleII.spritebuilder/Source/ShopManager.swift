@@ -26,6 +26,8 @@ class ShopManager {
         return items
     }
     
+    // MARK: Database Interactors
+    
     static func markBoughtItemsFromFirebase() {
         guard let user = UserManager.sharedInstance.getCurrentUser() else {
             print("Could not retrieve items from Firebase because user was not logged in!")

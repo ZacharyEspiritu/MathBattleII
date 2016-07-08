@@ -58,7 +58,7 @@ class RankedMatchMenu: CCNode {
         }
     }
     
-    // MARK: User Interaction Function
+    // MARK: User Interaction Functions
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {

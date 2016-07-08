@@ -15,6 +15,8 @@ class UserPopup: CCNode {
     weak var focusOutButton: CCButton!
     
     
+    // MARK: Button Functions
+    
     func didLoadFromCCB() {
         focusOutButton.enabled = false
     }
@@ -22,6 +24,8 @@ class UserPopup: CCNode {
     func closeButtonPressed() {
         UserPopupHandler.hideUserPopup()
     }
+    
+    // MARK: Data Functions
     
     func displayUserData(forUser user: User) {
         playerNameLabel.string = user.getDisplayName()
