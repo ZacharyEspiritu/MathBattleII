@@ -355,7 +355,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -365,7 +365,7 @@
 						<key>value</key>
 						<array>
 							<real>152</real>
-							<real>22.5</real>
+							<real>24</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -384,7 +384,7 @@
 						<key>type</key>
 						<string>IntegerLabeled</string>
 						<key>value</key>
-						<integer>1</integer>
+						<integer>2</integer>
 					</dict>
 					<dict>
 						<key>name</key>
