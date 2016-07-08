@@ -30,7 +30,7 @@ class LoginPopup: CCNode {
     }
     
     func closePopup() {
-        LoginPopupHandler.hideLoginPopupHandler()
+        LoginPopupHandler.hideLoginPopup()
     }
     
     // MARK: Data Functions
@@ -78,7 +78,7 @@ class LoginPopup: CCNode {
         focusOutButton.enabled = false
         focusOut.opacity = 1
         focusOut.runAction(CCActionEaseSineOut(action: CCActionFadeTo(duration: animationDuration, opacity: 0)))
-        let modalFlyOutAnimation = CCActionSequence(array: [CCActionEaseSineOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: 1.5))), CCActionCallBlock(block: { LoginPopupHandler.hideLoginPopupHandler() })])
+        let modalFlyOutAnimation = CCActionSequence(array: [CCActionEaseSineOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: 1.5))), CCActionCallBlock(block: { LoginPopupHandler.hideLoginPopup() })])
         switch currentModal {
         case .LoginModal:
             loginModal.runAction(modalFlyOutAnimation)

@@ -14,14 +14,7 @@ class LoginPopupHandler {
     
     // MARK: Visual Functions
     
-    static func isLoginPopupDisplaying() -> Bool {
-        if let _ = currentLoginPopup {
-            return true
-        }
-        return false
-    }
-    
-    static func displayLoginPopupHandler() {
+    static func displayLoginPopup() {
         currentLoginPopup = CCBReader.load("LoginPopup") as! LoginPopup
         currentLoginPopup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .TopLeft)
         currentLoginPopup.position = CGPoint(x: 0.5, y: 0.5)
@@ -29,7 +22,7 @@ class LoginPopupHandler {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
     }
     
-    static func hideLoginPopupHandler() {
+    static func hideLoginPopup() {
         currentLoginPopup.removeFromParent()
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
     }

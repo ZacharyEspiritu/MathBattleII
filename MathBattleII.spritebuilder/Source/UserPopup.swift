@@ -12,17 +12,21 @@ class UserPopup: CCNode {
     
     weak var playerNameLabel, ratingLabel, practiceHighScoreLabel, experienceLevelLabel: CCLabelTTF!
     weak var totalExperienceLabel, coinsLabel, numberOfGamesPlayedLabel, totalPuzzleSolvesLabel, onlineMatchWinsLabel, onlineMatchLossesLabel, itemsBoughtLabel: CCLabelTTF!
+    weak var focusOutButton: CCButton!
     
-    var delegate: UserPopupDelegate?
     
+    func didLoadFromCCB() {
+        focusOutButton.enabled = false
+    }
+        
     func closeButtonPressed() {
-        delegate?.closeButtonPressed(self)
+        UserPopupHandler.hideUserPopup()
     }
     
     func displayUserData(forUser user: User) {
         playerNameLabel.string = user.getDisplayName()
-        ratingLabel.string = "\(user.getRating())"
-        practiceHighScoreLabel.string = "\(user.getPracticeHighScore())"
+        ratingLabel.string = "Rating: \(user.getRating())"
+        practiceHighScoreLabel.string = "Practice: \(user.getPracticeHighScore())"
         experienceLevelLabel.string = "\(user.getCalculatedPlayerLevel())"
         totalExperienceLabel.string = "\(user.getExperienceLevel())"
         coinsLabel.string = "\(user.getCoins())"
@@ -32,9 +36,4 @@ class UserPopup: CCNode {
         onlineMatchLossesLabel.string = "\(user.getNumberOfLosses())"
         itemsBoughtLabel.string = user.getItems() != nil ? "\(user.getItems()!.count)" : "0"
     }
-}
-
-protocol UserPopupDelegate {
-    
-    func closeButtonPressed(userPopup: UserPopup)
 }

@@ -20,8 +20,9 @@ class RankedMatchMenu: CCNode {
     // MARK: Button Functions
     
     func didLoadFromCCB() {
-        userInteractionEnabled = true
+        focusOut.opacity = 0
         MenuDisplayManager.sharedInstance.attachToRankedPlayerHeader(rankedPlayerHeader)
+        userInteractionEnabled = true
     }
     
     func battleButtonPressed() {
@@ -50,16 +51,10 @@ class RankedMatchMenu: CCNode {
     
     private func rankedPlayerHeaderPressed() {
         if let user = UserManager.sharedInstance.getCurrentUser() {
-            let userPopup = CCBReader.load("UserPopup") as! UserPopup
-            userPopup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .TopLeft)
-            userPopup.position = CGPoint(x: 0.5, y: 0.5)
-            userPopup.delegate = self
-            userPopup.displayUserData(forUser: user)
-            focusOut.addChild(userPopup)
-            focusOut.opacity = 0.65
+            UserPopupHandler.displayUserPopup(forUser: user)
         }
         else {
-            LoginPopupHandler.displayLoginPopupHandler()
+            LoginPopupHandler.displayLoginPopup()
         }
     }
     
@@ -88,12 +83,4 @@ protocol RankedMatchMenuDelegate {
     func activityLogButtonPressed(rankedMatchMenu: RankedMatchMenu)
     func achievementsButtonPressed(rankedMatchMenu: RankedMatchMenu)
     func infoButtonPressed(rankedMatchMenu: RankedMatchMenu)
-}
-
-extension RankedMatchMenu: UserPopupDelegate {
-    
-    func closeButtonPressed(userPopup: UserPopup) {
-        focusOut.removeAllChildren()
-        focusOut.opacity = 0
-    }
 }
