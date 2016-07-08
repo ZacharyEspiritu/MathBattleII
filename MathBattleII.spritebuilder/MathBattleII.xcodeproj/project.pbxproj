@@ -93,6 +93,7 @@
 		55D946EA1CC4487400F0D6BA /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D946E91CC4487400F0D6BA /* LoadingScene.swift */; };
 		55D9BBF61C3E11D100884486 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
 		55D9BBFA1C3E121E00884486 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
+		55E4A4571D30604B0090EBA1 /* TransitionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4A4561D30604B0090EBA1 /* TransitionScene.swift */; };
 		55E5F3B31CC1645600D2F77E /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5F3B21CC1645600D2F77E /* AI.swift */; };
 		55EE14E41C3D725B000B94D6 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EE14E31C3D725B000B94D6 /* GameplayScene.swift */; };
 		55F2136F1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F2136E1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift */; };
@@ -338,6 +339,7 @@
 		55D946E91CC4487400F0D6BA /* LoadingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingScene.swift; path = Source/LoadingScene.swift; sourceTree = "<group>"; };
 		55D9BBF51C3E11D100884486 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Source/User.swift; sourceTree = "<group>"; };
 		55D9BBF91C3E121E00884486 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Source/Rating.swift; sourceTree = "<group>"; };
+		55E4A4561D30604B0090EBA1 /* TransitionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionScene.swift; path = Source/TransitionScene.swift; sourceTree = "<group>"; };
 		55E5F3B21CC1645600D2F77E /* AI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AI.swift; path = Source/AI.swift; sourceTree = "<group>"; };
 		55EE14E31C3D725B000B94D6 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameplayScene.swift; path = Source/GameplayScene.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		55F2136E1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMatchPopoverView.swift; path = Source/CustomMatchPopoverView.swift; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 			children = (
 				55D946E91CC4487400F0D6BA /* LoadingScene.swift */,
 				55316C771CC6FAC1008CF8E7 /* MainScene.swift */,
+				55E4A4561D30604B0090EBA1 /* TransitionScene.swift */,
 				5583E0261CD6964500664E9D /* GameCenterInteractor.swift */,
 				550A309B1D253B920041152F /* Menu Displays */,
 				551EA0F71D1AB5D400162A76 /* Info Data View */,
@@ -1535,6 +1538,7 @@
 				55BB60F41D20A47D00F32B96 /* NewsScrollViewCell.swift in Sources */,
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55E5F3B31CC1645600D2F77E /* AI.swift in Sources */,
+				55E4A4571D30604B0090EBA1 /* TransitionScene.swift in Sources */,
 				55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */,
 				551B690F1CCC3DA400CA3368 /* PracticeAIScroller.swift in Sources */,
 				550A30A11D253C3C0041152F /* ShopPopup.swift in Sources */,
