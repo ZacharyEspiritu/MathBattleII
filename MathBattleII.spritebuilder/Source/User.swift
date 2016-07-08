@@ -141,6 +141,34 @@ class User {
         return experienceLevel
     }
     
+    func getCalculatedPlayerLevel() -> Int {
+        var playerExperienceLevel = experienceLevel
+        var levelCount = 0
+        var levelExperienceCap = 10
+        while playerExperienceLevel > 0 {
+            levelCount += 1
+            playerExperienceLevel -= 10
+            levelExperienceCap = 10
+            if levelCount >= 2 {
+                playerExperienceLevel -= 25 * (levelCount - 1)
+                levelExperienceCap = 25 * (levelCount - 1)
+                if levelCount >= 4 {
+                    playerExperienceLevel -= 25 * (levelCount - 3)
+                    levelExperienceCap += 25 * (levelCount - 3)
+                    if levelCount >= 13 {
+                        playerExperienceLevel -= 50 * (levelCount - 12)
+                        levelExperienceCap += 50 * (levelCount - 12)
+                        if levelCount >= 33 {
+                            playerExperienceLevel -= 100 * (levelCount - 32)
+                            levelExperienceCap += 50 * (levelCount - 32)
+                        }
+                    }
+                }
+            }
+        }
+        return levelCount
+    }
+    
     func getCoins() -> Int {
         return coins
     }

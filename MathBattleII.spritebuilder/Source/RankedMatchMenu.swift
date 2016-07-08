@@ -13,6 +13,7 @@ class RankedMatchMenu: CCNode {
     weak var rankingsButton, activityLogButton, achievementsButton, infoButton: CCButton!
     weak var rankedMatchButtonGroupingNode, playerHeaderGroupingNode: CCNode!
     weak var rankedPlayerHeader: RankedPlayerHeader!
+    weak var focusOut: CCNodeColor!
     
     var delegate: RankedMatchMenuDelegate?
     
@@ -47,6 +48,21 @@ class RankedMatchMenu: CCNode {
         delegate?.infoButtonPressed(self)
     }
     
+    private func rankedPlayerHeaderPressed() {
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            let userPopup = CCBReader.load("UserPopup") as! UserPopup
+            userPopup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .TopLeft)
+            userPopup.position = CGPoint(x: 0.5, y: 0.5)
+            userPopup.delegate = self
+            userPopup.displayUserData(forUser: user)
+            focusOut.addChild(userPopup)
+            focusOut.opacity = 0.65
+        }
+        else {
+            LoginPopupHandler.displayLoginPopupHandler()
+        }
+    }
+    
     // MARK: User Interaction Function
     
     override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
@@ -58,7 +74,7 @@ class RankedMatchMenu: CCNode {
     override func touchEnded(touch: CCTouch!, withEvent event: CCTouchEvent!) {
         if rankedPlayerHeader.scale < 1 {
             if CGRectContainsPoint(rankedPlayerHeader.boundingBox(), touch.locationInNode(playerHeaderGroupingNode)) {
-                LoginPopupHandler.displayLoginPopupHandler()
+                rankedPlayerHeaderPressed()
             }
             rankedPlayerHeader.stopAllActions()
             rankedPlayerHeader.runAction(CCActionEaseBackOut(action: CCActionScaleTo(duration: 0.15, scale: 1)))
@@ -72,4 +88,12 @@ protocol RankedMatchMenuDelegate {
     func activityLogButtonPressed(rankedMatchMenu: RankedMatchMenu)
     func achievementsButtonPressed(rankedMatchMenu: RankedMatchMenu)
     func infoButtonPressed(rankedMatchMenu: RankedMatchMenu)
+}
+
+extension RankedMatchMenu: UserPopupDelegate {
+    
+    func closeButtonPressed(userPopup: UserPopup) {
+        focusOut.removeAllChildren()
+        focusOut.opacity = 0
+    }
 }

@@ -45,6 +45,7 @@
 		55585FB41C3E812200688265 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
 		55585FB51C3E812500688265 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF91C3E121E00884486 /* Rating.swift */; };
 		555A69BE1D233B3500FA021C /* LoginPopupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555A69BD1D233B3500FA021C /* LoginPopupHandler.swift */; };
+		55747FFA1D2F3BC2008A4491 /* UserPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55747FF91D2F3BC2008A4491 /* UserPopup.swift */; };
 		557DA81C1C4AB0D700E3C043 /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */; };
 		557FEDAC1C8D2D11001A5F71 /* MatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557FEDAB1C8D2D11001A5F71 /* MatchData.swift */; };
 		557FEDB01C8D2D1C001A5F71 /* PlayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557FEDAF1C8D2D1C001A5F71 /* PlayerData.swift */; };
@@ -291,6 +292,7 @@
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
 		555A69BD1D233B3500FA021C /* LoginPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginPopupHandler.swift; path = Source/LoginPopupHandler.swift; sourceTree = "<group>"; };
+		55747FF91D2F3BC2008A4491 /* UserPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPopup.swift; path = Source/UserPopup.swift; sourceTree = "<group>"; };
 		557DA81B1C4AB0D700E3C043 /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSTimer+Closure.swift"; path = "Source/NSTimer+Closure.swift"; sourceTree = "<group>"; };
 		557FEDAB1C8D2D11001A5F71 /* MatchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchData.swift; path = Source/MatchData.swift; sourceTree = "<group>"; };
 		557FEDAF1C8D2D1C001A5F71 /* PlayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerData.swift; path = Source/PlayerData.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 			children = (
 				55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */,
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
+				55747FF91D2F3BC2008A4491 /* UserPopup.swift */,
 				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
 				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
 			);
@@ -1495,6 +1498,7 @@
 				55AB9E961D2AE83D00EA92F8 /* MenuDisplayManager.swift in Sources */,
 				558FBADD1CADC75500189521 /* RankedMatchScene.swift in Sources */,
 				55F545591D1F610D00A03E18 /* NewsDataView.swift in Sources */,
+				55747FFA1D2F3BC2008A4491 /* UserPopup.swift in Sources */,
 				5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */,
 				5537B6101CB827C400BC9F2A /* MatchType.swift in Sources */,
 				55283D7E1C3EC879000BD64A /* Grid.swift in Sources */,

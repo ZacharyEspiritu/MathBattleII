@@ -76,7 +76,7 @@
 		<key></key>
 		<dict>
 			<key>previewFolderHidden</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Sprites</key>
 		<dict/>
@@ -176,6 +176,13 @@
 		<dict>
 			<key>isSmartSpriteSheet</key>
 			<true/>
+		</dict>
+		<key>menuAssets</key>
+		<dict>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+			<key>previewFolderHidden</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>versionStr</key>

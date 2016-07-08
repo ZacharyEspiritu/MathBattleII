@@ -1532,8 +1532,6 @@ Custom Match!</string>
 								</array>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -1615,7 +1613,7 @@ Custom Match!</string>
 							<real>0.0</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.69999998807907104</real>
+							<real>0.64999997615814209</real>
 						</array>
 					</dict>
 					<dict>
@@ -1624,9 +1622,11 @@ Custom Match!</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.69999998807907104</real>
+						<real>0.64999997615814209</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

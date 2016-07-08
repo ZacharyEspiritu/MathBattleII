@@ -14,6 +14,13 @@ class LoginPopupHandler {
     
     // MARK: Visual Functions
     
+    static func isLoginPopupDisplaying() -> Bool {
+        if let _ = currentLoginPopup {
+            return true
+        }
+        return false
+    }
+    
     static func displayLoginPopupHandler() {
         currentLoginPopup = CCBReader.load("LoginPopup") as! LoginPopup
         currentLoginPopup.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .TopLeft)
