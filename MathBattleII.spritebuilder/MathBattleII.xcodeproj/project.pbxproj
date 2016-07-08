@@ -500,9 +500,10 @@
 			isa = PBXGroup;
 			children = (
 				55AB9E9F1D2B118300EA92F8 /* Menu Displays */,
+				55AC253C1D2F50D100FD9044 /* User Popup */,
 				550A309E1D253BFF0041152F /* Match Starting Popup */,
 				555A69C11D233CA500FA021C /* Login/Registration Views */,
-				550A309F1D253C0B0041152F /* Shop */,
+				550A309F1D253C0B0041152F /* Shop Popup */,
 			);
 			name = "Menu Displays";
 			sourceTree = "<group>";
@@ -516,7 +517,7 @@
 			name = "Match Starting Popup";
 			sourceTree = "<group>";
 		};
-		550A309F1D253C0B0041152F /* Shop */ = {
+		550A309F1D253C0B0041152F /* Shop Popup */ = {
 			isa = PBXGroup;
 			children = (
 				550A30A21D253CA50041152F /* ShopManager.swift */,
@@ -524,7 +525,7 @@
 				5524F3401D260CFB0053E28B /* ShopScrollViewCell.swift */,
 				550A30A61D253CFA0041152F /* ShopItem.swift */,
 			);
-			name = Shop;
+			name = "Shop Popup";
 			sourceTree = "<group>";
 		};
 		551EA0F71D1AB5D400162A76 /* Info Data View */ = {
@@ -705,12 +706,19 @@
 			children = (
 				55AB9E951D2AE83D00EA92F8 /* MenuDisplayManager.swift */,
 				5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */,
-				55747FF91D2F3BC2008A4491 /* UserPopup.swift */,
-				55AC25381D2F44F300FD9044 /* UserPopupHandler.swift */,
 				5546EFB61CAECCE300F84132 /* LevelDisplay.swift */,
 				559B0A9B1CCA4D69001FC459 /* DescriptionPopup.swift */,
 			);
 			name = "Menu Displays";
+			sourceTree = "<group>";
+		};
+		55AC253C1D2F50D100FD9044 /* User Popup */ = {
+			isa = PBXGroup;
+			children = (
+				55747FF91D2F3BC2008A4491 /* UserPopup.swift */,
+				55AC25381D2F44F300FD9044 /* UserPopupHandler.swift */,
+			);
+			name = "User Popup";
 			sourceTree = "<group>";
 		};
 		55B4E1F41C5C23E7007BE8C3 /* Registration */ = {
