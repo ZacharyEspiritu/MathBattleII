@@ -62,8 +62,12 @@ class CustomMatchMenu: CCNode {
             registerForCustomMatch(withMatchName: matchName, password: password,
                 completionHandler: { _ in
                     print("completed")
+                    self.messageHeader.setMessage(string: "Joined Match... Waiting For Player")
                 }, errorHandler: { error in
                     print(error)
+                }, startHandler: { hostPlayerName, opposingPlayerName in
+                    print("match starting")
+                    MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match Is Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
             })
         }
         else {
@@ -76,12 +80,12 @@ class CustomMatchMenu: CCNode {
         alertOverlay.runAction(CCActionSequence(array: [CCActionFadeTo(duration: 0.15, opacity: 0.7), CCActionDelay(duration: 2), CCActionFadeTo(duration: 0.2, opacity: 0)]))
     }
     
-    private func registerForCustomMatch(withMatchName matchName: String, password: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
+    private func registerForCustomMatch(withMatchName matchName: String, password: String, completionHandler: (Void -> Void), errorHandler: (String -> Void), startHandler: (String, String) -> (Void)) {
         if matchMenuType == .Create {
-            Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName, customPassword: password, completionHandler: completionHandler, errorHandler: errorHandler)
+            Matchmaker.sharedInstance.createNewCustomMatch(withCustomName: matchName, customPassword: password, completionHandler: completionHandler, errorHandler: errorHandler, startHandler: startHandler)
         }
         else {
-            Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName, password: password, completionHandler: completionHandler, errorHandler: errorHandler)
+            Matchmaker.sharedInstance.attemptToJoinCustomMatch(matchName: matchName, password: password, completionHandler: completionHandler, errorHandler: errorHandler, startHandler: startHandler)
         }
     }
     

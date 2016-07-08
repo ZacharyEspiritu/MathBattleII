@@ -16,7 +16,7 @@ class Matchmaker {
     var currentMatchData: MatchData?
     
     
-    func createNewCustomMatch(withCustomName customName: String!, customPassword: String!, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
+    func createNewCustomMatch(withCustomName customName: String!, customPassword: String!, completionHandler: (Void -> Void), errorHandler: (String -> Void), startHandler: (String, String) -> (Void)) {
         let ref = FIRDatabase.database().reference().child("/matches/custom/\(customName)")
         ref.observeSingleEventOfType(.Value,
             withBlock: { snapshot in
@@ -28,7 +28,7 @@ class Matchmaker {
                         "opposingPlayer": NSNull()
                     ]
                     ref.setValue(matchData)
-                    self.attemptToJoinCustomMatch(matchName: customName, password: customPassword, completionHandler: completionHandler, errorHandler: errorHandler)
+                    self.attemptToJoinCustomMatch(matchName: customName, password: customPassword, completionHandler: completionHandler, errorHandler: errorHandler, startHandler: startHandler)
                     print("Match created with name \(customName)")
                 }
                 else {
@@ -42,7 +42,7 @@ class Matchmaker {
         })
     }
     
-    func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String, completionHandler: (Void -> Void), errorHandler: (String -> Void)) {
+    func attemptToJoinCustomMatch(matchName matchName: String, password possiblePassword: String, completionHandler: (Void -> Void), errorHandler: (String -> Void), startHandler: (String, String) -> (Void)) {
         guard let _ = UserManager.sharedInstance.getCurrentUser() else {
             errorHandler("User will not logged in!")
             return
@@ -65,7 +65,7 @@ class Matchmaker {
                             self.currentMatchData?.hostPlayer.delegate = self
                             
                             self.attachToPlayerData(atRef: ref.child("opposingPlayer"))
-                            self.listenForMatchStart(atRef: ref)
+                            self.listenForMatchStart(atRef: ref, startHandler: startHandler)
                             
                             completionHandler()
                         }
@@ -82,7 +82,7 @@ class Matchmaker {
                             self.currentMatchData?.hostPlayer.delegate = self
                             
                             self.attachToPlayerData(atRef: ref.child("hostPlayer"))
-                            self.listenForMatchStart(atRef: ref)
+                            self.listenForMatchStart(atRef: ref, startHandler: startHandler)
                             ref.child("shouldStart").setValue(true)
                             
                             completionHandler()
@@ -106,15 +106,18 @@ class Matchmaker {
         })
     }
     
-    private func listenForMatchStart(atRef ref: FIRDatabaseReference) {
+    private func listenForMatchStart(atRef ref: FIRDatabaseReference, startHandler: (String, String) -> (Void)) {
         ref.child("shouldStart").observeEventType(.Value,
             withBlock: { snapshot in
                 if let localMatchData = self.currentMatchData {
                     if !localMatchData.hasMatchStarted() {
                         if snapshot.value as! Bool {
                             print("match should start")
+                            let hostPlayerName = localMatchData.hostPlayer.displayName
+                            let opposingPlayerName = localMatchData.opposingPlayer.displayName
+                            startHandler(hostPlayerName, opposingPlayerName)
+                            self.scheduleAutomaticDataCheck(atRef: ref)
                             localMatchData.setMatchStarted()
-                            self.startCurrentMatch(atRef: ref)
                         }
                     }
                 }
@@ -137,33 +140,6 @@ class Matchmaker {
             }, withCancelBlock: { error in
                 print("An error occured when attaching to match data: \(error.description)")
         })
-    }
-    
-    private func startCurrentMatch(atRef ref: FIRDatabaseReference) {
-        print("match starting")
-        
-        // Begin 15 second countdown before match starts
-        var countdown: Int = 15
-        NSTimer.schedule(repeatInterval: 1) { timer in
-            countdown -= 1
-            OALSimpleAudio.sharedInstance().playEffect("ding.wav")
-            print(countdown)
-            
-            if countdown <= 0 {
-                self.scheduleAutomaticDataCheck(atRef: ref)
-                
-                // Load scene
-                let gameplayScene = CCBReader.load("GameplayScene") as! GameplayScene
-                
-                let scene = CCScene()
-                scene.addChild(gameplayScene)
-                
-                let transition = CCTransition(fadeWithDuration: 0.5)
-                CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
-                
-                timer.invalidate()
-            }
-        }
     }
     
     private func scheduleAutomaticDataCheck(atRef ref: FIRDatabaseReference) {

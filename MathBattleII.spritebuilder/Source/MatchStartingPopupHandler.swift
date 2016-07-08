@@ -19,12 +19,16 @@ class MatchStartingPopupHandler {
     var popup: MatchStartingPopup!
     
     func displayPopup(withHeader header: String, player1: String, player2: String) {
+        displayPopup(withHeader: header, player1: player1, player2: player2, duration: 5)
+    }
+    
+    func displayPopup(withHeader header: String, player1: String, player2: String, duration: Int) {
         popup = CCBReader.load("MatchStartingPopup") as! MatchStartingPopup
         popup.setHeaderLabel(string: header)
         popup.setInfoLabel(string: generateInfoString(withPlayer1: player1, player2: player2))
-        popup.setCountdownLabel(string: "5")
+        popup.setCountdownLabel(string: "\(duration)")
         delegate?.shouldDisplayPopup(popup)
-        startCountdown()
+        startCountdown(withDuration: duration)
     }
     
     private func generateInfoString(withPlayer1 player1: String, player2: String) -> String {
@@ -49,8 +53,8 @@ class MatchStartingPopupHandler {
         return infoString
     }
     
-    private func startCountdown() {
-        countdown = 5
+    private func startCountdown(withDuration duration: Int) {
+        countdown = duration
         NSTimer.schedule(repeatInterval: 1, handler: { timer in
             print(self.countdown)
             self.countdown -= 1
