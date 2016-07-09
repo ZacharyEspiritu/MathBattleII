@@ -575,15 +575,12 @@ class GameplayScene: CCNode {
         
         // Transition to EndGameScene
         NSTimer.schedule(delay: 2) { timer in
-            TransitionHandler.startTransition(withCompletionHandler: { _ in
-                let gameplayScene = CCBReader.load("EndGameScene") as! EndGameScene
-                let scene = CCScene()
-                scene.addChild(gameplayScene)
-                let transition = CCTransition(fadeWithDuration: 0.5)
-                transition.incomingSceneAnimated = true
-                transition.outgoingSceneAnimated = true
-                CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
-            })
+            let gameplayScene = CCBReader.load("EndGameScene") as! EndGameScene
+            let scene = CCScene()
+            scene.addChild(gameplayScene)
+            let transition = CCTransition(fadeWithDuration: 0.5)
+            transition.outgoingSceneAnimated = true
+            CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
         }
     }
     

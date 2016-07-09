@@ -19,6 +19,8 @@ class TransitionScene: CCNode {
     let viewHeight = CCDirector.sharedDirector().viewSize().height
     let animationConstant: CGFloat = 70
     
+    let transitionDuration = 1.4
+    
     
     // MARK: Animation Functions
     
@@ -35,7 +37,7 @@ class TransitionScene: CCNode {
         loadingLabel.runAction(CCActionFadeTo(duration: 0.6, opacity: 1))
         
         icon.stopAllActions()
-        icon.runAction(CCActionSequence(array: [CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 0.5))), CCActionDelay(duration: 2.5), CCActionCallFunc(target: self, selector: #selector(self.flyOutIcon))]))
+        icon.runAction(CCActionSequence(array: [CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 0.5))), CCActionDelay(duration: transitionDuration), CCActionCallFunc(target: self, selector: #selector(self.flyOutIcon))]))
     }
     
     @objc private func flyOutIcon() {
