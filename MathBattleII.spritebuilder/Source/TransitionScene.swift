@@ -10,19 +10,19 @@ import Foundation
 
 class TransitionScene: CCNode {
     
-    weak var background1, background2: CCSprite!
+    weak var background1, background2, background3: CCSprite!
     var backgrounds: [CCSprite] = []
     
     weak var icon: CCSprite!
     
     let viewHeight = CCDirector.sharedDirector().viewSize().height
-    let animationConstant: CGFloat = 10
+    let animationConstant: CGFloat = 70
     
     
     // MARK: Animation Functions
     
     func didLoadFromCCB() {
-        backgrounds = [background1, background2]
+        backgrounds = [background1, background2, background3]
         icon.positionType = CCPositionType(xUnit: .Normalized, yUnit: .Normalized, corner: .BottomLeft)
         icon.position = CGPoint(x: 0.5, y: -0.5)
         flyInIcon()
@@ -40,10 +40,12 @@ class TransitionScene: CCNode {
     }
     
     override func update(delta: CCTime) {
+        let scale = CCDirector.sharedDirector().contentScaleFactor
         for background in backgrounds {
-            background.position.y += animationConstant
+            background.position.y += animationConstant * CGFloat(delta)
+            background.position.y = round(background.position.y * scale) / scale
             if background.position.y > viewHeight {
-                background.position.y = -viewHeight
+                background.position.y = background.position.y - (background.contentSize.height * 3 - 2)
             }
         }
     }
