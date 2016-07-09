@@ -30,7 +30,6 @@ class TutorialCover: CCNode {
         }
     }
     
-    
     private func changeTutorialCover(toType newTutorialCover: TutorialCoverType) {
         resetAllTutorialCovers()
         switch currentTutorialCover {
