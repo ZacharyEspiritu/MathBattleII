@@ -13,11 +13,12 @@ class TransitionHandler {
     static var currentTransitionScene: CCScene!
     static var completionHandler: ((Void) -> Void)!
     
-    static func startTransition(withCompletionHandler completion: (Void -> Void)) {
+    static func startTransition(outgoingSceneAnimated outgoingSceneAnimated: Bool, incomingSceneAnimated: Bool, withCompletionHandler completion: (Void -> Void)) {
         let transitionScene = CCScene()
         transitionScene.addChild(CCBReader.load("TransitionScene") as! TransitionScene)
         let transition = CCTransition(crossFadeWithDuration: 0.35)
-        transition.outgoingSceneAnimated = true
+        transition.incomingSceneAnimated = incomingSceneAnimated
+        transition.outgoingSceneAnimated = outgoingSceneAnimated
         CCDirector.sharedDirector().presentScene(transitionScene, withTransition: transition)
         currentTransitionScene = transitionScene
         completionHandler = completion
@@ -25,7 +26,5 @@ class TransitionHandler {
     
     static func endTransition() {
         completionHandler()
-        currentTransitionScene = nil
-        completionHandler = { _ in }
     }
 }

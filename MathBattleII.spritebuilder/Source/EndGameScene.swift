@@ -86,11 +86,13 @@ class EndGameScene: CCNode {
      Returns back to the `MainScene`.
      */
     private func returnToMenu() {
-        TransitionHandler.startTransition(withCompletionHandler: { _ in
+        self.userInteractionEnabled = false
+        self.multipleTouchEnabled = false
+        TransitionHandler.startTransition(outgoingSceneAnimated: false, incomingSceneAnimated: true, withCompletionHandler: { _ in
             let gameplayScene = CCBReader.load("MainScene") as! MainScene
             let scene = CCScene()
             scene.addChild(gameplayScene)
-            let transition = CCTransition(fadeWithDuration: 0.5)
+            let transition = CCTransition(crossFadeWithDuration: 0.5)
             transition.outgoingSceneAnimated = true
             CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
         })

@@ -72,7 +72,7 @@ class MatchStartingPopupHandler {
     }
     
     private func beginGame() {
-        TransitionHandler.startTransition(withCompletionHandler: { _ in
+        TransitionHandler.startTransition(outgoingSceneAnimated: false, incomingSceneAnimated: true, withCompletionHandler: { _ in
             let scene = CCScene()
             scene.addChild(CCBReader.load("GameplayScene") as! GameplayScene)
             let transition = CCTransition(crossFadeWithDuration: 0.5)
