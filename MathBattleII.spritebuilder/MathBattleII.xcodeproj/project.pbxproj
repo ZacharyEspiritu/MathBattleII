@@ -41,6 +41,7 @@
 		5546EFB71CAECCE300F84132 /* LevelDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFB61CAECCE300F84132 /* LevelDisplay.swift */; };
 		5546EFBB1CAECCF200F84132 /* CoinDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */; };
 		5546EFBD1CAF0C5000F84132 /* RankedPlayerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */; };
+		554DDEAF1D313D670085A071 /* TutorialCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554DDEAE1D313D670085A071 /* TutorialCover.swift */; };
 		555050D81C49A9990037F3A7 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050D71C49A9990037F3A7 /* GameTimer.swift */; };
 		555050E41C49D79F0037F3A7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555050E31C49D79F0037F3A7 /* Tile.swift */; };
 		55585FB41C3E812200688265 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D9BBF51C3E11D100884486 /* User.swift */; };
@@ -293,6 +294,7 @@
 		5546EFB61CAECCE300F84132 /* LevelDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LevelDisplay.swift; path = Source/LevelDisplay.swift; sourceTree = "<group>"; };
 		5546EFBA1CAECCF200F84132 /* CoinDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoinDisplay.swift; path = Source/CoinDisplay.swift; sourceTree = "<group>"; };
 		5546EFBC1CAF0C5000F84132 /* RankedPlayerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedPlayerHeader.swift; path = Source/RankedPlayerHeader.swift; sourceTree = "<group>"; };
+		554DDEAE1D313D670085A071 /* TutorialCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialCover.swift; path = Source/TutorialCover.swift; sourceTree = "<group>"; };
 		555050D71C49A9990037F3A7 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameTimer.swift; path = Source/GameTimer.swift; sourceTree = "<group>"; };
 		555050E31C49D79F0037F3A7 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = Source/Tile.swift; sourceTree = "<group>"; };
 		555A69BD1D233B3500FA021C /* LoginPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginPopupHandler.swift; path = Source/LoginPopupHandler.swift; sourceTree = "<group>"; };
@@ -650,6 +652,7 @@
 				55D946E91CC4487400F0D6BA /* LoadingScene.swift */,
 				55316C771CC6FAC1008CF8E7 /* MainScene.swift */,
 				55E4A4561D30604B0090EBA1 /* TransitionScene.swift */,
+				554DDEAE1D313D670085A071 /* TutorialCover.swift */,
 				552F3A0F1D30AEB800302D9E /* TransitionHandler.swift */,
 				5583E0261CD6964500664E9D /* GameCenterInteractor.swift */,
 				550A309B1D253B920041152F /* Menu Displays */,
@@ -1529,6 +1532,7 @@
 				55D676A11C499E7D001AE5F7 /* MainDisplay.swift in Sources */,
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
 				5521DCEC1CB3D6D6005E0D2B /* CustomMatchScene.swift in Sources */,
+				554DDEAF1D313D670085A071 /* TutorialCover.swift in Sources */,
 				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
 				55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
