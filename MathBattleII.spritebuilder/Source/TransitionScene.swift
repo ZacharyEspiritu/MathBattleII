@@ -30,13 +30,13 @@ class TransitionScene: CCNode {
     
     private func flyInIcon() {
         icon.stopAllActions()
-        icon.runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 0.5, position: CGPoint(x: 0.5, y: 0.5))))
+        icon.runAction(CCActionSequence(array: [CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 0.5))), CCActionDelay(duration: 2.5), CCActionCallFunc(target: self, selector: #selector(self.flyOutIcon))]))
+        
     }
     
-    private func flyOutIcon() {
+    @objc private func flyOutIcon() {
         icon.stopAllActions()
-        icon.runAction(CCActionEaseSineIn(action: CCActionMoveTo(duration: 0.5, position: CGPoint(x: 0.5, y: 1.5))))
-        
+        icon.runAction(CCActionSequence(array: [CCActionEaseBackIn(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 1.5))), CCActionCallBlock(block: { TransitionHandler.endTransition() })]))
     }
     
     override func update(delta: CCTime) {

@@ -93,7 +93,6 @@ class MainScene: CCNode {
     
     func leaderboardButtonPressed() {
         segueToNewDataView(withButtonPressed: .Leaderboard)
-        
     }
     
     func gameCenterButtonPressed() {
