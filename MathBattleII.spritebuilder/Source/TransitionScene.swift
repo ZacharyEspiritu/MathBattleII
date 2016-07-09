@@ -14,6 +14,7 @@ class TransitionScene: CCNode {
     var backgrounds: [CCSprite] = []
     
     weak var icon: CCSprite!
+    weak var loadingLabel: CCLabelTTF!
     
     let viewHeight = CCDirector.sharedDirector().viewSize().height
     let animationConstant: CGFloat = 70
@@ -29,12 +30,19 @@ class TransitionScene: CCNode {
     }
     
     private func flyInIcon() {
+        loadingLabel.stopAllActions()
+        loadingLabel.opacity = 0
+        loadingLabel.runAction(CCActionFadeTo(duration: 0.6, opacity: 1))
+        
         icon.stopAllActions()
         icon.runAction(CCActionSequence(array: [CCActionEaseBackOut(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 0.5))), CCActionDelay(duration: 2.5), CCActionCallFunc(target: self, selector: #selector(self.flyOutIcon))]))
-        
     }
     
     @objc private func flyOutIcon() {
+        loadingLabel.stopAllActions()
+        loadingLabel.opacity = 1
+        loadingLabel.runAction(CCActionFadeTo(duration: 0.6, opacity: 0))
+        
         icon.stopAllActions()
         icon.runAction(CCActionSequence(array: [CCActionEaseBackIn(action: CCActionMoveTo(duration: 0.6, position: CGPoint(x: 0.5, y: 1.5))), CCActionCallBlock(block: { TransitionHandler.endTransition() })]))
     }
