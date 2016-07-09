@@ -97,12 +97,6 @@ class MainScene: CCNode {
     
     func gameCenterButtonPressed() {
         showLeaderboard()
-        print("game center")
-        
-//        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-//        let scene = CCScene()
-//        scene.addChild(CCBReader.load("UserRegistrationScene") as! UserRegistrationScene)
-//        CCDirector.sharedDirector().presentScene(scene)
     }
     
     func showDescription() {
