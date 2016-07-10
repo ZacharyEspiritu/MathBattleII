@@ -31,6 +31,8 @@
 		55283D7E1C3EC879000BD64A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D7D1C3EC879000BD64A /* Grid.swift */; };
 		55283D9C1C3F1C0F000BD64A /* TileValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55283D9B1C3F1C0F000BD64A /* TileValue.swift */; };
 		552883201CB8367300C6A876 /* LeaderboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5528831F1CB8367300C6A876 /* LeaderboardTableViewCell.xib */; };
+		552B54791D329708003BBC0F /* TestingPopupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552B54781D329708003BBC0F /* TestingPopupHandler.swift */; };
+		552B547D1D329733003BBC0F /* TestingPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552B547C1D329733003BBC0F /* TestingPopup.swift */; };
 		552F3A101D30AEB800302D9E /* TransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552F3A0F1D30AEB800302D9E /* TransitionHandler.swift */; };
 		55316C781CC6FAC1008CF8E7 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55316C771CC6FAC1008CF8E7 /* MainScene.swift */; };
 		55316C7C1CC6FAE7008CF8E7 /* RankedMatchMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55316C7B1CC6FAE7008CF8E7 /* RankedMatchMenu.swift */; };
@@ -285,6 +287,8 @@
 		55283D7D1C3EC879000BD64A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Source/Grid.swift; sourceTree = "<group>"; };
 		55283D9B1C3F1C0F000BD64A /* TileValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileValue.swift; path = Source/TileValue.swift; sourceTree = "<group>"; };
 		5528831F1CB8367300C6A876 /* LeaderboardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LeaderboardTableViewCell.xib; path = Source/LeaderboardTableViewCell.xib; sourceTree = "<group>"; };
+		552B54781D329708003BBC0F /* TestingPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestingPopupHandler.swift; path = Source/TestingPopupHandler.swift; sourceTree = "<group>"; };
+		552B547C1D329733003BBC0F /* TestingPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestingPopup.swift; path = Source/TestingPopup.swift; sourceTree = "<group>"; };
 		552F3A0F1D30AEB800302D9E /* TransitionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransitionHandler.swift; path = Source/TransitionHandler.swift; sourceTree = "<group>"; };
 		55316C771CC6FAC1008CF8E7 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Source/MainScene.swift; sourceTree = "<group>"; };
 		55316C7B1CC6FAE7008CF8E7 /* RankedMatchMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RankedMatchMenu.swift; path = Source/RankedMatchMenu.swift; sourceTree = "<group>"; };
@@ -729,6 +733,8 @@
 			children = (
 				55747FF91D2F3BC2008A4491 /* UserPopup.swift */,
 				55AC25381D2F44F300FD9044 /* UserPopupHandler.swift */,
+				552B54781D329708003BBC0F /* TestingPopupHandler.swift */,
+				552B547C1D329733003BBC0F /* TestingPopup.swift */,
 			);
 			name = "User Popup";
 			sourceTree = "<group>";
@@ -1550,8 +1556,10 @@
 				55E5F3B31CC1645600D2F77E /* AI.swift in Sources */,
 				55E4A4571D30604B0090EBA1 /* TransitionScene.swift in Sources */,
 				55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */,
+				552B54791D329708003BBC0F /* TestingPopupHandler.swift in Sources */,
 				551B690F1CCC3DA400CA3368 /* PracticeAIScroller.swift in Sources */,
 				550A30A11D253C3C0041152F /* ShopPopup.swift in Sources */,
+				552B547D1D329733003BBC0F /* TestingPopup.swift in Sources */,
 				550F77FB1CA6BE57004D0F17 /* MatchCreate.swift in Sources */,
 				559B3E5F1CC9864B00E33056 /* CustomMatchTextEntry.swift in Sources */,
 				55B42D2A1C6D489100FB0239 /* UserManager.swift in Sources */,
