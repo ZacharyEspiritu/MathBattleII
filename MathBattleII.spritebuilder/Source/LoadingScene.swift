@@ -11,7 +11,6 @@ import Foundation
 class LoadingScene: CCNode {
     
     func didLoadFromCCB() {
-        CCDirector.sharedDirector().displayStats = true
         OALSimpleAudio.sharedInstance().preloadEffect("pop.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("ding.wav")
         OALSimpleAudio.sharedInstance().preloadEffect("flicker.mp3")

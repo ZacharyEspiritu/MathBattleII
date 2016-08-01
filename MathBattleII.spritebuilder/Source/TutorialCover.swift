@@ -30,7 +30,7 @@ class TutorialCover: CCNode {
         }
     }
     
-    private func changeTutorialCover(toType newTutorialCover: TutorialCoverType) {
+    func changeTutorialCover(toType newTutorialCover: TutorialCoverType) {
         resetAllTutorialCovers()
         switch currentTutorialCover {
         case        .Normal: normalFadeOut.opacity = 1
@@ -44,6 +44,10 @@ class TutorialCover: CCNode {
         case         .Timer: timerFadeOut.opacity = 1
         default: break;
         }
+    }
+    
+    func setText(string string: String) {
+        
     }
 }
 

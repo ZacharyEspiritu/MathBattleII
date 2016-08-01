@@ -11,22 +11,44 @@ import Foundation
 class ScoreCounter: CCSprite {
     
     weak var topCounter1, topCounter2, topCounter3, topCounter4, middleCounter, bottomCounter1, bottomCounter2, bottomCounter3, bottomCounter4: CCSprite!
+    weak var scoreLabel, bottomScoreLabel: CCLabelTTF!
+    
     private var topScoreLimit: Int = 5
     private var bottomScoreLimit: Int = 5
     private var topScore: Int = 0 {
         didSet {
-            updateSpriteFrames()
+            if practiceModeEnabled {
+                
+            }
+            else {
+                updateSpriteFrames()
+            }
         }
     }
     private var bottomScore: Int = 0 {
         didSet {
-            updateSpriteFrames()
+            if practiceModeEnabled {
+                bottomScoreLabel.string = "\(bottomScore)"
+            }
+            else {
+                updateSpriteFrames()
+            }
         }
     }
     
     private let maximumScoreLimit = 5
     private let minimumScoreLimit = 1
     
+    var practiceModeEnabled = false
+    
+    
+    func didLoadFromCCB() {
+        let scoreLabels = [scoreLabel, bottomScoreLabel]
+        for scoreLabel in scoreLabels {
+            scoreLabel.visible = false
+        }
+        bottomScoreLabel.string = "0"
+    }
     
     /**
      Determines who is currently winning the game.
@@ -57,6 +79,19 @@ class ScoreCounter: CCSprite {
      */
     func getBottomScore() -> Int {
         return bottomScore
+    }
+    
+    func enablePracticeMode() {
+        practiceModeEnabled = true
+        let scoreCounters = [topCounter1, topCounter2, topCounter3, topCounter4, middleCounter, bottomCounter1, bottomCounter2, bottomCounter3, bottomCounter4]
+        for scoreCounter in scoreCounters {
+            scoreCounter.visible = false
+        }
+        
+        let scoreLabels = [scoreLabel, bottomScoreLabel]
+        for scoreLabel in scoreLabels {
+            scoreLabel.visible = true
+        }
     }
     
     /**
@@ -128,12 +163,16 @@ class ScoreCounter: CCSprite {
         case .Top:
             topScore += 1
             if topScore == topScoreLimit {
-                return true
+                if !practiceModeEnabled {
+                    return true
+                }
             }
         case .Bottom:
             bottomScore += 1
             if bottomScore == bottomScoreLimit {
-                return true
+                if !practiceModeEnabled {
+                    return true
+                }
             }
         }
         return false

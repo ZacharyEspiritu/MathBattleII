@@ -62,6 +62,8 @@ class GameplayScene: CCNode {
     var gameLengthInSeconds: Int = 90
     var scoreLimit: Int = 5
     
+    var isPracticeMatch = false
+    
     
     // MARK: Functions
     
@@ -82,6 +84,9 @@ class GameplayScene: CCNode {
         
         let operatorIndex = NSUserDefaults.standardUserDefaults().boolForKey("multiplicationEnabled") ? 3 : 2
         PuzzleGenerator.sharedInstance.setAmountOfPossibleOperators(index: operatorIndex)
+        
+        isPracticeMatch = NSUserDefaults.standardUserDefaults().boolForKey("isPracticeMatch")
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPracticeMatch")
         
         resetGameOptionsToDefaults()
     }
@@ -121,16 +126,20 @@ class GameplayScene: CCNode {
         setupGameTimer()
         
         // Remove focus out node if in practice match or online multiplayer
-        if !NSUserDefaults.standardUserDefaults().boolForKey("isPracticeMatch") && multiplayerMatchData == nil {
+        if !isPracticeMatch && multiplayerMatchData == nil {
             topPlayerFocusOutColorNode.removeFromParent()
         }
         else {
             topPlayerFocusOutColorNode.runAction(CCActionEaseSineIn(action: CCActionFadeTo(duration: 3, opacity: 0.6)))
-            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPracticeMatch")
         }
         
         // Establish score limits
-        scoreCounter.establishScoreLimit(forBothSides: scoreLimit)
+        if isPracticeMatch {
+            scoreCounter.enablePracticeMode()
+        }
+        else {
+            scoreCounter.establishScoreLimit(forBothSides: scoreLimit)
+        }
         
         beginCountdownSequence()
         
@@ -522,13 +531,13 @@ class GameplayScene: CCNode {
      - returns:                `true` if the `[TileValue]` array has a valid order for equation checking
      */
     private func checkTileArrayHasCorrectFormat(tileValues: [TileValue]) -> Bool {
-        if tileValues[0].checkIfNumberOrOperation() == TileType.Number &&
+        if tileValues[0].checkIfNumberOrOperation() == TileType.Number     &&
             tileValues[1].checkIfNumberOrOperation() == TileType.Operation &&
-            tileValues[2].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[2].checkIfNumberOrOperation() == TileType.Number    &&
             tileValues[3].checkIfNumberOrOperation() == TileType.Operation &&
-            tileValues[4].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[4].checkIfNumberOrOperation() == TileType.Number    &&
             tileValues[5].checkIfNumberOrOperation() == TileType.Operation &&
-            tileValues[6].checkIfNumberOrOperation() == TileType.Number &&
+            tileValues[6].checkIfNumberOrOperation() == TileType.Number    &&
             tileValues[7].checkIfNumberOrOperation() == TileType.Operation &&
             tileValues[8].checkIfNumberOrOperation() == TileType.Number {
             return true
@@ -568,6 +577,11 @@ class GameplayScene: CCNode {
         if multiplayerMatchData != nil {
             updateMultiplayerEndGameStats()
         }
+        if isPracticeMatch {
+            if let currentUser = UserManager.sharedInstance.getCurrentUser() {
+                currentUser.setPracticeHighScore(newHighScore: scoreCounter.getBottomScore())
+            }
+        }
         
         // Save temporarily to NSUserDefaults for use in next scene
         NSUserDefaults.standardUserDefaults().setInteger(scoreCounter.getTopScore(), forKey: "topScore")
@@ -583,6 +597,9 @@ class GameplayScene: CCNode {
         }
     }
     
+    /**
+     Updates online stats for the current user if the game is a multiplayer match.
+     */
     private func updateMultiplayerEndGameStats() {
         guard let _ = multiplayerMatchData else {
             assertionFailure("updateMultiplayerEndGameStats called when multiplayerMatchData was nil")
@@ -601,6 +618,12 @@ class GameplayScene: CCNode {
                 currentUser.incrementNumberOfLosses()
             }
         }
+    }
+    
+    private func beginTutorial() {
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "tutorialShouldBegin")
+        let tutorial = TutorialHandler.sharedInstance
+        tutorial.loadTutorialCover()
     }
 }
 

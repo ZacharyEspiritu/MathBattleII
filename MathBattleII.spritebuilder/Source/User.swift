@@ -237,7 +237,9 @@ class User {
     }
     
     func setPracticeHighScore(newHighScore score: Int) -> Int {
-        practiceHighScore = score
+        if score > practiceHighScore {
+            practiceHighScore = score
+        }
         return score
     }
     

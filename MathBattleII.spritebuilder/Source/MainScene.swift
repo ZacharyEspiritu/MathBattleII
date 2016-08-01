@@ -58,6 +58,10 @@ class MainScene: CCNode {
         MatchStartingPopupHandler.sharedInstance.delegate = self
         MenuDisplayManager.sharedInstance.attachToCoinDisplay(coinDisplay: coinDisplay)
         MenuDisplayManager.sharedInstance.attachToLevelDisplay(levelDisplay: levelDisplay)
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey("firstGameLoad") {
+            TestingPopupHandler.displayTestingPopup()
+        }
     }
     
     // MARK: Button Functions

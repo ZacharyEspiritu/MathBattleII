@@ -408,7 +408,7 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>1</real>
+							<real>0.0</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -995,7 +995,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>53</real>
+							<real>12</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -1038,7 +1038,7 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>0.49000000953674316</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -1348,8 +1348,8 @@
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.85000002384185791</real>
+									<real>0.0</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -1767,7 +1767,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>0.5</real>
+									<real>0.52999997138977051</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>2</integer>
@@ -1810,7 +1810,7 @@
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>1</real>
+									<real>0.0</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -2553,7 +2553,7 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>0.64999997615814209</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -2804,7 +2804,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>82</real>
+							<real>119.61170959472656</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -4716,7 +4716,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1.5</real>
+							<real>0.5</real>
 							<real>27.611709594726562</real>
 							<integer>0</integer>
 							<integer>2</integer>
@@ -5194,7 +5194,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>148</real>
+							<real>200.1915283203125</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -5578,7 +5578,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>55.200000762939453</real>
+							<real>14.1915283203125</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -6047,7 +6047,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>0.5</real>
+									<real>0.52999997138977051</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>2</integer>
@@ -6090,7 +6090,7 @@
 								<key>value</key>
 								<array>
 									<real>1</real>
-									<real>1</real>
+									<real>0.0</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -7107,7 +7107,7 @@
 										<key>value</key>
 										<array>
 											<real>147.5</real>
-											<real>158.52046203613281</real>
+											<real>79.5</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -7497,7 +7497,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.0</real>
+									<real>0.51999998092651367</real>
 									<integer>1</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -8426,7 +8426,7 @@
 										<key>value</key>
 										<array>
 											<real>50.5</real>
-											<real>-23</real>
+											<real>24</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -8781,6 +8781,8 @@
 										</array>
 									</dict>
 								</array>
+								<key>selected</key>
+								<true/>
 								<key>seqExpanded</key>
 								<true/>
 							</dict>
@@ -9005,7 +9007,7 @@
 										<key>value</key>
 										<array>
 											<real>147.5</real>
-											<real>-23</real>
+											<real>24</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -9584,7 +9586,7 @@
 										<key>value</key>
 										<array>
 											<real>244.5</real>
-											<real>-23</real>
+											<real>24</real>
 											<integer>0</integer>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -9974,7 +9976,7 @@
 								<key>value</key>
 								<array>
 									<real>0.5</real>
-									<real>0.0</real>
+									<real>0.47999998927116394</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -10766,8 +10768,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-0.5</real>
-							<real>106.1915283203125</real>
+							<real>0.5</real>
+							<real>108</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -10796,8 +10798,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.0499999523162842</real>
-							<real>0.89999997615814209</real>
+							<real>1</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -11200,7 +11202,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.0</real>
+							<real>-47</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -11473,7 +11475,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>16</real>
+							<real>-32</real>
 							<real>172</real>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -12011,8 +12013,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -12207,7 +12207,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>0.60000002384185791</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

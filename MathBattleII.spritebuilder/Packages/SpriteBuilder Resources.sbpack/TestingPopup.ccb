@@ -1286,7 +1286,7 @@
 							<string>If you're seeing this message, this
 means that you're playing a
 prerelease version of math
-battle (build 1520).</string>
+battle (build 1524).</string>
 							<false/>
 						</array>
 					</dict>
@@ -1435,6 +1435,8 @@ battle (build 1520).</string>
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
