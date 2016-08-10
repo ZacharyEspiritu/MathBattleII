@@ -71,7 +71,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>106</real>
+							<real>22</real>
 							<real>21.5</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -85,7 +85,7 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
+							<real>0.0</real>
 							<real>0.5</real>
 						</array>
 					</dict>
@@ -110,7 +110,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>mainMenuAssets/levelDisplayBackground.png</string>
+							<string>menuAssets/levelDisplayBg.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -146,6 +146,8 @@
 						<array/>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -309,7 +311,7 @@
 								<key>value</key>
 								<array>
 									<real>0.0</real>
-									<real>0.5</real>
+									<real>0.54500001668930054</real>
 								</array>
 							</dict>
 							<dict>
@@ -333,7 +335,7 @@
 								<key>value</key>
 								<array>
 									<string></string>
-									<string>mainMenuAssets/levelMeterCenter.png</string>
+									<string>menuAssets/levelDisplayMeterCenter.png</string>
 								</array>
 							</dict>
 							<dict>
@@ -402,7 +404,7 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>154</real>
+									<real>120</real>
 									<real>13</real>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -1325,6 +1327,8 @@ Matches.</string>
 				<string></string>
 				<key>displayName</key>
 				<string>descriptionPopup</string>
+				<key>hidden</key>
+				<true/>
 				<key>memberVarAssignmentName</key>
 				<string>descriptionPopup</string>
 				<key>memberVarAssignmentType</key>
@@ -1458,8 +1462,6 @@ Matches.</string>
 						<real>0.33000001311302185</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -1501,7 +1503,7 @@ Matches.</string>
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>194</real>
+					<real>164</real>
 					<real>43</real>
 					<integer>0</integer>
 					<integer>0</integer>
@@ -1514,7 +1516,7 @@ Matches.</string>
 				<string>Point</string>
 				<key>value</key>
 				<array>
-					<real>0.5</real>
+					<real>0.047451291233301163</real>
 					<real>0.5</real>
 				</array>
 			</dict>

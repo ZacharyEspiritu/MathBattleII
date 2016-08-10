@@ -103,6 +103,15 @@ class MainScene: CCNode {
         showLeaderboard()
     }
     
+    func userIconPressed() {
+        if let user = UserManager.sharedInstance.getCurrentUser() {
+            UserPopupHandler.displayUserPopup(forUser: user)
+        }
+        else {
+            LoginPopupHandler.displayLoginPopup()
+        }
+    }
+    
     func showDescription() {
         if currentDescriptionPopup == nil {
             currentDescriptionPopup = CCBReader.load("DescriptionPopup") as? DescriptionPopup
