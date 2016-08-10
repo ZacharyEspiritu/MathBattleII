@@ -28,16 +28,16 @@ class UserPopup: CCNode {
     // MARK: Data Functions
     
     func displayUserData(forUser user: User) {
-        playerNameLabel.string = user.getDisplayName()
-        ratingLabel.string = "Rating: \(user.getRating())"
-        practiceHighScoreLabel.string = "Practice: \(user.getPracticeHighScore())"
-        experienceLevelLabel.string = "\(user.getCalculatedPlayerLevel())"
-        totalExperienceLabel.string = "\(user.getExperienceLevel())"
-        coinsLabel.string = "\(user.getCoins())"
+        playerNameLabel.string          = user.getDisplayName()
+        ratingLabel.string              = "Rating: \(user.getRating())"
+        practiceHighScoreLabel.string   = "Practice: \(user.getPracticeHighScore())"
+        experienceLevelLabel.string     = "\(user.getCalculatedPlayerLevel())"
+        totalExperienceLabel.string     = "\(user.getExperienceLevel())"
+        coinsLabel.string               = "\(user.getCoins())"
         numberOfGamesPlayedLabel.string = "\(user.getNumberOfGamesPlayed())"
-        totalPuzzleSolvesLabel.string = "\(user.getNumberOfSolves())"
-        onlineMatchWinsLabel.string = "\(user.getNumberOfWins())"
-        onlineMatchLossesLabel.string = "\(user.getNumberOfLosses())"
-        itemsBoughtLabel.string = user.getItems() != nil ? "\(user.getItems()!.count)" : "0"
+        totalPuzzleSolvesLabel.string   = "\(user.getNumberOfSolves())"
+        onlineMatchWinsLabel.string     = "\(user.getNumberOfWins())"
+        onlineMatchLossesLabel.string   = "\(user.getNumberOfLosses())"
+        itemsBoughtLabel.string         = user.getItems() != nil ? "\(user.getItems()!.count)" : "0"
     }
 }
