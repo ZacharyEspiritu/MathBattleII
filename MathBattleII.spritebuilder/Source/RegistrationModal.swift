@@ -23,7 +23,9 @@ class RegistrationModal: CCNode {
     // MARK: Button Functions
     
     func mainButtonPressed() {
+        disableButtons()
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        
         let username = usernameTextField.string
         let email = emailTextField.string
         let password = passwordTextField.string
@@ -31,9 +33,11 @@ class RegistrationModal: CCNode {
         RegistrationManager.sharedInstance.registerNewAccount(username: username, email: email, password: password, passwordConfirmation: passwordConfirmation,
             completionHandler: {
                 self.delegate?.registrationCompletedSuccessfully(self)
+                self.mainButton.label.string = "Success!"
             }, errorHandler: { errorDescription in
                 self.loginPopupAlertModal.setAlert(string: errorDescription)
                 self.loginPopupAlertModal.displayAlert()
+                self.enableButtons()
         })
     }
     
@@ -45,6 +49,20 @@ class RegistrationModal: CCNode {
     func closeButtonPressed() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         delegate?.registrationCloseButtonPressed(self)
+    }
+    
+    // MARK: Safety Functions
+    
+    private func disableButtons() {
+        detailButton.enabled = false
+        mainButton.enabled = false
+        mainButton.label.string = "Loading..."
+    }
+    
+    private func enableButtons() {
+        detailButton.enabled = true
+        mainButton.enabled = true
+        mainButton.label.string = "Register"
     }
     
     // MARK: Data Functions

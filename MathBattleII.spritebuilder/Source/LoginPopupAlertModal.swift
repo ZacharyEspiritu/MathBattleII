@@ -18,6 +18,7 @@ class LoginPopupAlertModal: CCNode {
     func displayAlert() {
         timer?.invalidate()
         timer = nil
+        
         stopAllActions()
         self.position = defaultPosition
         self.runAction(CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0.5, y: 0))))

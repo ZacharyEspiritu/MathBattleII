@@ -23,15 +23,19 @@ class LoginModal: CCNode {
     // MARK: Button Functions
     
     func mainButtonPressed() {
+        disableButtons()
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        
         let email = emailTextField.string
         let password = passwordTextField.string
         AuthenticationHandler.sharedInstance.authenticateUser(email: email, password: password,
             completionHandler: {
                 self.delegate?.loginAuthenticationCompletedSuccessfully(self)
+                self.mainButton.label.string = "Success!"
             }, errorHandler: { errorDescription in
                 self.loginPopupAlertModal.setAlert(string: errorDescription)
                 self.loginPopupAlertModal.displayAlert()
+                self.enableButtons()
         })
     }
     
@@ -43,6 +47,20 @@ class LoginModal: CCNode {
     func closeButtonPressed() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         delegate?.loginCloseButtonPressed(self)
+    }
+    
+    // MARK: Safety Functions
+    
+    private func disableButtons() {
+        detailButton.enabled = false
+        mainButton.enabled = false
+        mainButton.label.string = "Loading..."
+    }
+    
+    private func enableButtons() {
+        detailButton.enabled = true
+        mainButton.enabled = true
+        mainButton.label.string = "Log In"
     }
     
     // MARK: Data Functions

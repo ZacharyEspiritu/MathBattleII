@@ -18,11 +18,11 @@ class DescriptionPopup: CCNode {
         case .Ranked:
             setDescription(description: "Battle other players in a race\nto solve five puzzles as fast\nas possible!\n\nYou win BattlePoints by\nwinning matches, but you can\nalso lose them!")
         case .Custom:
-            setDescription(description: "Setup an online match with a friend\nby entering the same room name\nand password!")
+            setDescription(description: "Setup an online match with a\nfriend by entering the same room\nname and password!")
         case .Local:
             setDescription(description: "Play on the same device\nagainst a friend!")
         case .Practice:
-            setDescription(description: "Practice your match skills\nagainst different AIs of varying\ndifficulties!")
+            setDescription(description: "Practice your match skills by\nattempting to solve as many\npuzzles as you can in 90\nseconds!")
         default:
             assertionFailure()
         }
