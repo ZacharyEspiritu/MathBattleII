@@ -172,7 +172,7 @@ class MainScene: CCNode {
         case .GameCenter:
             print("Game Center")
         default:
-            largeMenuButton.label.string = "Ranked Match"
+            largeMenuButton.label.string = "Choose A Mode:"
             leftMenuButton.label.string = "Custom"
             centerMenuButton.label.string = "Local"
             rightMenuButton.label.string = "Practice"
@@ -194,11 +194,26 @@ class MainScene: CCNode {
     private func segueToNewMenu(withButtonPressed buttonPressed: MenuButtonType) {
         let buttonIndex = buttonPressed.rawValue        // Main = 0, Left = 1, Center = 2, Right = 3
         let currentMenuIndex = currentMenuType.rawValue // None = -1, Ranked = 0, Custom = 1, Local = 2, Practice = 3
-        let newMenuIndex = (currentMenuIndex < 0) ? buttonIndex : (buttonIndex + currentMenuIndex) % 4
+        var newMenuIndex = (currentMenuIndex < 0) ? buttonIndex : (buttonIndex + currentMenuIndex) % 4
         
-        if currentMenuIndex == newMenuIndex {
-            currentMenuType = .None
-            self.animationManager.runAnimationsForSequenceNamed("BackToMainMenu")
+        switch buttonIndex {
+        case 0:
+            newMenuIndex = -1
+        case 1:
+            newMenuIndex = 1
+        case 2:
+            newMenuIndex = 2
+        case 3:
+            newMenuIndex = 3
+        default:
+            assertionFailure("Impossible buttonIndex found!")
+        }
+        
+        if currentMenuIndex == newMenuIndex || newMenuIndex == -1 {
+            if newMenuIndex != -1 || currentMenuIndex != -1 {
+                currentMenuType = .None
+                self.animationManager.runAnimationsForSequenceNamed("BackToMainMenu")
+            }
         }
         else if let newMenuType = MenuType(rawValue: newMenuIndex) {
             currentMenuType = newMenuType
@@ -210,7 +225,9 @@ class MainScene: CCNode {
         
         levelDisplay.hideDescriptionPopup()
         
-        OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        if newMenuIndex != -1 || currentMenuIndex != -1 {
+            OALSimpleAudio.sharedInstance().playEffect("pop.wav")
+        }
     }
     
     private func loadMenuForType(type menuType: MenuType) {
@@ -228,25 +245,25 @@ class MainScene: CCNode {
             gamemodeMenu = CCBReader.load("CustomMatchMenu") as! CustomMatchMenu
             menuTintColorNode.color = CCColor(red: 126/255, green: 211/255, blue: 33/255)
             largeMenuButton.label.string = "Custom Match"
-            leftMenuButton.label.string = "Local"
-            centerMenuButton.label.string = "Practice"
-            rightMenuButton.label.string = "Ranked"
+            leftMenuButton.label.string = "Custom"
+            centerMenuButton.label.string = "Local"
+            rightMenuButton.label.string = "Practice"
         case .Local:
             gamemodeMenu = CCBReader.load("LocalMatchMenu") as! LocalMatchMenu
             menuTintColorNode.color = CCColor(red: 80/255, green: 227/255, blue: 194/255)
             largeMenuButton.label.string = "Local Match"
-            leftMenuButton.label.string = "Practice"
-            centerMenuButton.label.string = "Ranked"
-            rightMenuButton.label.string = "Custom"
+            leftMenuButton.label.string = "Custom"
+            centerMenuButton.label.string = "Local"
+            rightMenuButton.label.string = "Practice"
         case .Practice:
             gamemodeMenu = CCBReader.load("PracticeMatchMenu") as! PracticeMatchMenu
             menuTintColorNode.color = CCColor(red: 248/255, green: 231/255, blue: 28/255)
             largeMenuButton.label.string = "Practice Match"
-            leftMenuButton.label.string = "Ranked"
-            centerMenuButton.label.string = "Custom"
-            rightMenuButton.label.string = "Local"
+            leftMenuButton.label.string = "Custom"
+            centerMenuButton.label.string = "Local"
+            rightMenuButton.label.string = "Practice"
         default:
-            largeMenuButton.label.string = "Ranked Match"
+            largeMenuButton.label.string = "Choose A Mode:"
             leftMenuButton.label.string = "Custom"
             centerMenuButton.label.string = "Local"
             rightMenuButton.label.string = "Practice"
