@@ -84,8 +84,6 @@ class TutorialHandler {
         case .EndTutorial:
             tutorialCover.changeTutorialCover(toType: .Normal)
             tutorialCover.setText(string: Config.tutorial.endTutorial)
-        default:
-            assertionFailure("Tutorial Phase not found...")
         }
     }
 }

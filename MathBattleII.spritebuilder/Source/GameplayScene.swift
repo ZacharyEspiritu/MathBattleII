@@ -150,9 +150,7 @@ class GameplayScene: CCNode {
         if let currentMatchData = Matchmaker.sharedInstance.currentMatchData {
             return currentMatchData
         }
-        else {
-            return nil
-        }
+        return nil
     }
     
     /**
@@ -377,7 +375,7 @@ class GameplayScene: CCNode {
         let opponentPlayerDisplay: PlayerDisplay = (side == .Top) ? bottomPlayerDisplay : topPlayerDisplay
         
         // Move all tiles from the Grid to the launchedTileHolder to correct draw order
-        var tileArray: [Tile] = grid.getCurrentlySelectedTiles()
+        let tileArray: [Tile] = grid.getCurrentlySelectedTiles()
         for tile in tileArray {
             tile.removeFromParent()
             launchedTileHolder.addChild(tile)
@@ -387,21 +385,10 @@ class GameplayScene: CCNode {
         // Launch each Tile in the order it appears in the equation
         var count = 0
         NSTimer.schedule(repeatInterval: 0.15) { timer in
-            // Tile launch animation
-            let animationDuration: Double = 1.5
-            let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
-            let angle = ((CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5) ? -1 : 1) * Float(arc4random_uniform(25) + 255)
-            tileArray[count].runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
-            tileArray[count].runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
-            
-            // Schedule a timer to shake the Player Display just about when each tile hits the display
-            NSTimer.schedule(delay: 1.4) { timer in
-                opponentPlayerDisplay.shakeDisplay()
-                OALSimpleAudio.sharedInstance().playEffect("pop.wav")
-            }
+            self.playTileLaunchAnimation(forTile: tileArray[count], towardsDisplay: opponentPlayerDisplay)
+            count += 1
             
             // Check if the last tile has been launched, then schedule a cleanup method to fix everything
-            count += 1
             if count >= 9 {
                 timer.invalidate()
                 NSTimer.schedule(delay: 2.0) { timer in
@@ -411,6 +398,28 @@ class GameplayScene: CCNode {
                     opponentPlayerDisplay.sneakIntoCorrectPosition()
                 }
             }
+        }
+    }
+    
+    /**
+     Plays an animation where a specified `Tile` is launched towards the specified `PlayerDisplay`.
+     Should be used in the `launchTilesAtOpponent(forSide:)` function.
+     - parameter withTileArray:    the `Tile` to use to determine how to update the `equationLabel`
+     - parameter towardsDisplay:   the `PlayerDisplay` to launch the `Tile` towards
+     - parameter iteration:
+     */
+    private func playTileLaunchAnimation(forTile tile: Tile, towardsDisplay playerDisplay: PlayerDisplay) {
+        // Tile launch animation
+        let animationDuration: Double = 1.5
+        let targetPoint: CGPoint = CGPoint(x: 0.5, y: 3.0)
+        let angle = ((CGFloat(Float(arc4random()) / Float(UINT32_MAX)) < 0.5) ? -1 : 1) * Float(arc4random_uniform(25) + 255)
+        tile.runAction(CCActionEaseSineIn(action: CCActionRotateBy(duration: animationDuration, angle: angle)))
+        tile.runAction(CCActionEaseBackIn(action: CCActionMoveTo(duration: animationDuration, position: targetPoint)))
+        
+        // Schedule a timer to shake the Player Display just about when each tile hits the display
+        NSTimer.schedule(delay: 1.4) { timer in
+            playerDisplay.shakeDisplay()
+            OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         }
     }
     
