@@ -40,7 +40,7 @@ class CustomMatchMenu: CCNode {
         
         customMatchTextEntry.enabled = true
         confirmButton.enabled = true
-        messageHeader.setMessage(string: "Custom Match") // TODO: Error Checking
+        messageHeader.setMessage(string: "Custom\nMatch") // TODO: Error Checking
         
         // TODO: If cancel match, then delete from Firebase database
     }
@@ -53,25 +53,27 @@ class CustomMatchMenu: CCNode {
         
         let matchName = customMatchTextEntry.getMatchName()
         let password = customMatchTextEntry.getMatchPassword()
+        
         if validateCustomMatchInput(matchName: matchName, password: password) {
-            
             customMatchTextEntry.enabled = false
             confirmButton.enabled = false
-            messageHeader.setMessage(string: "Attempting To Join...")
+            messageHeader.setMessage(string: "Attempting\nTo Join...")
             
             registerForCustomMatch(withMatchName: matchName, password: password,
                 completionHandler: { _ in
-                    print("completed")
-                    self.messageHeader.setMessage(string: "Joined Match... Waiting For Player")
+                    self.messageHeader.setMessage(string: "Joined Match!\nWaiting For Other\nPlayer...")
                 }, errorHandler: { error in
-                    print(error)
+                    self.customMatchTextEntry.enabled = true
+                    self.confirmButton.enabled = true
+                    if error == "Match with given name not found." {
+                        self.messageHeader.setMessage(string: "Match Not\nFound")
+                    }
+                    else {
+                        self.messageHeader.setMessage(string: "An Error Occured\nTry Again")
+                    }
                 }, startHandler: { hostPlayerName, opposingPlayerName in
-                    print("match starting")
-                    MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match Is Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
+                    MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match\nIs Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
             })
-        }
-        else {
-            messageHeader.setMessage(string: "Six Characters Minimum")
         }
     }
     
@@ -91,8 +93,16 @@ class CustomMatchMenu: CCNode {
     
     private func validateCustomMatchInput(matchName matchName: String, password: String) -> Bool {
         guard matchName.characters.count >= 6 && password.characters.count >= 6 else {
+            messageHeader.setMessage(string: "Six Characters\nMinimum")
             return false
         }
+        
+        let badCharacters = NSCharacterSet.letterCharacterSet().invertedSet
+        guard matchName.rangeOfCharacterFromSet(badCharacters) == nil && password.rangeOfCharacterFromSet(badCharacters) == nil else {
+            messageHeader.setMessage(string: "Only Letters\nAre Allowed")
+            return false
+        }
+        
         return true
     }
 }

@@ -296,14 +296,22 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>backgroundOpacity|Disabled</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>1</real>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>backgroundColor|Disabled</string>
 								<key>type</key>
 								<string>Color3</string>
 								<key>value</key>
 								<array>
-									<real>0.99607843160629272</real>
-									<real>0.99607843160629272</real>
-									<real>0.99607843160629272</real>
+									<real>0.67058825492858887</real>
+									<real>0.67058825492858887</real>
+									<real>0.67058825492858887</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -325,6 +333,14 @@
 									<string></string>
 									<string>mainMenuAssets/loginPopupDetailButton.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>backgroundOpacity|Selected</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>1</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -480,6 +496,8 @@
 								</array>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -669,14 +687,22 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>backgroundOpacity|Disabled</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>1</real>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>backgroundColor|Disabled</string>
 								<key>type</key>
 								<string>Color3</string>
 								<key>value</key>
 								<array>
-									<real>0.99607843160629272</real>
-									<real>0.99607843160629272</real>
-									<real>0.99607843160629272</real>
+									<real>0.67058825492858887</real>
+									<real>0.67058825492858887</real>
+									<real>0.67058825492858887</real>
 									<real>1</real>
 								</array>
 							</dict>
@@ -698,6 +724,14 @@
 									<string></string>
 									<string>mainMenuAssets/loginPopupMainButton.png</string>
 								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>backgroundOpacity|Selected</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>1</real>
 							</dict>
 							<dict>
 								<key>name</key>

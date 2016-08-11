@@ -180,7 +180,7 @@
 						<key>value</key>
 						<array>
 							<real>95.5</real>
-							<real>39</real>
+							<real>40</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -217,8 +217,8 @@
 						<string>Text</string>
 						<key>value</key>
 						<array>
-							<string>custom
-match</string>
+							<string>Custom
+Match</string>
 							<false/>
 						</array>
 					</dict>
@@ -247,7 +247,7 @@ match</string>
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -269,8 +269,8 @@ match</string>
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>191</real>
-							<real>78</real>
+							<real>165</real>
+							<real>62</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -367,6 +367,8 @@ match</string>
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -439,8 +441,6 @@ match</string>
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
