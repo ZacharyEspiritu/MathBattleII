@@ -75,7 +75,7 @@ class AuthenticationHandler {
             else {
                 // Error occurred.
                 if let error = error {
-                    if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                    if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
                         let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
                         errorHandler(errorDescription)
                     }

@@ -12,7 +12,12 @@ class MatchStartingPopup: CCNode {
     
     weak var background: CCSprite9Slice!
     weak var headerLabel, infoLabel, countdownLabel: CCLabelTTF!
+    weak var focusOutButton: CCButton!
     
+    
+    func didLoadFromCCB() {
+        focusOutButton.enabled = false
+    }
 
     func setHeaderLabel(string string: String) {
         headerLabel.string = string

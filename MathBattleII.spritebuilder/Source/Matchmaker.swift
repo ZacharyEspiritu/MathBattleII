@@ -34,7 +34,7 @@ class Matchmaker {
                     errorHandler("Match already exists with given name.")
                 }
             }, withCancelBlock: { error in
-                if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
                     let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
                     errorHandler(errorDescription)
                 }
@@ -98,7 +98,7 @@ class Matchmaker {
                     errorHandler("Match with given name not found.")
                 }
             }, withCancelBlock: { error in
-                if let errorCode = FIRAuthErrorCode(rawValue: error.code) { // TODO: Handle all ErrorCode cases
+                if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
                     let errorDescription = FirebaseErrorReader.convertToHumanReadableAlertDescription(errorCode)
                     errorHandler(errorDescription)
                 }
@@ -173,6 +173,16 @@ class Matchmaker {
             "targetNumber": 0,
             "score": 0
         ]
+    }
+    
+    func deleteCurrentMatchFromFirebase(withCompletionHandler completionHandler: (Void -> Void)) {
+        guard let matchData = currentMatchData else {
+            return
+        }
+        
+        FIRDatabase.database().reference().child("/matches/custom/\(matchData.matchID)").setValue(nil)
+        currentMatchData = nil
+        completionHandler()
     }
 }
 

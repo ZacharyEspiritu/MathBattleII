@@ -23,7 +23,11 @@ class CustomMatchMenu: CCNode {
         }
     }
     
+    // MARK: Constants
+    
     let animationDuration = 0.4
+    
+    // MARK: Functions
     
     func didLoadFromCCB() {
         centerAreaGroupingNode.position.x = 1.50
@@ -34,15 +38,14 @@ class CustomMatchMenu: CCNode {
     }
     
     func backButtonPressed() {
-        let centerAreaXPosition: CGFloat = (matchMenuType == .Join) ? 1.5 : -1.5
-        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
-        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
-        
-        customMatchTextEntry.enabled = true
-        confirmButton.enabled = true
-        messageHeader.setMessage(string: "Custom\nMatch") // TODO: Error Checking
-        
-        // TODO: If cancel match, then delete from Firebase database
+        if let _ = Matchmaker.sharedInstance.currentMatchData {
+            Matchmaker.sharedInstance.deleteCurrentMatchFromFirebase(withCompletionHandler: { _ in
+                self.resetModalPositions()
+            })
+        }
+        else {
+            resetModalPositions()
+        }
     }
     
     func confirmMatchInformation() {
@@ -57,10 +60,12 @@ class CustomMatchMenu: CCNode {
         if validateCustomMatchInput(matchName: matchName, password: password) {
             customMatchTextEntry.enabled = false
             confirmButton.enabled = false
+            backButton.enabled = false
             messageHeader.setMessage(string: "Attempting\nTo Join...")
             
             registerForCustomMatch(withMatchName: matchName, password: password,
                 completionHandler: { _ in
+                    self.backButton.enabled = true
                     self.messageHeader.setMessage(string: "Joined Match!\nWaiting For Other\nPlayer...")
                 }, errorHandler: { error in
                     self.customMatchTextEntry.enabled = true
@@ -72,9 +77,20 @@ class CustomMatchMenu: CCNode {
                         self.messageHeader.setMessage(string: "An Error Occured\nTry Again")
                     }
                 }, startHandler: { hostPlayerName, opposingPlayerName in
+                    self.backButton.enabled = false
                     MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match\nIs Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
             })
         }
+    }
+    
+    private func resetModalPositions() {
+        let centerAreaXPosition: CGFloat = (matchMenuType == .Join) ? 1.5 : -1.5
+        centerAreaGroupingNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: centerAreaXPosition, y: centerAreaGroupingNode.position.y))))
+        menuButtonNode.runAction(CCActionEaseBackOut(action: CCActionMoveTo(duration: animationDuration, position: CGPoint(x: 0.5, y: centerAreaGroupingNode.position.y))))
+        
+        customMatchTextEntry.enabled = true
+        confirmButton.enabled = true
+        messageHeader.setMessage(string: "Custom\nMatch")
     }
     
     private func displayAlertOverlay() {
