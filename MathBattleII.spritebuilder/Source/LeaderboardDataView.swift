@@ -102,7 +102,6 @@ class LeaderboardDataView: CCNode {
         let ref = FIRDatabase.database().reference().child(view.rawValue)
         ref.queryOrderedByValue().observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let data = snapshot.value as? [String : Int] {
-                print(data)
                 orderedPlayers = data.keysSortedByValue(>)
                 rankingDictionary = data
                 self.loadRankedLeaderboardContent(data: (orderedPlayers, rankingDictionary))

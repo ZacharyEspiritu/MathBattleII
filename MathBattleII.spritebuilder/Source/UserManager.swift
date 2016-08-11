@@ -27,7 +27,6 @@ class UserManager {
             throw UserManagerError.UserAlreadyExists
         }
         currentUser = newUser
-        print(currentUser)
     }
     
     func removeCurrentUser() throws {

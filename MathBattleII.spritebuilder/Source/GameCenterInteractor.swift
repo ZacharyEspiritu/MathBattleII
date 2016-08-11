@@ -42,16 +42,13 @@ class GameCenterInteractor: NSObject {
     {
         if (self.localPlayer.authenticated == false)
         {
-            //Authenticate the player
             print("[Game Center] The local player is not authenticated.")
             self.authenticateLocalPlayer()
         } else
         {
             print("[Game Center] The local player is authenticated")
-            // Register the listener
             self.localPlayer.registerListener(self)
             
-            // At this point you can download match data from Game Center.
 //            GKAchievement.loadAchievementsWithCompletionHandler({(achievementDescriptions: [GKAchievement]?, error: NSError?) -> Void in
 //                if error != nil {
 //                    print("Game Center: Loading achievements failed with error: \(error)")

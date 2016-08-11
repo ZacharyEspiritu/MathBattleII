@@ -29,7 +29,6 @@ class RegistrationManager {
                     if let user = user {
                         // User authentication complete!
                         let uid = user.uid
-                        print("Successfully created user account with uid: \(uid)")                        
                         self.initializeNewAccountData(uid, accountData: accountData, completion: { Void in
                             self.authenticationHandler.authenticateUser(email: accountData.email, password: accountData.password, completionHandler: completionHandler, errorHandler: errorHandler)
                         })

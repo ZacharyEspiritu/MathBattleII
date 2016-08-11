@@ -56,7 +56,6 @@ class MatchStartingPopupHandler {
     private func startCountdown(withDuration duration: Int) {
         countdown = duration
         NSTimer.schedule(repeatInterval: 1, handler: { timer in
-            print(self.countdown)
             self.countdown -= 1
             self.popup.setCountdownLabel(string: "\(self.countdown)")
             self.playCountdownSound()

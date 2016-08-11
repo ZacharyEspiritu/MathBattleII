@@ -29,7 +29,6 @@ class Matchmaker {
                     ]
                     ref.setValue(matchData)
                     self.attemptToJoinCustomMatch(matchName: customName, password: customPassword, completionHandler: completionHandler, errorHandler: errorHandler, startHandler: startHandler)
-                    print("Match created with name \(customName)")
                 }
                 else {
                     errorHandler("Match already exists with given name.")
@@ -112,7 +111,6 @@ class Matchmaker {
                 if let localMatchData = self.currentMatchData {
                     if !localMatchData.hasMatchStarted() {
                         if snapshot.value as! Bool {
-                            print("match should start")
                             let hostPlayerName = localMatchData.hostPlayer.displayName
                             let opposingPlayerName = localMatchData.opposingPlayer.displayName
                             startHandler(hostPlayerName, opposingPlayerName)
@@ -164,7 +162,6 @@ class Matchmaker {
     
     private func generateStandardUserData() -> NSDictionary {
         guard let user = UserManager.sharedInstance.getCurrentUser() else {
-            print("generateStandardUserData was called but no user exists!")
             return [:]
         }
         return [

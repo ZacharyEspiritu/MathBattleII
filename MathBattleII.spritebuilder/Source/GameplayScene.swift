@@ -676,7 +676,6 @@ extension GameplayScene: PlayerDataDelegate {
     }
     
     func currentTilesHaveUpdated(playerData: PlayerData) {
-        print("test")
         if topGrid.checkIfTilesExistInGrid() {
             launchTilesAtOpponent(forSide: .Top)
         }

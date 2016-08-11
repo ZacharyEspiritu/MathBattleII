@@ -28,7 +28,6 @@ class NewsDataView: CCNode {
     private func retrieveNewsDataFromFirebase() {
         let ref = FIRDatabase.database().reference().child("news")
         ref.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
             if let data = snapshot.value as? [String : NSDictionary] {
                 var sortedKeys: [Int] = []
                 for key in data.keys {
@@ -37,9 +36,7 @@ class NewsDataView: CCNode {
                 sortedKeys = sortedKeys.sort(>)
                 self.loadNewsData(sortedKeys: sortedKeys, newsData: data)
             }
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+        })
     }
     
     private func loadNewsData(sortedKeys sortedKeys: [Int], newsData: [String : NSDictionary]) {
@@ -54,7 +51,6 @@ class NewsDataView: CCNode {
             let cell = CCBReader.load("NewsScrollViewCell") as! NewsScrollViewCell
             cell.setData(pipeIndex: index, header: header, detail: detail)
             cell.contentSize.height = cell.headerLabel.contentSize.height + cell.detailLabel.contentSize.height + 39
-            print(cell.contentSize.height)
             
             cell.positionType = CCPositionType(xUnit: CCPositionUnit.Normalized, yUnit: CCPositionUnit.Points, corner: CCPositionReferenceCorner.TopLeft)
             cell.position = CGPoint(x: 0.5, y: scrollViewContent.contentSize.height)

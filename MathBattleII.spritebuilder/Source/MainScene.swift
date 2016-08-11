@@ -175,7 +175,7 @@ class MainScene: CCNode {
             dataView = CCBReader.load("LeaderboardDataView") as! LeaderboardDataView
             largeMenuButton.label.string = "Leaderboard"
         case .GameCenter:
-            print("Game Center")
+            break
         default:
             largeMenuButton.label.string = "Choose A Mode:"
             leftMenuButton.label.string = "Custom"
