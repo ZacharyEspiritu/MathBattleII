@@ -14,15 +14,13 @@ class ShopManager {
     
     static func getItemsWithStatus() -> [ShopItem] {
         items.removeAll()
-        items.append(ShopItem(id: 1, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 4, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 5, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 6, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 7, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 8, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 9, name: "Blue", price: 1000, imagePath: "test.png"))
-        items.append(ShopItem(id: 3, name: "Blue", price: 5000, imagePath: "test.png"))
-        items.append(ShopItem(id: 2, name: "Blue", price: 10000, imagePath: "test.png"))
+        items.append(ShopItem(id: 1, name: "Yellow", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 2, name: "Orange", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 3, name: "Purple", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 4, name: "Cyan", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 5, name: "Green", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 6, name: "Brown", price: 1000, imagePath: "test.png"))
+        items.append(ShopItem(id: 7, name: "Gray", price: 1000, imagePath: "test.png"))
         return items
     }
     

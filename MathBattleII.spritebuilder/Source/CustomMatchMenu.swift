@@ -78,6 +78,7 @@ class CustomMatchMenu: CCNode {
                     }
                 }, startHandler: { hostPlayerName, opposingPlayerName in
                     self.backButton.enabled = false
+                    self.customMatchTextEntry.clearFields()
                     MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match\nIs Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
             })
         }

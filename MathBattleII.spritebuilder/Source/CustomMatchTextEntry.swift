@@ -42,6 +42,11 @@ class CustomMatchTextEntry: CCNode {
         return matchPasswordTextField.string
     }
     
+    func clearFields() {
+        matchNameTextField.string = ""
+        matchPasswordTextField.string = ""
+    }
+    
     private func enabled(enabled: Bool) {
         let textFields = [matchNameTextField.textField, matchPasswordTextField.textField]
         for textField in textFields {
