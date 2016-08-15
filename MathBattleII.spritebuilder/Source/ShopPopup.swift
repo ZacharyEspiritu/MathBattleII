@@ -123,6 +123,7 @@ extension ShopPopup: ShopScrollViewCellDelegate {
     
     func shopScrollViewCellTouched(cell: ShopScrollViewCell) {
         guard let user = UserManager.sharedInstance.getCurrentUser() else {
+            UserIconPointerHandler.sharedInstance.displayPointer()
             displayAlertOverlay()
             return
         }

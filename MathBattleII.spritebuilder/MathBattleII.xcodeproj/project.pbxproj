@@ -111,6 +111,8 @@
 		55F5455C1D1F641900A03E18 /* LeaderboardDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */; };
 		55F845C21D1B4ACD009D86B7 /* MatchStartingPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F845C11D1B4ACD009D86B7 /* MatchStartingPopup.swift */; };
 		55F845C61D1B74F3009D86B7 /* MatchStartingPopupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */; };
+		55FBC3CB1D6160A900AFDBE4 /* UserIconPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3CA1D6160A900AFDBE4 /* UserIconPointer.swift */; };
+		55FBC3CF1D6161B600AFDBE4 /* UserIconPointerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3CE1D6161B600AFDBE4 /* UserIconPointerHandler.swift */; };
 		55FEBBDF1D222B8A00AC25FE /* LoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */; };
 		5B121030197484FA004C1E1D /* MathBattleIIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* MathBattleIIActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -361,6 +363,8 @@
 		55F5455B1D1F641900A03E18 /* LeaderboardDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardDataView.swift; path = Source/LeaderboardDataView.swift; sourceTree = "<group>"; };
 		55F845C11D1B4ACD009D86B7 /* MatchStartingPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStartingPopup.swift; path = Source/MatchStartingPopup.swift; sourceTree = "<group>"; };
 		55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStartingPopupHandler.swift; path = Source/MatchStartingPopupHandler.swift; sourceTree = "<group>"; };
+		55FBC3CA1D6160A900AFDBE4 /* UserIconPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserIconPointer.swift; path = Source/UserIconPointer.swift; sourceTree = "<group>"; };
+		55FBC3CE1D6161B600AFDBE4 /* UserIconPointerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserIconPointerHandler.swift; path = Source/UserIconPointerHandler.swift; sourceTree = "<group>"; };
 		55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginPopup.swift; path = Source/LoginPopup.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -733,6 +737,8 @@
 			children = (
 				55747FF91D2F3BC2008A4491 /* UserPopup.swift */,
 				55AC25381D2F44F300FD9044 /* UserPopupHandler.swift */,
+				55FBC3CA1D6160A900AFDBE4 /* UserIconPointer.swift */,
+				55FBC3CE1D6161B600AFDBE4 /* UserIconPointerHandler.swift */,
 				552B54781D329708003BBC0F /* TestingPopupHandler.swift */,
 				552B547C1D329733003BBC0F /* TestingPopup.swift */,
 			);
@@ -1552,6 +1558,7 @@
 				555A69BE1D233B3500FA021C /* LoginPopupHandler.swift in Sources */,
 				558D02631C7BD08B009719D6 /* Matchmaker.swift in Sources */,
 				550A30A31D253CA50041152F /* ShopManager.swift in Sources */,
+				55FBC3CB1D6160A900AFDBE4 /* UserIconPointer.swift in Sources */,
 				55B4E1FA1C5C2A89007BE8C3 /* RegistrationManager.swift in Sources */,
 				55F2136F1CAB3CAA0028AD4A /* CustomMatchPopoverView.swift in Sources */,
 				55BB60F41D20A47D00F32B96 /* NewsScrollViewCell.swift in Sources */,
@@ -1571,6 +1578,7 @@
 				55BD70CE1CF7C43900420DA0 /* CustomMatchMenuButtons.swift in Sources */,
 				554DDEB31D3158B80085A071 /* TutorialHandler.swift in Sources */,
 				55A0348E1C714A9500451824 /* UserAccountInfoManager.swift in Sources */,
+				55FBC3CF1D6161B600AFDBE4 /* UserIconPointerHandler.swift in Sources */,
 				55F845C61D1B74F3009D86B7 /* MatchStartingPopupHandler.swift in Sources */,
 				55A0348B1C714A6200451824 /* UserAccountInfoScene.swift in Sources */,
 				55D6768F1C49515F001AE5F7 /* PlayerDisplay.swift in Sources */,

@@ -147,6 +147,7 @@ extension CustomMatchMenu: CustomMatchMenuButtonsDelegate {
     
     func joinButtonPressed() {
         guard let _ = UserManager.sharedInstance.getCurrentUser() else {
+            UserIconPointerHandler.sharedInstance.displayPointer()
             displayAlertOverlay()
             return
         }
@@ -159,6 +160,7 @@ extension CustomMatchMenu: CustomMatchMenuButtonsDelegate {
     
     func createButtonPressed() {
         guard let _ = UserManager.sharedInstance.getCurrentUser() else {
+            UserIconPointerHandler.sharedInstance.displayPointer()
             displayAlertOverlay()
             return
         }

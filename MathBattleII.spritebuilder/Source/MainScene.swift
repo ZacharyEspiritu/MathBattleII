@@ -28,6 +28,8 @@ class MainScene: CCNode {
     
     weak var focusOut: CCSprite!
     
+    weak var userIconPointer: UserIconPointer!
+    
     weak var shopGroupingNode: CCNode!
     var shopIsDisplaying: Bool = false {
         didSet {
@@ -58,6 +60,7 @@ class MainScene: CCNode {
         MatchStartingPopupHandler.sharedInstance.delegate = self
         MenuDisplayManager.sharedInstance.attachToCoinDisplay(coinDisplay: coinDisplay)
         MenuDisplayManager.sharedInstance.attachToLevelDisplay(levelDisplay: levelDisplay)
+        UserIconPointerHandler.sharedInstance.attachToUserIconPointer(userIconPointer: userIconPointer)
         
         NSTimer.schedule(delay: 1, handler: { timer in
             let application = UIApplication.sharedApplication()
@@ -333,6 +336,8 @@ class MainScene: CCNode {
                 if CGRectContainsPoint(levelDisplay.boundingBox(), touch.locationInNode(topAreaGroupingNode)) {
                     levelDisplay.displayDescriptionPopup()
                     removeShop()
+                    
+                    FIRAnalytics.logEventWithName("level_popup_description_displayed", parameters: nil)
                 }
             }
             levelDisplay.stopAllActions()
@@ -358,10 +363,14 @@ class MainScene: CCNode {
         shop.position = CGPoint(x: 0.5, y: 0.5)
         shop.delegate = self
         shopGroupingNode.addChild(shop)
+        
+        FIRAnalytics.logEventWithName("shop_opened", parameters: nil)
     }
     
     private func removeShop() {
         shopGroupingNode.removeAllChildren()
+        
+        FIRAnalytics.logEventWithName("shop_closed", parameters: nil)
     }
 }
 
