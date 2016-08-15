@@ -34,6 +34,7 @@ class RegistrationModal: CCNode {
             completionHandler: {
                 self.delegate?.registrationCompletedSuccessfully(self)
                 self.mainButton.label.string = "Success!"
+                FIRAnalytics.logEventWithName(kFIREventSignUp, parameters: nil)
             }, errorHandler: { errorDescription in
                 self.loginPopupAlertModal.setAlert(string: errorDescription)
                 self.loginPopupAlertModal.displayAlert()

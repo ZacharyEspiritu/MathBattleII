@@ -95,6 +95,7 @@ class AuthenticationHandler {
                 ref.child("users").child((FIRAuth.auth()?.currentUser!.uid)!).setValue(userData)
                 print("user data saved")
             }
+            
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Ranked.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["rating"])
@@ -104,8 +105,9 @@ class AuthenticationHandler {
                     kFIRParameterScore: userData["rating"] as! NSNumber,
                     kFIRParameterLevel: userData["experienceLevel"] as! NSNumber
                 ])
-                print("Ranked leaderboard data saved")
+                print("ranked leaderboard data saved")
             }
+            
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Practice.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["practiceHighScore"])
@@ -113,6 +115,7 @@ class AuthenticationHandler {
                 FIRAnalytics.setUserPropertyString(String(userData["practiceHighScore"]), forName: "practiceHighScore")
                 print("practice leaderboard data saved")
             }
+            
             dispatch_group_async(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 ref.child(LeaderboardView.Overall.rawValue).child((UserManager.sharedInstance.getCurrentUser()?.getDisplayName())!)
                     .setValue(userData["experienceLevel"])
@@ -120,6 +123,7 @@ class AuthenticationHandler {
                 FIRAnalytics.setUserPropertyString(String(userData["experienceLevel"]), forName: "experienceLevel")
                 print("overall leaderboard data saved")
             }
+            
             dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
                 print("data saved")
             }

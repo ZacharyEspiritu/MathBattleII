@@ -23,6 +23,8 @@ class RankedMatchMenu: CCNode {
         focusOut.opacity = 0
         MenuDisplayManager.sharedInstance.attachToRankedPlayerHeader(rankedPlayerHeader)
         userInteractionEnabled = true
+        
+        FIRAnalytics.logEventWithName("ranked_match_menu_opened", parameters: nil)
     }
     
     func battleButtonPressed() {

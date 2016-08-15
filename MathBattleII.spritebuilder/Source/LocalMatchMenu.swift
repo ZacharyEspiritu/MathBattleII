@@ -31,6 +31,10 @@ class LocalMatchMenu: CCNode {
         }
     }
     
+    func didLoadFromCCB() {
+        FIRAnalytics.logEventWithName("local_match_menu_opened", parameters: nil)
+    }
+    
     func readyButtonPressed() {
         OALSimpleAudio.sharedInstance().playEffect("pop.wav")
         if topMenuButton.selected && bottomMenuButton.selected {
@@ -92,6 +96,14 @@ class LocalMatchMenu: CCNode {
         NSUserDefaults.standardUserDefaults().setInteger(timeInteger, forKey: "gameLengthOption")
         NSUserDefaults.standardUserDefaults().setInteger(currentScoreOption.rawValue, forKey: "scoreLimitOption")
         NSUserDefaults.standardUserDefaults().setBool(isMultiplicationToggled, forKey: "multiplicationEnabled")
+        
+        let loggedIn: Bool = (UserManager.sharedInstance.getCurrentUser() != nil) ? true : false
+        FIRAnalytics.logEventWithName("local_match_started", parameters: [
+            "time_limit": timeInteger,
+            "score_limit": currentScoreOption.rawValue,
+            "multiplication_enabled": isMultiplicationToggled,
+            "logged_in": loggedIn
+        ])
     }
 }
 

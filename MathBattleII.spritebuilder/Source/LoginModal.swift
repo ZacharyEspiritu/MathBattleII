@@ -32,6 +32,7 @@ class LoginModal: CCNode {
             completionHandler: {
                 self.delegate?.loginAuthenticationCompletedSuccessfully(self)
                 self.mainButton.label.string = "Success!"
+                FIRAnalytics.logEventWithName(kFIREventLogin, parameters: nil)
             }, errorHandler: { errorDescription in
                 self.loginPopupAlertModal.setAlert(string: errorDescription)
                 self.loginPopupAlertModal.displayAlert()

@@ -35,6 +35,8 @@ class CustomMatchMenu: CCNode {
         menuButtonNode.delegate = self
         alertOverlay.cascadeOpacityEnabled = true
         alertOverlay.opacity = 0
+
+        FIRAnalytics.logEventWithName("custom_match_menu_opened", parameters: nil)
     }
     
     func backButtonPressed() {
@@ -67,6 +69,11 @@ class CustomMatchMenu: CCNode {
                 completionHandler: { _ in
                     self.backButton.enabled = true
                     self.messageHeader.setMessage(string: "Joined Match!\nWaiting For Other\nPlayer...")
+                    
+                    FIRAnalytics.logEventWithName("player_joined_custom_match", parameters: [
+                        "match_name": matchName,
+                        "match_password": password
+                    ])
                 }, errorHandler: { error in
                     self.customMatchTextEntry.enabled = true
                     self.confirmButton.enabled = true
@@ -80,6 +87,13 @@ class CustomMatchMenu: CCNode {
                     self.backButton.enabled = false
                     self.customMatchTextEntry.clearFields()
                     MatchStartingPopupHandler.sharedInstance.displayPopup(withHeader: "Custom Match\nIs Starting...", player1: hostPlayerName, player2: opposingPlayerName, duration: 15)
+                    
+                    FIRAnalytics.logEventWithName("custom_match_started", parameters: [
+                        "match_name": matchName,
+                        "match_password": password,
+                        "player_1": hostPlayerName,
+                        "player_2": opposingPlayerName
+                    ])
             })
         }
     }

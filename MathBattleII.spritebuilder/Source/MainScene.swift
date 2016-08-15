@@ -85,26 +85,36 @@ class MainScene: CCNode {
     
     func newsButtonPressed() {
         segueToNewDataView(withButtonPressed: .News)
+        FIRAnalytics.logEventWithName("news_view_opened", parameters: nil)
     }
     
     func infoButtonPressed() {
         segueToNewDataView(withButtonPressed: .Info)
+        FIRAnalytics.logEventWithName("info_view_opened", parameters: nil)
     }
     
     func leaderboardButtonPressed() {
         segueToNewDataView(withButtonPressed: .Leaderboard)
+        FIRAnalytics.logEventWithName("leaderboard_view_opened", parameters: nil)
     }
     
     func gameCenterButtonPressed() {
         showLeaderboard()
+        FIRAnalytics.logEventWithName("game_center_opened", parameters: nil)
     }
     
     func userIconPressed() {
         if let user = UserManager.sharedInstance.getCurrentUser() {
             UserPopupHandler.displayUserPopup(forUser: user)
+            
+            FIRAnalytics.logEventWithName("login_modal_displayed", parameters: [
+                "current_user": user.getDisplayName()
+            ])
         }
         else {
             LoginPopupHandler.displayLoginPopup()
+            
+            FIRAnalytics.logEventWithName("login_modal_displayed", parameters: nil)
         }
     }
     
