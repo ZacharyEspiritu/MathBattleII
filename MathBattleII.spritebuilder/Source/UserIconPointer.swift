@@ -15,7 +15,7 @@ class UserIconPointer: CCSprite {
         let slideBack = CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.4, position: CGPoint(x: 0, y: 29)))
         let slideAgain = CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.4, position: CGPoint(x: 0, y: 17)))
         let slideDown = CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: 0, y: 26)))
-        let restorePosition = CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.1, position: CGPoint(x: 0, y: 23)))
+        let restorePosition = CCActionEaseSineOut(action: CCActionMoveTo(duration: 0.12, position: CGPoint(x: 0, y: 23)))
         let delay = CCActionDelay(duration: 0.52)
         let slideOut = CCActionEaseSineIn(action: CCActionMoveTo(duration: 0.3, position: CGPoint(x: -self.contentSize.width, y: 23)))
         
