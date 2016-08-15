@@ -12,7 +12,7 @@ class EndGameScene: CCNode {
     
     // MARK: Variables
     
-    let scrollSpeed: CGFloat = 60
+    let scrollSpeed: CGFloat = 55
     
     weak var topBackground1, topBackground2: CCSprite!
     weak var bottomBackground1, bottomBackground2: CCSprite!

@@ -113,6 +113,8 @@
 		55F845C61D1B74F3009D86B7 /* MatchStartingPopupHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */; };
 		55FBC3CB1D6160A900AFDBE4 /* UserIconPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3CA1D6160A900AFDBE4 /* UserIconPointer.swift */; };
 		55FBC3CF1D6161B600AFDBE4 /* UserIconPointerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3CE1D6161B600AFDBE4 /* UserIconPointerHandler.swift */; };
+		55FBC3D11D616C0E00AFDBE4 /* SideBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3D01D616C0E00AFDBE4 /* SideBackground.swift */; };
+		55FBC3D91D61759400AFDBE4 /* IncorrectPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBC3D81D61759400AFDBE4 /* IncorrectPopup.swift */; };
 		55FEBBDF1D222B8A00AC25FE /* LoginPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */; };
 		5B121030197484FA004C1E1D /* MathBattleIIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* MathBattleIIActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
@@ -365,6 +367,8 @@
 		55F845C51D1B74F3009D86B7 /* MatchStartingPopupHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MatchStartingPopupHandler.swift; path = Source/MatchStartingPopupHandler.swift; sourceTree = "<group>"; };
 		55FBC3CA1D6160A900AFDBE4 /* UserIconPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserIconPointer.swift; path = Source/UserIconPointer.swift; sourceTree = "<group>"; };
 		55FBC3CE1D6161B600AFDBE4 /* UserIconPointerHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserIconPointerHandler.swift; path = Source/UserIconPointerHandler.swift; sourceTree = "<group>"; };
+		55FBC3D01D616C0E00AFDBE4 /* SideBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideBackground.swift; path = Source/SideBackground.swift; sourceTree = "<group>"; };
+		55FBC3D81D61759400AFDBE4 /* IncorrectPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncorrectPopup.swift; path = Source/IncorrectPopup.swift; sourceTree = "<group>"; };
 		55FEBBDE1D222B8A00AC25FE /* LoginPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginPopup.swift; path = Source/LoginPopup.swift; sourceTree = "<group>"; };
 		5B12100919748273004C1E1D /* libEGL.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libEGL.so; path = /usr/lib/armv7a/libEGL.so; sourceTree = SDKROOT; };
 		5B12100F197483EE004C1E1D /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
@@ -594,7 +598,9 @@
 			children = (
 				55952B501C4F3D54001DDC4F /* CountdownDisplay.swift */,
 				55D676A01C499E7D001AE5F7 /* MainDisplay.swift */,
+				55FBC3D01D616C0E00AFDBE4 /* SideBackground.swift */,
 				55D6768E1C49515F001AE5F7 /* PlayerDisplay.swift */,
+				55FBC3D81D61759400AFDBE4 /* IncorrectPopup.swift */,
 				550964C91CA8C0FA00C57D1B /* EqualsButton.swift */,
 				55D6769A1C496B5F001AE5F7 /* ScoreCounter.swift */,
 				5514A5FC1C555F3E0096661F /* SlidingDoor.swift */,
@@ -1551,6 +1557,7 @@
 				55F23E601C3DA1D5007EE53F /* ELOManager.swift in Sources */,
 				5521DCEC1CB3D6D6005E0D2B /* CustomMatchScene.swift in Sources */,
 				554DDEAF1D313D670085A071 /* TutorialCover.swift in Sources */,
+				55FBC3D91D61759400AFDBE4 /* IncorrectPopup.swift in Sources */,
 				5514A5FD1C555F3E0096661F /* SlidingDoor.swift in Sources */,
 				55408CE71C5CEA97002DF72D /* AuthenticationHandler.swift in Sources */,
 				55D6769B1C496B5F001AE5F7 /* ScoreCounter.swift in Sources */,
@@ -1565,6 +1572,7 @@
 				55D6768A1C4931EE001AE5F7 /* Array2D.swift in Sources */,
 				55E5F3B31CC1645600D2F77E /* AI.swift in Sources */,
 				55E4A4571D30604B0090EBA1 /* TransitionScene.swift in Sources */,
+				55FBC3D11D616C0E00AFDBE4 /* SideBackground.swift in Sources */,
 				55CC943C1CBC7E8A00D56632 /* LeaderboardTableViewCell.swift in Sources */,
 				552B54791D329708003BBC0F /* TestingPopupHandler.swift in Sources */,
 				551B690F1CCC3DA400CA3368 /* PracticeAIScroller.swift in Sources */,

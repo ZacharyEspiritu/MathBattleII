@@ -28,6 +28,11 @@ class GameplayScene: CCNode {
     
     weak var topPlayerFocusOutColorNode: CCNodeColor!
     
+    weak var topBackground: SideBackground!
+    weak var bottomBackground: SideBackgroundClipped!
+    
+    weak var topIncorrectPopup, bottomIncorrectPopup: IncorrectPopup!
+    
     private var gameTimer: GameTimer! = nil
     
     private var topSampleEquationSolution: String! {
@@ -87,6 +92,9 @@ class GameplayScene: CCNode {
         
         isPracticeMatch = NSUserDefaults.standardUserDefaults().boolForKey("isPracticeMatch")
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPracticeMatch")
+        
+//        topBackground.setBackgroundColor(CCColor(red: 158/255, green: 76/255, blue: 76/255))
+//        bottomBackground.setBackgroundColor(CCColor(red: 87/255, green: 100/255, blue: 71/255))
         
         resetGameOptionsToDefaults()
     }
@@ -476,7 +484,16 @@ class GameplayScene: CCNode {
                 if possibleTargetValue == targetNumber {
                     return true
                 }
+                
+                let incorrectPopup = (side == .Top) ? topIncorrectPopup : bottomIncorrectPopup
+                incorrectPopup.setLabel(string: "Incorrect")
+                incorrectPopup.displayPopup()
             }
+        }
+        else {
+            let incorrectPopup = (side == .Top) ? topIncorrectPopup : bottomIncorrectPopup
+            incorrectPopup.setLabel(string: "Use All 9 Tiles")
+            incorrectPopup.displayPopup()
         }
         return false
     }
