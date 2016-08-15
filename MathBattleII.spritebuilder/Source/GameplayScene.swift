@@ -484,11 +484,11 @@ class GameplayScene: CCNode {
                 if possibleTargetValue == targetNumber {
                     return true
                 }
-                
-                let incorrectPopup = (side == .Top) ? topIncorrectPopup : bottomIncorrectPopup
-                incorrectPopup.setLabel(string: "Incorrect")
-                incorrectPopup.displayPopup()
             }
+            
+            let incorrectPopup = (side == .Top) ? topIncorrectPopup : bottomIncorrectPopup
+            incorrectPopup.setLabel(string: "Incorrect")
+            incorrectPopup.displayPopup()
         }
         else {
             let incorrectPopup = (side == .Top) ? topIncorrectPopup : bottomIncorrectPopup
