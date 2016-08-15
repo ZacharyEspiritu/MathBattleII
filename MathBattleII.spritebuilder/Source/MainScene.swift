@@ -58,6 +58,14 @@ class MainScene: CCNode {
         MatchStartingPopupHandler.sharedInstance.delegate = self
         MenuDisplayManager.sharedInstance.attachToCoinDisplay(coinDisplay: coinDisplay)
         MenuDisplayManager.sharedInstance.attachToLevelDisplay(levelDisplay: levelDisplay)
+        
+        NSTimer.schedule(delay: 1, handler: { timer in
+            let application = UIApplication.sharedApplication()
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+            timer.invalidate()
+        })
     }
     
     // MARK: Button Functions
