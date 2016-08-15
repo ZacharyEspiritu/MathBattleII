@@ -337,7 +337,7 @@ class MainScene: CCNode {
                     levelDisplay.displayDescriptionPopup()
                     removeShop()
                     
-                    FIRAnalytics.logEventWithName("level_popup_description_displayed", parameters: nil)
+                    FIRAnalytics.logEventWithName("level_popup_displayed", parameters: nil)
                 }
             }
             levelDisplay.stopAllActions()
